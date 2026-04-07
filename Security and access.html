@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Security & Access Menu</title>
+
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    nav {
+      background: #1a1a1a;
+    }
+
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+
+    nav ul li {
+      position: relative;
+    }
+
+    nav ul li a {
+      display: block;
+      padding: 15px 25px;
+      color: #fff;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    nav ul li a:hover {
+      background: #333;
+    }
+
+    /* Main dropdown */
+    nav ul li ul {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: #333;
+      min-width: 260px;
+      z-index: 100;
+    }
+
+    /* Submenus */
+    nav ul li ul li ul {
+      top: 0;
+      left: 100%;
+      background: #444;
+    }
+
+    /* Hover behavior */
+    nav ul li:hover > ul {
+      display: block;
+    }
+
+    nav ul li ul li:hover > ul {
+      display: block;
+    }
+
+    .fa-angle-right {
+      float: right;
+      font-size: 0.8em;
+      margin-top: 4px;
+    }
+
+    .search-container {
+      padding: 10px;
+      border-bottom: 1px solid #555;
+    }
+
+    .search-container input {
+      width: 90%;
+      padding: 6px;
+      border-radius: 4px;
+      border: none;
+    }
+
+    .highlight {
+      background: yellow;
+      color: black;
+      border-radius: 2px;
+      padding: 0 2px;
+    }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <ul>
+    <li>
+      <!-- MAIN TAB (NO LEFT ICON) -->
+      <a href="#">Security & Access <i class="fas fa-angle-down"></i></a>
+
+      <ul id="mainMenu">
+
+        <!-- SEARCH -->
+        <li><div class="search-container">
+          <input type="text" id="searchInput" placeholder="Search..." onkeyup="filterMenu()">
+        </div></li>
+
+        <!-- Physical Security -->
+        <li class="category">
+          <a href="#">Physical Security <i class="fas fa-angle-right"></i></a>
+          <ul>
+            <li><a href="cctv.html">CCTV Surveillance</a></li>
+            <li><a href="biometric.html">Biometric Entry</a></li>
+            <li><a href="vaults.html">Asset Vaults</a></li>
+            <li><a href="motion.html">Motion Detectors</a></li>
+          </ul>
+        </li>
+
+        <!-- IT Security -->
+        <li class="category">
+          <a href="#">IT Security <i class="fas fa-angle-right"></i></a>
+          <ul>
+            <li><a href="firewalls.html">Next-Gen Firewalls</a></li>
+            <li><a href="endpoint.html">Endpoint Protection</a></li>
+            <li><a href="encryption.html">Encryption Tools</a></li>
+            <li><a href="scanner.html">Vulnerability Scanners</a></li>
+          </ul>
+        </li>
+
+        <!-- Identity & Access -->
+        <li class="category">
+          <a href="#">Identity & Access <i class="fas fa-angle-right"></i></a>
+          <ul>
+            <li><a href="mfa.html">Multi-Factor (MFA)</a></li>
+            <li><a href="sso.html">Single Sign-On (SSO)</a></li>
+            <li><a href="roles.html">Role-Based Access</a></li>
+            <li><a href="privileged.html">Privileged Access</a></li>
+          </ul>
+        </li>
+
+        <!-- Monitoring -->
+        <li class="category">
+          <a href="#">Monitoring <i class="fas fa-angle-right"></i></a>
+          <ul>
+            <li><a href="logs.html">Real-time Logs</a></li>
+            <li><a href="alerts.html">Incident Alerts</a></li>
+            <li><a href="traffic.html">Traffic Analysis</a></li>
+            <li><a href="compliance.html">Compliance Audits</a></li>
+          </ul>
+        </li>
+
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+<script>
+function filterMenu() {
+  const input = document.getElementById("searchInput").value.toLowerCase();
+  const categories = document.querySelectorAll(".category");
+
+  categories.forEach(category => {
+    const submenu = category.querySelector("ul");
+    const items = submenu.querySelectorAll("li");
+    let hasMatch = false;
+
+    items.forEach(item => {
+      const link = item.querySelector("a");
+      const text = link.textContent.toLowerCase();
+
+      // Reset text
+      link.innerHTML = link.textContent;
+
+      if (text.includes(input)) {
+        item.style.display = "block";
+        hasMatch = true;
+
+        if (input.length > 0) {
+          const regex = new RegExp(`(${input})`, "gi");
+          link.innerHTML = link.textContent.replace(regex, '<span class="highlight">$1</span>');
+        }
+      } else {
+        item.style.display = "none";
+      }
+    });
+
+    // Show only matching categories
+    category.style.display = hasMatch ? "block" : "none";
+
+    // Auto-open matching categories
+    if (input.length > 0 && hasMatch) {
+      submenu.style.display = "block";
+    } else {
+      submenu.style.display = "";
+    }
+  });
+}
+</script>
+
+</body>
+</html>

@@ -627,6 +627,402 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+    // ===== GLOBALS =====
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
+
+    // Shipping rates (simplified)
+    const shippingRates = {
+        'Eswatini': { 'standard': { name: 'Standard Delivery (3-5 days)', cost: 99.99 }, 'express': { name: 'Express Delivery (1-2 days)', cost: 249.99 }, 'pickup': { name: 'Store Pickup (Free)', cost: 0 } },
+        'South Africa': { 'standard': { name: 'Standard Delivery (2-4 days)', cost: 89.99 }, 'express': { name: 'Express Delivery (Next day)', cost: 199.99 } },
+        'International': { 'standard': { name: 'International Airmail (10-14 days)', cost: 499.99 }, 'express': { name: 'International Express (2-3 days)', cost: 899.99 } }
+    };
+    let currentDiscount = 0;
+
+    // ===== UTILITIES =====
+    function showToast(message) {
+        const toast = document.getElementById('toast');
+        const toastMsg = document.getElementById('toastMessage');
+        toastMsg.textContent = message;
+        toast.style.display = 'flex';
+        setTimeout(() => toast.style.display = 'none', 3000);
+    }
+
+    function openModal(id) { document.getElementById(id).style.display = 'flex'; }
+    function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+
+    // ===== CART RENDERING =====
+    function renderCart() {
+        const container = document.getElementById('cartItemsList');
+        if (cart.length === 0) {
+            container.innerHTML = `<div class="cart-empty"><i class="fas fa-shopping-cart"></i><h2>Your cart is empty</h2><a href="shop.html">Continue Shopping →</a></div>`;
+            updateSummary();
+            return;
+        }
+        let html = '';
+        cart.forEach((item, idx) => {
+            const itemTotal = item.price * item.quantity;
+            html += `
+                <div class="cart-item">
+                    <img src="${item.image || 'https://placehold.co/100x100/00e676/ffffff?text=Product'}" class="cart-item-image">
+                    <div class="cart-item-details">
+                        <div class="cart-item-name">${item.name}</div>
+                        <div class="cart-item-category">${item.category || 'Product'}</div>
+                        <div class="cart-item-specs">${item.specs || ''}</div>
+                        <div class="cart-item-price">E${item.price.toFixed(2)}</div>
+                    </div>
+                    <div class="cart-item-controls">
+                        <div class="quantity-control">
+                            <button onclick="updateQuantity(${idx}, -1)">-</button>
+                            <span>${item.quantity}</span>
+                            <button onclick="updateQuantity(${idx}, 1)">+</button>
+                        </div>
+                        <div class="cart-item-total">E${itemTotal.toFixed(2)}</div>
+                        <button class="remove-item" onclick="removeItem(${idx})">Remove</button>
+                    </div>
+                </div>
+            `;
+        });
+        container.innerHTML = html;
+        updateSummary();
+    }
+
+    function updateQuantity(index, delta) {
+        if (cart[index]) {
+            cart[index].quantity += delta;
+            if (cart[index].quantity <= 0) {
+                cart.splice(index, 1);
+            }
+            localStorage.setItem('cart', JSON.stringify(cart));
+            renderCart();
+        }
+    }
+
+    function removeItem(index) {
+        cart.splice(index, 1);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        renderCart();
+    }
+
+    // ===== ORDER SUMMARY =====
+    function updateSummary() {
+        const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        const discount = currentDiscount;
+        const shipping = getShippingCost();
+        const taxable = subtotal - discount + shipping;
+        const tax = taxable * 0.1;
+        const total = taxable + tax;
+
+        document.getElementById('subtotal').textContent = `E${subtotal.toFixed(2)}`;
+        if (discount > 0) {
+            document.getElementById('discountRow').style.display = 'flex';
+            document.getElementById('discountAmount').textContent = `-E${discount.toFixed(2)}`;
+        } else {
+            document.getElementById('discountRow').style.display = 'none';
+        }
+        if (shipping > 0) {
+            document.getElementById('shippingRow').style.display = 'flex';
+            document.getElementById('shippingCost').textContent = `E${shipping.toFixed(2)}`;
+        } else {
+            document.getElementById('shippingRow').style.display = 'none';
+        }
+        document.getElementById('tax').textContent = `E${tax.toFixed(2)}`;
+        document.getElementById('total').textContent = `E${total.toFixed(2)}`;
+    }
+
+    function getShippingCost() {
+        const country = document.getElementById('country')?.value;
+        const method = document.querySelector('input[name="shipping"]:checked')?.value;
+        if (!country || !method) return 0;
+        const rates = shippingRates[country] || shippingRates['International'];
+        return rates[method]?.cost || 0;
+    }
+
+    function updateShippingOptions() {
+        const country = document.getElementById('country').value;
+        const container = document.getElementById('shippingOptions');
+        if (!country || !shippingRates[country]) {
+            container.innerHTML = '<p>Select a country to see shipping options.</p>';
+            return;
+        }
+        let html = '';
+        for (let [method, details] of Object.entries(shippingRates[country])) {
+            html += `
+                <div class="shipping-option">
+                    <label>
+                        <input type="radio" name="shipping" value="${method}" onchange="updateSummary()">
+                        ${details.name} <strong style="color:var(--green);">E${details.cost.toFixed(2)}</strong>
+                    </label>
+                </div>
+            `;
+        }
+        container.innerHTML = html;
+        // select first option
+        const firstRadio = container.querySelector('input[type="radio"]');
+        if (firstRadio) firstRadio.checked = true;
+        updateSummary();
+    }
+
+    function applyDiscount() {
+        const code = document.getElementById('discountCode').value.toUpperCase();
+        const validCodes = { 'SAVE10': 0.10, 'SAVE20': 0.20, 'REFURB15': 0.15, 'TECH25': 0.25 };
+        if (validCodes[code]) {
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            currentDiscount = subtotal * validCodes[code];
+            showToast(`Discount applied! You saved E${currentDiscount.toFixed(2)}`);
+        } else if (code === '') {
+            currentDiscount = 0;
+        } else {
+            showToast('Invalid discount code.');
+            return;
+        }
+        updateSummary();
+    }
+
+    // ===== AUTHENTICATION =====
+    function login(email, password) {
+        const user = users.find(u => u.email === email && u.password === password);
+        if (user) {
+            currentUser = user;
+            localStorage.setItem('currentUser', JSON.stringify(user));
+            showToast(`Welcome back, ${user.fullName || user.email}!`);
+            closeModal('loginModal');
+            updateUIForLoggedIn();
+            return true;
+        }
+        return false;
+    }
+
+    function register(fullName, email, phone, password) {
+        if (users.find(u => u.email === email)) {
+            showToast('Email already registered');
+            return false;
+        }
+        const newUser = { id: Date.now(), fullName, email, phone, password };
+        users.push(newUser);
+        localStorage.setItem('users', JSON.stringify(users));
+        currentUser = newUser;
+        localStorage.setItem('currentUser', JSON.stringify(newUser));
+        showToast('Registration successful!');
+        closeModal('registerModal');
+        updateUIForLoggedIn();
+        return true;
+    }
+
+    function forgotPassword(email) {
+        const user = users.find(u => u.email === email);
+        if (user) {
+            // Simulate sending email
+            showToast(`Password reset link sent to ${email}`);
+            closeModal('forgotPasswordModal');
+        } else {
+            showToast('Email not found');
+        }
+    }
+
+    function updateUIForLoggedIn() {
+        if (currentUser) {
+            document.getElementById('loginRequiredMessage').style.display = 'none';
+            document.getElementById('shippingSection').style.display = 'block';
+            document.getElementById('paymentSection').style.display = 'block';
+            // Pre-fill shipping name if available
+            if (currentUser.fullName) document.getElementById('customerName').value = currentUser.fullName;
+            if (currentUser.email) document.getElementById('customerEmail').value = currentUser.email;
+            if (currentUser.phone) document.getElementById('customerPhone').value = currentUser.phone;
+        } else {
+            document.getElementById('loginRequiredMessage').style.display = 'block';
+            document.getElementById('shippingSection').style.display = 'none';
+            document.getElementById('paymentSection').style.display = 'none';
+        }
+    }
+ // ===== CHECKOUT =====
+    function proceedToCheckout() {
+    const isLoggedIn = localStorage.getItem('user_logged_in') === 'true';
+    
+    if (!isLoggedIn) {
+        // Show warning message and hide it after 5 seconds (optional)
+        const warningDiv = document.getElementById('loginWarning');
+        if (warningDiv) {
+            warningDiv.style.display = 'block';
+            setTimeout(() => {
+                warningDiv.style.display = 'none';
+            }, 5000);
+        }
+        // Also show toast notification
+        showToast('Please login to proceed with checkout');
+        return;
+    }
+
+        // Validate payment
+        const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
+        if (paymentMethod === 'credit-card' || paymentMethod === 'debit-card') {
+            if (!document.getElementById('cardName').value || !document.getElementById('cardNumber').value) {
+                showToast('Please fill in card details');
+                return;
+            }
+        } else if (paymentMethod === 'mtm-momo') {
+            if (!document.getElementById('mtmPhone').value) {
+                showToast('Please enter MTM phone number');
+                return;
+            }
+        } else if (paymentMethod === 'intacash') {
+            if (!document.getElementById('intacashAccount').value) {
+                showToast('Please enter IntaCash account');
+                return;
+            }
+        }
+
+        const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        const discount = currentDiscount;
+        const shipping = getShippingCost();
+        const tax = (subtotal - discount + shipping) * 0.1;
+        const total = subtotal - discount + shipping + tax;
+
+        alert(`Order Confirmed!\n\nSubtotal: E${subtotal.toFixed(2)}\nDiscount: -E${discount.toFixed(2)}\nShipping: E${shipping.toFixed(2)}\nTax: E${tax.toFixed(2)}\nTotal: E${total.toFixed(2)}\n\nThank you for your purchase!`);
+        // Clear cart
+        cart = [];
+        localStorage.setItem('cart', JSON.stringify(cart));
+        renderCart();
+        updateUIForLoggedIn();
+        // Optionally redirect to shop
+        window.location.href = 'shop.html';
+    }
+
+    // ===== THEME & SETTINGS (same as main site) =====
+    function setTheme(theme) {
+        if (theme === 'system') {
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+        } else {
+            document.documentElement.setAttribute('data-theme', theme);
+        }
+        localStorage.setItem('theme', theme);
+        showToast(`Theme changed to ${theme === 'system' ? 'System Default' : theme + ' mode'}`);
+    }
+
+    function setFontSize(size) {
+        document.documentElement.style.fontSize = size + 'px';
+        localStorage.setItem('fontSize', size);
+        showToast(`Font size changed to ${size}px`);
+    }
+
+    function setReducedMotion(enabled) {
+        if (enabled) document.documentElement.classList.add('reduced-motion');
+        else document.documentElement.classList.remove('reduced-motion');
+        localStorage.setItem('reducedMotion', enabled);
+    }
+
+    function setHighContrast(enabled) {
+        if (enabled) document.documentElement.setAttribute('data-high-contrast', 'true');
+        else document.documentElement.removeAttribute('data-high-contrast');
+        localStorage.setItem('highContrast', enabled);
+    }
+
+    function resetAllSettings() {
+        localStorage.removeItem('theme');
+        localStorage.removeItem('fontSize');
+        localStorage.removeItem('reducedMotion');
+        localStorage.removeItem('highContrast');
+        document.documentElement.removeAttribute('data-theme');
+        document.documentElement.style.fontSize = '';
+        document.documentElement.classList.remove('reduced-motion');
+        document.documentElement.removeAttribute('data-high-contrast');
+        showToast('All settings reset to default');
+    }
+
+    // ===== EVENT LISTENERS =====
+    document.getElementById('searchIconBtn')?.addEventListener('click', () => openModal('searchModal'));
+    document.getElementById('settingsBtn')?.addEventListener('click', () => openModal('settingsModal'));
+    document.getElementById('loginBtn')?.addEventListener('click', () => openModal('loginModal'));
+    document.getElementById('registerBtn')?.addEventListener('click', () => openModal('registerModal'));
+    document.getElementById('checkoutBtn')?.addEventListener('click', proceedToCheckout);
+    document.getElementById('loginRequiredLink')?.addEventListener('click', (e) => { e.preventDefault(); openModal('loginModal'); });
+    document.getElementById('registerRequiredLink')?.addEventListener('click', (e) => { e.preventDefault(); openModal('registerModal'); });
+
+    // Login form
+    document.getElementById('loginForm')?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = document.getElementById('loginEmail').value;
+        const password = document.getElementById('loginPassword').value;
+        if (login(email, password)) {
+            document.getElementById('loginForm').reset();
+        } else {
+            showToast('Invalid email or password');
+        }
+    });
+
+    // Register form
+    document.getElementById('registerForm')?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const fullName = document.getElementById('regFullName').value;
+        const email = document.getElementById('regEmail').value;
+        const phone = document.getElementById('regPhone').value;
+        const password = document.getElementById('regPassword').value;
+        const confirm = document.getElementById('regConfirmPassword').value;
+        const agree = document.getElementById('agreeTerms').checked;
+        if (!fullName || !email || !password) { showToast('Please fill all required fields'); return; }
+        if (password !== confirm) { showToast('Passwords do not match'); return; }
+        if (password.length < 6) { showToast('Password must be at least 6 characters'); return; }
+        if (!agree) { showToast('Please agree to the Terms of Service'); return; }
+        register(fullName, email, phone, password);
+        document.getElementById('registerForm').reset();
+    });
+
+    // Forgot password
+    document.getElementById('forgotPasswordForm')?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = document.getElementById('forgotEmail').value;
+        forgotPassword(email);
+        document.getElementById('forgotPasswordForm').reset();
+    });
+
+    document.getElementById('forgotPasswordLink')?.addEventListener('click', (e) => { e.preventDefault(); closeModal('loginModal'); openModal('forgotPasswordModal'); });
+    document.getElementById('backToLogin')?.addEventListener('click', (e) => { e.preventDefault(); closeModal('forgotPasswordModal'); openModal('loginModal'); });
+    document.getElementById('switchToRegister')?.addEventListener('click', (e) => { e.preventDefault(); closeModal('loginModal'); openModal('registerModal'); });
+    document.getElementById('switchToLogin')?.addEventListener('click', (e) => { e.preventDefault(); closeModal('registerModal'); openModal('loginModal'); });
+
+    // Shipping country change
+    document.getElementById('country')?.addEventListener('change', updateShippingOptions);
+
+    // Payment method toggles
+    const paymentRadios = document.querySelectorAll('input[name="payment"]');
+    paymentRadios.forEach(radio => {
+        radio.addEventListener('change', () => {
+            const val = radio.value;
+            document.getElementById('cardPaymentFields').style.display = (val === 'credit-card' || val === 'debit-card') ? 'block' : 'none';
+            document.getElementById('mtmFields').style.display = (val === 'mtm-momo') ? 'block' : 'none';
+            document.getElementById('intacashFields').style.display = (val === 'intacash') ? 'block' : 'none';
+        });
+    });
+
+    // Settings checkboxes
+    const reducedCheck = document.getElementById('reducedMotion');
+    const contrastCheck = document.getElementById('highContrast');
+    if (reducedCheck) reducedCheck.addEventListener('change', (e) => setReducedMotion(e.target.checked));
+    if (contrastCheck) contrastCheck.addEventListener('change', (e) => setHighContrast(e.target.checked));
+
+    // Load saved theme & font
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    setTheme(savedTheme);
+    const savedFontSize = localStorage.getItem('fontSize');
+    if (savedFontSize) setFontSize(parseInt(savedFontSize));
+    const savedReduced = localStorage.getItem('reducedMotion') === 'true';
+    if (savedReduced && reducedCheck) reducedCheck.checked = true;
+    const savedContrast = localStorage.getItem('highContrast') === 'true';
+    if (savedContrast && contrastCheck) contrastCheck.checked = true;
+
+    // Initialize
+    renderCart();
+    updateUIForLoggedIn();
+    updateShippingOptions();
+
+    // Close modals on outside click
+    window.onclick = function(e) {
+        if (e.target.classList.contains('auth-modal')) {
+            e.target.style.display = 'none';
+        }
+    };
+
 // Make functions available globally for onclick handlers
 window.openLoginModal = openLoginModal;
 window.closeLoginModal = closeLoginModal;

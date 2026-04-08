@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dell Batteries - Premium Laptop Power Solutions</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+    }
+
+    /* Header Styles */
+    header {
+      background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
+      color: white;
+      padding: 15px 0;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo i {
+      color: #0078d4;
+      font-size: 28px;
+    }
+
+    nav {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #0078d4;
+    }
+
+    .cart-icon {
+      font-size: 20px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .cart-icon:hover {
+      transform: scale(1.1);
+      color: #0078d4;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, #0078d4 0%, #005a9e 100%);
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 16px;
+      margin-bottom: 20px;
+      opacity: 0.9;
+    }
+
+    /* Search Bar */
+    .search-section {
+      max-width: 1200px;
+      margin: -30px auto 40px;
+      padding: 0 20px;
+      position: relative;
+      z-index: 50;
+    }
+
+    .search-container {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      display: flex;
+      gap: 10px;
+    }
+
+    .search-container input {
+      flex: 1;
+      padding: 12px 15px;
+      border: 2px solid #e0e0e0;
+      border-radius: 6px;
+      font-size: 14px;
+      transition: border-color 0.3s;
+    }
+
+    .search-container input:focus {
+      outline: none;
+      border-color: #0078d4;
+    }
+
+    .search-container button {
+      padding: 12px 25px;
+      background: #0078d4;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .search-container button:hover {
+      background: #005a9e;
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Category & Filter Section */
+    .filters-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .filters-section h3 {
+      font-size: 18px;
+      color: #333;
+    }
+
+    .sort-dropdown {
+      padding: 10px 15px;
+      border: 2px solid #e0e0e0;
+      border-radius: 6px;
+      cursor: pointer;
+      background: white;
+      font-size: 14px;
+    }
+
+    /* Product Grid */
+    .battery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 25px;
+      margin-bottom: 40px;
+    }
+
+    .battery-card {
+      background: white;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .battery-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      border-color: #0078d4;
+    }
+
+    .product-image-container {
+      position: relative;
+      background: #f9f9f9;
+      height: 220px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .battery-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+
+    .battery-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #ff4444;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .product-content {
+      padding: 20px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-name {
+      font-size: 16px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .product-description {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 12px;
+      line-height: 1.4;
+      flex-grow: 1;
+    }
+
+    .rating {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-bottom: 10px;
+      font-size: 12px;
+    }
+
+    .stars {
+      color: #ffc107;
+    }
+
+    .price-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+      padding-top: 15px;
+      border-top: 1px solid #f0f0f0;
+    }
+
+    .price {
+      font-size: 18px;
+      font-weight: bold;
+      color: #0078d4;
+    }
+
+    .original-price {
+      font-size: 14px;
+      color: #999;
+      text-decoration: line-through;
+    }
+
+    .add-to-cart {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, #0078d4 0%, #005a9e 100%);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.3s;
+      text-align: center;
+    }
+
+    .add-to-cart:hover {
+      transform: scale(1.02);
+      box-shadow: 0 4px 12px rgba(0,120,212,0.3);
+    }
+
+    .add-to-cart:active {
+      transform: scale(0.98);
+    }
+
+    /* Footer */
+    footer {
+      background: #1a1a1a;
+      color: white;
+      padding: 40px 20px;
+      margin-top: 60px;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+
+    .footer-section h4 {
+      margin-bottom: 15px;
+      color: #0078d4;
+    }
+
+    .footer-section ul {
+      list-style: none;
+    }
+
+    .footer-section ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer-section ul li a {
+      color: #ccc;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-section ul li a:hover {
+      color: #0078d4;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      border-top: 1px solid #333;
+      padding-top: 20px;
+      color: #999;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      nav {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+      }
+
+      .battery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 15px;
+      }
+
+      .hero h1 {
+        font-size: 24px;
+      }
+
+      .search-container {
+        flex-direction: column;
+      }
+
+      .filters-section {
+        justify-content: center;
+      }
+    }
+  </style>
+  <script>
+    function addToCart(model) {
+      const button = event.target;
+      button.textContent = '✓ Added to Cart';
+      button.style.background = '#28a745';
+      setTimeout(() => {
+        button.textContent = 'Add to Cart';
+        button.style.background = '';
+      }, 2000);
+    }
+
+    function searchProducts() {
+      const searchInput = document.getElementById('searchInput').value.toLowerCase();
+      const cards = document.querySelectorAll('.battery-card');
+      let found = 0;
+      
+      cards.forEach(card => {
+        const name = card.querySelector('.product-name').textContent.toLowerCase();
+        const desc = card.querySelector('.product-description').textContent.toLowerCase();
+        
+        if (name.includes(searchInput) || desc.includes(searchInput)) {
+          card.style.display = '';
+          found++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <div class="logo">
+        <i class="fas fa-battery-full"></i>
+        Dell Batteries Pro
+      </div>
+      <nav>
+        <a href="page.html"><i class="fas fa-home"></i> Home</a>
+        <a href="#products">Products</a>
+        <a href="#contact">Contact</a>
+        <a href="#about">About</a>
+        <a href="#" class="cart-icon"><i class="fas fa-shopping-cart"></i></a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Premium Dell Battery Solutions</h1>
+    <p>High-quality, long-lasting batteries for all Dell laptop models</p>
+  </section>
+
+  <!-- Search Section -->
+  <div class="search-section">
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="Search by model, specifications..." onkeyup="searchProducts()" spellcheck="true">
+      <button onclick="searchProducts()"><i class="fas fa-search"></i> Search</button>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <div class="container">
+    <!-- Filters -->
+    <div class="filters-section">
+      <h3 id="products">Our Products</h3>
+      <select class="sort-dropdown">
+        <option value="">Sort by: Newest</option>
+        <option value="">Price: Low to High</option>
+        <option value="">Price: High to Low</option>
+        <option value="">Best Sellers</option>
+      </select>
+    </div>
+
+    <!-- Product Grid -->
+    <div class="battery-grid">
+      <div class="battery-card">
+        <div class="product-image-container">
+          <img src="battery1.jpg" alt="Dell XPS 16 Battery">
+          <div class="product-badge">Premium</div>
+        </div>
+        <div class="product-content">
+          <h3 class="product-name">Dell XPS 16 Borderless Battery</h3>
+          <p class="product-description">16.3 inch 3.2K IPS display with 30-120Hz refresh rate. High-capacity power cell.</p>
+          <div class="rating">
+            <span class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></span>
+            <span>(124 reviews)</span>
+          </div>
+          <div class="price-section">
+            <div>
+              <span class="price">E 1,500.00</span>
+              <br>
+              <span class="original-price">E 1,899.00</span>
+            </div>
+          </div>
+          <button class="add-to-cart" onclick="addToCart('Dell XPS 16 Battery')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="battery-card">
+        <div class="product-image-container">
+          <img src="battery2.jpg" alt="Dell XPS 14 Battery">
+          <div class="product-badge">Hot Deal</div>
+        </div>
+        <div class="product-content">
+          <h3 class="product-name">Dell XPS 14 Borderless Battery</h3>
+          <p class="product-description">Compact design for 14-inch XPS series. Extended battery life technology.</p>
+          <div class="rating">
+            <span class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+            <span>(89 reviews)</span>
+          </div>
+          <div class="price-section">
+            <div>
+              <span class="price">E 1,500.00</span>
+              <br>
+              <span class="original-price">E 1,799.00</span>
+            </div>
+          </div>
+          <button class="add-to-cart" onclick="addToCart('Dell XPS 14 Battery')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="battery-card">
+        <div class="product-image-container">
+          <img src="battery3.jpg" alt="Dell XPS 13 Battery">
+        </div>
+        <div class="product-content">
+          <h3 class="product-name">Dell XPS 13 Ultra-Slim Battery</h3>
+          <p class="product-description">13.3 inch FHD+ IPS LCD 60Hz. Ultra-lightweight design for maximum portability.</p>
+          <div class="rating">
+            <span class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></span>
+            <span>(256 reviews)</span>
+          </div>
+          <div class="price-section">
+            <div>
+              <span class="price">E 450.00</span>
+              <br>
+              <span class="original-price">E 599.00</span>
+            </div>
+          </div>
+          <button class="add-to-cart" onclick="addToCart('Dell XPS 13 Battery')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="battery-card">
+        <div class="product-image-container">
+          <img src="battery4.jpg" alt="Dell Inspiron Battery">
+          <div class="product-badge">New</div>
+        </div>
+        <div class="product-content">
+          <h3 class="product-name">Dell Inspiron Series Battery</h3>
+          <p class="product-description">Compatible with Inspiron 15 5000 series. Reliable and affordable power solution.</p>
+          <div class="rating">
+            <span class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+            <span>(67 reviews)</span>
+          </div>
+          <div class="price-section">
+            <div>
+              <span class="price">E 350.00</span>
+              <br>
+              <span class="original-price">E 450.00</span>
+            </div>
+          </div>
+          <button class="add-to-cart" onclick="addToCart('Dell Inspiron Battery')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="battery-card">
+        <div class="product-image-container">
+          <img src="battery5.jpg" alt="Dell Latitude Battery">
+        </div>
+        <div class="product-content">
+          <h3 class="product-name">Dell Latitude Business Battery</h3>
+          <p class="product-description">High-performance battery for Latitude models. Perfect for business professionals.</p>
+          <div class="rating">
+            <span class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+            <span>(134 reviews)</span>
+          </div>
+          <div class="price-section">
+            <div>
+              <span class="price">E 400.00</span>
+              <br>
+              <span class="original-price">E 525.00</span>
+            </div>
+          </div>
+          <button class="add-to-cart" onclick="addToCart('Dell Latitude Battery')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="battery-card">
+        <div class="product-image-container">
+          <img src="battery6.jpg" alt="Dell Vostro Battery">
+        </div>
+        <div class="product-content">
+          <h3 class="product-name">Dell Vostro Series Battery</h3>
+          <p class="product-description">Extended runtime for Vostro laptops. Durable and reliable performance.</p>
+          <div class="rating">
+            <span class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></span>
+            <span>(92 reviews)</span>
+          </div>
+          <div class="price-section">
+            <div>
+              <span class="price">E 380.00</span>
+              <br>
+              <span class="original-price">E 499.00</span>
+            </div>
+          </div>
+          <button class="add-to-cart" onclick="addToCart('Dell Vostro Battery')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="battery-card">
+        <div class="product-image-container">
+          <img src="battery7.jpg" alt="Dell G Series Battery">
+          <div class="product-badge">Sale</div>
+        </div>
+        <div class="product-content">
+          <h3 class="product-name">Dell G Series Gaming Battery</h3>
+          <p class="product-description">Optimized for gaming performance. High capacity for extended gameplay sessions.</p>
+          <div class="rating">
+            <span class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+            <span>(178 reviews)</span>
+          </div>
+          <div class="price-section">
+            <div>
+              <span class="price">E 420.00</span>
+              <br>
+              <span class="original-price">E 599.00</span>
+            </div>
+          </div>
+          <button class="add-to-cart" onclick="addToCart('Dell G Series Battery')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="battery-card">
+        <div class="product-image-container">
+          <img src="battery8.jpg" alt="Dell Precision Battery">
+        </div>
+        <div class="product-content">
+          <h3 class="product-name">Dell Precision Workstation Battery</h3>
+          <p class="product-description">Professional-grade battery for workstations. Certified power quality assurance.</p>
+          <div class="rating">
+            <span class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+            <span>(203 reviews)</span>
+          </div>
+          <div class="price-section">
+            <div>
+              <span class="price">E 480.00</span>
+              <br>
+              <span class="original-price">E 699.00</span>
+            </div>
+          </div>
+          <button class="add-to-cart" onclick="addToCart('Dell Precision Battery')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="battery-card">
+        <div class="product-image-container">
+          <img src="battery9.jpg" alt="Dell Alienware Battery">
+          <div class="product-badge">Premium</div>
+        </div>
+        <div class="product-content">
+          <h3 class="product-name">Dell Alienware High-Performance Battery</h3>
+          <p class="product-description">Ultimate performance for extreme gaming. Maximum power delivery technology.</p>
+          <div class="rating">
+            <span class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+            <span>(156 reviews)</span>
+          </div>
+          <div class="price-section">
+            <div>
+              <span class="price">E 550.00</span>
+              <br>
+              <span class="original-price">E 799.00</span>
+            </div>
+          </div>
+          <button class="add-to-cart" onclick="addToCart('Dell Alienware Battery')">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4><i class="fas fa-battery-full"></i> Dell Batteries Pro</h4>
+        <p>Your trusted source for authentic Dell laptop batteries with warranty protection and expert support.</p>
+      </div>
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#products">Shop Products</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#shipping">Shipping Info</a></li>
+          <li><a href="#returns">Returns Policy</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Customer Support</h4>
+        <ul>
+          <li><a href="#contact">Contact Us</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#warranty">Warranty</a></li>
+          <li><a href="#blog">Blog</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Follow Us</h4>
+        <ul>
+          <li><a href="#facebook"><i class="fab fa-facebook"></i> Facebook</a></li>
+          <li><a href="#twitter"><i class="fab fa-twitter"></i> Twitter</a></li>
+          <li><a href="#instagram"><i class="fab fa-instagram"></i> Instagram</a></li>
+          <li><a href="#linkedin"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Dell Batteries Pro. All rights reserved. | <a href="#privacy" style="color: #0078d4;">Privacy Policy</a> | <a href="#terms" style="color: #0078d4;">Terms of Service</a></p>
+    </div>
+  </footer>
+</body>
+</html>

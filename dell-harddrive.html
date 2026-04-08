@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dell Hard Drives - Laptop Parts Store</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f4f4f4;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0078d4, #005a9e);
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    nav {
+      background: #333;
+      padding: 10px 0;
+    }
+
+    nav ul {
+      list-style: none;
+      text-align: center;
+    }
+
+    nav li {
+      display: inline-block;
+      margin: 0 15px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #0078d4;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .search-container {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .search-container input {
+      flex: 1;
+      padding: 12px;
+      border: 2px solid #ddd;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+
+    .search-container button {
+      padding: 12px 20px;
+      background: #0078d4;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background 0.3s;
+    }
+
+    .search-container button:hover {
+      background: #005a9e;
+    }
+
+    .harddrive-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .harddrive-card {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .harddrive-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    }
+
+    .harddrive-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .harddrive-card h3 {
+      padding: 15px;
+      font-size: 1.2rem;
+      color: #333;
+    }
+
+    .harddrive-card p {
+      padding: 0 15px;
+      color: #666;
+    }
+
+    .compatibility {
+      padding: 10px 15px;
+      background: #f8f9fa;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    .price {
+      padding: 10px 15px;
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #0078d4;
+    }
+
+    .specifications {
+      padding: 15px;
+    }
+
+    .specifications ul {
+      list-style: none;
+    }
+
+    .specifications li {
+      padding: 3px 0;
+      font-size: 0.9rem;
+    }
+
+    .btn {
+      display: block;
+      width: calc(100% - 30px);
+      margin: 15px;
+      padding: 12px;
+      background: #28a745;
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background: #218838;
+    }
+
+    .no-results {
+      text-align: center;
+      padding: 40px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      display: none;
+      color: #666;
+      font-size: 1.1rem;
+    }
+
+    footer {
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Dell Hard Drives</h1>
+    <p>SSD and HDD storage solutions for Dell laptops</p>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="page.html">Home</a></li>
+      <li><a href="sale.html">Point of Sale</a></li>
+      <li><a href="pos thermal printer.html">POS Thermal Printers</a></li>
+      <li><a href="asus-batteries.html">Asus Batteries</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <div class="search-container">
+      <input type="text" id="harddriveSearch" placeholder="Search by model number, part number, or compatibility..." spellcheck="true">
+      <button id="searchBtn"><i class="fas fa-search"></i> Search</button>
+    </div>
+
+    <div class="no-results" id="noResults">
+      No hard drives found matching your search. Try different keywords.
+    </div>
+
+    <div class="harddrive-grid" id="harddriveGrid">
+      <div class="harddrive-card" data-model="XPS13" data-part="KBG40ZNS512G">
+        <img src="https://images.unsplash.com/photo-1591488320449-011701bb6704?w=300&h=200&fit=crop" alt="Dell XPS 13 SSD">
+        <h3>Dell XPS 13 512GB NVMe SSD</h3>
+        <p>Ultra-fast storage for XPS 13 series</p>
+        <div class="compatibility">Compatible with: XPS 13 9310, 9305, 9300</div>
+        <div class="price">E129.99</div>
+        <div class="specifications">
+          <ul>
+            <li>512GB NVMe PCIe SSD</li>
+            <li>Read: up to 3500MB/s</li>
+            <li>M.2 2280 form factor</li>
+            <li>5-year warranty</li>
+          </ul>
+        </div>
+        <a href="#" class="btn">Add to Cart</a>
+      </div>
+
+      <div class="harddrive-card" data-model="Latitude5420" data-part="MZVLB1T0HBLR-000H1">
+        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=300&h=200&fit=crop" alt="Dell Latitude SSD">
+        <h3>Dell Latitude 1TB NVMe SSD</h3>
+        <p>Enterprise-grade storage for Latitude series</p>
+        <div class="compatibility">Compatible with: Latitude 5420, 5421, 5424</div>
+        <div class="price">E199.99</div>
+        <div class="specifications">
+          <ul>
+            <li>1TB NVMe PCIe SSD</li>
+            <li>Read: up to 3500MB/s</li>
+            <li>Self-encrypting drive</li>
+            <li>Enterprise reliability</li>
+          </ul>
+        </div>
+        <a href="#" class="btn">Add to Cart</a>
+      </div>
+
+      <div class="harddrive-card" data-model="Inspiron15" data-part="ST1000LM049">
+        <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=300&h=200&fit=crop" alt="Dell Inspiron HDD">
+        <h3>Dell Inspiron 1TB HDD</h3>
+        <p>High-capacity storage for Inspiron series</p>
+        <div class="compatibility">Compatible with: Inspiron 15 3000, 3500, 5000</div>
+        <div class="price">E79.99</div>
+        <div class="specifications">
+          <ul>
+            <li>1TB 5400RPM HDD</li>
+            <li>SATA 6Gb/s interface</li>
+            <li>128MB cache</li>
+            <li>2-year warranty</li>
+          </ul>
+        </div>
+        <a href="#" class="btn">Add to Cart</a>
+      </div>
+
+      <div class="harddrive-card" data-model="AlienwareM15" data-part="MZVL21T0HCLR-00BH1">
+        <img src="https://images.unsplash.com/photo-1591488320449-011701bb6704?w=300&h=200&fit=crop" alt="Dell Alienware SSD">
+        <h3>Dell Alienware 2TB NVMe SSD</h3>
+        <p>High-performance gaming storage</p>
+        <div class="compatibility">Compatible with: Alienware M15 R4, R5, R6</div>
+        <div class="price">E349.99</div>
+        <div class="specifications">
+          <ul>
+            <li>2TB NVMe PCIe 4.0 SSD</li>
+            <li>Read: up to 7000MB/s</li>
+            <li>RGB compatible</li>
+            <li>Gaming optimized</li>
+          </ul>
+        </div>
+        <a href="#" class="btn">Add to Cart</a>
+      </div>
+
+      <div class="harddrive-card" data-model="Precision5550" data-part="MZVL22T0HBLB-00BH1">
+        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=300&h=200&fit=crop" alt="Dell Precision SSD">
+        <h3>Dell Precision 2TB NVMe SSD</h3>
+        <p>Workstation-grade storage with endurance</p>
+        <div class="compatibility">Compatible with: Precision 5550, 5750, 5950</div>
+        <div class="price">E399.99</div>
+        <div class="specifications">
+          <ul>
+            <li>2TB NVMe PCIe 4.0 SSD</li>
+            <li>Read: up to 7000MB/s</li>
+            <li>Endurance optimized</li>
+            <li>ISV certified</li>
+          </ul>
+        </div>
+        <a href="#" class="btn">Add to Cart</a>
+      </div>
+
+      <div class="harddrive-card" data-model="G31550" data-part="MZVLB512HBJQ-000H1">
+        <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=300&h=200&fit=crop" alt="Dell G3 SSD">
+        <h3>Dell G3 512GB NVMe SSD</h3>
+        <p>Gaming storage for G-series laptops</p>
+        <div class="compatibility">Compatible with: G3 15 3500, G5 15 5500</div>
+        <div class="price">E89.99</div>
+        <div class="specifications">
+          <ul>
+            <li>512GB NVMe PCIe SSD</li>
+            <li>Read: up to 3500MB/s</li>
+            <li>RGB lighting support</li>
+            <li>Gaming performance</li>
+          </ul>
+        </div>
+        <a href="#" class="btn">Add to Cart</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2024 Laptop Parts Store. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function searchHardDrives() {
+      const searchInput = document.getElementById('harddriveSearch').value.toLowerCase();
+      const harddriveCards = document.querySelectorAll('.harddrive-card');
+      let hasResults = false;
+
+      harddriveCards.forEach(card => {
+        const model = card.getAttribute('data-model').toLowerCase();
+        const part = card.getAttribute('data-part').toLowerCase();
+        const title = card.querySelector('h3').textContent.toLowerCase();
+        const compatibility = card.querySelector('.compatibility').textContent.toLowerCase();
+
+        const matches = model.includes(searchInput) ||
+                       part.includes(searchInput) ||
+                       title.includes(searchInput) ||
+                       compatibility.includes(searchInput);
+
+        if (matches) {
+          card.style.display = 'block';
+          hasResults = true;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      const noResults = document.getElementById('noResults');
+      if (!hasResults && searchInput.length > 0) {
+        noResults.style.display = 'block';
+      } else {
+        noResults.style.display = 'none';
+      }
+    }
+
+    document.getElementById('harddriveSearch').addEventListener('input', searchHardDrives);
+    document.getElementById('searchBtn').addEventListener('click', searchHardDrives);
+  </script>
+</body>
+</html>
+

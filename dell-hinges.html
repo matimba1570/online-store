@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dell Hinges - Laptop Parts Store</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f4f4f4;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0078d4, #005a9e);
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    nav {
+      background: #333;
+      padding: 10px 0;
+    }
+
+    nav ul {
+      list-style: none;
+      text-align: center;
+    }
+
+    nav li {
+      display: inline-block;
+      margin: 0 15px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #0078d4;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .search-container {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .search-container input {
+      flex: 1;
+      padding: 12px;
+      border: 2px solid #ddd;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+
+    .search-container button {
+      padding: 12px 20px;
+      background: #0078d4;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background 0.3s;
+    }
+
+    .search-container button:hover {
+      background: #005a9e;
+    }
+
+    .hinge-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .hinge-card {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .hinge-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    }
+
+    .hinge-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .hinge-card h3 {
+      padding: 15px;
+      font-size: 1.2rem;
+      color: #333;
+    }
+
+    .hinge-card p {
+      padding: 0 15px;
+      color: #666;
+    }
+
+    .compatibility {
+      padding: 10px 15px;
+      background: #f8f9fa;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    .price {
+      padding: 10px 15px;
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #0078d4;
+    }
+
+    .specifications {
+      padding: 15px;
+    }
+
+    .specifications ul {
+      list-style: none;
+    }
+
+    .specifications li {
+      padding: 3px 0;
+      font-size: 0.9rem;
+    }
+
+    .btn {
+      display: block;
+      width: calc(100% - 30px);
+      margin: 15px;
+      padding: 12px;
+      background: #28a745;
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background: #218838;
+    }
+
+    .no-results {
+      text-align: center;
+      padding: 40px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      display: none;
+      color: #666;
+      font-size: 1.1rem;
+    }
+
+    footer {
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Dell Hinges</h1>
+    <p>Replacement hinges and hinge covers for Dell laptops</p>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="page.html">Home</a></li>
+      <li><a href="sale.html">Point of Sale</a></li>
+      <li><a href="pos thermal printer.html">POS Thermal Printers</a></li>
+      <li><a href="asus-batteries.html">Asus Batteries</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <div class="search-container">
+      <input type="text" id="hingeSearch" placeholder="Search by model number, part number, or compatibility..." spellcheck="true">
+      <button id="searchBtn"><i class="fas fa-search"></i> Search</button>
+    </div>
+
+    <div class="no-results" id="noResults">
+      No hinges found matching your search. Try different keywords.
+    </div>
+
+    <div class="hinge-grid" id="hingeGrid">
+      <div class="hinge-card" data-model="XPS13" data-part="0F6X3">
+        <img src="https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=300&h=200&fit=crop" alt="Dell XPS 13 Hinges">
+        <h3>Dell XPS 13 Hinge Set</h3>
+        <p>Premium hinge assembly for XPS 13 series</p>
+        <div class="compatibility">Compatible with: XPS 13 9310, 9305, 9300</div>
+        <div class="price">E49.99</div>
+        <div class="specifications">
+          <ul>
+            <li>Left and right hinge assembly</li>
+            <li>Aluminum construction</li>
+            <li>Smooth 180-degree opening</li>
+            <li>1-year warranty</li>
+          </ul>
+        </div>
+        <a href="#" class="btn">Add to Cart</a>
+      </div>
+
+      <div class="hinge-card" data-model="Latitude5420" data-part="NT8JX">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&h=200&fit=crop" alt="Dell Latitude Hinges">
+        <h3>Dell Latitude 5420 Hinge Set</h3>
+        <p>Durable hinges for Latitude business laptops</p>
+        <div class="compatibility">Compatible with: Latitude 5420, 5421, 5424</div>
+        <div class="price">E39.99</div>
+        <div class="specifications">
+          <ul>
+            <li>Steel reinforced hinges</li>
+            <li>Spill-resistant design</li>
+            <li>180-degree opening angle</li>
+            <li>Enterprise-grade durability</li>
+          </ul>
+        </div>
+        <a href="#" class="btn">Add to Cart</a>
+      </div>
+
+      <div class="hinge-card" data-model="Inspiron15" data-part="0M5K4">
+        <img src="https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=300&h=200&fit=crop" alt="Dell Inspiron Hinges">
+        <h3>Dell Inspiron 15 Hinge Set</h3>
+        <p>Reliable hinges for Inspiron 15 series</p>
+        <div class="compatibility">Compatible with: Inspiron 15 3000, 3500, 5000</div>
+        <div class="price">E34.99</div>
+        <div class="specifications">
+          <ul>
+            <li>Plastic and metal construction</li>
+            <li>Easy installation</li>
+            <li>Stable screen positioning</li>
+            <li>6-month warranty</li>
+          </ul>
+        </div>
+        <a href="#" class="btn">Add to Cart</a>
+      </div>
+
+      <div class="hinge-card" data-model="AlienwareM15" data-part="P71F8">
+        <img src="https://images.unsplash.com/photo-1541140532154-b024d705b90a?w=300&h=200&fit=crop" alt="Dell Alienware Hinges">
+        <h3>Dell Alienware M15 Hinge Set</h3>
+        <p>Heavy-duty gaming laptop hinges</p>
+        <div class="compatibility">Compatible with: Alienware M15 R4, R5, R6</div>
+        <div class="price">E59.99</div>
+        <div class="specifications">
+          <ul>
+            <li>Reinforced gaming hinges</li>
+            <li>Alienware branding</li>
+            <li>Enhanced stability</li>
+            <li>Gaming-optimized design</li>
+          </ul>
+        </div>
+        <a href="#" class="btn">Add to Cart</a>
+      </div>
+
+      <div class="hinge-card" data-model="Precision5550" data-part="0F6X3">
+        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=300&h=200&fit=crop" alt="Dell Precision Hinges">
+        <h3>Dell Precision 5550 Hinge Set</h3>
+        <p>Professional workstation hinges</p>
+        <div class="compatibility">Compatible with: Precision 5550, 5750</div>
+        <div class="price">E54.99</div>
+        <div class="specifications">
+          <ul>
+            <li>Precision-engineered hinges</li>
+            <li>ISV certified compatibility</li>
+            <li>Professional-grade materials</li>
+            <li>Extended warranty</li>
+          </ul>
+        </div>
+        <a href="#" class="btn">Add to Cart</a>
+      </div>
+
+      <div class="hinge-card" data-model="G31550" data-part="PK130KX1B00">
+        <img src="https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=300&h=200&fit=crop" alt="Dell G3 Hinges">
+        <h3>Dell G3 15 Hinge Set</h3>
+        <p>Gaming hinges for G-series laptops</p>
+        <div class="compatibility">Compatible with: G3 15 3500, G5 15 5500</div>
+        <div class="price">E44.99</div>
+        <div class="specifications">
+          <ul>
+            <li>Gaming-optimized hinges</li>
+            <li>RGB lighting compatible</li>
+            <li>Durable construction</li>
+            <li>Easy maintenance</li>
+          </ul>
+        </div>
+        <a href="#" class="btn">Add to Cart</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2024 Laptop Parts Store. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function searchHinges() {
+      const searchInput = document.getElementById('hingeSearch').value.toLowerCase();
+      const hingeCards = document.querySelectorAll('.hinge-card');
+      let hasResults = false;
+
+      hingeCards.forEach(card => {
+        const model = card.getAttribute('data-model').toLowerCase();
+        const part = card.getAttribute('data-part').toLowerCase();
+        const title = card.querySelector('h3').textContent.toLowerCase();
+        const compatibility = card.querySelector('.compatibility').textContent.toLowerCase();
+
+        const matches = model.includes(searchInput) ||
+                       part.includes(searchInput) ||
+                       title.includes(searchInput) ||
+                       compatibility.includes(searchInput);
+
+        if (matches) {
+          card.style.display = 'block';
+          hasResults = true;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      const noResults = document.getElementById('noResults');
+      if (!hasResults && searchInput.length > 0) {
+        noResults.style.display = 'block';
+      } else {
+        noResults.style.display = 'none';
+      }
+    }
+
+    document.getElementById('hingeSearch').addEventListener('input', searchHinges);
+    document.getElementById('searchBtn').addEventListener('click', searchHinges);
+  </script>
+</body>
+</html>
+

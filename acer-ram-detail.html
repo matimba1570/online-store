@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acer RAM Details - Laptop Parts Store</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8f9fa; color: #333; }
+    header { background: linear-gradient(135deg, #1a1a1a 0%, #333 100%); color: white; padding: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
+    .header-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 24px; font-weight: bold; display: flex; align-items: center; gap: 10px; }
+    .logo i { color: #0078d4; }
+    .breadcrumb { max-width: 1200px; margin: 20px auto; padding: 0 20px; font-size: 14px; }
+    .breadcrumb a { color: #0078d4; text-decoration: none; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+    .product-detail { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+    .product-image { background: white; border-radius: 8px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .product-image img { width: 100%; height: auto; max-height: 400px; object-fit: contain; }
+    .product-info { background: white; border-radius: 8px; padding: 30px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .product-name { font-size: 28px; font-weight: bold; margin-bottom: 10px; color: #333; }
+    .product-price { font-size: 24px; font-weight: bold; color: #0078d4; margin-bottom: 20px; }
+    .product-description { font-size: 16px; line-height: 1.6; margin-bottom: 30px; color: #666; }
+    .quantity-selector { display: flex; align-items: center; gap: 15px; margin-bottom: 30px; }
+    .quantity-btn { width: 40px; height: 40px; border: 1px solid #ddd; background: white; font-size: 18px; cursor: pointer; border-radius: 4px; }
+    .quantity-input { width: 60px; height: 40px; text-align: center; border: 1px solid #ddd; border-radius: 4px; font-size: 16px; }
+    .action-buttons { display: flex; gap: 15px; }
+    .add-to-cart-btn, .buy-now-btn { padding: 15px 30px; border: none; border-radius: 4px; font-size: 16px; font-weight: bold; cursor: pointer; transition: all 0.3s; }
+    .add-to-cart-btn { background: #0078d4; color: white; }
+    .add-to-cart-btn:hover { background: #005a9e; }
+    .buy-now-btn { background: #28a745; color: white; }
+    .buy-now-btn:hover { background: #218838; }
+    .tabs { display: flex; margin-bottom: 30px; border-bottom: 1px solid #ddd; }
+    .tab { padding: 15px 25px; cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.3s; }
+    .tab.active { border-bottom-color: #0078d4; color: #0078d4; font-weight: bold; }
+    .tab-content { display: none; padding: 20px 0; }
+    .tab-content.active { display: block; }
+    .auth-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 2000; }
+    .auth-modal .modal-content { background: white; padding: 30px; border-radius: 8px; width: 400px; max-width: 90%; }
+    .auth-modal .close { position: absolute; top: 10px; right: 15px; font-size: 24px; cursor: pointer; }
+    .auth-modal input { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 4px; }
+    .auth-modal button { width: 100%; padding: 12px; background: #0078d4; color: white; border: none; border-radius: 4px; cursor: pointer; }
+    footer { background: #1a1a1a; color: white; text-align: center; padding: 20px; margin-top: 40px; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <div class="logo"><i class="fas fa-laptop"></i>LaptopParts Pro</div>
+      <div style="display: flex; gap: 20px;"><a href="page.html" style="color: white; text-decoration: none;">Back to Brands</a><a href="#" style="color: white;"><i class="fas fa-shopping-cart"></i></a></div>
+    </div>
+  </header>
+
+  <div class="breadcrumb">
+    <a href="page.html">Home</a> /
+    <a href="acer.html">Acer</a> /
+    <a href="acer-ram.html">RAM</a> /
+    <span id="productNameBreadcrumb">Product Name</span>
+  </div>
+
+  <div class="container">
+    <div class="product-detail">
+      <div class="product-image">
+        <img id="productImage" src="https://via.placeholder.com/400x400?text=Acer+RAM" alt="Acer RAM">
+      </div>
+
+      <div class="product-info">
+        <h1 id="productName">Product Name</h1>
+        <div id="productPrice">E0.00</div>
+        <p id="productDesc">Product description will appear here.</p>
+
+        <div class="quantity-selector">
+          <button class="quantity-btn" onclick="changeQuantity(-1)">-</button>
+          <input type="number" class="quantity-input" id="quantity" value="1" min="1" max="99">
+          <button class="quantity-btn" onclick="changeQuantity(1)">+</button>
+        </div>
+
+        <div class="action-buttons">
+          <button class="add-to-cart-btn" onclick="handleAddToCart()">Add to Cart</button>
+          <button class="buy-now-btn" onclick="handleBuyNow()">Buy Now</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="tabs">
+      <div class="tab active" onclick="switchTab('specifications')">Specifications</div>
+      <div class="tab" onclick="switchTab('compatibility')">Compatibility</div>
+      <div class="tab" onclick="switchTab('warranty')">Warranty</div>
+    </div>
+
+    <div id="specifications" class="tab-content active">
+      <h3>Specifications</h3>
+      <ul>
+        <li>Memory Type: DDR4 SODIMM (260-pin)</li>
+        <li>Speed: 2133MHz to 3600MHz options (varies by module)</li>
+        <li>Capacity per module: 4GB, 8GB, 16GB, 32GB</li>
+        <li>Voltage: 1.2V (standard low-voltage DDR4) and 1.35V for performance variants</li>
+        <li>CAS Latency: CL15 - CL22, optimized for balance of responsiveness and stability</li>
+        <li>Operating Temperature: 0°C to 85°C (Acer Enduro rugged options certified for harsh conditions)</li>
+        <li>Form Factor: 260-pin SODIMM designed for laptops and small form factor systems</li>
+      </ul>
+      <p>All Acer RAM modules are built for easy upgrade: single-module and dual-channel modes are supported based on your laptop model, helping increase multitasking performance, reduce lag, and improve CPU/GPU throughput during graphics tasks.</p>
+    </div>
+
+    <div id="compatibility" class="tab-content">
+      <h3>Compatibility</h3>
+      <p>These Acer RAM modules are matched to brand lines and verified for BIOS compatibility across current and legacy Acer systems:</p>
+      <ul>
+        <li>Acer Aspire 3/5/7 series (general consumer laptops)</li>
+        <li>Acer Nitro 5/7 and Predator Helios series (gaming)</li>
+        <li>Acer Swift series (thin-and-light ultrabooks)</li>
+        <li>Acer TravelMate and Extensa series (business & budget)
+</li>
+        <li>Acer Spin 5/7 (convertibles with hybrid mode)</li>
+        <li>Acer ConceptD and Enduro (creator & rugged workstations)</li>
+      </ul>
+      <p>Before adding RAM, verify your laptop’s maximum memory configuration in Acer support docs and check whether one or two slots are available for the upgrade.</p>
+    </div>
+
+    <div id="warranty" class="tab-content">
+      <h3>Warranty</h3>
+      <p>Your purchase includes:</p>
+      <ul>
+        <li>1-year limited manufacturer warranty for defects in materials and workmanship</li>
+        <li>30-day replacement guarantee on DOA (dead on arrival) products</li>
+        <li>Lifetime technical support via email and chat for installation questions</li>
+      </ul>
+      <p>Warranty coverage does not include physical damage, liquid spills, or user misuse. Register your product on the manufacturer’s site for expedited service.</p>
+    </div>
+  </div>
+
+  <div class="auth-modal" id="authModal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2>Login Required</h2>
+      <input type="email" placeholder="Email" id="loginEmail">
+      <input type="password" placeholder="Password" id="loginPassword">
+      <button onclick="handleLogin(event)">Login</button>
+      <p style="text-align: center; margin-top: 15px;">Don't have an account? <a href="#" style="color: #0078d4;">Sign up</a></p>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2026 LaptopParts Pro. All rights reserved.</p>
+  </footer>
+
+  <script>
+    let isAuthenticated = localStorage.getItem('userAuthenticated') === 'true';
+    const params = new URLSearchParams(window.location.search);
+    const product = params.get('product');
+    const products = {
+      'aspire-8gb': {
+        name: 'Acer Aspire 8GB DDR4 RAM',
+        price: 'E49.99',
+        desc: '8GB DDR4-3200 SODIMM memory module designed specifically for Acer Aspire series laptops. Features low voltage operation (1.2V) for better power efficiency and heat management. Compatible with Intel and AMD processors, providing reliable performance for everyday computing tasks including web browsing, office applications, and light multimedia.'
+      },
+      'nitro-16gb': {
+        name: 'Acer Nitro 16GB DDR4 RAM',
+        price: 'E89.99',
+        desc: '16GB DDR4-3200 SODIMM optimized for Acer Nitro gaming laptops. High-speed memory with tight timings for smooth gaming performance and multitasking. Features aluminum heat spreader for better thermal performance during extended gaming sessions. Perfect upgrade for gamers looking to enhance their Acer Nitro experience.'
+      },
+      'swift-16gb': {
+        name: 'Acer Swift 16GB DDR4 RAM',
+        price: 'E79.99',
+        desc: '16GB DDR4-3200 SODIMM for Acer Swift ultrabook series. Slim profile design that maintains the sleek form factor of ultrabooks while providing ample memory for productivity tasks. Low power consumption ideal for thin and light laptops. Supports dual-channel configurations for maximum performance in creative and professional workflows.'
+      },
+      'predator-32gb': {
+        name: 'Acer Predator 32GB DDR4 RAM',
+        price: 'E149.99',
+        desc: '32GB DDR4-3600 SODIMM engineered for Acer Predator high-performance gaming laptops. Extreme-speed memory with RGB lighting that syncs with Predator ecosystem. Features premium aluminum heat spreader and overclocking capabilities. Designed for enthusiasts who demand the absolute best gaming and content creation performance.'
+      },
+      'travelmate-8gb': {
+        name: 'Acer TravelMate 8GB DDR4 RAM',
+        price: 'E59.99',
+        desc: '8GB DDR4-2666 SODIMM for Acer TravelMate business laptops. Reliable memory solution designed for enterprise environments. Features error-correcting capabilities and extended temperature range operation. Perfect for business users requiring stable performance for email, documents, presentations, and business applications.'
+      },
+      'chromebook-4gb': {
+        name: 'Acer Chromebook 4GB DDR4 RAM',
+        price: 'E39.99',
+        desc: '4GB DDR4-2133 SODIMM for Acer Chromebook devices. Optimized for Chrome OS with low power consumption and fast boot times. Compact design fits perfectly in thin Chromebook form factors. Ideal for students and light users who need reliable performance for web browsing, Google Workspace applications, and streaming.'
+      },
+      'spin-8gb': {
+        name: 'Acer Spin 8GB DDR4 RAM',
+        price: 'E54.99',
+        desc: '8GB DDR4-3200 SODIMM for Acer Spin convertible laptops. Flexible memory solution that supports 360-degree operation modes. Features anti-shock technology for tablet mode usage. Perfect for users who need versatile computing with touchscreen capabilities and multiple form factors.'
+      },
+      'enduro-16gb': {
+        name: 'Acer Enduro 16GB DDR4 RAM',
+        price: 'E94.99',
+        desc: '16GB DDR4-3200 SODIMM for Acer Enduro rugged laptops. Military-grade construction with shock and vibration resistance. Features conformal coating for protection against moisture and dust. Designed for harsh environments including construction sites, warehouses, and field operations.'
+      },
+      'conceptd-32gb': {
+        name: 'Acer ConceptD 32GB DDR4 RAM',
+        price: 'E169.99',
+        desc: '32GB DDR4-3200 SODIMM for Acer ConceptD creative laptops. Color-accurate memory optimized for content creation workflows. Features wide color gamut support and stable performance under heavy multitasking loads. Essential upgrade for photographers, video editors, and graphic designers using Acer ConceptD workstations.'
+      },
+      'extensa-8gb': {
+        name: 'Acer Extensa 8GB DDR4 RAM',
+        price: 'E52.99',
+        desc: '8GB DDR4-2666 SODIMM for Acer Extensa budget laptops. Cost-effective memory upgrade that provides reliable performance for everyday tasks. Features standard voltage operation and compatibility with a wide range of Acer Extensa models. Perfect for budget-conscious users looking to extend the life of their laptops.'
+      }
+    };
+
+    if (products[product]) {
+      document.getElementById('productName').textContent = products[product].name;
+      document.getElementById('productPrice').textContent = products[product].price;
+      document.getElementById('productDesc').textContent = products[product].desc;
+      document.getElementById('productNameBreadcrumb').textContent = products[product].name;
+      document.getElementById('productImage').src = `https://via.placeholder.com/400x400?text=${encodeURIComponent(products[product].name)}`;
+    }
+
+    function changeQuantity(delta) {
+      const input = document.getElementById('quantity');
+      const newValue = parseInt(input.value) + delta;
+      if (newValue >= 1 && newValue <= 99) {
+        input.value = newValue;
+      }
+    }
+
+    function handleAddToCart() {
+      if (!isAuthenticated) {
+        document.getElementById('authModal').classList.add('active');
+      } else {
+        alert(`Added ${document.getElementById('quantity').value} x ${products[product].name} to cart!`);
+      }
+    }
+
+    function handleBuyNow() {
+      if (!isAuthenticated) {
+        document.getElementById('authModal').classList.add('active');
+      } else {
+        alert(`Proceeding to checkout with ${document.getElementById('quantity').value} x ${products[product].name}`);
+      }
+    }
+
+    function switchTab(tab) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+      document.getElementById(tab).classList.add('active');
+      event.target.classList.add('active');
+    }
+
+    function closeModal() {
+      document.getElementById('authModal').classList.remove('active');
+    }
+
+    function handleLogin(event) {
+      event.preventDefault();
+      const email = document.getElementById('loginEmail').value;
+      const password = document.getElementById('loginPassword').value;
+
+      if (email && password) {
+        localStorage.setItem('userAuthenticated', 'true');
+        isAuthenticated = true;
+        document.getElementById('authModal').classList.remove('active');
+        alert('Login successful!');
+      } else {
+        alert('Please enter both email and password');
+      }
+    }
+  </script>
+</body>
+</html>

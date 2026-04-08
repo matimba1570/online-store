@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Eswatini Technocrat Event Page</title>
+   <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f4f4f9;
+      color: #333;
+    }
+    header {
+      background: #004080;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+    .event-section {
+      padding: 20px;
+    }
+    .feature {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      padding: 15px;
+      margin-bottom: 25px;
+    }
+    .feature h2 {
+      color: #004080;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    .feature p {
+      text-align: center;
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 15px;
+    }
+    .sub-feature {
+      margin-top: 15px;
+      text-align: center;
+      background: #f9f9fc;
+      border-radius: 6px;
+      padding: 15px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    .sub-feature h3 {
+      font-size: 16px;
+      margin-bottom: 8px;
+      color: #333;
+    }
+    .sub-feature p {
+      font-size: 13px;
+      line-height: 1.4;
+      color: #555;
+      margin-bottom: 10px;
+    }
+    .date {
+      font-size: 12px;
+      color: #004080;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .shop-btn {
+      display: inline-block;
+      padding: 8px 15px;
+      background: #004080;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      font-size: 13px;
+      transition: background 0.3s ease;
+    }
+    .shop-btn:hover {
+      background: #0066cc;
+    }
+
+    /* Slideshow styles */
+    .slideshow-container {
+      max-width: 280px;
+      position: relative;
+      margin: auto;
+    }
+    .slide {
+      display: none;
+    }
+    .slide img {
+      border-radius: 6px;
+      width: 100%;
+    }
+
+    /* Services grid */
+    .services {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .service-item {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 10px;
+      width: 120px;
+      text-align: center;
+      font-size: 12px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+  </style>
+</head>
+<body><!-- ===== NAVBAR ===== -->
+<nav class="navbar">
+    <a href="index.html" class="logo">
+        <div class="logo-icon"><img src="logo.png" alt="logo"></div>
+        <div class="logo-text">Eswatini<br><span>Technocrats Center</span></div>
+    </a>
+    
+    <ul class="nav-links">
+        <li class="nav-item"><a href="home.html">Home</a></li>
+        <li class="nav-item">
+            <li class="nav-item"><a href="about.html">About Us</a></li>
+        </li>
+        <li class="nav-item">
+            <li class="nav-item"><a href="shop.html">Shop</a></li>
+        </li>
+        <li class="nav-item">
+            <a href="services.html">Services <i class="fas fa-chevron-down"></i></a>
+            <ul class="dropdown">
+                <li><a href="laptop-repairs.html"><i class="fas fa-angle-right"></i> Laptop & Computer Repairs</a></li>
+                <li><a href="pos.html"><i class="fas fa-angle-right"></i> Point of Sale</a></li>
+                <li><a href="software-installations.html"><i class="fas fa-angle-right"></i> Softwares Installations</a></li>
+                <li><a href="networking.html"><i class="fas fa-angle-right"></i> Networking</a></li>
+                <li><a href="tech-support.html"><i class="fas fa-angle-right"></i> Tech Support</a></li>
+            </ul>
+        </li>
+
+        <li class="nav-item">
+            <a href="Security and access.html">Security & Access <i class="fas fa-chevron-down"></i></a>
+            <ul class="dropdown">
+                <li><a href="physical-security.html"><i class="fas fa-angle-right"></i> Physical Security</a></li>
+                <li><a href="it-security.html"><i class="fas fa-angle-right"></i> IT Security</a></li>
+                <li><a href="identity-access.html"><i class="fas fa-angle-right"></i> Identity & Access</a></li>
+                <li><a href="networking.html"><i class="fas fa-angle-right"></i> Monitoring</a></li>
+            </ul>
+        </li>
+        <li class="nav-item">
+            <li class="nav-item"><a href="dealer.html">Dealer</a></li>
+            </li>
+        </li>
+         <li class="nav-item">
+            <li class="nav-item"><a href="contact.html">Contact</a></li>
+        </li>
+    </ul>
+    
+    <div class="nav-actions-right">
+        <button class="search-icon-btn" id="searchIconBtn">
+            <i class="fas fa-search"></i>
+        </button>
+        <button class="settings-icon-btn" id="settingsBtn">
+            <i class="fas fa-cog"></i>
+        </button>
+        <div class="auth-buttons">
+            <button class="login-icon-btn" id="loginBtn">
+                <i class="fas fa-sign-in-alt"></i>
+                <span>Login</span>
+            </button>
+            <button class="register-icon-btn" id="registerBtn">
+                <i class="fas fa-user-plus"></i>
+                <span>Register</span>
+            </button>
+        </div>
+        <div class="hamburger" id="hamburger" onclick="toggleMobile()">
+            <span></span><span></span><span></span>
+        </div>
+    </div>
+</nav>
+
+<header>
+  <h1>Eswatini Technocrat Centre</h1>
+  <p>Technology Promotions, Discounts & Giveaways</p>
+</header>
+
+<section class="event-section">
+
+  <!-- 1. Sales Promotion -->
+  <div class="feature">
+    <h2>🎉 Sales Promotion</h2>
+    <p>Seasonal campaigns and limited-time offers.</p>
+    <div class="sub-feature">
+      <h3>Spring Sales Week</h3>
+      <p>Exclusive discounts on laptop parts and accessories.</p>
+      <div class="date">Valid: 10 April 2026 – 20 April 2026</div>
+      <div class="slideshow-container" id="sales-slideshow">
+        <div class="slide"><img src="images/sales1.jpg" alt="Sales Promotion 1"></div>
+        <div class="slide"><img src="images/sales2.jpg" alt="Sales Promotion 2"></div>
+        <div class="slide"><img src="images/sales3.jpg" alt="Sales Promotion 3"></div>
+      </div>
+      <div class="services">
+        <div class="service-item">RAM Discounts</div>
+        <div class="service-item">SSD Offers</div>
+        <div class="service-item">Laptop Bags</div>
+        <div class="service-item">Cooling Fans</div>
+      </div>
+      <a href="#" class="shop-btn">Shop Now</a>
+    </div>
+  </div>
+
+  <!-- 2. Repair Discounts -->
+  <div class="feature">
+    <h2>🔧 Repair Discounts</h2>
+    <p>Affordable repair services with discounts.</p>
+    <div class="sub-feature">
+      <h3>Discounted Repair Services</h3>
+      <p>Special offers on cracked screen repairs, battery replacements, and diagnostics.</p>
+      <div class="date">Valid: 01 May 2026 – 15 May 2026</div>
+      <div class="slideshow-container" id="repair-slideshow">
+        <div class="slide"><img src="images/repair1.jpg" alt="Repair Discount 1"></div>
+        <div class="slide"><img src="images/repair2.jpg" alt="Repair Discount 2"></div>
+        <div class="slide"><img src="images/repair3.jpg" alt="Repair Discount 3"></div>
+      </div>
+      <div class="services">
+        <div class="service-item">Screen Replacement</div>
+        <div class="service-item">Battery Change</div>
+        <div class="service-item">Keyboard Fix</div>
+        <div class="service-item">Diagnostics</div>
+      </div>
+      <a href="#" class="shop-btn">Book Repair</a>
+    </div>
+  </div>
+
+  <!-- 3. Purchase Discounts -->
+  <div class="feature">
+    <h2>💻 Purchase Discounts</h2>
+    <p>Special dealer discounts on laptop parts.</p>
+    <div class="sub-feature">
+      <h3>Dealer Purchase Offers</h3>
+      <p>Exclusive discounted rates for bulk purchases.</p>
+      <div class="date">Available Year-Round</div>
+      <div class="slideshow-container" id="purchase-slideshow">
+        <div class="slide"><img src="images/purchase1.jpg" alt="Purchase Discount 1"></div>
+        <div class="slide"><img src="images/purchase2.jpg" alt="Purchase Discount 2"></div>
+        <div class="slide"><img src="images/purchase3.jpg" alt="Purchase Discount 3"></div>
+      </div>
+      <div class="services">
+        <div class="service-item">Bulk RAM</div>
+        <div class="service-item">SSD Packs</div>
+        <div class="service-item">Chargers</div>
+        <div class="service-item">Cooling Fans</div>
+      </div>
+      <a href="#" class="shop-btn">Shop Parts</a>
+    </div>
+  </div>
+
+  <!-- 4. Giveaways -->
+  <div class="feature">
+    <h2>🎁 Giveaways</h2>
+    <p>Exciting giveaways on services and parts.</p>
+    <div class="sub-feature">
+      <h3>Available Giveaways</h3>
+      <p>Claim free accessories and service vouchers.</p>
+      <div class="date">Valid: 05 June 2026 – 10 June 2026</div>
+      <div class="slideshow-container" id="giveaway-slideshow">
+        <div class="slide"><img src="images/giveaway1.jpg" alt="Giveaway 1"></div>
+        <div class="slide"><img src="images/giveaway2.jpg" alt="Giveaway 2"></div>
+        <div class="slide"><img src="images/giveaway3.jpg" alt="Giveaway 3"></div>
+      </div>
+      <div class="services">
+        <div class="service-item">Free Mouse</div>
+        <div class="service-item">USB Drive</div>
+        <div class="service-item">Discount Voucher</div>
+        <div class="service-item">Laptop Sleeve</div>
+      </div>
+      <a href="#" class="shop-btn">Claim Giveaway</a>
+    </div>
+  </div>
+
+</section>
+
+<script>
+function runSlideshow(containerId) {
+  let slides = document.querySelectorAll(`#${containerId} .slide`);
+  let index = 0;
+  function showSlides() {
+    slides.forEach(slide => slide.style.display = "none");
+    index++;
+    if (index > slides.length) { index = 1 }
+    slides[index-1].style.display = "block";
+    setTimeout(showSlides, 3000); // Change every 3 seconds
+  }
+  showSlides();
+}
+
+runSlideshow

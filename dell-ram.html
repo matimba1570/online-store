@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dell RAM - Laptop Parts Store</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f4f4f4;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0078d4, #005a9e);
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    nav {
+      background: #333;
+      padding: 10px 0;
+    }
+
+    nav ul {
+      list-style: none;
+      text-align: center;
+    }
+
+    nav li {
+      display: inline-block;
+      margin: 0 15px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #0078d4;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .search-container {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .search-container input {
+      flex: 1;
+      padding: 12px;
+      border: 2px solid #ddd;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+
+    .search-container button {
+      padding: 12px 20px;
+      background: #0078d4;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background 0.3s;
+    }
+
+    .search-container button:hover {
+      background: #005a9e;
+    }
+
+    .ram-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .ram-card {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .ram-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    }
+
+    .ram-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .ram-card h3 {
+      padding: 15px;
+      font-size: 1.2rem;
+      color: #333;
+    }
+
+    .ram-card p {
+      padding: 0 15px;
+      color: #666;
+    }
+
+    .compatibility {
+      padding: 10px 15px;
+      background: #f8f9fa;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    .price {
+      padding: 10px 15px;
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #0078d4;
+    }
+
+    .specifications {
+      padding: 15px;
+    }
+
+    .specifications ul {
+      list-style: none;
+    }
+
+    .specifications li {
+      padding: 3px 0;
+      font-size: 0.9rem;
+    }
+
+    .btn {
+      display: block;
+      width: calc(100% - 30px);
+      margin: 15px;
+      padding: 12px;
+      background: #28a745;
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background: #218838;
+    }
+
+    .no-results {
+      text-align: center;
+      padding: 40px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      display: none;
+      color: #666;
+      font-size: 1.1rem;
+    }
+
+    footer {
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Dell RAM Modules</h1>
+    <p>High-performance memory upgrades for Dell laptops</p>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="page.html">Home</a></li>
+      <li><a href="sale.html">Point of Sale</a></li>
+      <li><a href="pos thermal printer.html">POS Thermal Printers</a></li>
+      <li><a href="asus-batteries.html">Asus Batteries</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <div class="search-container">
+      <input type="text" id="ramSearch" placeholder="Search by model number, part number, or compatibility..." spellcheck="true">
+      <button id="searchBtn"><i class="fas fa-search"></i> Search</button>
+    </div>
+
+    <div class="no-results" id="noResults">
+      No RAM modules found matching your search. Try different keywords.
+    </div>
+
+    <div class="ram-grid" id="ramGrid">
+      <div class="ram-card" data-model="XPS13" data-part="M471A2G43BB0-CQK">
+        <img src="https://images.unsplash.com/photo-1591488320449-011701bb6704?w=300&h=200&fit=crop" alt="Dell XPS 13 RAM">
+        <h3>Dell XPS 13 16GB DDR4 RAM</h3>
+        <p>High-speed memory for XPS 13 series laptops</p>
+        <div class="compatibility">Compatible with: XPS 13 9310, 9305, 9300</div>
+        <div class="price">E89.99</div>
+        <div class="specifications">
+          <ul>
+            <li>16GB DDR4-3200</li>
+            <li>SODIMM form factor</li>
+            <li>1.2V voltage</li>
+            <li>Lifetime warranty</li>
+          </ul>
+        </div>
+        <a href="#" class="btn">Add to Cart</a>
+      </div>
+
+      <div class="ram-card" data-model="Latitude5420" data-part="HMA82GS6CJR8N-VK">
+        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=300&h=200&fit=crop" alt="Dell Latitude RAM">
+        <h3>Dell Latitude 32GB DDR4 RAM</h3>
+        <p>Professional-grade memory for Latitude series</p>
+        <div class="compatibility">Compatible with: Latitude 5420, 5421, 5424</div>
+        <div class="price">E149.99</div>
+        <div class="specifications">
+          <ul>
+            <li>32GB DDR4-3200</li>
+            <li>SODIMM form factor</li>
+            <li>ECC support</li>
+            <li>Enterprise-grade reliability</li>
+          </ul>
+        </div>
+        <a href="#" class="btn">Add to Cart</a>
+      </div>
+
+      <div class="ram-card" data-model="Inspiron15" data-part="M471A1G43DB0-CPB">
+        <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=300&h=200&fit=crop" alt="Dell Inspiron RAM">
+        <h3>Dell Inspiron 8GB DDR4 RAM</h3>
+        <p>Affordable memory upgrade for Inspiron series</p>
+        <div class="compatibility">Compatible with: Inspiron 15 3000, 3500, 5000</div>
+        <div class="price">E49.99</div>
+        <div class="specifications">
+          <ul>
+            <li>8GB DDR4-2666</li>
+            <li>SODIMM form factor</li>
+            <li>1.2V voltage</li>
+            <li>Easy installation</li>
+          </ul>
+        </div>
+        <a href="#" class="btn">Add to Cart</a>
+      </div>
+
+      <div class="ram-card" data-model="AlienwareM15" data-part="CMK32GX4M2B3200C16">
+        <img src="https://images.unsplash.com/photo-1591488320449-011701bb6704?w=300&h=200&fit=crop" alt="Dell Alienware RAM">
+        <h3>Dell Alienware 32GB DDR4 RAM Kit</h3>
+        <p>High-performance gaming memory</p>
+        <div class="compatibility">Compatible with: Alienware M15 R4, R5, R6</div>
+        <div class="price">E189.99</div>
+        <div class="specifications">
+          <ul>
+            <li>32GB (2x16GB) DDR4-3200</li>
+            <li>CL16 latency</li>
+            <li>RGB lighting</li>
+            <li>Gaming optimized</li>
+          </ul>
+        </div>
+        <a href="#" class="btn">Add to Cart</a>
+      </div>
+
+      <div class="ram-card" data-model="Precision5550" data-part="MTA18ASF2G72PZ-2G6E1">
+        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=300&h=200&fit=crop" alt="Dell Precision RAM">
+        <h3>Dell Precision 64GB DDR4 RAM</h3>
+        <p>Workstation-grade memory with ECC</p>
+        <div class="compatibility">Compatible with: Precision 5550, 5750, 5950</div>
+        <div class="price">E299.99</div>
+        <div class="specifications">
+          <ul>
+            <li>64GB DDR4-3200 ECC</li>
+            <li>Registered memory</li>
+            <li>ISV certified</li>
+            <li>Professional reliability</li>
+          </ul>
+        </div>
+        <a href="#" class="btn">Add to Cart</a>
+      </div>
+
+      <div class="ram-card" data-model="G31550" data-part="CMK16GX4M2B3000C15">
+        <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=300&h=200&fit=crop" alt="Dell G3 RAM">
+        <h3>Dell G3 16GB DDR4 RAM Kit</h3>
+        <p>Gaming memory for G-series laptops</p>
+        <div class="compatibility">Compatible with: G3 15 3500, G5 15 5500</div>
+        <div class="price">E99.99</div>
+        <div class="specifications">
+          <ul>
+            <li>16GB (2x8GB) DDR4-3000</li>
+            <li>CL15 latency</li>
+            <li>RGB compatible</li>
+            <li>Gaming performance</li>
+          </ul>
+        </div>
+        <a href="#" class="btn">Add to Cart</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2024 Laptop Parts Store. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function searchRAM() {
+      const searchInput = document.getElementById('ramSearch').value.toLowerCase();
+      const ramCards = document.querySelectorAll('.ram-card');
+      let hasResults = false;
+
+      ramCards.forEach(card => {
+        const model = card.getAttribute('data-model').toLowerCase();
+        const part = card.getAttribute('data-part').toLowerCase();
+        const title = card.querySelector('h3').textContent.toLowerCase();
+        const compatibility = card.querySelector('.compatibility').textContent.toLowerCase();
+
+        const matches = model.includes(searchInput) ||
+                       part.includes(searchInput) ||
+                       title.includes(searchInput) ||
+                       compatibility.includes(searchInput);
+
+        if (matches) {
+          card.style.display = 'block';
+          hasResults = true;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      const noResults = document.getElementById('noResults');
+      if (!hasResults && searchInput.length > 0) {
+        noResults.style.display = 'block';
+      } else {
+        noResults.style.display = 'none';
+      }
+    }
+
+    document.getElementById('ramSearch').addEventListener('input', searchRAM);
+    document.getElementById('searchBtn').addEventListener('click', searchRAM);
+  </script>
+</body>
+</html>
+

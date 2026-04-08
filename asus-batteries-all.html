@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Asus Batteries - Laptop Parts Store</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8f9fa; color: #333; }
+    header { background: linear-gradient(135deg, #1a1a1a 0%, #333 100%); color: white; padding: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
+    .header-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 24px; font-weight: bold; display: flex; align-items: center; gap: 10px; }
+    .logo i { color: #0078d4; }
+    .breadcrumb { max-width: 1200px; margin: 20px auto; padding: 0 20px; font-size: 14px; }
+    .breadcrumb a { color: #0078d4; text-decoration: none; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+    h1 { margin-bottom: 30px; color: #333; }
+    .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-bottom: 40px; }
+    .product-card { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: all 0.3s; }
+    .product-card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.15); }
+    .product-image { height: 200px; background: #f0f0f0; display: flex; align-items: center; justify-content: center; font-size: 48px; color: #ccc; }
+    .product-info { padding: 20px; }
+    .product-name { font-size: 16px; font-weight: bold; margin-bottom: 8px; color: #333; }
+    .product-price { font-size: 20px; font-weight: bold; color: #0078d4; margin-bottom: 10px; }
+    .product-description { font-size: 13px; color: #666; margin-bottom: 10px; line-height: 1.4; }
+    .product-specs { font-size: 12px; color: #888; margin-bottom: 15px; }
+    .product-stats { display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px; font-size: 12px; }
+    .rating { color: #ffb800; }
+    .qty-section { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; }
+    .qty-input { width: 60px; padding: 6px; border: 1px solid #ddd; border-radius: 4px; text-align: center; }
+    .add-to-cart { width: 100%; padding: 12px; background: #0078d4; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; transition: background 0.3s; }
+    .add-to-cart:hover { background: #005a9e; }
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); justify-content: center; align-items: center; z-index: 2000; }
+    .modal.active { display: flex; }
+    .modal-content { background: white; padding: 40px; border-radius: 8px; width: 90%; max-width: 400px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); }
+    .modal-header { font-size: 24px; font-weight: bold; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
+    .close-btn { font-size: 28px; cursor: pointer; color: #666; background: none; border: none; padding: 0; }
+    .tabs { display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 2px solid #eee; }
+    .tab { flex: 1; padding: 10px; text-align: center; cursor: pointer; border-bottom: 3px solid transparent; color: #666; }
+    .tab.active { color: #0078d4; border-bottom-color: #0078d4; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    .form-group { margin-bottom: 15px; }
+    .form-group label { display: block; margin-bottom: 5px; font-weight: bold; }
+    .form-group input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; }
+    .submit-btn { width: 100%; padding: 10px; background: #0078d4; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+    .submit-btn:hover { background: #005a9e; }
+    footer { background: #1a1a1a; color: white; text-align: center; padding: 20px; margin-top: 40px; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <div class="logo"><i class="fas fa-laptop"></i>LaptopParts Pro</div>
+      <div style="display: flex; gap: 20px;"><a href="page.html" style="color: white; text-decoration: none;">Back to Brands</a><a href="#" style="color: white;"><i class="fas fa-shopping-cart"></i></a></div>
+    </div>
+  </header>
+
+  <div class="breadcrumb"><a href="page.html">Home</a> / <a href="asus.html">Asus</a> / <span>All Batteries</span></div>
+
+  <div class="container">
+    <h1><i class="fas fa-battery-full"></i> Asus Batteries - Extended Catalog</h1>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-image"><i class="fas fa-battery-full"></i></div>
+        <div class="product-info">
+          <div class="product-name">Asus VivoBook Battery</div>
+          <div class="product-price">$69.99</div>
+          <div class="product-description">Standard lithium battery for VivoBook series</div>
+          <div class="product-specs">50Wh, 11.1V, 12 months warranty</div>
+          <div class="product-stats"><span class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> (148)</span><span>In Stock</span></div>
+          <div class="qty-section"><label>Qty:</label><input type="number" class="qty-input" value="1" min="1" max="10"></div>
+          <button class="add-to-cart" onclick="addToCart(this)">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-image"><i class="fas fa-battery-full"></i></div>
+        <div class="product-info">
+          <div class="product-name">Asus ROG Gaming Battery</div>
+          <div class="product-price">$99.99</div>
+          <div class="product-description">High-performance battery for ROG laptops</div>
+          <div class="product-specs">72Wh, 11.4V, 24 months warranty</div>
+          <div class="product-stats"><span class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (312)</span><span>In Stock</span></div>
+          <div class="qty-section"><label>Qty:</label><input type="number" class="qty-input" value="1" min="1" max="10"></div>
+          <button class="add-to-cart" onclick="addToCart(this)">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-image"><i class="fas fa-battery-full"></i></div>
+        <div class="product-info">
+          <div class="product-name">Asus ProBook Battery</div>
+          <div class="product-price">$84.99</div>
+          <div class="product-description">Business-grade battery for ProBook</div>
+          <div class="product-specs">63Wh, 10.8V, 12 months warranty</div>
+          <div class="product-stats"><span class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> (89)</span><span>In Stock</span></div>
+          <div class="qty-section"><label>Qty:</label><input type="number" class="qty-input" value="1" min="1" max="10"></div>
+          <button class="add-to-cart" onclick="addToCart(this)">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-image"><i class="fas fa-battery-full"></i></div>
+        <div class="product-info">
+          <div class="product-name">Asus ZenBook Ultra Battery</div>
+          <div class="product-price">$94.99</div>
+          <div class="product-description">Premium extended battery for ZenBook</div>
+          <div class="product-specs">60Wh, 7.7V, 24 months warranty</div>
+          <div class="product-stats"><span class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (256)</span><span>In Stock</span></div>
+          <div class="qty-section"><label>Qty:</label><input type="number" class="qty-input" value="1" min="1" max="10"></div>
+          <button class="add-to-cart" onclick="addToCart(this)">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-image"><i class="fas fa-battery-full"></i></div>
+        <div class="product-info">
+          <div class="product-name">Asus TUF Gaming Battery</div>
+          <div class="product-price">$104.99</div>
+          <div class="product-description">Heavy-duty battery for TUF series</div>
+          <div class="product-specs">90Wh, 11.52V, 24 months warranty</div>
+          <div class="product-stats"><span class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (423)</span><span>In Stock</span></div>
+          <div class="qty-section"><label>Qty:</label><input type="number" class="qty-input" value="1" min="1" max="10"></div>
+          <button class="add-to-cart" onclick="addToCart(this)">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-image"><i class="fas fa-battery-full"></i></div>
+        <div class="product-info">
+          <div class="product-name">Asus Chromebook Battery</div>
+          <div class="product-price">$59.99</div>
+          <div class="product-description">Optimized battery for Chromebooks</div>
+          <div class="product-specs">36Wh, 7.7V, 12 months warranty</div>
+          <div class="product-stats"><span class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> (67)</span><span>In Stock</span></div>
+          <div class="qty-section"><label>Qty:</label><input type="number" class="qty-input" value="1" min="1" max="10"></div>
+          <button class="add-to-cart" onclick="addToCart(this)">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-image"><i class="fas fa-battery-full"></i></div>
+        <div class="product-info">
+          <div class="product-name">Asus ExpertBook Battery</div>
+          <div class="product-price">$89.99</div>
+          <div class="product-description">Professional-grade battery</div>
+          <div class="product-specs">68Wh, 11.1V, 24 months warranty</div>
+          <div class="product-stats"><span class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> (134)</span><span>In Stock</span></div>
+          <div class="qty-section"><label>Qty:</label><input type="number" class="qty-input" value="1" min="1" max="10"></div>
+          <button class="add-to-cart" onclick="addToCart(this)">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-image"><i class="fas fa-battery-full"></i></div>
+        <div class="product-info">
+          <div class="product-name">Asus VivoBook Flip Battery</div>
+          <div class="product-price">$79.99</div>
+          <div class="product-description">Battery for 2-in-1 VivoBooks</div>
+          <div class="product-specs">56Wh, 7.7V, 12 months warranty</div>
+          <div class="product-stats"><span class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (98)</span><span>In Stock</span></div>
+          <div class="qty-section"><label>Qty:</label><input type="number" class="qty-input" value="1" min="1" max="10"></div>
+          <button class="add-to-cart" onclick="addToCart(this)">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-image"><i class="fas fa-battery-full"></i></div>
+        <div class="product-info">
+          <div class="product-name">Asus StudioBook Battery</div>
+          <div class="product-price">$109.99</div>
+          <div class="product-description">Creator-focused high-capacity battery</div>
+          <div class="product-specs">100Wh, 11.55V, 24 months warranty</div>
+          <div class="product-stats"><span class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (187)</span><span>In Stock</span></div>
+          <div class="qty-section"><label>Qty:</label><input type="number" class="qty-input" value="1" min="1" max="10"></div>
+          <button class="add-to-cart" onclick="addToCart(this)">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-image"><i class="fas fa-battery-full"></i></div>
+        <div class="product-info">
+          <div class="product-name">Asus BR1100 Battery</div>
+          <div class="product-price">$74.99</div>
+          <div class="product-description">Education-focused battery</div>
+          <div class="product-specs">52Wh, 11.52V, 12 months warranty</div>
+          <div class="product-stats"><span class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> (76)</span><span>In Stock</span></div>
+          <div class="qty-section"><label>Qty:</label><input type="number" class="qty-input" value="1" min="1" max="10"></div>
+          <button class="add-to-cart" onclick="addToCart(this)">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-image"><i class="fas fa-battery-full"></i></div>
+        <div class="product-info">
+          <div class="product-name">Asus Vivobook 14 Battery</div>
+          <div class="product-price">$72.99</div>
+          <div class="product-description">Compact battery for 14-inch models</div>
+          <div class="product-specs">52Wh, 11.1V, 12 months warranty</div>
+          <div class="product-stats"><span class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (105)</span><span>In Stock</span></div>
+          <div class="qty-section"><label>Qty:</label><input type="number" class="qty-input" value="1" min="1" max="10"></div>
+          <button class="add-to-cart" onclick="addToCart(this)">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-image"><i class="fas fa-battery-full"></i></div>
+        <div class="product-info">
+          <div class="product-name">Asus Vivobook 15 Battery</div>
+          <div class="product-price">$82.99</div>
+          <div class="product-description">Extended battery for 15-inch models</div>
+          <div class="product-specs">63Wh, 11.1V, 12 months warranty</div>
+          <div class="product-stats"><span class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> (213)</span><span>In Stock</span></div>
+          <div class="qty-section"><label>Qty:</label><input type="number" class="qty-input" value="1" min="1" max="10"></div>
+          <button class="add-to-cart" onclick="addToCart(this)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="authModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        Authentication Required
+        <button class="close-btn" onclick="closeModal()">&times;</button>
+      </div>
+      <div class="tabs">
+        <div class="tab active" onclick="switchTab('login')">Login</div>
+        <div class="tab" onclick="switchTab('register')">Register</div>
+      </div>
+      <div id="login" class="tab-content active">
+        <form onsubmit="handleLogin(event)">
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" required>
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" required>
+          </div>
+          <button type="submit" class="submit-btn">Login</button>
+        </form>
+      </div>
+      <div id="register" class="tab-content">
+        <form onsubmit="handleRegister(event)">
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" required>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" required>
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" required>
+          </div>
+          <button type="submit" class="submit-btn">Register</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <footer><p>&copy; 2026 LaptopParts Pro. All rights reserved.</p></footer>
+
+  <script>
+    let isAuthenticated = localStorage.getItem('userAuthenticated') === 'true';
+    
+    function addToCart(button) {
+      const card = button.closest('.product-card');
+      const productName = card.querySelector('.product-name').textContent;
+      const qty = parseInt(card.querySelector('.qty-input').value);
+      
+      if (!isAuthenticated) {
+        document.getElementById('authModal').classList.add('active');
+      } else {
+        alert(`✓ Added ${qty}x ${productName} to cart!`);
+        button.style.background = '#28a745';
+        button.textContent = 'Added to Cart!';
+        setTimeout(() => {
+          button.style.background = '#0078d4';
+          button.textContent = 'Add to Cart';
+        }, 2000);
+      }
+    }
+    
+    function switchTab(tab) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+      document.getElementById(tab).classList.add('active');
+      event.target.classList.add('active');
+    }
+    
+    function handleLogin(event) {
+      event.preventDefault();
+      localStorage.setItem('userAuthenticated', 'true');
+      isAuthenticated = true;
+      closeModal();
+      alert('Login successful!');
+    }
+    
+    function handleRegister(event) {
+      event.preventDefault();
+      localStorage.setItem('userAuthenticated', 'true');
+      isAuthenticated = true;
+      closeModal();
+      alert('Registration successful!');
+    }
+    
+    function closeModal() {
+      document.getElementById('authModal').classList.remove('active');
+    }
+  </script>
+</body>
+</html>

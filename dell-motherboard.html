@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dell Motherboards - Laptop Parts Store</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f4f4f4;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0078d4, #005a9e);
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    header h3 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    nav {
+      background: #333;
+      padding: 10px 0;
+    }
+
+    nav ul {
+      list-style: none;
+      text-align: center;
+    }
+
+    nav li {
+      display: inline-block;
+      margin: 0 15px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #0078d4;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .search-container {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .search-container input {
+      flex: 1;
+      padding: 12px;
+      border: 2px solid #ddd;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+
+    .search-container button {
+      padding: 12px 20px;
+      background: #0078d4;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background 0.3s;
+    }
+
+    .search-container button:hover {
+      background: #005a9e;
+    }
+
+    .motherboard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .motherboard-card {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .motherboard-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    }
+
+    .motherboard-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .motherboard-card h3 {
+      padding: 15px;
+      font-size: 1.2rem;
+      color: #333;
+    }
+
+    .motherboard-card p {
+      padding: 0 15px;
+      color: #666;
+    }
+
+    .compatibility {
+      padding: 10px 15px;
+      background: #f8f9fa;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    .price {
+      padding: 10px 15px;
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #0078d4;
+    }
+
+    .specifications {
+      padding: 15px;
+    }
+
+    .specifications ul {
+      list-style: none;
+    }
+
+    .specifications li {
+      padding: 3px 0;
+      font-size: 0.9rem;
+    }
+
+    .btn {
+      display: block;
+      width: calc(100% - 30px);
+      margin: 15px;
+      padding: 12px;
+      background: #28a745;
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background: #218838;
+    }
+
+    .no-results {
+      text-align: center;
+      padding: 40px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      display: none;
+      color: #666;
+      font-size: 1.1rem;
+    }
+
+    footer {
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h3>Dell Motherboards</h3>
+    <p>High-quality replacement motherboards for Dell laptops</p>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="page.html">Home</a></li>
+      <li><a href="sale.html">Point of Sale</a></li>
+      <li><a href="pos thermal printer.html">POS Thermal Printers</a></li>
+      <li><a href="asus-batteries.html">Asus Batteries</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <div class="search-container">
+      <input type="text" id="motherboardSearch" placeholder="Search by model number, part number, or compatibility..." spellcheck="true">
+      <button id="searchBtn"><i class="fas fa-search"></i> Search</button>
+    </div>
+
+    <div class="no-results" id="noResults">
+      No motherboards found matching your search. Try different keywords.
+    </div>
+
+    <div class="motherboard-grid" id="motherboardGrid">
+      <div class="motherboard-card" data-model="XPS13-9310" data-part="0F6X3">
+        <img src="https://images.unsplash.com/photo-1591488320449-011701bb6704?w=300&h=200&fit=crop" alt="Dell XPS 13 Motherboard">
+        <h3>Dell XPS 13 9310 Motherboard</h3>
+        <p>Complete system board for XPS 13 9310 series</p>
+        <div class="compatibility">Compatible with: XPS 13 9310, 9315</div>
+        <div class="price">E349.99</div>
+        <div class="specifications">
+          <ul>
+            <li>Intel 11th Gen processors</li>
+            <li>Integrated graphics</li>
+            <li>Thunderbolt 4 support</li>
+            <li>Wi-Fi 6E capable</li>
+          </ul>
+        </div>
+        <a href="#" class="btn">Add to Cart</a>
+      </div>
+
+      <div class="motherboard-card" data-model="Latitude-5420" data-part="NT8JX">
+        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=300&h=200&fit=crop" alt="Dell Latitude Motherboard">
+        <h3>Dell Latitude 5420 Motherboard</h3>
+        <p>Business-class motherboard for Latitude series</p>
+        <div class="compatibility">Compatible with: Latitude 5420, 5421, 5424</div>
+        <div class="price">E299.99</div>
+        <div class="specifications">
+          <ul>
+            <li>Intel 11th Gen processors</li>
+            <li>ExpressSign-in ready</li>
+            <li>Smart card reader support</li>
+            <li>Enhanced security features</li>
+          </ul>
+        </div>
+        <a href="#" class="btn">Add to Cart</a>
+      </div>
+
+      <div class="motherboard-card" data-model="Inspiron-15-3000" data-part="0M5K4">
+        <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=300&h=200&fit=crop" alt="Dell Inspiron Motherboard">
+        <h3>Dell Inspiron 15 3000 Motherboard</h3>
+        <p>Reliable motherboard for Inspiron 15 series</p>
+        <div class="compatibility">Compatible with: Inspiron 15 3000, 3501, 3505</div>
+        <div class="price">E249.99</div>
+        <div class="specifications">
+          <ul>
+            <li>AMD Ryzen processors</li>
+            <li>DDR4 memory support</li>
+            <li>HDMI output</li>
+            <li>USB 3.2 Gen 1 ports</li>
+          </ul>
+        </div>
+        <a href="#" class="btn">Add to Cart</a>
+      </div>
+
+      <div class="motherboard-card" data-model="Alienware-M15-R5" data-part="P71F8">
+        <img src="https://images.unsplash.com/photo-1591488320449-011701bb6704?w=300&h=200&fit=crop" alt="Dell Alienware Motherboard">
+        <h3>Dell Alienware M15 R5 Motherboard</h3>
+        <p>High-performance gaming motherboard</p>
+        <div class="compatibility">Compatible with: Alienware M15 R5, R6</div>
+        <div class="price">E399.99</div>
+        <div class="specifications">
+          <ul>
+            <li>Intel 11th Gen processors</li>
+            <li>NVIDIA RTX graphics ready</li>
+            <li>Alienware Command Center support</li>
+            <li>Advanced cooling design</li>
+          </ul>
+        </div>
+        <a href="#" class="btn">Add to Cart</a>
+      </div>
+
+      <div class="motherboard-card" data-model="Precision-5550" data-part="0F6X3">
+        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=300&h=200&fit=crop" alt="Dell Precision Motherboard">
+        <h3>Dell Precision 5550 Motherboard</h3>
+        <p>Workstation-grade motherboard</p>
+        <div class="compatibility">Compatible with: Precision 5550, 5750</div>
+        <div class="price">E449.99</div>
+        <div class="specifications">
+          <ul>
+            <li>Intel Xeon processors</li>
+            <li>ECC memory support</li>
+            <li>ISV certifications</li>
+            <li>Professional graphics support</li>
+          </ul>
+        </div>
+        <a href="#" class="btn">Add to Cart</a>
+      </div>
+
+      <div class="motherboard-card" data-model="G5-15-5500" data-part="PK130KX1B00">
+        <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=300&h=200&fit=crop" alt="Dell G5 Motherboard">
+        <h3>Dell G5 15 5500 Motherboard</h3>
+        <p>Gamingmotherboard for G5 series</p>
+        <div class="compatibility">Compatible with: G5 15 5500, G7 15 7500</div>
+        <div class="price">E329.99</div>
+        <div class="specifications">
+          <ul>
+            <li>Intel 11th Gen processors</li>
+            <li>DDR4 memory up to 128GB</li>
+            <li>Multiple storage options</li>
+            <li>RGB lighting support</li>
+          </ul>
+        </div>
+        <a href="#" class="btn">Add to Cart</a>
+      </div>
+
+      <div class="motherboard-card" data-model="Vostro-15-5000" data-part="0X8PK3">
+        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=300&h=200&fit=crop" alt="Dell Vostro Motherboard">
+        <h3>Dell Vostro 15 5000 Motherboard</h3>
+        <p>Business-focused motherboard for Vostro series</p>
+        <div class="compatibility">Compatible with: Vostro 15 5000, 5002</div>
+        <div class="price">E279.99</div>
+        <div class="specifications">
+          <ul>
+            <li>Intel 10th Gen processors</li>
+            <li>DDR4 memory support</li>
+            <li>Reliable performance</li>
+            <li>Security features</li>
+          </ul>
+        </div>
+        <a href="#" class="btn">Add to Cart</a>
+      </div>
+
+      <div class="motherboard-card" data-model="Inspiron-13-7000" data-part="0DXKW2">
+        <img src="https://images.unsplash.com/photo-1591488320449-011701bb6704?w=300&h=200&fit=crop" alt="Dell Inspiron 13 Motherboard">
+        <h3>Dell Inspiron 13 7000 Motherboard</h3>
+        <p>Premium compact motherboard for Inspiron 13</p>
+        <div class="compatibility">Compatible with: Inspiron 13 7000, 7390, 7400</div>
+        <div class="price">E319.99</div>
+        <div class="specifications">
+          <ul>
+            <li>Intel 11th Gen processors</li>
+            <li>Integrated Iris graphics</li>
+            <li>Thunderbolt 3 support</li>
+            <li>Compact design</li>
+          </ul>
+        </div>
+        <a href="#" class="btn">Add to Cart</a>
+      </div>
+
+      <div class="motherboard-card" data-model="XPS-15-9500" data-part="0P7M8K">
+        <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=300&h=200&fit=crop" alt="Dell XPS 15 Motherboard">
+        <h3>Dell XPS 15 9500 Motherboard</h3>
+        <p>High-performance motherboard for XPS 15 series</p>
+        <div class="compatibility">Compatible with: XPS 15 9500, 9501, 9510</div>
+        <div class="price">E429.99</div>
+        <div class="specifications">
+          <ul>
+            <li>Intel 10th Gen processors</li>
+            <li>NVIDIA RTX graphics support</li>
+            <li>Thunderbolt 3 ports</li>
+            <li>Advanced power management</li>
+          </ul>
+        </div>
+        <a href="#" class="btn">Add to Cart</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; Copyrights @2026. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function searchMotherboards() {
+      const searchInput = document.getElementById('motherboardSearch').value.toLowerCase();
+      const motherboardCards = document.querySelectorAll('.motherboard-card');
+      let hasResults = false;
+
+      motherboardCards.forEach(card => {
+        const model = card.getAttribute('data-model').toLowerCase();
+        const part = card.getAttribute('data-part').toLowerCase();
+        const title = card.querySelector('h3').textContent.toLowerCase();
+        const compatibility = card.querySelector('.compatibility').textContent.toLowerCase();
+
+        const matches = model.includes(searchInput) ||
+                       part.includes(searchInput) ||
+                       title.includes(searchInput) ||
+                       compatibility.includes(searchInput);
+
+        if (matches) {
+          card.style.display = 'block';
+          hasResults = true;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      const noResults = document.getElementById('noResults');
+      if (!hasResults && searchInput.length > 0) {
+        noResults.style.display = 'block';
+      } else {
+        noResults.style.display = 'none';
+      }
+    }
+
+    document.getElementById('motherboardSearch').addEventListener('input', searchMotherboards);
+    document.getElementById('searchBtn').addEventListener('click', searchMotherboards);
+  </script>
+</body>
+</html>
+

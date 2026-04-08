@@ -1,0 +1,766 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>TechLap | Premium Laptop Store</title>
+    <!-- Font Awesome 6 (free icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts: Poppins for modern look -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: #f4f6fa;
+            color: #1e293b;
+            scroll-behavior: smooth;
+        }
+
+        /* header & navigation */
+        .top-bar {
+            background: #ffffff;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03), 0 1px 2px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(2px);
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 18px 0;
+            gap: 16px;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+        }
+        .logo span {
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: #5b6e8c;
+            display: block;
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            background: #f1f5f9;
+            padding: 10px 20px;
+            border-radius: 40px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.2s ease;
+            font-weight: 600;
+            border: 1px solid #e2e8f0;
+        }
+        .cart-icon:hover {
+            background: #e6edf4;
+            transform: scale(0.98);
+        }
+        .cart-icon i {
+            font-size: 1.3rem;
+            color: #2c3e66;
+        }
+        #cartCount {
+            background: #e11d48;
+            color: white;
+            border-radius: 30px;
+            padding: 2px 8px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+
+        /* brand filter pills */
+        .filter-section {
+            margin: 28px 0 20px;
+        }
+        .filter-title {
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #0f172a;
+        }
+        .brand-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .filter-btn {
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            padding: 8px 18px;
+            border-radius: 40px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+            color: #1e293b;
+        }
+        .filter-btn.active {
+            background: #1e3c72;
+            border-color: #1e3c72;
+            color: white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        .filter-btn:hover:not(.active) {
+            background: #eef2ff;
+            border-color: #94a3b8;
+        }
+
+        /* product grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 28px;
+            margin: 32px 0 48px;
+        }
+
+        /* product card */
+        .product-card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.02), 0 2px 6px rgba(0,0,0,0.05);
+            transition: all 0.25s ease;
+            border: 1px solid #edf2f7;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.12);
+            border-color: #cbdff2;
+        }
+
+        .card-img {
+            background: linear-gradient(145deg, #f0f4fc, #e9eef4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 28px 16px;
+            font-size: 3.4rem;
+            color: #2c5282;
+            border-bottom: 1px solid #eef2f8;
+        }
+        .card-img i {
+            filter: drop-shadow(2px 6px 12px rgba(0,0,0,0.08));
+        }
+
+        .card-body {
+            padding: 20px 18px 22px;
+            flex: 1;
+        }
+        .brand-badge {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            background: #eef2ff;
+            padding: 4px 12px;
+            border-radius: 30px;
+            color: #1e3a8a;
+            margin-bottom: 12px;
+        }
+        .product-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin: 8px 0 6px;
+            line-height: 1.3;
+        }
+        .price {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #0f3b5f;
+            margin: 12px 0 16px;
+        }
+        .price small {
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: #5b6e8c;
+        }
+        .card-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 8px;
+        }
+        .btn {
+            flex: 1;
+            padding: 10px 0;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: 0.2s;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+        .btn-cart {
+            background: #1e293b;
+            color: white;
+        }
+        .btn-cart:hover {
+            background: #0f172a;
+            transform: scale(0.97);
+        }
+        .btn-view {
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            color: #2d3a5e;
+        }
+        .btn-view:hover {
+            background: #f8fafc;
+            border-color: #94a3b8;
+        }
+
+        /* modal overlay (common) */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            backdrop-filter: blur(3px);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background: white;
+            max-width: 520px;
+            width: 90%;
+            border-radius: 32px;
+            padding: 28px 26px;
+            position: relative;
+            animation: fadeUp 0.2s ease;
+            box-shadow: 0 25px 40px rgba(0,0,0,0.2);
+        }
+        .modal-content.cart-modal {
+            max-width: 560px;
+        }
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 24px;
+            font-size: 1.6rem;
+            cursor: pointer;
+            color: #7f8c8d;
+            transition: 0.2s;
+        }
+        .modal-close:hover {
+            color: #e11d48;
+        }
+        .modal-title {
+            font-size: 1.7rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .modal-detail {
+            margin-top: 12px;
+            line-height: 1.5;
+        }
+        .specs-list {
+            background: #f8fafc;
+            padding: 14px 18px;
+            border-radius: 20px;
+            margin: 16px 0;
+            list-style: none;
+        }
+        .specs-list li {
+            margin: 8px 0;
+            display: flex;
+            gap: 12px;
+        }
+        .cart-items-list {
+            max-height: 340px;
+            overflow-y: auto;
+            margin: 16px 0;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 12px 0;
+        }
+        .cart-item-info {
+            flex: 2;
+        }
+        .cart-item-name {
+            font-weight: 600;
+        }
+        .cart-item-price {
+            font-size: 0.8rem;
+            color: #475569;
+        }
+        .cart-item-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .qty-btn {
+            background: #eef2ff;
+            border: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.1s;
+        }
+        .qty-btn:hover {
+            background: #cbdff2;
+        }
+        .remove-item {
+            background: none;
+            border: none;
+            color: #e11d48;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-left: 8px;
+        }
+        .cart-total {
+            font-weight: 700;
+            font-size: 1.3rem;
+            text-align: right;
+            border-top: 2px dashed #cbd5e1;
+            padding-top: 16px;
+            margin-top: 8px;
+        }
+        .clear-cart {
+            background: #fee2e2;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 30px;
+            color: #b91c1c;
+            cursor: pointer;
+            font-weight: 500;
+            margin-top: 12px;
+        }
+        .toast-msg {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e293b;
+            color: white;
+            padding: 12px 28px;
+            border-radius: 60px;
+            font-weight: 500;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            z-index: 1100;
+            opacity: 0;
+            transition: opacity 0.2s;
+            pointer-events: none;
+        }
+        footer {
+            text-align: center;
+            padding: 28px;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 20px;
+            color: #5b6e8c;
+            font-size: 0.85rem;
+        }
+        @media (max-width: 650px) {
+            .container {
+                padding: 0 18px;
+            }
+            .card-buttons {
+                flex-direction: column;
+            }
+            .btn {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="top-bar">
+    <div class="container navbar">
+        <div class="logo">
+            <h1>⚡ TechLap <span>ultimate laptop hub</span></h1>
+        </div>
+        <div class="cart-icon" id="openCartBtn">
+            <i class="fas fa-shopping-cart"></i> Cart
+            <span id="cartCount">0</span>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <!-- brand filter section -->
+    <div class="filter-section">
+        <div class="filter-title"><i class="fas fa-tag"></i> Shop by brand</div>
+        <div class="brand-filters" id="brandFilterContainer">
+            <button class="filter-btn active" data-brand="all">All Laptops</button>
+            <button class="filter-btn" data-brand="Acer">Acer</button>
+            <button class="filter-btn" data-brand="Lenovo">Lenovo</button>
+            <button class="filter-btn" data-brand="Asus">Asus</button>
+            <button class="filter-btn" data-brand="Mecer">Mecer</button>
+            <button class="filter-btn" data-brand="Apple">Apple</button>
+        </div>
+    </div>
+
+    <!-- product grid dynamically injected -->
+    <div id="productsGrid" class="products-grid"></div>
+</div>
+
+<footer>
+    <p>© 2025 TechLap — premium laptops for work & play</p>
+</footer>
+
+<!-- Toast notification -->
+<div id="toastMsg" class="toast-msg">Item added</div>
+
+<!-- Modal for Product Details (View More) -->
+<div id="productModal" class="modal">
+    <div class="modal-content">
+        <span class="modal-close" id="closeProductModal">&times;</span>
+        <div id="productModalBody"></div>
+    </div>
+</div>
+
+<!-- Modal for Cart -->
+<div id="cartModal" class="modal">
+    <div class="modal-content cart-modal">
+        <span class="modal-close" id="closeCartModal">&times;</span>
+        <div class="modal-title"><i class="fas fa-bag-shopping"></i> Your Cart</div>
+        <div id="cartItemsContainer"></div>
+        <div id="cartTotalDisplay" class="cart-total"></div>
+        <button id="clearCartBtn" class="clear-cart"><i class="fas fa-trash-alt"></i> Clear cart</button>
+    </div>
+</div>
+
+<script>
+    // ---------- PRODUCT DATABASE (laptops covering all brands: Acer, Lenovo, Asus, Mecer, Apple) ----------
+    const productsData = [
+        { id: 1, name: "Swift Edge 16", brand: "Acer", price: 1199, specs: "AMD Ryzen 7, 16GB RAM, 1TB SSD, 4K OLED", description: "Ultra-light professional laptop with stunning display." },
+        { id: 2, name: "Predator Helios 300", brand: "Acer", price: 1499, specs: "Intel i7, RTX 3060, 16GB DDR5, 512GB SSD", description: "High-performance gaming laptop with advanced cooling." },
+        { id: 3, name: "ThinkPad X1 Carbon", brand: "Lenovo", price: 1899, specs: "Intel i7, 32GB RAM, 1TB SSD, 14'' 2.8K", description: "Ultimate business ultrabook with legendary keyboard." },
+        { id: 4, name: "Legion 5 Pro", brand: "Lenovo", price: 1599, specs: "Ryzen 7, RTX 4070, 16GB RAM, 1TB SSD", description: "Powerful gaming laptop with 165Hz QHD display." },
+        { id: 5, name: "ROG Zephyrus G14", brand: "Asus", price: 1399, specs: "Ryzen 9, RTX 4060, 16GB RAM, 1TB SSD", description: "Compact yet beastly performance with AniMe Matrix." },
+        { id: 6, name: "Zenbook 14 Flip", brand: "Asus", price: 1099, specs: "Intel i5, 16GB RAM, 512GB SSD, OLED Touch", description: "Versatile 2-in-1 laptop with vivid screen." },
+        { id: 7, name: "Mecer Xtreme Pro", brand: "Mecer", price: 1299, specs: "Intel i7, RTX 3050, 32GB RAM, 1TB NVMe", description: "High-performance desktop replacement, premium build." },
+        { id: 8, name: "Mecer WorkStation 15", brand: "Mecer", price: 999, specs: "i5-13500H, 16GB RAM, 512GB SSD, IPS display", description: "Affordable workstation for creators & developers." },
+        { id: 9, name: "MacBook Air M2", brand: "Apple", price: 1199, specs: "Apple M2, 8-core GPU, 8GB RAM, 256GB SSD", description: "Supercharged ultraportable with all-day battery." },
+        { id: 10, name: "MacBook Pro 14 M3", brand: "Apple", price: 1999, specs: "M3 Pro chip, 18GB RAM, 512GB SSD, Liquid Retina XDR", description: "Pro performance for creative workflows." }
+    ];
+
+    // cart state: { id, name, price, quantity }
+    let cart = [];
+
+    // DOM elements
+    const productsGrid = document.getElementById('productsGrid');
+    const brandFilterBtns = document.querySelectorAll('.filter-btn');
+    let currentBrand = 'all';
+
+    // Helper: toast notification
+    function showToast(message, duration = 2000) {
+        const toast = document.getElementById('toastMsg');
+        toast.textContent = message;
+        toast.style.opacity = '1';
+        setTimeout(() => {
+            toast.style.opacity = '0';
+        }, duration);
+    }
+
+    // update cart badge number
+    function updateCartBadge() {
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        document.getElementById('cartCount').innerText = totalItems;
+    }
+
+    // save cart to localStorage (optional but persistent)
+    function saveCartToLocal() {
+        localStorage.setItem('techlap_cart', JSON.stringify(cart));
+    }
+
+    function loadCartFromLocal() {
+        const stored = localStorage.getItem('techlap_cart');
+        if (stored) {
+            try {
+                cart = JSON.parse(stored);
+                updateCartBadge();
+            } catch(e) { console.warn(e); }
+        }
+    }
+
+    // add product to cart
+    function addToCart(productId) {
+        const product = productsData.find(p => p.id === productId);
+        if (!product) return;
+        const existing = cart.find(item => item.id === productId);
+        if (existing) {
+            existing.quantity += 1;
+        } else {
+            cart.push({
+                id: product.id,
+                name: product.name,
+                price: product.price,
+                quantity: 1
+            });
+        }
+        updateCartBadge();
+        saveCartToLocal();
+        showToast(`✅ ${product.name} added to cart`);
+        // if cart modal is open while adding, we might refresh, but user will see updated when they open again. optional: no forced close
+    }
+
+    // render cart modal content
+    function renderCartModal() {
+        const container = document.getElementById('cartItemsContainer');
+        const totalDiv = document.getElementById('cartTotalDisplay');
+        if (!container) return;
+        if (cart.length === 0) {
+            container.innerHTML = `<div style="text-align:center; padding: 30px;"><i class="fas fa-cart-shopping" style="font-size: 2.5rem; opacity:0.5;"></i><p>Your cart is empty.</p></div>`;
+            totalDiv.innerHTML = `Total: $0`;
+            return;
+        }
+        let cartHtml = `<div class="cart-items-list">`;
+        let total = 0;
+        cart.forEach((item, idx) => {
+            const itemTotal = item.price * item.quantity;
+            total += itemTotal;
+            cartHtml += `
+                <div class="cart-item" data-id="${item.id}">
+                    <div class="cart-item-info">
+                        <div class="cart-item-name">${escapeHtml(item.name)}</div>
+                        <div class="cart-item-price">$${item.price.toFixed(2)} each</div>
+                    </div>
+                    <div class="cart-item-actions">
+                        <button class="qty-btn dec-qty" data-id="${item.id}">-</button>
+                        <span style="min-width: 28px; text-align:center;">${item.quantity}</span>
+                        <button class="qty-btn inc-qty" data-id="${item.id}">+</button>
+                        <button class="remove-item" data-id="${item.id}"><i class="fas fa-trash"></i></button>
+                    </div>
+                </div>
+            `;
+        });
+        cartHtml += `</div>`;
+        container.innerHTML = cartHtml;
+        totalDiv.innerHTML = `Total: $${total.toFixed(2)} USD`;
+
+        // attach cart item actions after render
+        document.querySelectorAll('.dec-qty').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const id = parseInt(btn.dataset.id);
+                changeQuantity(id, -1);
+            });
+        });
+        document.querySelectorAll('.inc-qty').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const id = parseInt(btn.dataset.id);
+                changeQuantity(id, 1);
+            });
+        });
+        document.querySelectorAll('.remove-item').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const id = parseInt(btn.dataset.id);
+                removeCartItem(id);
+            });
+        });
+    }
+
+    function changeQuantity(productId, delta) {
+        const index = cart.findIndex(i => i.id === productId);
+        if (index === -1) return;
+        const newQty = cart[index].quantity + delta;
+        if (newQty <= 0) {
+            cart.splice(index, 1);
+        } else {
+            cart[index].quantity = newQty;
+        }
+        updateCartBadge();
+        saveCartToLocal();
+        renderCartModal();   // re-render open modal content
+    }
+
+    function removeCartItem(productId) {
+        cart = cart.filter(i => i.id !== productId);
+        updateCartBadge();
+        saveCartToLocal();
+        renderCartModal();
+        if (cart.length === 0) {
+            // also close maybe not needed
+        }
+    }
+
+    function clearCart() {
+        cart = [];
+        updateCartBadge();
+        saveCartToLocal();
+        renderCartModal();
+        showToast("Cart cleared", 1500);
+    }
+
+    // escapeHtml basic
+    function escapeHtml(str) {
+        return str.replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
+        });
+    }
+
+    // open product modal (view more)
+    function openProductModal(productId) {
+        const product = productsData.find(p => p.id === productId);
+        if (!product) return;
+        const modalBody = document.getElementById('productModalBody');
+        modalBody.innerHTML = `
+            <div class="modal-title">${escapeHtml(product.name)}</div>
+            <div class="brand-badge" style="margin-bottom: 8px;">${product.brand}</div>
+            <div style="font-size: 1.8rem; font-weight: bold; color:#1e3c72;">$${product.price}</div>
+            <div class="specs-list">
+                <li><i class="fas fa-microchip"></i> ${product.specs}</li>
+                <li><i class="fas fa-info-circle"></i> ${product.description}</li>
+            </div>
+            <button class="btn btn-cart" id="modalAddToCartBtn" style="width:100%; margin-top: 16px;"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+        `;
+        document.getElementById('productModal').style.display = 'flex';
+        const addBtn = document.getElementById('modalAddToCartBtn');
+        if (addBtn) {
+            addBtn.addEventListener('click', () => {
+                addToCart(product.id);
+                document.getElementById('productModal').style.display = 'none';
+            });
+        }
+    }
+
+    // render product cards based on current brand filter
+    function renderProducts() {
+        let filtered = [...productsData];
+        if (currentBrand !== 'all') {
+            filtered = productsData.filter(p => p.brand === currentBrand);
+        }
+        if (filtered.length === 0) {
+            productsGrid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding: 60px;">No laptops found for this brand.</div>`;
+            return;
+        }
+        let cardsHtml = '';
+        filtered.forEach(product => {
+            cardsHtml += `
+                <div class="product-card" data-id="${product.id}">
+                    <div class="card-img">
+                        <i class="fas fa-laptop-code" style="font-size: 3rem;"></i>
+                    </div>
+                    <div class="card-body">
+                        <span class="brand-badge">${product.brand}</span>
+                        <div class="product-name">${escapeHtml(product.name)}</div>
+                        <div class="price">$${product.price.toFixed(2)} <small>USD</small></div>
+                        <div class="card-buttons">
+                            <button class="btn btn-cart add-cart-btn" data-id="${product.id}"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                            <button class="btn btn-view view-more-btn" data-id="${product.id}"><i class="fas fa-eye"></i> View More</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+        productsGrid.innerHTML = cardsHtml;
+
+        // attach event listeners for dynamic buttons
+        document.querySelectorAll('.add-cart-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const id = parseInt(btn.dataset.id);
+                addToCart(id);
+            });
+        });
+        document.querySelectorAll('.view-more-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const id = parseInt(btn.dataset.id);
+                openProductModal(id);
+            });
+        });
+    }
+
+    // filter logic
+    function setActiveFilter(brand) {
+        brandFilterBtns.forEach(btn => {
+            if (btn.dataset.brand === brand) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+    }
+
+    // event listener for filters
+    brandFilterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const brand = btn.dataset.brand;
+            currentBrand = brand;
+            setActiveFilter(brand);
+            renderProducts();
+        });
+    });
+
+    // modal control
+    const productModal = document.getElementById('productModal');
+    const cartModal = document.getElementById('cartModal');
+    const closeProduct = document.getElementById('closeProductModal');
+    const closeCart = document.getElementById('closeCartModal');
+    const openCartBtn = document.getElementById('openCartBtn');
+    const clearCartBtnElem = document.getElementById('clearCartBtn');
+
+    closeProduct.onclick = () => productModal.style.display = 'none';
+    closeCart.onclick = () => cartModal.style.display = 'none';
+    window.onclick = (e) => {
+        if (e.target === productModal) productModal.style.display = 'none';
+        if (e.target === cartModal) cartModal.style.display = 'none';
+    };
+    openCartBtn.addEventListener('click', () => {
+        renderCartModal();
+        cartModal.style.display = 'flex';
+    });
+    if (clearCartBtnElem) {
+        clearCartBtnElem.addEventListener('click', () => {
+            clearCart();
+        });
+    }
+
+    // initial load & local cart
+    loadCartFromLocal();
+    renderProducts();
+    updateCartBadge();
+</script>
+</body>
+</html

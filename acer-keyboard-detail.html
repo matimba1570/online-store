@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acer Keyboards Details - Laptop Parts Store</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8f9fa; color: #333; }
+    header { background: linear-gradient(135deg, #1a1a1a 0%, #333 100%); color: white; padding: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
+    .header-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 24px; font-weight: bold; display: flex; align-items: center; gap: 10px; }
+    .logo i { color: #0078d4; }
+    .breadcrumb { max-width: 1200px; margin: 20px auto; padding: 0 20px; font-size: 14px; }
+    .breadcrumb a { color: #0078d4; text-decoration: none; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+    .product-detail { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+    .product-image { background: white; border-radius: 8px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .product-image img { width: 100%; height: auto; max-height: 400px; object-fit: contain; }
+    .product-info { background: white; border-radius: 8px; padding: 30px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .product-name { font-size: 28px; font-weight: bold; margin-bottom: 10px; color: #333; }
+    .product-price { font-size: 24px; font-weight: bold; color: #0078d4; margin-bottom: 20px; }
+    .product-description { font-size: 16px; line-height: 1.6; margin-bottom: 30px; color: #666; }
+    .quantity-selector { display: flex; align-items: center; gap: 15px; margin-bottom: 30px; }
+    .quantity-btn { width: 40px; height: 40px; border: 1px solid #ddd; background: white; font-size: 18px; cursor: pointer; border-radius: 4px; }
+    .quantity-input { width: 60px; height: 40px; text-align: center; border: 1px solid #ddd; border-radius: 4px; font-size: 16px; }
+    .action-buttons { display: flex; gap: 15px; }
+    .add-to-cart-btn, .buy-now-btn { padding: 15px 30px; border: none; border-radius: 4px; font-size: 16px; font-weight: bold; cursor: pointer; transition: all 0.3s; }
+    .add-to-cart-btn { background: #0078d4; color: white; }
+    .add-to-cart-btn:hover { background: #005a9e; }
+    .buy-now-btn { background: #28a745; color: white; }
+    .buy-now-btn:hover { background: #218838; }
+    .tabs { display: flex; margin-bottom: 30px; border-bottom: 1px solid #ddd; }
+    .tab { padding: 15px 25px; cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.3s; }
+    .tab.active { border-bottom-color: #0078d4; color: #0078d4; font-weight: bold; }
+    .tab-content { display: none; padding: 20px 0; }
+    .tab-content.active { display: block; }
+    .auth-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 2000; }
+    .auth-modal .modal-content { background: white; padding: 30px; border-radius: 8px; width: 400px; max-width: 90%; }
+    .auth-modal .close { position: absolute; top: 10px; right: 15px; font-size: 24px; cursor: pointer; }
+    .auth-modal input { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 4px; }
+    .auth-modal button { width: 100%; padding: 12px; background: #0078d4; color: white; border: none; border-radius: 4px; cursor: pointer; }
+    footer { background: #1a1a1a; color: white; text-align: center; padding: 20px; margin-top: 40px; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <div class="logo"><i class="fas fa-laptop"></i>LaptopParts Pro</div>
+      <div style="display: flex; gap: 20px;"><a href="page.html" style="color: white; text-decoration: none;">Back to Brands</a><a href="#" style="color: white;"><i class="fas fa-shopping-cart"></i></a></div>
+    </div>
+  </header>
+
+  <div class="breadcrumb">
+    <a href="page.html">Home</a> /
+    <a href="acer.html">Acer</a> /
+    <a href="acer-keyboard.html">Keyboards</a> /
+    <span id="productNameBreadcrumb">Product Name</span>
+  </div>
+
+  <div class="container">
+    <div class="product-detail">
+      <div class="product-image">
+        <img id="productImage" src="https://via.placeholder.com/400x400?text=Acer+Keyboard" alt="Acer Keyboard">
+      </div>
+
+      <div class="product-info">
+        <h1 id="productName">Product Name</h1>
+        <div id="productPrice">E0.00</div>
+        <p id="productDesc">Product description will appear here.</p>
+
+        <div class="quantity-selector">
+          <button class="quantity-btn" onclick="changeQuantity(-1)">-</button>
+          <input type="number" class="quantity-input" id="quantity" value="1" min="1" max="99">
+          <button class="quantity-btn" onclick="changeQuantity(1)">+</button>
+        </div>
+
+        <div class="action-buttons">
+          <button class="add-to-cart-btn" onclick="handleAddToCart()">Add to Cart</button>
+          <button class="buy-now-btn" onclick="handleBuyNow()">Buy Now</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="tabs">
+      <div class="tab active" onclick="switchTab('specifications')">Specifications</div>
+      <div class="tab" onclick="switchTab('compatibility')">Compatibility</div>
+      <div class="tab" onclick="switchTab('warranty')">Warranty</div>
+    </div>
+
+    <div id="specifications" class="tab-content active">
+      <h3>Specifications</h3>
+      <ul>
+        <li>Keyboard Type: Full-size laptop keyboard with numeric keypad</li>
+        <li>Switch Type: Membrane switches with tactile feedback</li>
+        <li>Key Travel: 1.5mm actuation distance for comfortable typing</li>
+        <li>Backlighting: LED backlighting (RGB options available for gaming models)</li>
+        <li>Lifecycle: 10 million keystrokes rated durability</li>
+        <li>Interface: Integrated keyboard controller with laptop motherboard</li>
+        <li>Operating Temperature: 0°C to 40°C (standard operating range)</li>
+      </ul>
+      <p>All Acer keyboard assemblies include the keyboard, backlight cable (if applicable), and mounting hardware. Keys feature laser-etched legends that resist fading over time. Gaming models include anti-ghosting technology and dedicated macro keys for enhanced performance.</p>
+    </div>
+
+    <div id="compatibility" class="tab-content">
+      <h3>Compatibility</h3>
+      <p>These Acer keyboard assemblies are designed specifically for the following laptop models:</p>
+      <ul>
+        <li>Acer Aspire 3/5/7 series (standard consumer laptops)</li>
+        <li>Acer Nitro 5/7 and Predator Helios series (gaming laptops with RGB lighting)</li>
+        <li>Acer Swift 3/X series (ultrabooks with backlit options)</li>
+        <li>Acer TravelMate and Extensa series (business laptops)</li>
+        <li>Acer Spin 5/7 series (convertible laptops with spill-resistant design)</li>
+        <li>Acer ConceptD series (creative workstations with precision keys)</li>
+        <li>Acer Chromebook 514 (cloud-based devices)</li>
+      </ul>
+      <p>Before purchasing, verify your laptop model number and ensure the keyboard layout matches your regional requirements (QWERTY, QWERTZ, AZERTY, etc.).</p>
+    </div>
+
+    <div id="warranty" class="tab-content">
+      <h3>Warranty</h3>
+      <p>Your purchase includes:</p>
+      <ul>
+        <li>1-year limited manufacturer warranty for defects in materials and workmanship</li>
+        <li>30-day replacement guarantee on DOA (dead on arrival) products</li>
+        <li>Lifetime technical support via email and chat for installation questions</li>
+      </ul>
+      <p>Warranty coverage does not include physical damage from drops, liquid spills, or user misuse. Professional installation is recommended to maintain warranty validity.</p>
+    </div>
+  </div>
+
+  <div class="auth-modal" id="authModal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2>Login Required</h2>
+      <input type="email" placeholder="Email" id="loginEmail">
+      <input type="password" placeholder="Password" id="loginPassword">
+      <button onclick="handleLogin(event)">Login</button>
+      <p style="text-align: center; margin-top: 15px;">Don't have an account? <a href="#" style="color: #0078d4;">Sign up</a></p>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2026 LaptopParts Pro. All rights reserved.</p>
+  </footer>
+
+  <script>
+    let isAuthenticated = localStorage.getItem('userAuthenticated') === 'true';
+    const params = new URLSearchParams(window.location.search);
+    const product = params.get('product');
+    const products = {
+      'aspire-5': {
+        name: 'Acer Aspire 5 Keyboard',
+        price: 'E49.99',
+        desc: 'Complete keyboard assembly for Acer Aspire 5 series laptops. Features full-size layout with numeric keypad, comfortable key spacing, and responsive membrane switches. Includes LED backlighting for low-light typing. Perfect replacement for worn or damaged keyboards, restoring your laptop\'s functionality for work and entertainment.'
+      },
+      'nitro-5': {
+        name: 'Acer Nitro 5 RGB Keyboard',
+        price: 'E79.99',
+        desc: 'Premium RGB gaming keyboard for Acer Nitro 5 series. Features customizable per-key RGB lighting that syncs with Acer NitroSense software, anti-ghosting technology for gaming accuracy, and dedicated WASD and arrow key highlighting. Includes wrist rest padding and enhanced keycaps for extended gaming sessions.'
+      },
+      'swift-3': {
+        name: 'Acer Swift 3 Keyboard',
+        price: 'E59.99',
+        desc: 'Ultra-thin keyboard assembly for Acer Swift 3 ultrabooks. Designed for portability with scissor-switch mechanism providing 1.3mm key travel in a slim profile. Features backlit keys with adjustable brightness and precision touchpad integration. Ideal for professionals who need reliable typing in a lightweight package.'
+      },
+      'spin-5': {
+        name: 'Acer Spin 5 Keyboard',
+        price: 'E69.99',
+        desc: 'Spill-resistant keyboard for Acer Spin 5 convertible laptops. Features antimicrobial coating and drainage channels to protect against liquid damage in tablet mode. Includes precision touchpad with multi-gesture support and 360-degree hinge compatibility. Perfect for students and professionals using convertible devices.'
+      },
+      'travelmate-p6': {
+        name: 'Acer TravelMate P6 Keyboard',
+        price: 'E89.99',
+        desc: 'Business-class keyboard for Acer TravelMate P6 series. Features precision key alignment for data entry accuracy, enhanced durability for enterprise use, and optional fingerprint reader integration. Includes spill-resistant design and programmable function keys for business productivity applications.'
+      },
+      'conceptd-7': {
+        name: 'Acer ConceptD 7 Keyboard',
+        price: 'E119.99',
+        desc: 'Professional keyboard for Acer ConceptD 7 creative workstations. Features color-accurate keys with anti-reflective coating, precision switches for creative work, and customizable shortcuts for design software. Includes RGB lighting with color temperature matching and ergonomic wrist rest for long creative sessions.'
+      },
+      'predator-helios-300': {
+        name: 'Acer Predator Helios 300 Keyboard',
+        price: 'E99.99',
+        desc: 'High-performance gaming keyboard for Acer Predator Helios 300. Features mechanical-style switches with 2mm travel, N-key rollover for competitive gaming, and customizable RGB lighting zones. Includes dedicated macro recording keys and Predator FrostBolt cooling integration for optimal performance.'
+      },
+      'extensa-15': {
+        name: 'Acer Extensa 15 Keyboard',
+        price: 'E54.99',
+        desc: 'Reliable keyboard assembly for Acer Extensa 15 business laptops. Features standard layout with numeric keypad, durable construction for daily office use, and comfortable key feel for extended typing. Includes basic backlighting option and compatibility with Acer office management software.'
+      },
+      'chromebook-514': {
+        name: 'Acer Chromebook 514 Keyboard',
+        price: 'E44.99',
+        desc: 'Chrome OS optimized keyboard for Acer Chromebook 514. Features island-style keys with 1.5mm travel, integrated search key, and Chrome OS shortcuts. Includes spill-resistant design and compatibility with Android apps. Perfect for students and light business users in cloud-based environments.'
+      },
+      'swift-x': {
+        name: 'Acer Swift X Keyboard',
+        price: 'E74.99',
+        desc: 'Premium keyboard for Acer Swift X creator laptops. Features precision switches with 1.8mm travel, customizable RGB backlighting with creator profiles, and dedicated creative shortcuts. Includes palm rest with antimicrobial coating and compatibility with Adobe Creative Cloud keyboard shortcuts.'
+      }
+    };
+
+    if (products[product]) {
+      document.getElementById('productName').textContent = products[product].name;
+      document.getElementById('productPrice').textContent = products[product].price;
+      document.getElementById('productDesc').textContent = products[product].desc;
+      document.getElementById('productNameBreadcrumb').textContent = products[product].name;
+      document.getElementById('productImage').src = `https://via.placeholder.com/400x400?text=${encodeURIComponent(products[product].name)}`;
+    }
+
+    function changeQuantity(delta) {
+      const input = document.getElementById('quantity');
+      const newValue = parseInt(input.value) + delta;
+      if (newValue >= 1 && newValue <= 99) {
+        input.value = newValue;
+      }
+    }
+
+    function handleAddToCart() {
+      if (!isAuthenticated) {
+        document.getElementById('authModal').classList.add('active');
+      } else {
+        alert(`Added ${document.getElementById('quantity').value} x ${products[product].name} to cart!`);
+      }
+    }
+
+    function handleBuyNow() {
+      if (!isAuthenticated) {
+        document.getElementById('authModal').classList.add('active');
+      } else {
+        alert(`Proceeding to checkout with ${document.getElementById('quantity').value} x ${products[product].name}`);
+      }
+    }
+
+    function switchTab(tab) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+      document.getElementById(tab).classList.add('active');
+      event.target.classList.add('active');
+    }
+
+    function closeModal() {
+      document.getElementById('authModal').classList.remove('active');
+    }
+
+    function handleLogin(event) {
+      event.preventDefault();
+      const email = document.getElementById('loginEmail').value;
+      const password = document.getElementById('loginPassword').value;
+
+      if (email && password) {
+        localStorage.setItem('userAuthenticated', 'true');
+        isAuthenticated = true;
+        document.getElementById('authModal').classList.remove('active');
+        alert('Login successful!');
+      } else {
+        alert('Please enter both email and password');
+      }
+    }
+  </script>
+</body>
+</html>
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <div class="logo">
+        <i class="fas fa-laptop"></i>
+        LaptopParts Pro
+      </div>
+      <div style="display: flex; gap: 20px; align-items: center;">
+        <a href="page.html" style="color: white; text-decoration: none;">Back to Brands</a>
+        <a href="#" style="color: white; text-decoration: none;"><i class="fas fa-shopping-cart"></i></a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Breadcrumb -->
+  <div class="breadcrumb">
+    <a href="page.html">Home</a> / 
+    <a href="dell.html">Dell</a> / 
+    <span>Batteries</span>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container">
+    <h1><i class="fas fa-battery-full"></i> Dell Batteries</h1>
+
+    <div class="products-grid">
+      <!-- Product 1 -->
+      <div class="product-card">
+        <div class="product-image"><i class="fas fa-battery-full"></i></div>
+        <div class="product-info">
+          <div class="product-name">Dell XPS 13 Battery</div>
+          <div class="product-price">E89.99</div>
+          <div class="product-description">High-capacity battery compatible with Dell XPS 13 series</div>
+          <a href="dell-batteries-detail.html?product=xps13-battery" class="view-more-btn">View More</a>
+        </div>
+      </div>
+
+      <!-- Product 2 -->
+      <div class="product-card">
+        <div class="product-image"><i class="fas fa-battery-full"></i></div>
+        <div class="product-info">
+          <div class="product-name">Dell XPS 15 Battery</div>
+          <div class="product-price">E119.99</div>
+          <div class="product-description">Extended battery for Dell XPS 15 laptops</div>
+          <a href="dell-batteries-detail.html?product=xps15-battery" class="view-more-btn">View More</a>
+        </div>
+      </div>
+
+      <!-- Product 3 -->
+      <div class="product-card">
+        <div class="product-image"><i class="fas fa-battery-full"></i></div>
+        <div class="product-info">
+          <div class="product-name">Dell Inspiron Battery</div>
+          <div class="product-price">E69.99</div>
+          <div class="product-description">Reliable battery for Dell Inspiron series</div>
+          <a href="dell-batteries-detail.html?product=inspiron-battery" class="view-more-btn">View More</a>
+        </div>
+      </div>
+
+      <!-- Product 4 -->
+      <div class="product-card">
+        <div class="product-image"><i class="fas fa-battery-full"></i></div>
+        <div class="product-info">
+          <div class="product-name">Dell Latitude Battery</div>
+          <div class="product-price">E99.99</div>
+          <div class="product-description">Business-class battery for Latitude models</div>
+          <a href="dell-batteries-detail.html?product=latitude-battery" class="view-more-btn">View More</a>
+        </div>
+      </div>
+
+      <!-- Product 5 -->
+      <div class="product-card">
+        <div class="product-image"><i class="fas fa-battery-full"></i></div>
+        <div class="product-info">
+          <div class="product-name">Dell G-Series Battery</div>
+          <div class="product-price">E109.99</div>
+          <div class="product-description">Gaming-optimized battery for G-Series laptops</div>
+          <a href="dell-batteries-detail.html?product=gseries-battery" class="view-more-btn">View More</a>
+        </div>
+      </div>
+
+      <!-- Product 6 -->
+      <div class="product-card">
+        <div class="product-image"><i class="fas fa-battery-full"></i></div>
+        <div class="product-info">
+          <div class="product-name">Dell Precision Battery</div>
+          <div class="product-price">E129.99</div>
+          <div class="product-description">Workstation-grade battery for Precision series</div>
+          <a href="dell-batteries-detail.html?product=precision-battery" class="view-more-btn">View More</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 LaptopParts Pro. All rights reserved.</p>
+  </footer>
+</body>
+</html>

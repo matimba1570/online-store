@@ -717,8 +717,11 @@
             <div>
                 <!-- Login required message (shown if not logged in) -->
                 <div id="loginRequiredMessage" class="login-required-message" style="display: none;">
-                    <i class="fas fa-info-circle"></i> You must be <a href="#" id="loginRequiredLink">logged in</a> to complete your purchase. Don't have an account? <a href="#" id="registerRequiredLink">Create one</a>.
-                </div>
+    <i class="fas fa-info-circle"></i> You must be 
+    <a href="#" id="loginRequiredLink" onclick="openModal('loginModal'); return false;">logged in</a> to complete your purchase. 
+    Don't have an account? <a href="#" id="registerRequiredLink" onclick="openModal('registerModal'); return false;">Create one</a>.
+</div>
+
 
                 <!-- Cart Items Section -->
                 <div id="cartSection" class="cart-items-section">
@@ -910,7 +913,6 @@
 
 <script src="script.js"></script>
 <script src="search.js"></script>
-
 
 </body>
 </html>

@@ -1023,6 +1023,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    function openModal(id) { document.getElementById(id).style.display = 'flex'; }
+
 // Make functions available globally for onclick handlers
 window.openLoginModal = openLoginModal;
 window.closeLoginModal = closeLoginModal;

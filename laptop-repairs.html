@@ -169,21 +169,16 @@
 </head>
 <body>
 
-<!-- ===== NAVBAR ===== -->
+<!-- ===== NAVBAR  ===== -->
 <nav class="navbar">
-    <a href="index.html" class="logo">
+    <a href="home.html" class="logo">
         <div class="logo-icon"><img src="logo.png" alt="logo"></div>
         <div class="logo-text">Eswatini<br><span>Technocrats Center</span></div>
     </a>
-    
     <ul class="nav-links">
         <li class="nav-item"><a href="home.html">Home</a></li>
-        <li class="nav-item">
-            <li class="nav-item"><a href="about.html">About Us</a></li>
-        </li>
-        <li class="nav-item">
-            <li class="nav-item"><a href="shop.html">Shop</a></li>
-        </li>
+        <li class="nav-item"><a href="about.html">About Us</a></li>
+        <li class="nav-item"><a href="shop.html">Shop</a></li>
         <li class="nav-item">
             <a href="services.html">Services <i class="fas fa-chevron-down"></i></a>
             <ul class="dropdown">
@@ -195,36 +190,67 @@
             </ul>
         </li>
         <li class="nav-item">
-            <li class="nav-item"><a href="dealer.html">Dealer</a></li>
-            </li>
+    <a href="Security and access.html">Security & Access <i class="fas fa-chevron-down"></i></a>
+    <ul class="dropdown">
+        <!-- Physical Security -->
+        <li class="nav-item dropdown-submenu">
+            <a href="physical-security.html">Physical Security <i class="fas fa-angle-right"></i></a>
+            <ul class="dropdown">
+                <li><a href="cctv.html">CCTV Surveillance</a></li>
+                <li><a href="biometric.html">Biometric Entry</a></li>
+                <li><a href="vaults.html">Asset Vaults</a></li>
+                <li><a href="motion.html">Motion Detectors</a></li>
+            </ul>
         </li>
-         <li class="nav-item">
-            <li class="nav-item"><a href="contact.html">Contact</a></li>
+        <!-- IT Security -->
+        <li class="nav-item dropdown-submenu">
+            <a href="it-security.html">IT Security <i class="fas fa-angle-right"></i></a>
+            <ul class="dropdown">
+                <li><a href="firewalls.html">Next-Gen Firewalls</a></li>
+                <li><a href="endpoint.html">Endpoint Protection</a></li>
+                <li><a href="encryption.html">Encryption Tools</a></li>
+                <li><a href="scanner.html">Vulnerability Scanners</a></li>
+            </ul>
+        </li>
+        <!-- Identity & Access -->
+        <li class="nav-item dropdown-submenu">
+            <a href="identity-access.html">Identity & Access <i class="fas fa-angle-right"></i></a>
+            <ul class="dropdown">
+                <li><a href="mfa.html">Multi-Factor (MFA)</a></li>
+                <li><a href="sso.html">Single Sign-On (SSO)</a></li>
+                <li><a href="roles.html">Role-Based Access</a></li>
+                <li><a href="privileged.html">Privileged Access</a></li>
+            </ul>
+        </li>
+        <!-- Monitoring -->
+        <li class="nav-item dropdown-submenu">
+            <a href="monitoring.html">Monitoring <i class="fas fa-angle-right"></i></a>
+            <ul class="dropdown">
+                <li><a href="logs.html">Real-time Logs</a></li>
+                <li><a href="alerts.html">Incident Alerts</a></li>
+                <li><a href="traffic.html">Traffic Analysis</a></li>
+                <li><a href="compliance.html">Compliance Audits</a></li>
+            </ul>
         </li>
     </ul>
-    
+</li>
+
+        <li class="nav-item"><a href="dealer.html">Dealer</a></li>
+        <li class="nav-item"><a href="contact.html">Contact</a></li>
+    </ul>
     <div class="nav-actions-right">
-        <button class="search-icon-btn" id="searchIconBtn">
-            <i class="fas fa-search"></i>
-        </button>
-        <button class="settings-icon-btn" id="settingsBtn">
-            <i class="fas fa-cog"></i>
-        </button>
+        <button class="search-icon-btn" id="searchIconBtn"><i class="fas fa-search"></i></button>
+        <button class="settings-icon-btn" id="settingsBtn"><i class="fas fa-cog"></i></button>
         <div class="auth-buttons">
-            <button class="login-icon-btn" id="loginBtn">
-                <i class="fas fa-sign-in-alt"></i>
-                <span>Login</span>
-            </button>
-            <button class="register-icon-btn" id="registerBtn">
-                <i class="fas fa-user-plus"></i>
-                <span>Register</span>
-            </button>
+            <button class="login-icon-btn" id="loginBtn"><i class="fas fa-sign-in-alt"></i><span>Login</span></button>
+            <button class="register-icon-btn" id="registerBtn"><i class="fas fa-user-plus"></i><span>Register</span></button>
         </div>
         <div class="hamburger" id="hamburger" onclick="toggleMobile()">
             <span></span><span></span><span></span>
         </div>
     </div>
 </nav>
+
 
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">

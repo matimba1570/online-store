@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Point Of Sale</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    nav {
+      background-color: #333;
+    }
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+    nav ul li {
+      position: relative;
+    }
+    nav ul li a {
+      display: block;
+      padding: 12px 20px;
+      color: white;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    nav ul li a:hover {
+      background-color: #444;
+    }
+    /* Dropdown menus */
+    nav ul li ul {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #333;
+      min-width: 180px;
+      flex-direction: column;
+    }
+    nav ul li ul li ul {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 100%;
+      background-color: #333;
+      min-width: 180px;
+    }
+    nav ul li:hover > ul {
+      display: block;
+    }
+    nav ul li ul li:hover > ul {
+      display: block;
+    }
+    nav ul li ul li a {
+      padding: 10px;
+    }
+    .show {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li>
+        <a onclick="toggleDropdown('pointofsaleMenu')"><i class="fas fa-angle-down"></i> Point Of Sale</a>
+        <ul id="pointofsaleMenu">
+          <li>
+            <a onclick="toggleDropdown('hardwareMenu')">Hardware Components <i class="fas fa-angle-right"></i></a>
+            <ul id="hardwareMenu">
+              <li><a href="All in one POS.html">All in one POS</a></li>
+              <li><a href="pos thermal printer.html">POS Thermal Printer</a></li>
+              <li><a href="POS thermal paper.html">POS Thermal Paper</a></li>
+              <li><a href="POS cash drawer.html">POS Cash Drawer</a></li>
+              <li><a href="Barcode Scanner.html">Barcode Scanner</a></li>
+              <li><a href="Desktop.html">Desktop Computer</a></li>
+              <li><a href="Monitor.html">Monitor</a></li>
+              <li><a href="Connection Cables.html">Connection Cables</a></li>
+            </ul>
+          </li>
+          <li>
+            <a onclick="toggleDropdown('softwareMenu')">Software Components <i class="fas fa-angle-right"></i></a>
+            <ul id="softwareMenu">
+              <li><a href="pos-software.html">POS Software</a></li>
+              <li><a href="inventory-software.html">Inventory Management</a></li>
+              <li><a href="payment-software.html">Payment Processing</a></li>
+              <li><a href="reporting-software.html">Reporting Tools</a></li>
+            </ul>
+          </li>
+          <li>
+            <a onclick="toggleDropdown('accessoriesMenu')">Accessories <i class="fas fa-angle-right"></i></a>
+            <ul id="accessoriesMenu">
+              <li><a href="receipt-printer.html">Receipt Printer</a></li>
+              <li><a href="cash-register.html">Cash Register</a></li>
+              <li><a href="scale.html">Digital Scale</a></li>
+              <li><a href="card-reader.html">Card Reader</a></li>
+            </ul>
+          </li>
+          <li>
+            <a onclick="toggleDropdown('servicesMenu')">Services <i class="fas fa-angle-right"></i></a>
+            <ul id="servicesMenu">
+              <li><a href="installation.html">Installation & Setup</a></li>
+              <li><a href="training.html">Staff Training</a></li>
+              <li><a href="maintenance.html">Maintenance & Support</a></li>
+              <li><a href="warranty.html">Warranty Services</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+
+  <script>
+    function toggleDropdown(id) {
+      document.getElementById(id).classList.toggle("show");
+    }
+
+      // Close dropdown if clicking outside
+    window.onclick = function(event) {
+      if (!event.target.matches('a')) {
+        let dropdowns = document.getElementsByClassName("dropdown");
+        for (let i = 0; i < dropdowns.length; i++) {
+          let openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
+        }
+      }
+    }
+  </script>
+
+</body>
+</html>

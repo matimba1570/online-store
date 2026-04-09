@@ -8,22 +8,211 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     
   <style>
-    body { font-family: 'Segoe UI', sans-serif; margin: 0; color: #333; }
-    header { background: #1a1a1a; color: #fff; padding: 15px 20px; }
-    header a { color: #fff; text-decoration: none; }
-    .container { max-width: 1200px; margin: 20px auto; padding: 0 20px; }
-    .hero { text-align: center; margin-bottom: 40px; }
-    .hero img { width: 100%; max-width: 400px; height: 200px; object-fit: cover; border-radius: 8px; }
-    .content { display: flex; flex-wrap: wrap; gap: 20px; }
-    .text { flex: 1; min-width: 300px; }
-    .image { flex: 1; min-width: 300px; text-align: center; }
-    .image img { width: 100%; max-width: 300px; border-radius: 8px; }
-    .features { margin-top: 40px; }
-    .features ul { list-style: none; padding: 0; }
-    .features li { padding: 10px 0; border-bottom: 1px solid #eee; }
-    .features li i { color: #007bff; margin-right: 10px; }
-    footer { background: #f8f9fa; text-align: center; padding: 20px; margin-top: 40px; }
-  </style>
+       /* Additional styles for CCTV page – matches website design */
+body {
+    background: var(--bg-primary, #ffffff);
+    color: var(--text-primary, #333);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+}
+
+/* Fix content hidden under fixed navbar */
+.cctv-page {
+    padding-top: 120px;  /* accounts for main navbar + secondary nav */
+    min-height: 100vh;
+}
+
+/* Back button styling */
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--bg-secondary, #f5f5f5);
+    padding: 8px 16px;
+    border-radius: 30px;
+    text-decoration: none;
+    color: var(--green, #00e676);
+    font-weight: 500;
+    margin-bottom: 30px;
+    transition: all 0.3s;
+    border: 1px solid var(--border-color, #e0e0e0);
+}
+.back-link:hover {
+    background: var(--green, #00e676);
+    color: #000;
+    transform: translateX(-5px);
+}
+
+/* Hero section */
+.hero {
+    text-align: center;
+    margin-bottom: 50px;
+}
+.hero h1 {
+    font-size: 48px;
+    color: #1a1a1a;
+    margin-bottom: 20px;
+    font-family: 'Orbitron', sans-serif;
+}
+.hero img {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+.hero img:hover {
+    transform: scale(1.02);
+}
+
+/* Two‑column content */
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin: 50px 0;
+}
+.text, .image {
+    flex: 1;
+    min-width: 280px;
+}
+.text p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 20px;
+    line-height: 1.7;
+}
+.image {
+    text-align: center;
+}
+.image img {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    transition: transform 0.3s;
+}
+.image img:hover {
+    transform: translateY(-5px);
+}
+
+/* Features section */
+.features {
+    background: var(--bg-secondary, #f8f9fa);
+    padding: 40px;
+    border-radius: 24px;
+    margin-top: 40px;
+}
+.features h2 {
+    font-size: 28px;
+    color: #1a1a1a;
+    margin-bottom: 25px;
+    font-family: 'Rajdhani', sans-serif;
+    border-left: 4px solid var(--green, #00e676);
+    padding-left: 15px;
+}
+.features ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    list-style: none;
+    padding: 0;
+}
+.features li {
+    padding: 12px 16px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 16px;
+    font-weight: 500;
+}
+.features li i {
+    color: var(--green, #00e676);
+    font-size: 20px;
+    width: 28px;
+}
+
+/* Card styling for text and image sections */
+.text-card, .image-card {
+    background: var(--bg-primary, #ffffff);
+    border-radius: 24px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    border: 1px solid var(--border-color, #e0e0e0);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.text-card:hover, .image-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 35px rgba(0,0,0,0.1);
+}
+.text-content {
+    padding: 30px;
+}
+.text-content p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 20px;
+    line-height: 1.7;
+}
+.image-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+.image-card img {
+    width: 100%;
+    max-width: 450px;
+    border-radius: 16px;
+    transition: transform 0.3s;
+}
+.image-card img:hover {
+    transform: scale(1.02);
+}
+
+/* Back button styling – green button */
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--green, #00e676);
+    color: #000;
+    padding: 10px 24px;
+    border-radius: 40px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 30px;
+}
+.back-button:hover {
+    background: var(--green-dark, #00c853);
+    transform: translateX(-5px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .cctv-page {
+        padding-top: 100px;
+    }
+    .hero h1 {
+        font-size: 32px;
+    }
+    .features ul {
+        grid-template-columns: 1fr;
+    }
+    .features {
+        padding: 25px;
+    }
+}
+</style>
 </head>
 <body>
   
@@ -109,6 +298,7 @@
     </div>
 </nav>
 
+<div style="height: 120px;"></div>
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
     <div class="mobile-nav-item"><div class="mobile-nav-link" onclick="location.href='home.html'">Home</div></div>
@@ -390,23 +580,25 @@
         </div>
     </div>
 </div>
-  <header>
-    <a href="Security and access.html"><i class="fas fa-arrow-left"></i> Back to Menu</a>
-  </header>
+  <div class="container" style="padding-top: 20px;">
+    <a href="Security and access.html" class="back-button"><i class="fas fa-arrow-left"></i> Back to Menu</a>
+</div>
   <div class="container">
     <section class="hero">
       <h1>Biometric Entry</h1>
       <img src="biometric scanner.jpeg" alt="Biometric Scanner">
     </section>
     <section class="content">
-      <div class="text">
+    <div class="text-card">
+        <div class="text-content">
         <p>Biometric entry systems use unique physical characteristics, such as fingerprints, facial recognition, or iris scans, to grant access to secured areas. These systems offer high security by ensuring only authorized individuals can enter.</p>
         <p>Advantages include reduced risk of lost keys or stolen cards, quick verification, and integration with other security systems.</p>
       </div>
-      <div class="image">
-        <img src="fingerScanner.jpeg" alt="Fingerprint Scan">
       </div>
-    </section>
+      <div class="image-card">
+        <img src="CCTV2.jpg" alt="Surveillance System">
+    </div>
+</section>
     <section class="features">
       <h2>Key Features</h2>
       <ul>

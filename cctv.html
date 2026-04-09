@@ -136,6 +136,67 @@ body {
     width: 28px;
 }
 
+/* Card styling for text and image sections */
+.text-card, .image-card {
+    background: var(--bg-primary, #ffffff);
+    border-radius: 24px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    border: 1px solid var(--border-color, #e0e0e0);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.text-card:hover, .image-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 35px rgba(0,0,0,0.1);
+}
+.text-content {
+    padding: 30px;
+}
+.text-content p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 20px;
+    line-height: 1.7;
+}
+.image-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+.image-card img {
+    width: 100%;
+    max-width: 450px;
+    border-radius: 16px;
+    transition: transform 0.3s;
+}
+.image-card img:hover {
+    transform: scale(1.02);
+}
+
+/* Back button styling – green button */
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--green, #00e676);
+    color: #000;
+    padding: 10px 24px;
+    border-radius: 40px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 30px;
+}
+.back-button:hover {
+    background: var(--green-dark, #00c853);
+    transform: translateX(-5px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .cctv-page {
@@ -521,23 +582,27 @@ body {
     </div>
 </div>
 
-  <header>
-    <a href="Security and access.html"><i class="fas fa-arrow-left"></i> Back to Menu</a>
-  </header>
+  <div class="container" style="padding-top: 20px;">
+    <a href="Security and access.html" class="back-button"><i class="fas fa-arrow-left"></i> Back to Menu</a>
+</div>
+
   <div class="container">
     <section class="hero">
       <h1>CCTV Surveillance</h1>
-      <img src="download.jpeg" alt="CCTV Cameras">
+      <img src="CCTV1.jpg" alt="CCTV Cameras">
     </section>
     <section class="content">
-      <div class="text">
-        <p>CCTV (Closed-Circuit Television) surveillance systems provide real-time monitoring and recording of activities in secured areas. These systems use cameras, monitors, and recording devices to enhance security by deterring crime and aiding in investigations.</p>
-        <p>Key features include high-resolution cameras, night vision, motion detection, and remote access via mobile apps or web interfaces.</p>
-      </div>
-      <div class="image">
-        <img src="surveillance.jpeg" alt="Surveillance System">
-      </div>
-    </section>
+    <div class="text-card">
+        <div class="text-content">
+            <p>CCTV (Closed-Circuit Television) surveillance systems provide real-time monitoring and recording of activities in secured areas. These systems use cameras, monitors, and recording devices to enhance security by deterring crime and aiding in investigations.</p>
+            <p>Key features include high-resolution cameras, night vision, motion detection, and remote access via mobile apps or web interfaces.</p>
+        </div>
+    </div>
+    <div class="image-card">
+        <img src="CCTV2.jpg" alt="Surveillance System">
+    </div>
+</section>
+
     <section class="features">
       <h2>Key Features</h2>
       <ul>

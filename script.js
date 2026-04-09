@@ -388,37 +388,30 @@ function showModalAlert(alertDiv, message, type) {
     }, 5000);
 }
 
-document.getElementById('registerForm').addEventListener('submit', async (e) => {
+document.getElementById('registerForm').addEventListener('submit', (e) => {
   e.preventDefault();
   const fullName = document.getElementById('regFullName').value;
   const email = document.getElementById('regEmail').value;
   const phone = document.getElementById('regPhone').value;
   const password = document.getElementById('regPassword').value;
   const confirm = document.getElementById('regConfirmPassword').value;
-
   if (password !== confirm) {
     alert('Passwords do not match');
     return;
   }
-
-  try {
-    const response = await fetch('https://lucila-duckier-arlo.ngrok-free.dev/api/register', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ fullName, email, phone, password }),
-    });
-    const data = await response.json();
-    if (response.ok) {
-      alert(data.message);
-      // Optionally close modal and show verification info
-    } else {
-      alert(data.error);
-    }
-  } catch (error) {
-    console.error('Registration error:', error);
-    alert('Server error. Please try again later.');
+  let users = JSON.parse(localStorage.getItem('users')) || [];
+  if (users.find(u => u.email === email)) {
+    alert('Email already registered');
+    return;
   }
+  const newUser = { id: Date.now(), fullName, email, phone, password, verified: false };
+  users.push(newUser);
+  localStorage.setItem('users', JSON.stringify(users));
+  alert('Registration successful! You can now login.');
+  closeRegisterModal();
+  document.getElementById('registerForm').reset();
 });
+
 
 
 // Login Form

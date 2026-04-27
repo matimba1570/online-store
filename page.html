@@ -619,34 +619,165 @@
 <script src="script.js"></script>
 <script src="search.js"></script>
 <script>
-    // Modal functions (if not already in script.js)
-    function openModal(id) { document.getElementById(id).style.display = 'flex'; }
-    function closeModal(id) { document.getElementById(id).style.display = 'none'; }
-    function closeToast() { document.getElementById('successToast').classList.remove('show'); }
-    function toggleMobile() { document.getElementById('mobileMenu').classList.toggle('open'); }
-    function openForgotPasswordModal() { closeModal('loginModal'); openModal('forgotPasswordModal'); }
-    function closeForgotPasswordModal() { closeModal('forgotPasswordModal'); }
-    function closeResetPasswordModal() { closeModal('resetPasswordModal'); }
-    function closeSettingsModal() { closeModal('settingsModal'); }
-    function closeVerificationModal() { closeModal('verificationModal'); }
-    function switchToRegister() { closeModal('loginModal'); openModal('registerModal'); }
-    function switchToLogin() { closeModal('registerModal'); openModal('loginModal'); }
-    function switchToLoginFromForgot() { closeModal('forgotPasswordModal'); openModal('loginModal'); }
-    function switchToLoginFromReset() { closeModal('resetPasswordModal'); openModal('loginModal'); }
-    function closeLoginModal() { closeModal('loginModal'); }
-    function closeRegisterModal() { closeModal('registerModal'); }
-    function openLoginModal() { openModal('loginModal'); }
-    function openRegisterModal() { openModal('registerModal'); }
-    function openSettingsModal() { openModal('settingsModal'); }
-    function closeSettingsModal() { closeModal('settingsModal'); }
-    function openSearchModal() { openModal('searchModal'); }
-    function closeSearchModal() { closeModal('searchModal'); }
-
-    // Event listeners for navbar buttons
-    document.getElementById('searchIconBtn')?.addEventListener('click', openSearchModal);
-    document.getElementById('settingsBtn')?.addEventListener('click', openSettingsModal);
-    document.getElementById('loginBtn')?.addEventListener('click', openLoginModal);
-    document.getElementById('registerBtn')?.addEventListener('click', openRegisterModal);
+    // ===== MODAL FUNCTIONALITY FOR THIS PAGE =====
+    
+    // Modal open/close functions
+    function openModal(modalId) {
+        const modal = document.getElementById(modalId);
+        if (modal) modal.style.display = 'flex';
+    }
+    
+    function closeModal(modalId) {
+        const modal = document.getElementById(modalId);
+        if (modal) modal.style.display = 'none';
+    }
+    
+    // Specific modal functions
+    function openLoginModal() {
+        openModal('loginModal');
+    }
+    
+    function closeLoginModal() {
+        closeModal('loginModal');
+    }
+    
+    function openRegisterModal() {
+        openModal('registerModal');
+    }
+    
+    function closeRegisterModal() {
+        closeModal('registerModal');
+    }
+    
+    function openSettingsModal() {
+        openModal('settingsModal');
+    }
+    
+    function closeSettingsModal() {
+        closeModal('settingsModal');
+    }
+    
+    function openSearchModal() {
+        openModal('searchModal');
+    }
+    
+    function closeSearchModal() {
+        closeModal('searchModal');
+    }
+    
+    function openForgotPasswordModal() {
+        closeModal('loginModal');
+        openModal('forgotPasswordModal');
+    }
+    
+    function closeForgotPasswordModal() {
+        closeModal('forgotPasswordModal');
+    }
+    
+    function closeResetPasswordModal() {
+        closeModal('resetPasswordModal');
+    }
+    
+    function switchToRegister() {
+        closeModal('loginModal');
+        openModal('registerModal');
+    }
+    
+    function switchToLogin() {
+        closeModal('registerModal');
+        openModal('loginModal');
+    }
+    
+    function switchToLoginFromForgot() {
+        closeModal('forgotPasswordModal');
+        openModal('loginModal');
+    }
+    
+    function switchToLoginFromReset() {
+        closeModal('resetPasswordModal');
+        openModal('loginModal');
+    }
+    
+    function closeToast() {
+        const toast = document.getElementById('successToast');
+        if (toast) toast.classList.remove('show');
+    }
+    
+    function closeVerificationModal() {
+        closeModal('verificationModal');
+    }
+    
+    function toggleMobile() {
+        const menu = document.getElementById('mobileMenu');
+        if (menu) menu.classList.toggle('open');
+    }
+    
+    // Theme functions (if needed)
+    function setTheme(theme) {
+        if (theme === 'system') {
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+        } else {
+            document.documentElement.setAttribute('data-theme', theme);
+        }
+        localStorage.setItem('theme', theme);
+    }
+    
+    function setFontSize(size) {
+        document.documentElement.style.fontSize = size + 'px';
+        localStorage.setItem('fontSize', size);
+    }
+    
+    function resetAllSettings() {
+        localStorage.removeItem('theme');
+        localStorage.removeItem('fontSize');
+        document.documentElement.removeAttribute('data-theme');
+        document.documentElement.style.fontSize = '';
+    }
+    
+    // ===== ATTACH EVENT LISTENERS TO BUTTONS =====
+    document.addEventListener('DOMContentLoaded', function() {
+        // Navbar buttons
+        const searchBtn = document.getElementById('searchIconBtn');
+        if (searchBtn) searchBtn.addEventListener('click', openSearchModal);
+        
+        const settingsBtn = document.getElementById('settingsBtn');
+        if (settingsBtn) settingsBtn.addEventListener('click', openSettingsModal);
+        
+        const loginBtn = document.getElementById('loginBtn');
+        if (loginBtn) loginBtn.addEventListener('click', openLoginModal);
+        
+        const registerBtn = document.getElementById('registerBtn');
+        if (registerBtn) registerBtn.addEventListener('click', openRegisterModal);
+        
+        // Mobile menu
+        const hamburger = document.getElementById('hamburger');
+        if (hamburger) hamburger.addEventListener('click', toggleMobile);
+    });
+    
+    // Make functions available globally for inline onclick handlers
+    window.openLoginModal = openLoginModal;
+    window.closeLoginModal = closeLoginModal;
+    window.openRegisterModal = openRegisterModal;
+    window.closeRegisterModal = closeRegisterModal;
+    window.openSettingsModal = openSettingsModal;
+    window.closeSettingsModal = closeSettingsModal;
+    window.openSearchModal = openSearchModal;
+    window.closeSearchModal = closeSearchModal;
+    window.openForgotPasswordModal = openForgotPasswordModal;
+    window.closeForgotPasswordModal = closeForgotPasswordModal;
+    window.closeResetPasswordModal = closeResetPasswordModal;
+    window.switchToRegister = switchToRegister;
+    window.switchToLogin = switchToLogin;
+    window.switchToLoginFromForgot = switchToLoginFromForgot;
+    window.switchToLoginFromReset = switchToLoginFromReset;
+    window.closeToast = closeToast;
+    window.closeVerificationModal = closeVerificationModal;
+    window.toggleMobile = toggleMobile;
+    window.setTheme = setTheme;
+    window.setFontSize = setFontSize;
+    window.resetAllSettings = resetAllSettings;
+    window.closeModal = closeModal;
 </script>
 </body>
 </html>

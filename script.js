@@ -327,8 +327,9 @@ function setHighContrast(enabled) {
 function loadSettingsIntoForm() {
     const savedFontSize = localStorage.getItem('fontSize');
     if (savedFontSize) {
-        const fontSizeSelect = document.getElementById('fontSizeSelect');
-        if (fontSizeSelect) fontSizeSelect.value = savedFontSize;
+        const fontSizeSlider = document.getElementById('fontSizeSlider');
+        if (fontSizeSlider) fontSizeSlider.value = savedFontSize;
+        updateFontSizeUI(parseInt(savedFontSize));
     }
     
     const savedReducedMotion = localStorage.getItem('reducedMotion') === 'true';
@@ -338,6 +339,8 @@ function loadSettingsIntoForm() {
     const savedHighContrast = localStorage.getItem('highContrast') === 'true';
     const highContrastToggle = document.getElementById('highContrastToggle');
     if (highContrastToggle) highContrastToggle.checked = savedHighContrast;
+    
+    updateThemeCheckmarks();
 }
 
 function resetAllSettings() {
@@ -390,9 +393,9 @@ function showModalAlert(alertDiv, message, type) {
 
 document.getElementById('registerForm').addEventListener('submit', (e) => {
   e.preventDefault();
-  const fullName = document.getElementById('regFullName').value;
-  const email = document.getElementById('regEmail').value;
-  const phone = document.getElementById('regPhone').value;
+  const fullName = document.getElementById('regFullName').value.trim();
+  const email = document.getElementById('regEmail').value.trim().toLowerCase();
+  const phone = document.getElementById('regPhone').value.trim();
   const password = document.getElementById('regPassword').value;
   const confirm = document.getElementById('regConfirmPassword').value;
   if (password !== confirm) {
@@ -404,7 +407,15 @@ document.getElementById('registerForm').addEventListener('submit', (e) => {
     alert('Email already registered');
     return;
   }
-  const newUser = { id: Date.now(), fullName, email, phone, password, verified: false };
+  const newUser = {
+    id: Date.now(),
+    fullName,
+    email,
+    phone,
+    password: btoa(password),
+    verified: true,
+    createdAt: Date.now()
+  };
   users.push(newUser);
   localStorage.setItem('users', JSON.stringify(users));
   alert('Registration successful! You can now login.');
@@ -419,20 +430,31 @@ const loginForm = document.getElementById('loginForm');
 if (loginForm) {
     loginForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        const email = document.getElementById('loginEmail').value.trim();
+        const email = document.getElementById('loginEmail').value.trim().toLowerCase();
         const password = document.getElementById('loginPassword').value;
         let users = JSON.parse(localStorage.getItem('users')) || [];
         const user = users.find(u => u.email === email);
         
-        if (!user) { alert('Email not found. Please register first.'); return; }
-        if (btoa(password) !== user.password) { alert('Incorrect password.'); return; }
-        if (!user.verified) { alert('Please verify your email first.'); return; }
-        
+        if (!user) {
+            alert('Email not found. Please register first.');
+            return;
+        }
+        const encodedPassword = btoa(password);
+        if (encodedPassword !== user.password && password !== user.password) {
+            alert('Incorrect password.');
+            return;
+        }
+        if (!user.verified) {
+            alert('Please verify your email first.');
+            return;
+        }
+        currentUser = { email: user.email, fullName: user.fullName };
+        localStorage.setItem('currentUser', JSON.stringify(currentUser));
         alert(`Welcome back, ${user.fullName}!`);
         closeLoginModal();
         loginForm.reset();
     });
-}
+} 
 
 // Forgot Password Form
 const forgotForm = document.getElementById('forgotPasswordFormModal');

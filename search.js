@@ -15,6 +15,13 @@ const searchData = [
     { title: "Point of Sale Sets", category: "shop", keywords: "pos set printer scanner cash drawer", icon: "fas fa-cash-register", url: "#" },
     { title: "Laptop Housing & Parts", category: "shop", keywords: "laptop housing case screen keyboard battery fan", icon: "fas fa-microchip", url: "#" },
     { title: "Computer Small Parts", category: "shop", keywords: "ram ssd hard drive processor cooling fan", icon: "fas fa-memory", url: "#" },
+    { title: "Dell Laptop Batteries", category: "shop", keywords: "dell battery laptop xps pro max vostro inspiron latitude", icon: "fas fa-battery-half", url: "batteries.html" },
+    { title: "Dell XPS Batteries", category: "shop", keywords: "dell xps battery laptop replacement external internal", icon: "fas fa-battery-full", url: "xps2.html" },
+    { title: "Dell Pro Batteries", category: "shop", keywords: "dell pro battery laptop replacement external internal", icon: "fas fa-battery-three-quarters", url: "xps2.html" },
+    { title: "Dell Pro Max Batteries", category: "shop", keywords: "dell pro max battery laptop replacement external internal", icon: "fas fa-battery-half", url: "promax.html" },
+    { title: "Dell Vostro Batteries", category: "shop", keywords: "dell vostro battery laptop replacement external internal", icon: "fas fa-battery-quarter", url: "vostro.html" },
+    { title: "Dell Inspiron Batteries", category: "shop", keywords: "dell inspiron battery laptop replacement external internal", icon: "fas fa-battery-empty", url: "inspiron.html" },
+    { title: "Dell Latitude Batteries", category: "shop", keywords: "dell latitude battery laptop replacement external internal", icon: "fas fa-battery-half", url: "latitude.html" },
     
     // Events & Specials
     { title: "Monthly Tech Specials", category: "events", keywords: "specials discounts monthly offers deals promotion", icon: "fas fa-calendar-alt", url: "#" },
@@ -38,7 +45,7 @@ const searchData = [
 const searchModal = document.getElementById('searchModal');
 const searchIconBtn = document.getElementById('searchIconBtn');
 const closeModalBtn = document.getElementById('closeModalBtn');
-const searchInput = document.getElementById('searchInput');
+const searchInput = document.getElementById('searchInputModal');
 const categoryFilter = document.getElementById('categoryFilter');
 const suggestionsContainer = document.getElementById('suggestionsContainer');
 const searchSubmitBtn = document.getElementById('searchSubmitBtn');

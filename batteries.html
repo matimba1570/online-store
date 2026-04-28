@@ -11,7 +11,7 @@
     body {
       font-family: Arial, sans-serif;
       margin: 0;
-      padding-top: 70px;
+      padding-top: 120px;
       background-color: #f9f9f9;
     }
     h1 {
@@ -49,6 +49,107 @@
     }
     .view-more:hover {
       background-color: #005a9e;
+    }
+
+    /* ===== SECONDARY NAVIGATION BAR ===== */
+    .secondary-nav {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: #ffffff;
+        border-bottom: 1px solid #e0e0e0;
+        z-index: 998;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .secondary-nav-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 40px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 50px;
+    }
+
+    .secondary-nav-menu {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+    }
+
+    .secondary-nav-menu li a {
+        text-decoration: none;
+        color: #1a1a1a;
+        font-weight: 500;
+        font-size: 14px;
+        padding: 0.5rem 0;
+        transition: all 0.3s;
+        position: relative;
+        cursor: pointer;
+    }
+
+    .secondary-nav-menu li a:hover {
+        color: #00e676;
+    }
+
+    .secondary-nav-menu li a.active {
+        color: #00e676;
+        border-bottom: 2px solid #00e676;
+    }
+
+    .secondary-nav-menu li a i {
+        margin-right: 6px;
+        font-size: 12px;
+    }
+
+    .cart-icon {
+        position: relative;
+        cursor: pointer;
+    }
+
+    .cart-icon a {
+        text-decoration: none;
+        color: #1a1a1a;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .cart-icon a:hover {
+        color: #00e676;
+    }
+
+    .cart-count-badge {
+        background: #00e676;
+        color: #000000;
+        border-radius: 50%;
+        padding: 2px 6px;
+        font-size: 12px;
+        font-weight: bold;
+        margin-left: 5px;
+    }
+
+    /* Responsive styles for secondary nav */
+    @media (max-width: 768px) {
+        .secondary-nav-container {
+            padding: 0 20px;
+        }
+
+        .secondary-nav-menu {
+            gap: 1rem;
+        }
+
+        .secondary-nav-menu li a span {
+            display: none;
+        }
+
+        .secondary-nav-menu li a i {
+            margin-right: 0;
+            font-size: 1.2rem;
+        }
     }
   </style>
 </head>
@@ -110,6 +211,24 @@
         </div>
     </div>
 </nav>
+
+<!-- ===== SECONDARY NAVIGATION ===== -->
+<div class="secondary-nav">
+    <div class="secondary-nav-container">
+        <ul class="secondary-nav-menu">
+            <li><a href="shop.html" id="nav-home"><i class="fas fa-home"></i><span> Shop</span></a></li>
+            <li><a href="#" id="nav-all"><i class="fas fa-box"></i><span> All Products</span></a></li>
+            <li><a href="Refurbished.html" id="nav-refurbished"><i class="fas fa-sync-alt"></i><span> Refurbished</span></a></li>
+            <li><a href="#" id="nav-events"><i class="fas fa-calendar-alt"></i><span> Events</span></a></li>
+        </ul>
+        <div class="cart-icon">
+            <a href="Cart.html">
+                <i class="fas fa-shopping-cart"></i> Cart
+                <span class="cart-count-badge" id="cartCount">0</span>
+            </a>
+        </div>
+    </div>
+</div>
 
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">

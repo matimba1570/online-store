@@ -1,544 +1,759 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Product Details - LaptopParts Pro</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dell XPS 13 Battery - Eswatini Technocrats Center</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* Additional styles for product detail page */
+        .product-page {
+            padding-top: 120px;
+            min-height: 100vh;
+            background: #ffffff;
+        }
+        .product-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+        .product-detail {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin: 40px 0;
+            background: var(--bg-primary, #ffffff);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--border-color, #e0e0e0);
+        }
+        .product-image {
+            background: linear-gradient(135deg, rgba(0,230,118,0.05), rgba(33,150,243,0.05));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 400px;
+        }
+        .product-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        .product-details h1 {
+            font-size: 32px;
+            color: var(--text-primary, #1a1a1a);
+            margin-bottom: 15px;
+            font-family: 'Orbitron', sans-serif;
+        }
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .stars {
+            color: #ffc107;
+        }
+        .price {
+            font-size: 32px;
+            font-weight: bold;
+            color: var(--green, #00e676);
+            margin: 20px 0;
+        }
+        .compatibility {
+            background: var(--bg-secondary, #f5f5f5);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-size: 14px;
+            color: var(--text-secondary, #666);
+        }
+        .specifications {
+            margin: 20px 0;
+            padding: 20px;
+            background: var(--bg-secondary, #f5f5f5);
+            border-radius: 12px;
+        }
+        .specifications h3 {
+            margin-bottom: 15px;
+            font-size: 18px;
+            color: var(--text-primary, #1a1a1a);
+        }
+        .specifications ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+        .specifications li {
+            padding: 6px 0;
+            font-size: 14px;
+            color: var(--text-secondary, #666);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .specifications li i {
+            color: var(--green, #00e676);
+        }
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 25px 0;
+        }
+        .quantity-selector label {
+            font-weight: 600;
+            color: var(--text-primary, #1a1a1a);
+        }
+        .quantity-selector input {
+            width: 80px;
+            padding: 10px;
+            border: 2px solid var(--border-color, #e0e0e0);
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        .add-to-cart-btn {
+            width: 100%;
+            padding: 14px;
+            background: var(--green, #00e676);
+            color: #000;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .add-to-cart-btn:hover {
+            background: var(--green-dark, #00c853);
+            transform: translateY(-2px);
+        }
+        .shipping-info {
+            margin-top: 30px;
+            padding: 20px;
+            background: var(--bg-secondary, #f5f5f5);
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .shipping-info p {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--text-secondary, #666);
+        }
+        .shipping-info p i {
+            color: var(--green, #00e676);
+            font-size: 16px;
+        }
+        @media (max-width: 768px) {
+            .product-container {
+                padding: 0 20px;
+            }
+            .product-detail {
+                grid-template-columns: 1fr;
+                padding: 20px;
+            }
+            .product-image {
+                height: 300px;
+            }
+            .product-details h1 {
+                font-size: 24px;
+            }
+            .specifications ul {
+                grid-template-columns: 1fr;
+            }
+        }
+                 /* ===== SECONDARY NAVIGATION BAR ===== */
+        .secondary-nav {
+            position: fixed;
+            top: 70px;
+            left: 0;
+            width: 100%;
+            background: var(--white);
+            border-bottom: 1px solid #e0e0e0;
+            z-index: 999;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
 
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f8f9fa;
-      color: #333;
-    }
+        .secondary-nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 50px;
+        }
 
-    header {
-      background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
-      color: white;
-      padding: 15px 0;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
+        .secondary-nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
 
-    .header-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+        .secondary-nav-menu li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 14px;
+            padding: 0.5rem 0;
+            transition: all 0.3s;
+            position: relative;
+            cursor: pointer;
+        }
 
-    .logo {
-      font-size: 24px;
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+        .secondary-nav-menu li a:hover {
+            color: var(--green);
+        }
 
-    .logo i {
-      color: #0078d4;
-    }
+        .secondary-nav-menu li a.active {
+            color: var(--green);
+            border-bottom: 2px solid var(--green);
+        }
 
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 20px;
-    }
+        .secondary-nav-menu li a i {
+            margin-right: 6px;
+            font-size: 12px;
+        }
 
-    .product-detail {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      margin: 40px 0;
-      background: white;
-      padding: 30px;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+        }
 
-    .product-images {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #f0f0f0;
-      height: 400px;
-      border-radius: 8px;
-      font-size: 80px;
-      color: #ccc;
-    }
+        .cart-icon a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
 
-    .product-details h1 {
-      font-size: 28px;
-      margin-bottom: 15px;
-    }
+        .cart-icon a:hover {
+            color: var(--green);
+        }
 
-    .rating {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-
-    .stars {
-      color: #ffc107;
-    }
-
-    .price {
-      font-size: 32px;
-      font-weight: bold;
-      color: #0078d4;
-      margin: 20px 0;
-    }
-
-    .specifications {
-      margin: 20px 0;
-      padding: 15px;
-      background: #f8f9fa;
-      border-radius: 4px;
-    }
-
-    .specifications h3 {
-      margin-bottom: 10px;
-      font-size: 16px;
-    }
-
-    .specifications ul {
-      list-style: none;
-    }
-
-    .specifications li {
-      padding: 5px 0;
-      font-size: 14px;
-    }
-
-    .specifications li:before {
-      content: "✓ ";
-      color: #0078d4;
-      font-weight: bold;
-      margin-right: 8px;
-    }
-
-    .quantity-selector {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin: 20px 0;
-    }
-
-    .quantity-selector label {
-      font-weight: bold;
-    }
-
-    .quantity-selector input {
-      width: 60px;
-      padding: 8px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-    }
-
-    .add-to-cart-btn {
-      width: 100%;
-      padding: 15px;
-      background: linear-gradient(135deg, #0078d4 0%, #005a9e 100%);
-      color: white;
-      border: none;
-      border-radius: 4px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: all 0.3s;
-      margin-top: 20px;
-    }
-
-    .add-to-cart-btn:hover {
-      transform: scale(1.02);
-      box-shadow: 0 5px 15px rgba(0,120,212,0.3);
-    }
-
-    /* Modal Styles */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 2000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.5);
-    }
-
-    .modal.active {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .modal-content {
-      background: white;
-      padding: 40px;
-      border-radius: 8px;
-      max-width: 500px;
-      width: 90%;
-      box-shadow: 0 5px 30px rgba(0,0,0,0.3);
-    }
-
-    .modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-    }
-
-    .modal-header h2 {
-      font-size: 24px;
-      color: #333;
-    }
-
-    .close-btn {
-      font-size: 28px;
-      cursor: pointer;
-      color: #999;
-      border: none;
-      background: none;
-    }
-
-    .close-btn:hover {
-      color: #333;
-    }
-
-    .form-group {
-      margin-bottom: 15px;
-    }
-
-    .form-group label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight: bold;
-      color: #333;
-    }
-
-    .form-group input {
-      width: 100%;
-      padding: 10px;
-      border: 2px solid #ddd;
-      border-radius: 4px;
-      font-size: 14px;
-    }
-
-    .form-group input:focus {
-      outline: none;
-      border-color: #0078d4;
-    }
-
-    .form-group input[type="checkbox"] {
-      width: auto;
-      margin-right: 5px;
-    }
-
-    .form-group.checkbox {
-      display: flex;
-      align-items: center;
-    }
-
-    .form-group.checkbox label {
-      margin: 0;
-    }
-
-    .submit-btn {
-      width: 100%;
-      padding: 12px;
-      background: #0078d4;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      font-weight: bold;
-      cursor: pointer;
-      font-size: 16px;
-      transition: background 0.3s;
-    }
-
-    .submit-btn:hover {
-      background: #005a9e;
-    }
-
-    .tab-buttons {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-
-    .tab-btn {
-      flex: 1;
-      padding: 10px;
-      border: 2px solid #ddd;
-      background: white;
-      cursor: pointer;
-      border-radius: 4px;
-      font-weight: bold;
-      transition: all 0.3s;
-    }
-
-    .tab-btn.active {
-      background: #0078d4;
-      color: white;
-      border-color: #0078d4;
-    }
-
-    .tab-content {
-      display: none;
-    }
-
-    .tab-content.active {
-      display: block;
-    }
-
-    .toggle-text {
-      text-align: center;
-      margin-top: 15px;
-      font-size: 14px;
-    }
-
-    .toggle-text button {
-      background: none;
-      border: none;
-      color: #0078d4;
-      cursor: pointer;
-      font-weight: bold;
-      text-decoration: underline;
-    }
-
-    footer {
-      background: #1a1a1a;
-      color: white;
-      text-align: center;
-      padding: 20px;
-      margin-top: 40px;
-    }
-
-    @media (max-width: 768px) {
-      .product-detail {
-        grid-template-columns: 1fr;
-        gap: 20px;
-      }
-
-      .product-images {
-        height: 300px;
-      }
-    }
-  </style>
+        .cart-count-badge {
+            background: var(--green);
+            color: var(--black);
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+    </style>
 </head>
 <body>
-  <!-- Header -->
-  <header>
-    <div class="header-container">
-      <div class="logo">
-        <i class="fas fa-laptop"></i>
-        LaptopParts Pro
-      </div>
-      <a href="page.html" style="color: white; text-decoration: none;">Back to Home</a>
-    </div>
-  </header>
 
-  <!-- Main Content -->
+<!-- ===== MAIN NAVBAR ===== -->
+<nav class="navbar">
+    <a href="home.html" class="logo">
+        <div class="logo-icon"><img src="logo.png" alt="logo"></div>
+        <div class="logo-text">Eswatini<br><span>Technocrats Center</span></div>
+    </a>
+    <ul class="nav-links">
+        <li class="nav-item"><a href="home.html">Home</a></li>
+        <li class="nav-item"><a href="about.html">About Us</a></li>
+        <li class="nav-item"><a href="shop.html">Shop</a></li>
+        <li class="nav-item">
+            <a href="services.html">Services <i class="fas fa-chevron-down"></i></a>
+            <ul class="dropdown">
+                <li><a href="laptop-repairs.html">Laptop & Computer Repairs</a></li>
+                <li><a href="pos.html">Point of Sale</a></li>
+                <li><a href="software-installations.html">Softwares Installations</a></li>
+                <li><a href="networking.html">Networking</a></li>
+                <li><a href="tech-support.html">Tech Support</a></li>
+            </ul>
+        </li>
+        <li class="nav-item">
+            <a href="Security and access.html">Security & Access <i class="fas fa-chevron-down"></i></a>
+            <ul class="dropdown">
+                <li><a href="physical-security.html">Physical Security</a></li>
+                <li><a href="it-security.html">IT Security</a></li>
+                <li><a href="identity-access.html">Identity & Access</a></li>
+                <li><a href="monitoring.html">Monitoring</a></li>
+            </ul>
+        </li>
+        <li class="nav-item"><a href="dealer.html">Dealer</a></li>
+        <li class="nav-item"><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions-right">
+        <button class="search-icon-btn" id="searchIconBtn"><i class="fas fa-search"></i></button>
+        <button class="settings-icon-btn" id="settingsBtn"><i class="fas fa-cog"></i></button>
+        <div class="auth-buttons">
+            <button class="login-icon-btn" id="loginBtn"><i class="fas fa-sign-in-alt"></i><span>Login</span></button>
+            <button class="register-icon-btn" id="registerBtn"><i class="fas fa-user-plus"></i><span>Register</span></button>
+        </div>
+        <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+    </div>
+</nav>
+
+<!-- ===== SECONDARY NAVIGATION ===== -->
+<div class="secondary-nav">
+    <div class="secondary-nav-container">
+        <ul class="secondary-nav-menu">
+            <li><a href="shop.html" id="nav-home"><i class="fas fa-home"></i><span> Shop</span></a></li>
+            <li><a href="#" id="nav-all"><i class="fas fa-box"></i><span> All Products</span></a></li>
+            <li><a href="Refurbished.html" id="nav-refurbished"><i class="fas fa-sync-alt"></i><span> Refurbished</span></a></li>
+            <li><a href="#" id="nav-events"><i class="fas fa-calendar-alt"></i><span> Events</span></a></li>
+        </ul>
+        <div class="cart-icon">
+            <a href="Cart.html">
+                <i class="fas fa-shopping-cart"></i> Cart
+                <span class="cart-count-badge" id="cartCount">0</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-nav-item"><div class="mobile-nav-link" onclick="location.href='home.html'">Home</div></div>
+    <div class="mobile-nav-item"><div class="mobile-nav-link" onclick="location.href='about.html'">About Us</div></div>
+    <div class="mobile-nav-item"><div class="mobile-nav-link" onclick="location.href='shop.html'">Shop</div></div>
+    <div class="mobile-nav-item"><div class="mobile-nav-link" onclick="location.href='services.html'">Services</div></div>
+    <div class="mobile-nav-item"><div class="mobile-nav-link" onclick="location.href='Security and access.html'">Security & Access</div></div>
+    <div class="mobile-nav-item"><div class="mobile-nav-link" onclick="location.href='dealer.html'">Dealer</div></div>
+    <div class="mobile-nav-item"><div class="mobile-nav-link" onclick="location.href='contact.html'">Contact</div></div>
+</div>
+
+<!-- ===== ALL MODALS ===== -->
+<!-- Search Modal -->
+<div class="search-modal" id="searchModal">
+    <div class="search-modal-content">
+        <div class="search-modal-header">
+            <h3><i class="fas fa-search"></i> Search Eswatini Technocrats</h3>
+            <button class="close-modal" id="closeModalBtn">&times;</button>
+        </div>
+        <div class="search-modal-body">
+            <div class="search-category-row">
+                <select id="categoryFilter" class="category-select">
+                    <option value="all">All Categories</option>
+                    <option value="services">Services</option>
+                    <option value="shop">Shop / Products</option>
+                    <option value="events">Events</option>
+                    <option value="programs">Programs</option>
+                    <option value="pages">Pages</option>
+                </select>
+                <div class="search-input-wrapper">
+                    <input type="text" id="searchInput" placeholder="Type to search..." autocomplete="off">
+                    <button id="searchSubmitBtn"><i class="fas fa-arrow-right"></i> Search</button>
+                </div>
+            </div>
+            <div id="suggestionsContainer" class="suggestions-list">
+                <div class="no-results">🔍 Start typing to see matching results...</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Login Modal -->
+<div class="auth-modal" id="loginModal">
+    <div class="auth-modal-content">
+        <div class="auth-modal-header">
+            <h3><i class="fas fa-sign-in-alt"></i> Login to Your Account</h3>
+            <button class="close-auth-modal" onclick="closeLoginModal()">&times;</button>
+        </div>
+        <div class="auth-modal-body">
+            <form id="loginForm">
+                <div class="form-group"><label><i class="fas fa-envelope"></i> Email Address</label><input type="email" id="loginEmail" required placeholder="Enter your email"></div>
+                <div class="form-group"><label><i class="fas fa-lock"></i> Password</label><input type="password" id="loginPassword" required placeholder="Enter your password"></div>
+                <div class="form-options">
+                    <label class="remember-me"><input type="checkbox"> Remember me</label>
+                    <a href="#" onclick="openForgotPasswordModal(); return false;" class="forgot-password-link">Forgot Password?</a>
+                </div>
+                <button type="submit" class="auth-submit-btn">Login <i class="fas fa-arrow-right"></i></button>
+            </form>
+            <div class="auth-divider"><span>or</span></div>
+            <p class="auth-switch">Don't have an account? <a href="#" onclick="switchToRegister()">Register here</a></p>
+        </div>
+    </div>
+</div>
+
+<!-- Register Modal -->
+<div class="auth-modal" id="registerModal">
+    <div class="auth-modal-content">
+        <div class="auth-modal-header"><h3><i class="fas fa-user-plus"></i> Create Your Account</h3><button class="close-auth-modal" onclick="closeRegisterModal()">&times;</button></div>
+        <div class="auth-modal-body">
+            <div id="registerAlertMessage" class="alert" style="display: none;"></div>
+            <form id="registerForm">
+                <div class="form-group"><label>Full Name</label><input type="text" id="regFullName" required placeholder="Enter your full name"></div>
+                <div class="form-group"><label>Email Address</label><input type="email" id="regEmail" required placeholder="Enter your email"></div>
+                <div class="form-group"><label>Phone Number</label><input type="tel" id="regPhone" placeholder="Enter your phone number"></div>
+                <div class="form-group"><label>Password</label><input type="password" id="regPassword" required placeholder="Create a password (min 6 characters)"></div>
+                <div class="form-group"><label>Confirm Password</label><input type="password" id="regConfirmPassword" required placeholder="Confirm your password"></div>
+                <div class="form-group"><label class="terms-label"><input type="checkbox" id="agreeTerms" required> I agree to the Terms of Service and Privacy Policy</label></div>
+                <button type="submit" class="auth-submit-btn">Register <i class="fas fa-paper-plane"></i></button>
+            </form>
+            <div class="auth-divider"><span>or</span></div>
+            <p class="auth-switch">Already have an account? <a href="#" onclick="switchToLogin()">Login here</a></p>
+        </div>
+    </div>
+</div>
+
+<!-- Forgot Password Modal -->
+<div class="auth-modal" id="forgotPasswordModal">
+    <div class="auth-modal-content">
+        <div class="auth-modal-header"><h3><i class="fas fa-key"></i> Lost Password</h3><button class="close-auth-modal" onclick="closeForgotPasswordModal()">&times;</button></div>
+        <div class="auth-modal-body">
+            <div class="forgot-title"><p>Lost your password? Please enter your email address. You will receive a link to create a new password via email.</p></div>
+            <div id="forgotAlertMessage" class="alert" style="display: none;"></div>
+            <form id="forgotPasswordFormModal">
+                <div class="form-group"><label>Email Address *</label><input type="email" id="forgotEmail" required placeholder="Enter your registered email"></div>
+                <button type="submit" class="auth-submit-btn"><i class="fas fa-paper-plane"></i> Reset Password</button>
+            </form>
+            <div class="auth-divider"><span>or</span></div>
+            <p class="auth-switch"><a href="#" onclick="switchToLoginFromForgot(); return false;">← Back to Login</a></p>
+        </div>
+    </div>
+</div>
+
+<!-- Reset Password Modal -->
+<div class="auth-modal" id="resetPasswordModal">
+    <div class="auth-modal-content">
+        <div class="auth-modal-header"><h3><i class="fas fa-lock-open"></i> Create New Password</h3><button class="close-auth-modal" onclick="closeResetPasswordModal()">&times;</button></div>
+        <div class="auth-modal-body">
+            <div id="resetAlertMessage" class="alert" style="display: none;"></div>
+            <form id="resetPasswordFormModal">
+                <div class="form-group"><label>Email Address</label><input type="email" id="resetEmailDisplay" readonly></div>
+                <div class="form-group"><label>New Password *</label><input type="password" id="newPasswordModal" required placeholder="Enter new password (min 6 characters)"><div class="password-strength" id="passwordStrengthModal"></div></div>
+                <div class="form-group"><label>Confirm New Password *</label><input type="password" id="confirmPasswordModal" required placeholder="Confirm your new password"></div>
+                <button type="submit" class="auth-submit-btn"><i class="fas fa-save"></i> Reset Password</button>
+            </form>
+            <div class="auth-divider"><span>or</span></div>
+            <p class="auth-switch"><a href="#" onclick="switchToLoginFromReset(); return false;">← Back to Login</a></p>
+        </div>
+    </div>
+</div>
+
+<!-- ===== SETTINGS MODAL ===== -->
+<div class="auth-modal" id="settingsModal">
+    <div class="auth-modal-content" style="max-width: 450px;">
+        <div class="auth-modal-header">
+            <h3><i class="fas fa-cog"></i> Settings</h3>
+            <button class="close-auth-modal" onclick="closeSettingsModal()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="auth-modal-body">
+            <div class="settings-section">
+                <div class="settings-section-title">
+                    <i class="fas fa-palette"></i>
+                    <h4>Theme Preferences</h4>
+                </div>
+                <div class="theme-options">
+                    <div class="theme-option" data-theme="light" onclick="setTheme('light')">
+                        <div class="theme-preview light-preview"><i class="fas fa-sun"></i></div>
+                        <span>Light Theme</span>
+                        <div class="theme-check"><i class="fas fa-check-circle"></i></div>
+                    </div>
+                    <div class="theme-option" data-theme="dark" onclick="setTheme('dark')">
+                        <div class="theme-preview dark-preview"><i class="fas fa-moon"></i></div>
+                        <span>Dark Theme</span>
+                        <div class="theme-check"><i class="fas fa-check-circle"></i></div>
+                    </div>
+                    <div class="theme-option" data-theme="system" onclick="setTheme('system')">
+                        <div class="theme-preview system-preview"><i class="fas fa-desktop"></i></div>
+                        <span>System Default</span>
+                        <div class="theme-check"><i class="fas fa-check-circle"></i></div>
+                    </div>
+                </div>
+            </div>
+            <div class="settings-divider"></div>
+            <div class="settings-section">
+                <div class="settings-section-title">
+                    <i class="fas fa-text-height"></i>
+                    <h4>Font Size</h4>
+                </div>
+                <div class="font-size-control">
+                    <div class="font-size-labels">
+                        <span><i class="fas fa-font"></i> A</span>
+                        <span id="fontSizeValue">Medium</span>
+                        <span><i class="fas fa-font"></i> A<span style="font-size: 20px;">+</span></span>
+                    </div>
+                    <input type="range" id="fontSizeSlider" min="12" max="20" step="1" value="16">
+                    <div class="font-size-presets">
+                        <button class="font-preset" data-size="14">Small</button>
+                        <button class="font-preset active" data-size="16">Medium</button>
+                        <button class="font-preset" data-size="18">Large</button>
+                        <button class="font-preset" data-size="20">Extra Large</button>
+                    </div>
+                </div>
+                <div class="font-preview-box">
+                    <p><strong>Preview:</strong> The quick brown fox jumps over the lazy dog.</p>
+                    <p style="font-size: 0.9em;">This is how text will appear on the website.</p>
+                </div>
+            </div>
+            <div class="settings-divider"></div>
+            <div class="settings-section">
+                <div class="settings-section-title">
+                    <i class="fas fa-universal-access"></i>
+                    <h4>Accessibility</h4>
+                </div>
+                <div class="setting-item">
+                    <label class="setting-label">
+                        <span><i class="fas fa-align-left"></i> Reduced Motion</span>
+                        <input type="checkbox" id="reducedMotionToggle">
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <label class="setting-label">
+                        <span><i class="fas fa-eye"></i> High Contrast</span>
+                        <input type="checkbox" id="highContrastToggle">
+                    </label>
+                </div>
+            </div>
+            <div class="settings-divider"></div>
+            <div class="settings-section">
+                <button class="reset-settings-btn" onclick="resetAllSettings()">
+                    <i class="fas fa-undo-alt"></i> Reset to Default Settings
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Secondary Navigation -->
+<div class="secondary-nav">
+    <div class="secondary-nav-container">
+        <ul class="secondary-nav-menu">
+            <li><a href="shop.html" onclick="showContent('home'); return false;" class="active" id="nav-home"><i class="fas fa-home"></i><span> Shop</span></a></li>
+            <li><a href="page.html" onclick="showContent('all-products'); return false;" id="nav-all"><i class="fas fa-box"></i><span> All Products</span></a></li>
+            <li><a href="Refurbished.html" id="nav-refurbished"><i class="fas fa-sync-alt"></i><span> Refurbished</span></a></li>
+            <li><a href="event.html" onclick="showContent('events'); return false;" id="nav-events"><i class="fas fa-calendar-alt"></i><span> Events</span></a></li>
+        </ul>
+        <div class="cart-icon">
+    <a href="Cart.html">
+        <i class="fas fa-shopping-cart"></i> Cart
+        <span class="cart-count-badge" id="cartCount">0</span>
+    </a>
+</div>
+
+    </div>
+</div>
+<!-- ===== PAGE CONTENT ===== -->
+<div class="product-page">
+    <div class="product-container">
+        <div class="product-detail">
+            <div class="product-image">
+                <img src="https://via.placeholder.com/400x400?text=Dell+Battery" alt="Dell XPS 13 Battery">
+            </div>
+            <div class="product-details">
+                <h1>Dell XPS 13 Battery</h1>
+                <div class="rating">
+                    <span class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </span>
+                    <span>(256 reviews)</span>
+                </div>
+                <div class="price">E89.99</div>
+                <p style="color: var(--text-secondary, #666); margin-bottom: 20px;">Compatible with Dell XPS 13 9310, 9315, and similar models</p>
+                <div class="compatibility">
+                    <i class="fas fa-check-circle" style="color: var(--green);"></i> Compatible with: XPS 13 9310, 9315, 9300
+                </div>
+                <div class="specifications">
+                    <h3>Specifications</h3>
+                    <ul>
+                        <li><i class="fas fa-battery-full"></i> Capacity: 52Wh</li>
+                        <li><i class="fas fa-bolt"></i> Voltage: 7.6V</li>
+                        <li><i class="fas fa-microchip"></i> Battery Type: Lithium-ion</li>
+                        <li><i class="fas fa-layer-group"></i> Cells: 2-cell</li>
+                        <li><i class="fas fa-shield-alt"></i> Warranty: 12 months</li>
+                        <li><i class="fas fa-check-circle"></i> In Stock: Yes</li>
+                    </ul>
+                </div>
+                <div class="quantity-selector">
+                    <label for="quantity">Quantity:</label>
+                    <input type="number" id="quantity" value="1" min="1" max="10">
+                </div>
+                <button class="add-to-cart-btn" onclick="addToCart()"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                <div class="shipping-info">
+                    <p><i class="fas fa-shipping-fast"></i> Free Shipping on orders over E50</p>
+                    <p><i class="fas fa-undo"></i> 30-Day Returns</p>
+                    <p><i class="fas fa-lock"></i> Secure Payment</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer id="contact">
   <div class="container">
-    <div class="product-detail">
-      <!-- Product Image -->
-      <div class="product-images">
-        <img src="https://via.placeholder.com/400x400?text=Dell+Battery" alt="Dell Battery" style="width:100%; height:400px; object-fit:cover;">
+    <div class="footer-grid">
+      <!-- Brand -->
+      <div class="footer-brand">
+        <div class="logo" style="margin-bottom:16px;">
+          <div class="logo-icon"><img src="logo.png"></div>
+          <span class="logo-text">Eswatini<br><span>Technocrats Center</span></span>
+        </div>
+        <p>Empowering the Kingdom of Eswatini through world-class technology education, innovation, and professional digital services since 2015.</p>
+        <div class="social-links">
+          <a href="https://www.facebook.com/mbusoluju2" class="social-link green"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-link blue"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-link green"><i class="fab fa-whatsapp"></i></a>
+          <a href="#" class="social-link blue"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="social-link green"><i class="fab fa-youtube"></i></a>
+          <a href="#" class="social-link blue"><i class="fab fa-instagram"></i></a>
+        </div>
       </div>
 
-      <!-- Product Details -->
-      <div class="product-details">
-        <h1>Dell XPS 13 Battery</h1>
+      <!-- Quick Links -->
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="home.html"><i class="fas fa-angle-right"></i> Home</a></li>
+          <li><a href="about.html"><i class="fas fa-angle-right"></i> About Us</a></li>
+          <li><a href="shop.html"><i class="fas fa-angle-right"></i> Shop</a></li>
+          <li><a href="#services"><i class="fas fa-angle-right"></i> Services</a></li>
+          <li><a href="#events"><i class="fas fa-angle-right"></i> Events</a></li>
+          <li><a href="#contact"><i class="fas fa-angle-right"></i> Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- shop -->
+      <div class="footer-col">
+        <h4>shop</h4>
+        <ul>
+          
+        <li><a href="#"><i class="fas fa-angle-right"></i> Computer & laptops</a></li>
+        <li><a href="#"><i class="fas fa-angle-right"></i> Point of sale set</a></li>
+        <li><a href="#"><i class="fas fa-angle-right"></i> Accessories</a></li>
+        <li><a href="#"><i class="fas fa-angle-right"></i>Laptop housing </a></li>
+        <li><a href="#"><i class="fas fa-angle-right"></i> Computer&Laptop small parts</a></li>
+
+        </ul>
+      </div>
+
+      <!-- Services -->
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="laptop-repairs.html"><i class="fas fa-angle-right"></i> laptop&computer repairs</a></li>
+          <li><a href="pos.html"><i class="fas fa-angle-right"></i> Point of Sale</a></li>
+          <li><a href="software-installations.html"><i class="fas fa-angle-right"></i> Softwares Installations</a></li>
+          <li><a href="networking.html"><i class="fas fa-angle-right"></i> Networking</a></li>
+          <li><a href="tech-support.html"><i class="fas fa-angle-right"></i> Tech Support</a></li>
+          
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <div class="contact-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>Office No.403,SNAT SACCO House,manchishane street,Manzini,Eswatini</span>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-phone"></i>
+          <span>+268 76601001</span>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-envelope"></i>
+          <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f990979f96b99c8a8e988d9097908d9c9297969a8b988d8ad7989ad78a83">[email&#160;protected]</a></span>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-clock"></i>
+          <span>Mon–Fri: 8:00 AM – 5:00 PM<br>Sat: 9:00 AM – 1:00 PM</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+      <p> Copyright© 2026 <span>Eswatini Technocrats Center</span>. All Rights Reserved. Built with in Eswatini.</p>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+        <a href="#"></a>
+      </div>
+    
+  </div>
+</footer>
+
+
+<script src="script.js"></script>
+<script src="search.js"></script>
+<script>
+    // Cart functions
+    function addToCart() {
+        const quantity = document.getElementById('quantity').value;
+        const productName = "Dell XPS 13 Battery";
+        const productPrice = 89.99;
         
-        <div class="rating">
-          <span class="stars">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star-half-alt"></i>
-          </span>
-          <span>(256 reviews)</span>
-        </div>
-
-        <div class="price">E89.99</div>
-        <p style="color: #666; margin-bottom: 20px;">Compatible with Dell XPS 13 9310, 9315, and similar models</p>
-
-        <div class="specifications">
-          <h3>Specifications</h3>
-          <ul>
-            <li>Capacity: 52Wh</li>
-            <li>Voltage: 7.6V</li>
-            <li>Battery Type: Lithium-ion</li>
-            <li>Cells: 2-cell</li>
-            <li>Warranty: 12 months</li>
-            <li>In Stock: Yes</li>
-          </ul>
-        </div>
-
-        <div class="quantity-selector">
-          <label for="quantity">Quantity:</label>
-          <input type="number" id="quantity" value="1" min="1" max="10">
-        </div>
-
-        <button class="add-to-cart-btn" onclick="handleAddToCart()">Add to Cart</button>
-
-        <div style="margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 4px;">
-          <p><strong><i class="fas fa-shipping-fast"></i> Free Shipping</strong> on orders over E50</p>
-          <p><strong><i class="fas fa-undo"></i> 30-Day Returns</strong> hassle-free policy</p>
-          <p><strong><i class="fas fa-lock"></i> Secure Payment</strong> guaranteed</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Authentication Modal -->
-  <div class="modal" id="authModal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2>Sign In / Register</h2>
-        <button class="close-btn" onclick="closeModal()">&times;</button>
-      </div>
-
-      <!-- Tab Buttons -->
-      <div class="tab-buttons">
-        <button class="tab-btn active" onclick="switchTab('login')">Login</button>
-        <button class="tab-btn" onclick="switchTab('register')">Register</button>
-      </div>
-
-      <!-- Login Tab -->
-      <div id="login" class="tab-content active">
-        <form onsubmit="handleLogin(event)">
-          <div class="form-group">
-            <label for="login-email">Email Address</label>
-            <input type="email" id="login-email" required placeholder="your@email.com">
-          </div>
-          <div class="form-group">
-            <label for="login-password">Password</label>
-            <input type="password" id="login-password" required placeholder="Enter your password">
-          </div>
-          <div class="form-group checkbox">
-            <input type="checkbox" id="remember-me">
-            <label for="remember-me">Remember me</label>
-          </div>
-          <button type="submit" class="submit-btn">Login</button>
-        </form>
-        <div class="toggle-text">
-          <p>Don't have an account? <button onclick="switchTab('register')">Register here</button></p>
-        </div>
-      </div>
-
-      <!-- Register Tab -->
-      <div id="register" class="tab-content">
-        <form onsubmit="handleRegister(event)">
-          <div class="form-group">
-            <label for="register-name">Full Name</label>
-            <input type="text" id="register-name" required placeholder="Your name">
-          </div>
-          <div class="form-group">
-            <label for="register-email">Email Address</label>
-            <input type="email" id="register-email" required placeholder="your@email.com">
-          </div>
-          <div class="form-group">
-            <label for="register-password">Password</label>
-            <input type="password" id="register-password" required placeholder="Create a password">
-          </div>
-          <div class="form-group">
-            <label for="confirm-password">Confirm Password</label>
-            <input type="password" id="confirm-password" required placeholder="Confirm password">
-          </div>
-          <div class="form-group checkbox">
-            <input type="checkbox" id="terms" required>
-            <label for="terms">I agree to the terms and conditions</label>
-          </div>
-          <button type="submit" class="submit-btn">Create Account</button>
-        </form>
-        <div class="toggle-text">
-          <p>Already have an account? <button onclick="switchTab('login')">Login here</button></p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2026 LaptopParts Pro. All rights reserved.</p>
-  </footer>
-
-  <script>
-    let isAuthenticated = localStorage.getItem('userAuthenticated') === 'true';
-
-    function handleAddToCart() {
-      if (!isAuthenticated) {
-        document.getElementById('authModal').classList.add('active');
-      } else {
-        alert('Product added to cart!');
-      }
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const existingItem = cart.find(item => item.name === productName);
+        if (existingItem) {
+            existingItem.quantity += parseInt(quantity);
+        } else {
+            cart.push({ id: Date.now(), name: productName, price: productPrice, quantity: parseInt(quantity), image: 'https://via.placeholder.com/100x100?text=Dell+Battery' });
+        }
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartCount();
+        showToast(`${productName} added to cart!`);
     }
-
-    function switchTab(tab) {
-      // Hide all tabs
-      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-      document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
-
-      // Show selected tab
-      document.getElementById(tab).classList.add('active');
-      event.target.classList.add('active');
+    
+    function updateCartCount() {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const total = cart.reduce((sum, item) => sum + item.quantity, 0);
+        const cartCountSpan = document.getElementById('cartCount');
+        if (cartCountSpan) cartCountSpan.textContent = total;
     }
-
-    function handleLogin(event) {
-      event.preventDefault();
-      const email = document.getElementById('login-email').value;
-      localStorage.setItem('userAuthenticated', 'true');
-      localStorage.setItem('userEmail', email);
-      isAuthenticated = true;
-      alert('Login successful!');
-      closeModal();
-      handleAddToCart();
+    
+    function showToast(message) {
+        const toast = document.getElementById('successToast');
+        const toastMsg = toast.querySelector('p');
+        toastMsg.textContent = message;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 3000);
     }
-
-    function handleRegister(event) {
-      event.preventDefault();
-      const password = document.getElementById('register-password').value;
-      const confirmPassword = document.getElementById('confirm-password').value;
-
-      if (password !== confirmPassword) {
-        alert('Passwords do not match!');
-        return;
-      }
-
-      const email = document.getElementById('register-email').value;
-      localStorage.setItem('userAuthenticated', 'true');
-      localStorage.setItem('userEmail', email);
-      isAuthenticated = true;
-      alert('Registration successful!');
-      closeModal();
-      handleAddToCart();
+    
+    function toggleMobile() {
+        const menu = document.getElementById('mobileMenu');
+        if (menu) menu.classList.toggle('open');
     }
-
-    function closeModal() {
-      document.getElementById('authModal').classList.remove('active');
-    }
-
-    // Close modal when clicking outside
-    window.onclick = function(event) {
-      const modal = document.getElementById('authModal');
-      if (event.target === modal) {
-        closeModal();
-      }
-    }
-  </script>
+    
+    // Modal functions
+    window.closeToast = function() {
+        document.getElementById('successToast').classList.remove('show');
+    };
+    
+    // Make functions global
+    window.addToCart = addToCart;
+    window.toggleMobile = toggleMobile;
+    window.updateCartCount = updateCartCount;
+    
+    // Initialize
+    document.addEventListener('DOMContentLoaded', function() {
+        updateCartCount();
+        
+        const searchBtn = document.getElementById('searchIconBtn');
+        const settingsBtn = document.getElementById('settingsBtn');
+        const loginBtn = document.getElementById('loginBtn');
+        const registerBtn = document.getElementById('registerBtn');
+        const hamburger = document.getElementById('hamburger');
+        
+        if (searchBtn && typeof openSearchModal === 'function') searchBtn.onclick = openSearchModal;
+        if (settingsBtn && typeof openSettingsModal === 'function') settingsBtn.onclick = openSettingsModal;
+        if (loginBtn && typeof openLoginModal === 'function') loginBtn.onclick = openLoginModal;
+        if (registerBtn && typeof openRegisterModal === 'function') registerBtn.onclick = openRegisterModal;
+        if (hamburger) hamburger.onclick = toggleMobile;
+    });
+</script>
 </body>
 </html>
-

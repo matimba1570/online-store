@@ -327,8 +327,9 @@ function setHighContrast(enabled) {
 function loadSettingsIntoForm() {
     const savedFontSize = localStorage.getItem('fontSize');
     if (savedFontSize) {
-        const fontSizeSelect = document.getElementById('fontSizeSelect');
-        if (fontSizeSelect) fontSizeSelect.value = savedFontSize;
+        const fontSizeSlider = document.getElementById('fontSizeSlider');
+        if (fontSizeSlider) fontSizeSlider.value = savedFontSize;
+        updateFontSizeUI(parseInt(savedFontSize));
     }
     
     const savedReducedMotion = localStorage.getItem('reducedMotion') === 'true';
@@ -338,6 +339,8 @@ function loadSettingsIntoForm() {
     const savedHighContrast = localStorage.getItem('highContrast') === 'true';
     const highContrastToggle = document.getElementById('highContrastToggle');
     if (highContrastToggle) highContrastToggle.checked = savedHighContrast;
+    
+    updateThemeCheckmarks();
 }
 
 function resetAllSettings() {
@@ -388,37 +391,38 @@ function showModalAlert(alertDiv, message, type) {
     }, 5000);
 }
 
-document.getElementById('registerForm').addEventListener('submit', async (e) => {
+document.getElementById('registerForm').addEventListener('submit', (e) => {
   e.preventDefault();
-  const fullName = document.getElementById('regFullName').value;
-  const email = document.getElementById('regEmail').value;
-  const phone = document.getElementById('regPhone').value;
+  const fullName = document.getElementById('regFullName').value.trim();
+  const email = document.getElementById('regEmail').value.trim().toLowerCase();
+  const phone = document.getElementById('regPhone').value.trim();
   const password = document.getElementById('regPassword').value;
   const confirm = document.getElementById('regConfirmPassword').value;
-
   if (password !== confirm) {
     alert('Passwords do not match');
     return;
   }
-
-  try {
-    const response = await fetch('https://lucila-duckier-arlo.ngrok-free.dev/api/register', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ fullName, email, phone, password }),
-    });
-    const data = await response.json();
-    if (response.ok) {
-      alert(data.message);
-      // Optionally close modal and show verification info
-    } else {
-      alert(data.error);
-    }
-  } catch (error) {
-    console.error('Registration error:', error);
-    alert('Server error. Please try again later.');
+  let users = JSON.parse(localStorage.getItem('users')) || [];
+  if (users.find(u => u.email === email)) {
+    alert('Email already registered');
+    return;
   }
+  const newUser = {
+    id: Date.now(),
+    fullName,
+    email,
+    phone,
+    password: btoa(password),
+    verified: true,
+    createdAt: Date.now()
+  };
+  users.push(newUser);
+  localStorage.setItem('users', JSON.stringify(users));
+  alert('Registration successful! You can now login.');
+  closeRegisterModal();
+  document.getElementById('registerForm').reset();
 });
+
 
 
 // Login Form
@@ -426,20 +430,31 @@ const loginForm = document.getElementById('loginForm');
 if (loginForm) {
     loginForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        const email = document.getElementById('loginEmail').value.trim();
+        const email = document.getElementById('loginEmail').value.trim().toLowerCase();
         const password = document.getElementById('loginPassword').value;
         let users = JSON.parse(localStorage.getItem('users')) || [];
         const user = users.find(u => u.email === email);
         
-        if (!user) { alert('Email not found. Please register first.'); return; }
-        if (btoa(password) !== user.password) { alert('Incorrect password.'); return; }
-        if (!user.verified) { alert('Please verify your email first.'); return; }
-        
+        if (!user) {
+            alert('Email not found. Please register first.');
+            return;
+        }
+        const encodedPassword = btoa(password);
+        if (encodedPassword !== user.password && password !== user.password) {
+            alert('Incorrect password.');
+            return;
+        }
+        if (!user.verified) {
+            alert('Please verify your email first.');
+            return;
+        }
+        currentUser = { email: user.email, fullName: user.fullName };
+        localStorage.setItem('currentUser', JSON.stringify(currentUser));
         alert(`Welcome back, ${user.fullName}!`);
         closeLoginModal();
         loginForm.reset();
     });
-}
+} 
 
 // Forgot Password Form
 const forgotForm = document.getElementById('forgotPasswordFormModal');

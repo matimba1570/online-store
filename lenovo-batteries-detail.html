@@ -1,190 +1,872 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Product Details - Laptop Parts Store</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8f9fa; color: #333; }
-    header { background: linear-gradient(135deg, #1a1a1a 0%, #333 100%); color: white; padding: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
-    .header-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; }
-    .logo { font-size: 24px; font-weight: bold; display: flex; align-items: center; gap: 10px; }
-    .logo i { color: #0078d4; }
-    .breadcrumb { max-width: 1200px; margin: 20px auto; padding: 0 20px; font-size: 14px; }
-    .breadcrumb a { color: #0078d4; text-decoration: none; }
-    .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
-    .product-detail { background: white; border-radius: 8px; padding: 30px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-    .product-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-    .product-image-section { display: flex; flex-direction: column; }
-    .product-image { width: 100%; height: 400px; background: #f5f5f5; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 80px; color: #ccc; margin-bottom: 15px; }
-    .product-info-section h1 { margin-bottom: 10px; color: #333; }
-    .rating { color: #ffb800; margin-bottom: 15px; font-size: 14px; }
-    .price { font-size: 32px; font-weight: bold; color: #0078d4; margin-bottom: 20px; }
-    .product-description { color: #666; line-height: 1.6; margin-bottom: 20px; }
-    .spec-section h3 { margin-top: 25px; margin-bottom: 15px; color: #333; }
-    .spec-list { list-style: none; padding-left: 0; }
-    .spec-list li { padding: 8px 0; color: #666; border-bottom: 1px solid #eee; }
-    .spec-list li:before { content: "✓ "; color: #0078d4; font-weight: bold; margin-right: 8px; }
-    .quantity-section { display: flex; align-items: center; gap: 15px; margin: 25px 0; }
-    .quantity-label { font-weight: bold; }
-    .quantity-input { width: 70px; padding: 8px; border: 1px solid #ddd; border-radius: 4px; text-align: center; }
-    .add-to-cart-btn { background: #0078d4; color: white; padding: 12px 30px; border: none; border-radius: 4px; font-size: 16px; font-weight: bold; cursor: pointer; transition: background 0.3s; }
-    .add-to-cart-btn:hover { background: #005a9e; }
-    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); justify-content: center; align-items: center; z-index: 2000; }
-    .modal.active { display: flex; }
-    .modal-content { background: white; padding: 40px; border-radius: 8px; width: 90%; max-width: 400px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); }
-    .modal-header { font-size: 24px; font-weight: bold; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
-    .close-btn { font-size: 28px; cursor: pointer; color: #666; background: none; border: none; padding: 0; }
-    .tabs { display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 2px solid #eee; }
-    .tab { flex: 1; padding: 10px; text-align: center; cursor: pointer; border-bottom: 3px solid transparent; color: #666; }
-    .tab.active { color: #0078d4; border-bottom-color: #0078d4; }
-    .tab-content { display: none; }
-    .tab-content.active { display: block; }
-    .form-group { margin-bottom: 15px; }
-    .form-group label { display: block; margin-bottom: 5px; font-weight: bold; }
-    .form-group input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; }
-    .submit-btn { width: 100%; padding: 10px; background: #0078d4; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; margin-top: 10px; }
-    .submit-btn:hover { background: #005a9e; }
-    footer { background: #1a1a1a; color: white; text-align: center; padding: 20px; margin-top: 40px; }
-    @media (max-width: 768px) { .product-layout { grid-template-columns: 1fr; gap: 20px; } .product-image { height: 300px; } }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lenovo Battery Detail - Eswatini Technocrats Center</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body {
+            padding-top: 140px;
+            background: #f7f8fb;
+            color: #1a1a1a;
+        }
+
+        .parts-page {
+            min-height: 100vh;
+            background: #f7f8fb;
+        }
+
+        .parts-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px 60px;
+        }
+
+        .breadcrumb {
+            margin: 20px auto;
+            max-width: 1200px;
+            padding: 0 40px;
+            font-size: 14px;
+            color: #5b5b5b;
+        }
+
+        .breadcrumb a {
+            color: #0078d4;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .product-detail {
+            background: #ffffff;
+            border-radius: 24px;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.06);
+            padding: 40px;
+            margin-top: 20px;
+        }
+
+        .product-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .product-image-section {
+            display: grid;
+            gap: 24px;
+        }
+
+        .product-image {
+            width: 100%;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 14px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .product-image img {
+            width: 100%;
+            display: block;
+            object-fit: cover;
+            height: 100%;
+        }
+
+        .product-image-caption {
+            color: #6c6c6c;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .product-info-section h1 {
+            margin-bottom: 16px;
+            font-size: 42px;
+            color: #111;
+            letter-spacing: 0.01em;
+        }
+
+        .rating {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #00b894;
+            margin-bottom: 18px;
+            font-weight: 600;
+        }
+
+        .price {
+            font-size: 36px;
+            font-weight: 800;
+            color: #111;
+            margin-bottom: 22px;
+        }
+
+        .product-description {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 28px;
+            font-size: 16px;
+        }
+
+        .spec-section h3 {
+            margin-bottom: 18px;
+            font-size: 20px;
+            color: #111;
+        }
+
+        .spec-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            gap: 14px;
+        }
+
+        .spec-list li {
+            padding-left: 28px;
+            position: relative;
+            color: #5f5f5f;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .spec-list li:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #00e676;
+        }
+
+        .quantity-section {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 16px;
+            margin: 30px 0;
+        }
+
+        .quantity-label {
+            font-weight: 700;
+            color: #111;
+        }
+
+        .quantity-input {
+            width: 90px;
+            padding: 12px 14px;
+            border: 1px solid #dde4ed;
+            border-radius: 16px;
+            text-align: center;
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+
+        .add-to-cart-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 32px;
+            background: #00e676;
+            color: #000;
+            border: none;
+            border-radius: 18px;
+            font-size: 16px;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .add-to-cart-btn:hover {
+            transform: translateY(-2px);
+            background: #00c851;
+        }
+
+        .footer {
+            background: #111;
+            color: #ccc;
+            padding: 40px 0 24px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .footer-brand .logo {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 16px;
+        }
+
+        .footer-brand .logo-icon img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .footer-brand p,
+        .footer-col h4,
+        .footer-col ul li,
+        .footer-col p {
+            color: #d1d1d1;
+        }
+
+        .footer-col h4 {
+            margin-bottom: 16px;
+            color: #ffffff;
+            font-size: 16px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            gap: 10px;
+        }
+
+        .footer-col ul li a {
+            text-decoration: none;
+            color: #d1d1d1;
+            transition: color 0.2s ease;
+        }
+
+        .footer-col ul li a:hover {
+            color: #ffffff;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 24px auto 0;
+            padding: 0 40px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 16px;
+            color: #7a7a7a;
+            font-size: 14px;
+        }
+
+        @media (max-width: 980px) {
+            .parts-container {
+                padding: 0 24px 50px;
+            }
+
+            .footer-grid,
+            .footer-bottom {
+                padding: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .product-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .parts-container {
+                padding: 0 18px 50px;
+            }
+        }
+
+        /* ===== SECONDARY NAVIGATION BAR ===== */
+        .secondary-nav {
+            position: fixed;
+            top: 70px;
+            left: 0;
+            width: 100%;
+            background: var(--white);
+            border-bottom: 1px solid #e0e0e0;
+            z-index: 999;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .secondary-nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 50px;
+        }
+
+        .secondary-nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .secondary-nav-menu li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 14px;
+            padding: 0.5rem 0;
+            transition: all 0.3s;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .secondary-nav-menu li a:hover {
+            color: var(--green);
+        }
+
+        .secondary-nav-menu li a.active {
+            color: var(--green);
+            border-bottom: 2px solid var(--green);
+        }
+
+        .secondary-nav-menu li a i {
+            margin-right: 6px;
+            font-size: 12px;
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .cart-icon a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cart-icon a:hover {
+            color: var(--green);
+        }
+
+        .cart-count-badge {
+            background: var(--green);
+            color: var(--black);
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+
+
+    </style>
 </head>
 <body>
-  <header>
-    <div class="header-container">
-      <div class="logo"><i class="fas fa-laptop"></i>LaptopParts Pro</div>
-      <div style="display: flex; gap: 20px;"><a href="page.html" style="color: white; text-decoration: none;">Back to Brands</a><a href="#" style="color: white;"><i class="fas fa-shopping-cart"></i></a></div>
-    </div>
-  </header>
 
-  <div class="breadcrumb"><a href="page.html">Home</a> / <a href="lenovo.html">Lenovo</a> / <a href="lenovo-batteries.html">Batteries</a> / <span id="productNameBreadcrumb">Product</span></div>
-
-  <div class="container">
-    <div class="product-detail">
-      <div class="product-layout">
-        <div class="product-image-section">
-          <img src="https://via.placeholder.com/200x200?text=Lenovo+Part" alt="Lenovo Part" style="width:100%; height:200px; object-fit:cover;">
-          <p style="text-align: center; color: #666;">High-resolution product image</p>
-        </div>
-        <div class="product-info-section">
-          <h1 id="productName">Lenovo Battery</h1>
-          <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> (4.5/5 - 127 reviews)</div>
-          <div class="price" id="productPrice">E79.99</div>
-          <p class="product-description" id="productDescription">Premium quality replacement battery for Lenovo laptops with extended runtime and reliable performance.</p>
-          
-          <div class="spec-section">
-            <h3>Key Specifications</h3>
-            <ul class="spec-list" id="specsList">
-              <li>Capacity: 3500mAh</li>
-              <li>Voltage: 11.1V</li>
-              <li>Charging Time: 2-3 hours</li>
-              <li>Warranty: 12 months</li>
-              <li>Compatible with multiple Lenovo models</li>
+<nav class="navbar">
+    <a href="home.html" class="logo">
+        <div class="logo-icon"><img src="logo.png" alt="logo"></div>
+        <div class="logo-text">Eswatini<br><span>Technocrats Center</span></div>
+    </a>
+    <ul class="nav-links">
+        <li class="nav-item"><a href="home.html">Home</a></li>
+        <li class="nav-item"><a href="about.html">About Us</a></li>
+        <li class="nav-item"><a href="shop.html">Shop</a></li>
+        <li class="nav-item">
+            <a href="services.html">Services <i class="fas fa-chevron-down"></i></a>
+            <ul class="dropdown">
+                <li><a href="laptop-repairs.html">Laptop & Computer Repairs</a></li>
+                <li><a href="pos.html">Point of Sale</a></li>
+                <li><a href="software-installations.html">Softwares Installations</a></li>
+                <li><a href="networking.html">Networking</a></li>
+                <li><a href="tech-support.html">Tech Support</a></li>
             </ul>
-          </div>
+        </li>
+        <li class="nav-item">
+            <a href="Security and access.html">Security & Access <i class="fas fa-chevron-down"></i></a>
+            <ul class="dropdown">
+                <li><a href="physical-security.html">Physical Security</a></li>
+                <li><a href="it-security.html">IT Security</a></li>
+                <li><a href="identity-access.html">Identity & Access</a></li>
+                <li><a href="networking.html">Monitoring</a></li>
+            </ul>
+        </li>
+        <li class="nav-item"><a href="dealers.html">Dealer</a></li>
+        <li class="nav-item"><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions-right">
+        <button class="search-icon-btn" id="searchIconBtn"><i class="fas fa-search"></i></button>
+        <button class="settings-icon-btn" id="settingsBtn"><i class="fas fa-cog"></i></button>
+        <div class="auth-buttons">
+            <button class="login-icon-btn" id="loginBtn"><i class="fas fa-sign-in-alt"></i><span>Login</span></button>
+            <button class="register-icon-btn" id="registerBtn"><i class="fas fa-user-plus"></i><span>Register</span></button>
+        </div>
+        <div class="hamburger" id="hamburger" onclick="toggleMobile()"><span></span><span></span><span></span></div>
+    </div>
+</nav>
 
-          <div class="quantity-section">
-            <label class="quantity-label">Quantity:</label>
-            <input type="number" class="quantity-input" id="quantity" value="1" min="1" max="10">
-          </div>
 
-          <button class="add-to-cart-btn" onclick="handleAddToCart()"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+<div class="secondary-nav">
+    <div class="secondary-nav-container">
+        <ul class="secondary-nav-menu">
+            <li><a href="shop.html"><i class="fas fa-home"></i><span> Shop</span></a></li>
+            <li><a href="page.html" id="nav-all"><i class="fas fa-box"></i><span> All Products</span></a></li>
+            <li><a href="Refurbished.html"><i class="fas fa-sync-alt"></i><span> Refurbished</span></a></li>
+            <li><a href="#"><i class="fas fa-calendar-alt"></i><span> Events</span></a></li>
+        </ul>
+        <div class="cart-icon">
+            <a href="Cart.html"><i class="fas fa-shopping-cart"></i> Cart <span class="cart-count-badge" id="cartCount">0</span></a>
+        </div>
+    </div>
+</div>
+
+<div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-nav-item"><div class="mobile-nav-link" onclick="location.href='home.html'">Home</div></div>
+    <div class="mobile-nav-item"><div class="mobile-nav-link" onclick="location.href='about.html'">About Us</div></div>
+    <div class="mobile-nav-item"><div class="mobile-nav-link" onclick="location.href='shop.html'">Shop</div></div>
+    <div class="mobile-nav-item"><div class="mobile-nav-link" onclick="location.href='services.html'">Services</div></div>
+    <div class="mobile-nav-item"><div class="mobile-nav-link" onclick="location.href='Security and access.html'">Security & Access</div></div>
+    <div class="mobile-nav-item"><div class="mobile-nav-link" onclick="location.href='dealers.html'">Dealer</div></div>
+    <div class="mobile-nav-item"><div class="mobile-nav-link" onclick="location.href='contact.html'">Contact</div></div>
+</div>
+
+<div class="search-modal" id="searchModal">
+    <div class="search-modal-content">
+        <div class="search-modal-header">
+            <h3><i class="fas fa-search"></i> Search Eswatini Technocrats</h3>
+            <button class="close-modal" id="closeModalBtn"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="search-modal-body">
+            <div class="search-category-row">
+                <select id="categoryFilter" class="category-select">
+                    <option value="all">All Categories</option>
+                    <option value="services">Services</option>
+                    <option value="shop">Shop / Products</option>
+                    <option value="events">Events</option>
+                    <option value="programs">Programs</option>
+                    <option value="pages">Pages</option>
+                </select>
+                <div class="search-input-wrapper">
+                    <input type="text" id="searchInputModal" placeholder="Type to search... e.g., laptop, repair, POS..." autocomplete="off">
+                    <button id="searchSubmitBtn"><i class="fas fa-arrow-right"></i> Search</button>
+                </div>
+            </div>
+            <div id="suggestionsContainer" class="suggestions-list">
+                <div class="no-results">🔍 Start typing to see matching results...</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="auth-modal" id="loginModal">
+    <div class="auth-modal-content">
+        <div class="auth-modal-header">
+            <h3><i class="fas fa-sign-in-alt"></i> Login to Your Account</h3>
+            <button class="close-auth-modal" onclick="closeLoginModal()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="auth-modal-body">
+            <form id="loginForm">
+                <div class="form-group">
+                    <label><i class="fas fa-envelope"></i> Email Address</label>
+                    <input type="email" id="loginEmail" required placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-lock"></i> Password</label>
+                    <input type="password" id="loginPassword" required placeholder="Enter your password">
+                </div>
+                <button type="submit" class="auth-submit-btn">Login <i class="fas fa-arrow-right"></i></button>
+            </form>
+            <div class="auth-divider"><span>or</span></div>
+            <p class="auth-switch">Don't have an account? <a href="#" id="switchToRegister">Register here</a></p>
+        </div>
+    </div>
+</div>
+
+<div class="auth-modal" id="registerModal">
+    <div class="auth-modal-content">
+        <div class="auth-modal-header">
+            <h3><i class="fas fa-user-plus"></i> Create Your Account</h3>
+            <button class="close-auth-modal" onclick="closeRegisterModal()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="auth-modal-body">
+            <form id="registerForm">
+                <div class="form-group">
+                    <label><i class="fas fa-user"></i> Full Name</label>
+                    <input type="text" id="regFullName" required placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-envelope"></i> Email Address</label>
+                    <input type="email" id="regEmail" required placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-lock"></i> Password</label>
+                    <input type="password" id="regPassword" required placeholder="Create a password (min 6 characters)">
+                </div>
+                <button type="submit" class="auth-submit-btn">Register <i class="fas fa-paper-plane"></i></button>
+            </form>
+            <div class="auth-divider"><span>or</span></div>
+            <p class="auth-switch">Already have an account? <a href="#" id="switchToLogin">Login here</a></p>
+        </div>
+    </div>
+</div>
+
+<div class="auth-modal" id="settingsModal">
+    <div class="auth-modal-content" style="max-width: 450px;">
+        <div class="auth-modal-header">
+            <h3><i class="fas fa-cog"></i> Settings</h3>
+            <button class="close-auth-modal" onclick="closeSettingsModal()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="auth-modal-body">
+            <div class="settings-section">
+                <div class="settings-section-title">
+                    <i class="fas fa-palette"></i>
+                    <h4>Theme Preferences</h4>
+                </div>
+                <div class="theme-options">
+                    <div class="theme-option" data-theme="light" onclick="setTheme('light')">
+                        <div class="theme-preview light-preview"><i class="fas fa-sun"></i></div>
+                        <span>Light Theme</span>
+                        <div class="theme-check"><i class="fas fa-check-circle"></i></div>
+                    </div>
+                    <div class="theme-option" data-theme="dark" onclick="setTheme('dark')">
+                        <div class="theme-preview dark-preview"><i class="fas fa-moon"></i></div>
+                        <span>Dark Theme</span>
+                        <div class="theme-check"><i class="fas fa-check-circle"></i></div>
+                    </div>
+                    <div class="theme-option" data-theme="system" onclick="setTheme('system')">
+                        <div class="theme-preview system-preview"><i class="fas fa-desktop"></i></div>
+                        <span>System Default</span>
+                        <div class="theme-check"><i class="fas fa-check-circle"></i></div>
+                    </div>
+                </div>
+            </div>
+            <div class="settings-divider"></div>
+            <div class="settings-section">
+                <div class="settings-section-title">
+                    <i class="fas fa-text-height"></i>
+                    <h4>Font Size</h4>
+                </div>
+                <div class="font-size-control">
+                    <div class="font-size-labels">
+                        <span><i class="fas fa-font"></i> A</span>
+                        <span id="fontSizeValue">Medium</span>
+                        <span><i class="fas fa-font"></i> A<span style="font-size: 20px;">+</span></span>
+                    </div>
+                    <input type="range" id="fontSizeSlider" min="12" max="20" step="1" value="16">
+                    <div class="font-size-presets">
+                        <button class="font-preset" data-size="14">Small</button>
+                        <button class="font-preset active" data-size="16">Medium</button>
+                        <button class="font-preset" data-size="18">Large</button>
+                        <button class="font-preset" data-size="20">Extra Large</button>
+                    </div>
+                </div>
+                <div class="font-preview-box">
+                    <p><strong>Preview:</strong> The quick brown fox jumps over the lazy dog.</p>
+                    <p style="font-size: 0.9em;">This is how text will appear on the website.</p>
+                </div>
+            </div>
+            <div class="settings-divider"></div>
+            <div class="settings-section">
+                <div class="settings-section-title">
+                    <i class="fas fa-universal-access"></i>
+                    <h4>Accessibility</h4>
+                </div>
+                <div class="setting-item">
+                    <label class="setting-label">
+                        <span><i class="fas fa-align-left"></i> Reduced Motion</span>
+                        <input type="checkbox" id="reducedMotionToggle">
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <label class="setting-label">
+                        <span><i class="fas fa-eye"></i> High Contrast</span>
+                        <input type="checkbox" id="highContrastToggle">
+                    </label>
+                </div>
+            </div>
+            <div class="settings-divider"></div>
+            <div class="settings-section">
+                <button class="reset-settings-btn" onclick="resetAllSettings()">
+                    <i class="fas fa-undo-alt"></i> Reset to Default Settings
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="parts-page">
+    <div class="parts-container">
+        <div class="breadcrumb"><a href="home.html">Home</a> / <a href="lenovo.html">Lenovo</a> / <a href="lenovo-batteries.html">Batteries</a> / <span id="productNameBreadcrumb">Lenovo Battery</span></div>
+
+        <div class="product-detail">
+            <div class="product-layout">
+                <div class="product-image-section">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/700x520?text=Lenovo+Battery+Image" alt="Lenovo Battery">
+                    </div>
+                    <p class="product-image-caption">Genuine Lenovo battery replacement with full compatibility.</p>
+                </div>
+                <div class="product-info-section">
+                    <h1 id="productName">Lenovo Battery</h1>
+                    <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> 4.5/5 (127 reviews)</div>
+                    <div class="price" id="productPrice">E79.99</div>
+                    <p class="product-description" id="productDescription">Premium quality replacement battery for Lenovo laptops with long-lasting power, safe charging, and reliable performance.</p>
+
+                    <div class="spec-section">
+                        <h3>Key Specifications</h3>
+                        <ul class="spec-list" id="specsList">
+                            <li>Capacity: 3500mAh</li>
+                            <li>Voltage: 11.1V</li>
+                            <li>Warranty: 12 months</li>
+                            <li>Fast charging compatible</li>
+                            <li>OEM-grade Lenovo replacement</li>
+                        </ul>
+                    </div>
+
+                    <div class="quantity-section">
+                        <label class="quantity-label">Quantity:</label>
+                        <input type="number" class="quantity-input" id="quantity" value="1" min="1" max="10">
+                    </div>
+
+                    <button class="add-to-cart-btn" onclick="handleAddToCart()"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer id="contact">
+  <div class="container">
+    <div class="footer-grid">
+      <!-- Brand -->
+      <div class="footer-brand">
+        <div class="logo" style="margin-bottom:16px;">
+          <div class="logo-icon"><img src="logo.png"></div>
+          <span class="logo-text">Eswatini<br><span>Technocrats Center</span></span>
+        </div>
+        <p>Empowering the Kingdom of Eswatini through world-class technology education, innovation, and professional digital services since 2015.</p>
+        <div class="social-links">
+          <a href="https://www.facebook.com/mbusoluju2" class="social-link green"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-link blue"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-link green"><i class="fab fa-whatsapp"></i></a>
+          <a href="#" class="social-link blue"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="social-link green"><i class="fab fa-youtube"></i></a>
+          <a href="#" class="social-link blue"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="home.html"><i class="fas fa-angle-right"></i> Home</a></li>
+          <li><a href="about.html"><i class="fas fa-angle-right"></i> About Us</a></li>
+          <li><a href="shop.html"><i class="fas fa-angle-right"></i> Shop</a></li>
+          <li><a href="#services"><i class="fas fa-angle-right"></i> Services</a></li>
+          <li><a href="#events"><i class="fas fa-angle-right"></i> Events</a></li>
+          <li><a href="#contact"><i class="fas fa-angle-right"></i> Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- shop -->
+      <div class="footer-col">
+        <h4>shop</h4>
+        <ul>
+          
+        <li><a href="#"><i class="fas fa-angle-right"></i> Computer & laptops</a></li>
+        <li><a href="#"><i class="fas fa-angle-right"></i> Point of sale set</a></li>
+        <li><a href="#"><i class="fas fa-angle-right"></i> Accessories</a></li>
+        <li><a href="#"><i class="fas fa-angle-right"></i>Laptop housing </a></li>
+        <li><a href="#"><i class="fas fa-angle-right"></i> Computer&Laptop small parts</a></li>
+
+        </ul>
+      </div>
+
+      <!-- Services -->
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="laptop-repairs.html"><i class="fas fa-angle-right"></i> laptop&computer repairs</a></li>
+          <li><a href="pos.html"><i class="fas fa-angle-right"></i> Point of Sale</a></li>
+          <li><a href="software-installations.html"><i class="fas fa-angle-right"></i> Softwares Installations</a></li>
+          <li><a href="networking.html"><i class="fas fa-angle-right"></i> Networking</a></li>
+          <li><a href="tech-support.html"><i class="fas fa-angle-right"></i> Tech Support</a></li>
+          
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <div class="contact-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>Office No.403,SNAT SACCO House,manchishane street,Manzini,Eswatini</span>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-phone"></i>
+          <span>+268 76601001</span>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-envelope"></i>
+          <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f990979f96b99c8a8e988d9097908d9c9297969a8b988d8ad7989ad78a83">[email&#160;protected]</a></span>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-clock"></i>
+          <span>Mon–Fri: 8:00 AM – 5:00 PM<br>Sat: 9:00 AM – 1:00 PM</span>
         </div>
       </div>
     </div>
+
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+      <p> Copyright© 2026 <span>Eswatini Technocrats Center</span>. All Rights Reserved. Built with in Eswatini.</p>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+        <a href="#"></a>
+      </div>
+    
   </div>
+</footer>
 
-  <div id="authModal" class="modal">
-    <div class="modal-content">
-      <div class="modal-header">
-        Authentication Required
-        <button class="close-btn" onclick="closeModal()">&times;</button>
-      </div>
-      <div class="tabs">
-        <div class="tab active" onclick="switchTab('login')">Login</div>
-        <div class="tab" onclick="switchTab('register')">Register</div>
-      </div>
-      <div id="login" class="tab-content active">
-        <form onsubmit="handleLogin(event)">
-          <div class="form-group">
-            <label>Email</label>
-            <input type="email" required>
-          </div>
-          <div class="form-group">
-            <label>Password</label>
-            <input type="password" required>
-          </div>
-          <button type="submit" class="submit-btn">Login</button>
-        </form>
-      </div>
-      <div id="register" class="tab-content">
-        <form onsubmit="handleRegister(event)">
-          <div class="form-group">
-            <label>Full Name</label>
-            <input type="text" required>
-          </div>
-          <div class="form-group">
-            <label>Email</label>
-            <input type="email" required>
-          </div>
-          <div class="form-group">
-            <label>Password</label>
-            <input type="password" required>
-          </div>
-          <button type="submit" class="submit-btn">Register</button>
-        </form>
-      </div>
-    </div>
-  </div>
+<script src="search.js"></script>
+<script src="script.js"></script>
+<script>
+    function toggleMobile() {
+        const menu = document.getElementById('mobileMenu');
+        if (menu) menu.classList.toggle('open');
+    }
 
-  <footer><p>&copy; 2026 LaptopParts Pro. All rights reserved.</p></footer>
+    function updateCartCount() {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const total = cart.reduce((sum, item) => sum + item.quantity, 0);
+        const cartCountSpan = document.getElementById('cartCount');
+        if (cartCountSpan) cartCountSpan.textContent = total;
+    }
 
-  <script>
     let isAuthenticated = localStorage.getItem('userAuthenticated') === 'true';
     const params = new URLSearchParams(window.location.search);
     const product = params.get('product');
-    const products = { ideapad: { name: 'Lenovo IdeaPad Series', price: 'E72.99', desc: 'Affordable daily-use component' }, thinkpad: { name: 'Lenovo ThinkPad Series', price: 'E87.99', desc: 'Business-grade component' }, yoga: { name: 'Lenovo Yoga Series', price: 'E82.99', desc: 'Convertible 2-in-1 component' }, legion: { name: 'Lenovo Legion Series', price: 'E92.99', desc: 'Gaming-performance component' }, chromebook: { name: 'Lenovo Chromebook Series', price: 'E61.99', desc: 'Lightweight student component' }, miix: { name: 'Lenovo Miix Series', price: 'E77.99', desc: 'Hybrid tablet-laptop component' }, thinkbook: { name: 'Lenovo ThinkBook Series', price: 'E79.99', desc: 'Professional productivity component' }, flex: { name: 'Lenovo Flex Series', price: 'E84.99', desc: 'Flexible 2-in-1 component' }, v15: { name: 'Lenovo V15 Series', price: 'E68.99', desc: 'Budget work component' }, slim7: { name: 'Lenovo Slim 7 Series', price: 'E99.99', desc: 'Premium thin-and-light component' } };
-    if (products[product]) { 
-      const p = products[product]; 
-      document.getElementById('productName').textContent = p.name; 
-      document.getElementById('productPrice').textContent = p.price; 
-      document.getElementById('productDescription').textContent = p.desc; 
-      document.getElementById('productNameBreadcrumb').textContent = p.name; 
+    const products = {
+        ideapad: { name: 'Lenovo IdeaPad Battery', price: 'E72.99', desc: 'Affordable daily-use battery for IdeaPad laptops.' },
+        thinkpad: { name: 'Lenovo ThinkPad Battery', price: 'E87.99', desc: 'Business-grade battery for ThinkPad models.' },
+        yoga: { name: 'Lenovo Yoga Battery', price: 'E82.99', desc: 'Convertible battery for Yoga 2-in-1 laptops.' },
+        legion: { name: 'Lenovo Legion Battery', price: 'E92.99', desc: 'High-performance battery for Legion gaming laptops.' },
+        chromebook: { name: 'Lenovo Chromebook Battery', price: 'E61.99', desc: 'Lightweight battery for Lenovo Chromebook devices.' },
+        miix: { name: 'Lenovo Miix Battery', price: 'E77.99', desc: 'Hybrid battery for Lenovo Miix tablet-laptops.' }
+    };
+
+    function loadProduct() {
+        if (products[product]) {
+            const p = products[product];
+            const nameEl = document.getElementById('productName');
+            const priceEl = document.getElementById('productPrice');
+            const descEl = document.getElementById('productDescription');
+            const breadcrumbEl = document.getElementById('productNameBreadcrumb');
+            if (nameEl) nameEl.textContent = p.name;
+            if (priceEl) priceEl.textContent = p.price;
+            if (descEl) descEl.textContent = p.desc;
+            if (breadcrumbEl) breadcrumbEl.textContent = p.name;
+        }
     }
-    function handleAddToCart() { 
-      const qty = document.getElementById('quantity').value; 
-      if (!isAuthenticated) { 
-        document.getElementById('authModal').classList.add('active'); 
-      } else { 
-        alert(`Added E{qty} to cart!`); 
-      } 
+
+    function handleAddToCart() {
+        const qty = Number(document.getElementById('quantity').value || 1);
+        if (!isAuthenticated) {
+            openLoginModal();
+            return;
+        }
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cart.push({ product: product || 'lenovo-battery', quantity: qty });
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartCount();
+        alert(`Added ${qty} item(s) to cart.`);
     }
-    function switchTab(tab) { 
-      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active')); 
-      document.querySelectorAll('.tab').forEach(el => el.classList.remove('active')); 
-      document.getElementById(tab).classList.add('active'); 
-      event.target.classList.add('active'); 
+
+    function openLoginModal() {
+        closeRegisterModal();
+        const loginModal = document.getElementById('loginModal');
+        if (loginModal) loginModal.classList.add('active');
     }
-    function handleLogin(event) { 
-      event.preventDefault(); 
-      localStorage.setItem('userAuthenticated', 'true'); 
-      isAuthenticated = true; 
-      closeModal(); 
-      alert('Login successful!'); 
+
+    function closeLoginModal() {
+        const loginModal = document.getElementById('loginModal');
+        if (loginModal) loginModal.classList.remove('active');
     }
-    function handleRegister(event) { 
-      event.preventDefault(); 
-      localStorage.setItem('userAuthenticated', 'true'); 
-      isAuthenticated = true; 
-      closeModal(); 
-      alert('Registration successful!'); 
+
+    function openRegisterModal() {
+        closeLoginModal();
+        const registerModal = document.getElementById('registerModal');
+        if (registerModal) registerModal.classList.add('active');
     }
-    function closeModal() { 
-      document.getElementById('authModal').classList.remove('active'); 
+
+    function closeRegisterModal() {
+        const registerModal = document.getElementById('registerModal');
+        if (registerModal) registerModal.classList.remove('active');
     }
-  </script>
+
+    function openSettingsModal() {
+        const settingsModal = document.getElementById('settingsModal');
+        if (settingsModal) settingsModal.classList.add('active');
+    }
+
+    function closeSettingsModal() {
+        const settingsModal = document.getElementById('settingsModal');
+        if (settingsModal) settingsModal.classList.remove('active');
+    }
+
+    function handleLoginEvent(event) {
+        event.preventDefault();
+        localStorage.setItem('userAuthenticated', 'true');
+        isAuthenticated = true;
+        closeLoginModal();
+        updateCartCount();
+        alert('Login successful!');
+    }
+
+    function handleRegisterEvent(event) {
+        event.preventDefault();
+        localStorage.setItem('userAuthenticated', 'true');
+        isAuthenticated = true;
+        closeRegisterModal();
+        updateCartCount();
+        alert('Registration successful!');
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        loadProduct();
+        updateCartCount();
+
+        const searchBtn = document.getElementById('searchIconBtn');
+        const settingsBtn = document.getElementById('settingsBtn');
+        const loginBtn = document.getElementById('loginBtn');
+        const registerBtn = document.getElementById('registerBtn');
+
+        if (searchBtn && typeof openSearchModal === 'function') {
+            searchBtn.onclick = openSearchModal;
+        }
+        if (settingsBtn) settingsBtn.onclick = openSettingsModal;
+        if (loginBtn) loginBtn.onclick = openLoginModal;
+        if (registerBtn) registerBtn.onclick = openRegisterModal;
+
+        const loginForm = document.getElementById('loginForm');
+        const registerForm = document.getElementById('registerForm');
+        const switchToRegister = document.getElementById('switchToRegister');
+        const switchToLogin = document.getElementById('switchToLogin');
+
+        if (loginForm) loginForm.addEventListener('submit', handleLoginEvent);
+        if (registerForm) registerForm.addEventListener('submit', handleRegisterEvent);
+        if (switchToRegister) switchToRegister.addEventListener('click', function (e) {
+            e.preventDefault(); openRegisterModal();
+        });
+        if (switchToLogin) switchToLogin.addEventListener('click', function (e) {
+            e.preventDefault(); openLoginModal();
+        });
+    });
+</script>
 </body>
 </html>
 

@@ -1,0 +1,328 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+  <meta charset="UTF-8">
+  <title>Event Page</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #ffffff; /* white background */
+    }
+
+    header {
+      background: #e8f2fc; /* dark header */
+      color: rgba(3, 31, 1, 0.884);
+      padding: 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    header nav {
+      margin-top: 10px;
+    }
+
+    header nav a {
+      color: #1d4602;
+      text-decoration: none;
+      margin: 0 15px;
+      font-size: 16px;
+      transition: color 0.3s ease;
+    }
+
+    header nav a:hover {
+      color: #4CAF50; /* green hover */
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Special Event Promotions</h1>
+    <nav>
+      <a href="shop.html">Back to Shop</a>
+      <a href="#discounts">Discounts</a>
+      <a href="#giveaways">Giveaways</a>
+      <a href="#commission">Commission Program</a>
+    </nav>
+  </header>
+
+  <!-- Event page content goes here -->
+  <div class="event-page">
+    <!-- You can insert your sections here -->
+  </div>
+
+</body>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eswatini Technocrats Center | Tech Hub</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- EmailJS Library -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script type="text/javascript">
+    (function() {
+        // Initialize EmailJS with your Public Key
+        emailjs.init({
+            publicKey: "YOUR_PUBLIC_KEY_HERE", // Replace with your actual public key
+        });
+        console.log("EmailJS initialized");
+    })();
+</script>
+
+</head>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar">
+    <a href="index.html" class="logo">
+        <div class="logo-icon"><img src="logo.png" alt="logo"></div>
+        <div class="logo-text">Eswatini<br><span>Technocrats Center</span></div>
+    </a>
+    
+    <ul class="nav-links">
+        <li class="nav-item"><a href="home.html">Home</a></li>
+        <li class="nav-item">
+            <li class="nav-item"><a href="about.html">About Us</a></li>
+        </li>
+        <li class="nav-item">
+            <li class="nav-item"><a href="shop.html">Shop</a></li>
+        </li>
+        <li class="nav-item">
+            <a href="services.html">Services <i class="fas fa-chevron-down"></i></a>
+            <ul class="dropdown">
+                <li><a href="laptop-repairs.html"><i class="fas fa-angle-right"></i> Laptop & Computer Repairs</a></li>
+                <li><a href="pos.html"><i class="fas fa-angle-right"></i> Point of Sale</a></li>
+                <li><a href="software-installations.html"><i class="fas fa-angle-right"></i> Softwares Installations</a></li>
+                <li><a href="networking.html"><i class="fas fa-angle-right"></i> Networking</a></li>
+                <li><a href="tech-support.html"><i class="fas fa-angle-right"></i> Tech Support</a></li>
+            </ul>
+        </li>
+
+        <li class="nav-item">
+            <a href="Security and access.html">Security & Access <i class="fas fa-chevron-down"></i></a>
+            <ul class="dropdown">
+                <li><a href="physical-security.html"><i class="fas fa-angle-right"></i> Physical Security</a></li>
+                <li><a href="it-security.html"><i class="fas fa-angle-right"></i> IT Security</a></li>
+                <li><a href="identity-access.html"><i class="fas fa-angle-right"></i> Identity & Access</a></li>
+                <li><a href="networking.html"><i class="fas fa-angle-right"></i> Monitoring</a></li>
+            </ul>
+        </li>
+        <li class="nav-item">
+            <li class="nav-item"><a href="dealer.html">Dealer</a></li>
+            </li>
+        </li>
+         <li class="nav-item">
+            <li class="nav-item"><a href="contact.html">Contact</a></li>
+        </li>
+    </ul>
+    
+    <div class="nav-actions-right">
+        <button class="search-icon-btn" id="searchIconBtn">
+            <i class="fas fa-search"></i>
+        </button>
+        <button class="settings-icon-btn" id="settingsBtn">
+            <i class="fas fa-cog"></i>
+        </button>
+        <div class="auth-buttons">
+            <button class="login-icon-btn" id="loginBtn">
+                <i class="fas fa-sign-in-alt"></i>
+                <span>Login</span>
+            </button>
+            <button class="register-icon-btn" id="registerBtn">
+                <i class="fas fa-user-plus"></i>
+                <span>Register</span>
+            </button>
+        </div>
+        <div class="hamburger" id="hamburger" onclick="toggleMobile()">
+            <span></span><span></span><span></span>
+        </div>
+    </div>
+</nav>
+<div class="event-page">
+
+  <!-- Feature 1: Sales Promotion -->
+  <section class="feature">
+    <h2>Sales Promotion</h2>
+    <button>Accessory Launches</button> <!-- New product promotions -->
+    <button>Service Campaigns</button> <!-- Highlight repair/service promos -->
+    <button>Tech Showcases</button> <!-- Demonstrations of new technology -->
+  </section>
+
+  <!-- Feature 2: Discounts for Sales & Repairs -->
+  <section class="feature">
+    <h2>Discounts for Sales & Repairs</h2>
+    <button>Repair Discounts</button> <!-- Reduced fees for fixing devices -->
+    <button>Accessory Discounts</button> <!-- Lower prices on accessories -->
+    <button>Service Packages</button> <!-- Affordable bundled maintenance -->
+  </section>
+
+  <!-- Feature 3: Purchasing Discounts -->
+  <section class="feature">
+    <h2>Purchasing Discounts</h2>
+    <button>Bulk Purchase Savings</button> <!-- Discounts for buying in quantity -->
+    <button>Loyalty Rewards</button> <!-- Points or perks for repeat customers -->
+    <button>Seasonal Offers</button> <!-- Holiday or seasonal discounts -->
+  </section>
+
+  <!-- Feature 4: Giveaways -->
+  <section class="feature">
+    <h2>Giveaways</h2>
+    <button>Lucky Draw</button> <!-- Customers enter to win prizes -->
+    <button>Free Samples</button> <!-- Trial accessories or services -->
+    <button>Exclusive Gifts</button> <!-- Special gifts for attendees -->
+  </section>
+
+  <!-- Commission Section -->
+  <section class="feature commission">
+    <h2>Commission Program</h2>
+    <button>Refer a Customer</button> <!-- Bring a friend to buy accessories -->
+    <button>Earn Commission</button> <!-- Get a percentage of the sale -->
+    <button>Track Rewards</button> <!-- Monitor your referral bonuses -->
+  </section>
+
+</div>
+
+<style>
+  .event-page {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+
+  .feature {
+    background: #f9f9f9;
+    border-radius: 15px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+
+  .feature h2 {
+    margin-bottom: 15px;
+    color: #333;
+  }
+
+  .feature button {
+    display: block;
+    margin: 10px auto;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 50px; /* circular style */
+    background: #4CAF50;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  .feature button:hover {
+    background: #45a049;
+  }
+
+  .commission {
+    background: #ffeeba; /* highlight commission section */
+  }
+</style>
+<footer id="contact">
+  <div class="container">
+    <div class="footer-grid">
+      <!-- Brand -->
+      
+        <p>Empowering the Kingdom of Eswatini through world-class technology education, innovation, and professional digital services since 2015.</p>
+        <div class="social-links">
+          <a href="https://www.facebook.com/mbusoluju2" class="social-link green"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-link blue"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-link green"><i class="fab fa-whatsapp"></i></a>
+          <a href="#" class="social-link blue"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="social-link green"><i class="fab fa-youtube"></i></a>
+          <a href="#" class="social-link blue"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="home.html"><i class="fas fa-angle-right"></i> Home</a></li>
+          <li><a href="about.html"><i class="fas fa-angle-right"></i> About Us</a></li>
+          <li><a href="shop.html"><i class="fas fa-angle-right"></i> Shop</a></li>
+          <li><a href="#services"><i class="fas fa-angle-right"></i> Services</a></li>
+          <li><a href="#events"><i class="fas fa-angle-right"></i> Events</a></li>
+          <li><a href="#contact"><i class="fas fa-angle-right"></i> Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- shop -->
+      <div class="footer-col">
+        <h4>shop</h4>
+        <ul>
+          
+        <li><a href="#"><i class="fas fa-angle-right"></i> Computer & laptops</a></li>
+        <li><a href="#"><i class="fas fa-angle-right"></i> Point of sale set</a></li>
+        <li><a href="#"><i class="fas fa-angle-right"></i> Accessories</a></li>
+        <li><a href="#"><i class="fas fa-angle-right"></i>Laptop housing </a></li>
+        <li><a href="#"><i class="fas fa-angle-right"></i> Computer&Laptop small parts</a></li>
+
+        </ul>
+      </div>
+
+      <!-- Services -->
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="laptop-repairs.html"><i class="fas fa-angle-right"></i> laptop&computer repairs</a></li>
+          <li><a href="pos.html"><i class="fas fa-angle-right"></i> Point of Sale</a></li>
+          <li><a href="software-installations.html"><i class="fas fa-angle-right"></i> Softwares Installations</a></li>
+          <li><a href="networking.html"><i class="fas fa-angle-right"></i> Networking</a></li>
+          <li><a href="tech-support.html"><i class="fas fa-angle-right"></i> Tech Support</a></li>
+          
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <div class="contact-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>Office No.403,SNAT SACCO House,manchishane street,Manzini,Eswatini</span>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-phone"></i>
+          <span>+268 76601001</span>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-envelope"></i>
+          <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f990979f96b99c8a8e988d9097908d9c9297969a8b988d8ad7989ad78a83">[email&#160;protected]</a></span>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-clock"></i>
+          <span>Mon–Fri: 8:00 AM – 5:00 PM<br>Sat: 9:00 AM – 1:00 PM</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+      <p> Copyright© 2026 <span>Eswatini Technocrats Center</span>. All Rights Reserved. Built with in Eswatini.</p>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+        <a href="#"></a>
+      </div>
+    
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script src="search.js"></script>
+</body>
+</html>

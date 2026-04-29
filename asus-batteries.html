@@ -406,7 +406,6 @@
         </div>
     </div>
 </div>
-
 <!-- Login Modal -->
 <div class="auth-modal" id="loginModal">
     <div class="auth-modal-content">
@@ -896,6 +895,50 @@
     window.closeToast = function() {
         document.getElementById('successToast').classList.remove('show');
     };
+
+    // Additional functions for this page
+    function toggleMobile() {
+        const menu = document.getElementById('mobileMenu');
+        if (menu) menu.classList.toggle('open');
+    }
+    
+    // Cart count update from localStorage
+    function updateCartCount() {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const total = cart.reduce((sum, item) => sum + item.quantity, 0);
+        const cartCountSpan = document.getElementById('cartCount');
+        if (cartCountSpan) cartCountSpan.textContent = total;
+    }
+    
+    // Initialize
+    document.addEventListener('DOMContentLoaded', function() {
+        updateCartCount();
+        
+        // Ensure modal buttons work with existing script.js
+        const searchBtn = document.getElementById('searchIconBtn');
+        const settingsBtn = document.getElementById('settingsBtn');
+        const loginBtn = document.getElementById('loginBtn');
+        const registerBtn = document.getElementById('registerBtn');
+        const hamburger = document.getElementById('hamburger');
+        
+        if (searchBtn && typeof openSearchModal === 'function') {
+            searchBtn.onclick = openSearchModal;
+        }
+        if (settingsBtn && typeof openSettingsModal === 'function') {
+            settingsBtn.onclick = openSettingsModal;
+        }
+        if (loginBtn && typeof openLoginModal === 'function') {
+            loginBtn.onclick = openLoginModal;
+        }
+        if (registerBtn && typeof openRegisterModal === 'function') {
+            registerBtn.onclick = openRegisterModal;
+        }
+        if (hamburger) hamburger.onclick = toggleMobile;
+    });
+    
+    // Make functions available globally
+    window.toggleMobile = toggleMobile;
+    window.updateCartCount = updateCartCount;
 </script>
 </body>
 </html>

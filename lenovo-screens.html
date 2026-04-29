@@ -1,1102 +1,946 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lenovo Screens - Eswatini Technocrats Center</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <style>
-    :root {
-      --primary: #2c3e50;
-      --green: #00e676;
-      --green-dark: #00c851;
-      --white: #ffffff;
-      --light: #f7f8fb;
-      --dark: #1a1a1a;
-      --shadow: 0 20px 45px rgba(0,0,0,0.08);
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: var(--light);
-      color: var(--dark);
-      min-height: 100vh;
-      padding-top: 140px;
-    }
-
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-      background: rgba(44, 62, 80, 0.95);
-      border-bottom: 2px solid var(--green);
-      padding: 0 32px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 70px;
-      backdrop-filter: blur(10px);
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--white);
-      font-weight: 700;
-      font-size: 16px;
-    }
-
-    .logo-icon {
-      width: 44px;
-      height: 44px;
-      background: linear-gradient(135deg, var(--green), #2196f3);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--dark);
-      font-size: 18px;
-      font-weight: 900;
-    }
-
-    .logo-icon img {
-      width: 40px;
-      height: 40px;
-      object-fit: contain;
-      border-radius: 10px;
-    }
-
-    .logo-text {
-      line-height: 1.1;
-      font-family: 'Orbitron', sans-serif;
-      font-size: 14px;
-    }
-
-    .logo-text span {
-      display: block;
-      color: var(--green);
-      font-size: 12px;
-      line-height: 1.2;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      list-style: none;
-    }
-
-    .nav-item {
-      position: relative;
-    }
-
-    .nav-item > a {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 10px 14px;
-      color: var(--white);
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 600;
-      transition: 0.25s ease;
-      border-radius: 8px;
-    }
-
-    .nav-item > a:hover {
-      color: var(--green);
-      background: rgba(0, 230, 118, 0.12);
-    }
-
-    .dropdown {
-      position: absolute;
-      top: calc(100% + 8px);
-      left: 0;
-      background: #1f2833;
-      border: 1px solid var(--green);
-      border-top: 3px solid var(--green);
-      border-radius: 0 0 12px 12px;
-      min-width: 220px;
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(-10px);
-      transition: all 0.25s ease;
-      z-index: 999;
-      list-style: none;
-    }
-
-    .nav-item:hover .dropdown {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-    }
-
-    .dropdown li a {
-      display: block;
-      padding: 12px 18px;
-      color: #d6d6d6;
-      font-size: 13px;
-      text-decoration: none;
-      transition: 0.2s ease;
-    }
-
-    .dropdown li a:hover {
-      color: var(--green);
-      background: rgba(0, 230, 118, 0.08);
-      padding-left: 24px;
-    }
-
-    .nav-actions-right {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .search-icon-btn,
-    .settings-icon-btn,
-    .login-icon-btn,
-    .register-icon-btn,
-    .hamburger {
-      border: none;
-      background: transparent;
-      color: var(--white);
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      font-size: 14px;
-      padding: 10px 12px;
-      border-radius: 10px;
-      transition: background 0.2s ease;
-    }
-
-    .search-icon-btn:hover,
-    .settings-icon-btn:hover,
-    .login-icon-btn:hover,
-    .register-icon-btn:hover,
-    .hamburger:hover {
-      background: rgba(255,255,255,0.08);
-    }
-
-    .auth-buttons {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .login-icon-btn span,
-    .register-icon-btn span {
-      display: none;
-    }
-
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      width: 36px;
-      height: 30px;
-      justify-content: space-between;
-      padding: 4px;
-    }
-
-    .hamburger span {
-      display: block;
-      width: 100%;
-      height: 4px;
-      background: var(--white);
-      border-radius: 999px;
-    }
-
-    .secondary-nav {
-      position: fixed;
-      top: 70px;
-      left: 0;
-      width: 100%;
-      background: var(--white);
-      border-bottom: 1px solid #e0e0e0;
-      z-index: 999;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    }
-
-    .secondary-nav-container {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 32px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 50px;
-    }
-
-    .secondary-nav-menu {
-      display: flex;
-      list-style: none;
-      gap: 2rem;
-    }
-
-    .secondary-nav-menu li a {
-      text-decoration: none;
-      color: var(--dark);
-      font-weight: 500;
-      font-size: 14px;
-      padding: 0.5rem 0;
-      transition: all 0.3s ease;
-      position: relative;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .secondary-nav-menu li a:hover {
-      color: var(--green);
-    }
-
-    .secondary-nav-menu li a.active {
-      color: var(--green);
-      border-bottom: 2px solid var(--green);
-    }
-
-    .cart-icon a {
-      text-decoration: none;
-      color: var(--dark);
-      font-weight: 500;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .cart-icon a:hover {
-      color: var(--green);
-    }
-
-    .cart-count-badge {
-      background: var(--green);
-      color: var(--dark);
-      border-radius: 50%;
-      padding: 2px 6px;
-      font-size: 12px;
-      font-weight: bold;
-    }
-
-    .mobile-menu {
-      display: none;
-      position: fixed;
-      top: 120px;
-      left: 0;
-      width: 100%;
-      background: var(--white);
-      border-top: 1px solid #eef0f6;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.08);
-      z-index: 250;
-    }
-
-    .mobile-menu.open {
-      display: block;
-    }
-
-    .mobile-nav-item {
-      border-bottom: 1px solid #f1f4f8;
-    }
-
-    .mobile-nav-link {
-      display: block;
-      width: 100%;
-      padding: 16px 24px;
-      color: var(--dark);
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    .mobile-nav-link:hover {
-      background: #f4f7fb;
-    }
-
-    .parts-page {
-      min-height: 100vh;
-      background: var(--light);
-    }
-
-    .parts-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 32px 60px;
-      margin-top: 120px;
-    }
-
-    .page-header {
-      text-align: left;
-      margin-bottom: 30px;
-    }
-
-    .page-header h1 {
-      font-size: 34px;
-      margin-bottom: 12px;
-      color: var(--dark);
-      letter-spacing: 0.02em;
-    }
-
-    .page-header p {
-      max-width: 760px;
-      color: #555;
-      line-height: 1.8;
-      font-size: 15px;
-    }
-
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 24px;
-      margin-bottom: 40px;
-    }
-
-    .product-card {
-      background: var(--white);
-      border-radius: 24px;
-      border: 1px solid #e8edf3;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      transition: transform 0.3s ease, border-color 0.3s ease;
-    }
-
-    .product-card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(0, 230, 118, 0.25);
-    }
-
-    .product-card img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-    }
-
-    .product-info {
-      padding: 24px;
-    }
-
-    .product-name {
-      margin-bottom: 12px;
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--dark);
-    }
-
-    .product-price {
-      font-size: 18px;
-      color: var(--dark);
-      font-weight: 700;
-      margin-bottom: 14px;
-    }
-
-    .product-description {
-      color: #5f5f5f;
-      line-height: 1.7;
-      font-size: 14px;
-      margin-bottom: 18px;
-    }
-
-    .view-more-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 14px 20px;
-      background: var(--green);
-      color: var(--dark);
-      text-decoration: none;
-      border-radius: 14px;
-      font-weight: 700;
-      transition: transform 0.2s ease, background 0.2s ease;
-    }
-
-    .view-more-btn:hover {
-      transform: translateY(-2px);
-      background: var(--green-dark);
-      color: #fff;
-    }
-
-    .footer {
-      background: #111;
-      color: #ccc;
-      padding: 40px 0 24px;
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 24px;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 32px;
-    }
-
-    .footer-brand .logo {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 16px;
-    }
-
-    .footer-brand .logo-icon img {
-      width: 40px;
-      height: 40px;
-      object-fit: contain;
-      border-radius: 10px;
-    }
-
-    .footer-brand p,
-    .footer-col h4,
-    .footer-col ul li,
-    .footer-col p {
-      color: #d1d1d1;
-    }
-
-    .footer-col h4 {
-      margin-bottom: 16px;
-      color: #fff;
-      font-size: 16px;
-    }
-
-    .footer-col ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: grid;
-      gap: 10px;
-    }
-
-    .footer-col ul li a {
-      color: #d1d1d1;
-      text-decoration: none;
-      transition: color 0.2s ease;
-    }
-
-    .footer-col ul li a:hover {
-      color: var(--green);
-    }
-
-    .footer-bottom {
-      max-width: 1200px;
-      margin: 24px auto 0;
-      padding: 0 32px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 12px;
-      color: #7a7a7a;
-      font-size: 14px;
-    }
-
-    .search-modal,
-    .auth-modal,
-    .settings-modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.55);
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      z-index: 1500;
-    }
-
-    .search-modal.active,
-    .auth-modal.active,
-    .settings-modal.active {
-      display: flex;
-    }
-
-    .search-modal-content,
-    .auth-modal-content,
-    .settings-modal-content {
-      width: 100%;
-      max-width: 660px;
-      background: #fff;
-      border-radius: 24px;
-      box-shadow: var(--shadow);
-      padding: 28px;
-      position: relative;
-    }
-
-    .search-modal-header,
-    .auth-modal-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 20px;
-    }
-
-    .search-modal-header h3,
-    .auth-modal-header h3 {
-      font-size: 22px;
-      color: var(--dark);
-    }
-
-    .close-modal,
-    .close-auth-modal {
-      border: none;
-      background: transparent;
-      font-size: 24px;
-      cursor: pointer;
-      color: #6b6b6b;
-    }
-
-    .search-input-wrapper,
-    .search-category-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .search-input-wrapper input,
-    .search-input-wrapper button,
-    .auth-modal-content input,
-    .auth-modal-content button {
-      border-radius: 16px;
-      border: 1px solid #dfe3ea;
-      outline: none;
-      font-size: 15px;
-    }
-
-    .search-input-wrapper input {
-      flex: 1;
-      padding: 16px 18px;
-      background: #f7f8fb;
-    }
-
-    .search-input-wrapper button {
-      padding: 16px 22px;
-      background: var(--green);
-      color: var(--dark);
-      border: none;
-      cursor: pointer;
-      font-weight: 700;
-    }
-
-    .search-input-wrapper button:hover {
-      background: var(--green-dark);
-      color: #fff;
-    }
-
-    .category-select {
-      border: 1px solid #dfe3ea;
-      border-radius: 16px;
-      padding: 14px 16px;
-      min-width: 180px;
-      font-size: 15px;
-    }
-
-    .suggestions-list {
-      margin-top: 20px;
-      border-radius: 18px;
-      background: #f7f8fb;
-      border: 1px solid #dde4ed;
-    }
-
-    .suggestion-item,
-    .no-results {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 16px 18px;
-      border-bottom: 1px solid #e6ecf3;
-      gap: 12px;
-    }
-
-    .suggestion-item:last-child,
-    .no-results {
-      border-bottom: none;
-    }
-
-    .suggestion-item:hover {
-      background: #eef7ff;
-    }
-
-    .auth-modal-body {
-      display: grid;
-      gap: 16px;
-    }
-
-    .form-group {
-      display: grid;
-      gap: 8px;
-    }
-
-    .form-group label {
-      font-size: 14px;
-      font-weight: 700;
-      color: #222;
-    }
-
-    .form-group input {
-      width: 100%;
-      padding: 14px 16px;
-      background: #f7f8fb;
-      border: 1px solid #dfe3ea;
-    }
-
-    .auth-submit-btn {
-      width: 100%;
-      padding: 14px 16px;
-      background: var(--green);
-      color: var(--dark);
-      border: none;
-      border-radius: 16px;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    .auth-divider {
-      text-align: center;
-      color: #777;
-      font-size: 14px;
-      margin: 14px 0;
-    }
-
-    .auth-switch {
-      text-align: center;
-      color: #555;
-    }
-
-    .auth-switch a {
-      color: var(--green);
-      text-decoration: none;
-      font-weight: 700;
-    }
-
-    @media (max-width: 1024px) {
-      .navbar {
-        padding: 0 20px;
-      }
-
-      .secondary-nav-container,
-      .parts-container,
-      .footer-grid,
-      .footer-bottom {
-        padding: 0 20px;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .nav-links,
-      .auth-buttons {
-        display: none;
-      }
-
-      .hamburger {
-        display: flex;
-      }
-
-      .secondary-nav-menu {
-        gap: 1rem;
-      }
-
-      .secondary-nav-menu li a span {
-        display: none;
-      }
-
-      .secondary-nav-menu li a i {
-        margin-right: 0;
-        font-size: 1.2rem;
-      }
-
-      .parts-container {
-        padding: 0 18px 50px;
-      }
-
-      .product-card img {
-        height: 220px;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lenovo Screens - Eswatini Technocrats Center</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* ----- Base & Reset (matching batteries layout) ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f7f8fb;
+            color: #1a1a1a;
+            min-height: 100vh;
+            padding-top: 140px;
+        }
+
+        /* ----- Navbar (identical to batteries) ----- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(44, 62, 80, 0.95);
+            border-bottom: 2px solid #00e676;
+            padding: 0 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 16px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #00e676, #2196f3);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1a1a1a;
+            font-size: 18px;
+            font-weight: 900;
+        }
+
+        .logo-icon img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+
+        .logo-text {
+            line-height: 1.1;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 14px;
+        }
+
+        .logo-text span {
+            display: block;
+            color: #00e676;
+            font-size: 12px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            list-style: none;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-item > a {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 14px;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.25s ease;
+            border-radius: 8px;
+        }
+
+        .nav-item > a:hover {
+            color: #00e676;
+            background: rgba(0, 230, 118, 0.12);
+        }
+
+        .dropdown {
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 0;
+            background: #1f2833;
+            border: 1px solid #00e676;
+            border-top: 3px solid #00e676;
+            border-radius: 0 0 12px 12px;
+            min-width: 220px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.25s ease;
+            z-index: 999;
+            list-style: none;
+        }
+
+        .nav-item:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown li a {
+            display: block;
+            padding: 12px 18px;
+            color: #d6d6d6;
+            font-size: 13px;
+            text-decoration: none;
+            transition: 0.2s ease;
+        }
+
+        .dropdown li a:hover {
+            color: #00e676;
+            background: rgba(0, 230, 118, 0.08);
+            padding-left: 24px;
+        }
+
+        .nav-actions-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .search-icon-btn, .settings-icon-btn, .login-icon-btn, .register-icon-btn, .hamburger {
+            border: none;
+            background: transparent;
+            color: #ffffff;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 14px;
+            padding: 10px 12px;
+            border-radius: 10px;
+            transition: background 0.2s ease;
+        }
+
+        .search-icon-btn:hover, .settings-icon-btn:hover, .login-icon-btn:hover, .register-icon-btn:hover, .hamburger:hover {
+            background: rgba(255,255,255,0.08);
+        }
+
+        .auth-buttons {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .login-icon-btn span, .register-icon-btn span {
+            display: none;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            width: 36px;
+            height: 30px;
+            justify-content: space-between;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 100%;
+            height: 4px;
+            background: #ffffff;
+            border-radius: 999px;
+        }
+
+        /* Secondary Nav (identical) */
+        .secondary-nav {
+            position: fixed;
+            top: 70px;
+            left: 0;
+            width: 100%;
+            background: #ffffff;
+            border-bottom: 1px solid #e0e0e0;
+            z-index: 999;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .secondary-nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 50px;
+        }
+
+        .secondary-nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        .secondary-nav-menu li a {
+            text-decoration: none;
+            color: #1a1a1a;
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.3s;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .secondary-nav-menu li a:hover {
+            color: #00e676;
+        }
+
+        .secondary-nav-menu li a.active {
+            color: #00e676;
+            border-bottom: 2px solid #00e676;
+        }
+
+        .cart-icon a {
+            text-decoration: none;
+            color: #1a1a1a;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cart-icon a:hover {
+            color: #00e676;
+        }
+
+        .cart-count-badge {
+            background: #00e676;
+            color: #000000;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+
+        /* Mobile menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 120px;
+            left: 0;
+            width: 100%;
+            background: #ffffff;
+            border-top: 1px solid #eef0f6;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+            z-index: 250;
+        }
+
+        .mobile-menu.open {
+            display: block;
+        }
+
+        .mobile-nav-item {
+            border-bottom: 1px solid #f1f4f8;
+        }
+
+        .mobile-nav-link {
+            display: block;
+            width: 100%;
+            padding: 16px 24px;
+            color: #1a1a1a;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .mobile-nav-link:hover {
+            background: #f4f7fb;
+        }
+
+        /* MAIN PAGE LAYOUT exactly like batteries */
+        .parts-page {
+            min-height: 100vh;
+            background: #f7f8fb;
+        }
+
+        .parts-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px 60px;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .page-header h1 {
+            font-size: 42px;
+            margin-bottom: 12px;
+            color: #111;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 0.02em;
+        }
+
+        .page-header p {
+            max-width: 760px;
+            margin: 0 auto;
+            color: #555;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        /* Search bar identical to batteries */
+        
+        
+        .search-bar {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .search-bar input,
+        .search-bar button {
+            border-radius: 14px;
+            border: 1px solid #dfe3ea;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .search-bar input {
+            width: 100%;
+            max-width: 360px;
+            padding: 16px 18px;
+            background: #fff;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04);
+        }
+
+        .search-bar button {
+            padding: 16px 32px;
+            color: #000;
+            background: #00e676;
+            border-color: transparent;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .search-bar button:hover {
+            transform: translateY(-1px);
+            background: #00c851;
+        }
+
+        .content-search-suggestions {
+            max-width: 860px;
+            margin: 0 auto 40px;
+            border-radius: 18px;
+            background: #ffffff;
+            border: 1px solid #e8edf3;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+
+        .content-search-suggestions .suggestion-item,
+        .content-search-suggestions .suggestion-empty {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 18px 24px;
+            font-size: 15px;
+            color: #1a1a1a;
+            border-bottom: 1px solid #eef4fb;
+            cursor: pointer;
+            width: 100%;
+            background: transparent;
+            border: none;
+            text-align: left;
+        }
+
+        .content-search-suggestions .suggestion-item:hover {
+            background: #f4f9ff;
+        }
+
+        .content-search-suggestions .suggestion-item:last-child,
+        .content-search-suggestions .suggestion-empty {
+            border-bottom: none;
+        }
+
+        .content-search-suggestions .suggestion-meta {
+            color: #555;
+            font-size: 13px;
+            margin-top: 6px;
+        }
+
+        .content-search-suggestions .suggestion-price {
+            color: #00e676;
+            font-weight: 700;
+        }
+
+        @media (max-width: 680px) {
+            .content-search-suggestions .suggestion-item,
+            .content-search-suggestions .suggestion-empty {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        /* Product grid (matching battery grid) */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .product-card {
+            background: #fff;
+            border-radius: 24px;
+            border: 1px solid #e8edf3;
+            padding: 28px 24px;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            text-align: center;
+        }
+
+        .product-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(0, 230, 118, 0.25);
+        }
+
+        .product-card img {
+            width: 100%;
+            max-height: 220px;
+            object-fit: cover;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+
+        .product-name {
+            margin: 0 0 12px;
+            font-size: 22px;
+            color: #111;
+            letter-spacing: 0.01em;
+        }
+
+        .product-description {
+            margin: 0 0 14px;
+            color: #666;
+            line-height: 1.7;
+            font-size: 15px;
+        }
+
+        .product-price {
+            font-size: 18px;
+            color: #111;
+            font-weight: 700;
+            margin: 8px 0 12px;
+        }
+
+        .view-more {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 22px;
+            margin-top: 8px;
+            background: #00e676;
+            color: #000;
+            text-decoration: none;
+            border-radius: 14px;
+            font-weight: 700;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .view-more:hover {
+            transform: translateY(-2px);
+            background: #00c851;
+        }
+
+        .page-actions {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 60px;
+        }
+
+        .page-actions a {
+            padding: 14px 28px;
+            background: #00e676;
+            color: #000;
+            border-radius: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .page-actions a:hover {
+            transform: translateY(-2px);
+            background: #00c851;
+        }
+
+        /* footer (same as batteries) */
+        footer {
+            background: #111;
+            color: #ccc;
+            padding: 40px 0 24px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+        .footer-brand .logo {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 16px;
+        }
+        .footer-brand p, .footer-col h4, .footer-col ul li, .footer-col p {
+            color: #d1d1d1;
+        }
+        .footer-col h4 {
+            margin-bottom: 16px;
+            color: #fff;
+            font-size: 16px;
+        }
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            gap: 10px;
+        }
+        .footer-col ul li a {
+            color: #d1d1d1;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .footer-col ul li a:hover {
+            color: #00e676;
+        }
+        .contact-item {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 12px;
+            align-items: flex-start;
+        }
+        .social-links {
+            display: flex;
+            gap: 14px;
+            margin-top: 18px;
+        }
+        .social-link {
+            color: #ddd;
+            font-size: 18px;
+            transition: color 0.2s;
+        }
+        .social-link:hover {
+            color: #00e676;
+        }
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 24px auto 0;
+            padding: 0 32px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 12px;
+            color: #7a7a7a;
+            font-size: 14px;
+        }
+
+        /* Modals (same base) */
+        .search-modal, .auth-modal, .settings-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.55);
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            z-index: 1500;
+        }
+        .search-modal.active, .auth-modal.active, .settings-modal.active {
+            display: flex;
+        }
+        .search-modal-content, .auth-modal-content, .settings-modal-content {
+            width: 100%;
+            max-width: 660px;
+            background: #fff;
+            border-radius: 24px;
+            box-shadow: 0 20px 45px rgba(0,0,0,0.08);
+            padding: 28px;
+            position: relative;
+        }
+        .auth-modal-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .close-auth-modal, .close-modal {
+            border: none;
+            background: transparent;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .form-group {
+            display: grid;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        .form-group input {
+            padding: 14px 16px;
+            border-radius: 16px;
+            border: 1px solid #dfe3ea;
+            background: #f7f8fb;
+        }
+        .auth-submit-btn {
+            width: 100%;
+            padding: 14px;
+            background: #00e676;
+            border: none;
+            border-radius: 16px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        @media (max-width: 768px) {
+            .nav-links, .auth-buttons { display: none; }
+            .hamburger { display: flex; }
+            .secondary-nav-menu { gap: 1rem; }
+            .secondary-nav-menu li a span { display: none; }
+            .secondary-nav-menu li a i { margin-right: 0; font-size: 1.2rem; }
+            .parts-container { padding: 0 20px 50px; }
+            .page-header h1 { font-size: 32px; }
+            .search-bar { flex-direction: column; align-items: center; }
+            .search-bar input, .search-bar button { max-width: 100%; width: 100%; }
+        }
+    </style>
 </head>
 <body>
- <nav class="navbar">
-    <a href="home.html" class="logo">
-        <div class="logo-icon"><img src="logo.png" alt="logo"></div>
-        <div class="logo-text">Eswatini<br><span>Technocrats Center</span></div>
-    </a>
-    <ul class="nav-links">
-        <li class="nav-item"><a href="home.html">Home</a></li>
-        <li class="nav-item"><a href="about.html">About Us</a></li>
-        <li class="nav-item"><a href="shop.html">Shop</a></li>
-        <li class="nav-item">
-            <a href="services.html">Services <i class="fas fa-chevron-down"></i></a>
-            <ul class="dropdown">
-                <li><a href="laptop-repairs.html">Laptop & Computer Repairs</a></li>
-                <li><a href="pos.html">Point of Sale</a></li>
-                <li><a href="software-installations.html">Softwares Installations</a></li>
-                <li><a href="networking.html">Networking</a></li>
-                <li><a href="tech-support.html">Tech Support</a></li>
+  
+  <!-- ===== MAIN NAVBAR (same as batteries) ===== -->
+    <nav class="navbar">
+        <a href="home.html" class="logo">
+            <div class="logo-icon"><img src="logo.png" alt="logo"></div>
+            <div class="logo-text">Eswatini<br><span>Technocrats Center</span></div>
+        </a>
+        <ul class="nav-links">
+            <li class="nav-item"><a href="home.html">Home</a></li>
+            <li class="nav-item"><a href="about.html">About Us</a></li>
+            <li class="nav-item"><a href="shop.html">Shop</a></li>
+            <li class="nav-item">
+                <a href="services.html">Services <i class="fas fa-chevron-down"></i></a>
+                <ul class="dropdown">
+                    <li><a href="laptop-repairs.html">Laptop & Computer Repairs</a></li>
+                    <li><a href="pos.html">Point of Sale</a></li>
+                    <li><a href="software-installations.html">Softwares Installations</a></li>
+                    <li><a href="networking.html">Networking</a></li>
+                    <li><a href="tech-support.html">Tech Support</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="Security and access.html">Security & Access <i class="fas fa-chevron-down"></i></a>
+                <ul class="dropdown">
+                    <li><a href="physical-security.html">Physical Security</a></li>
+                    <li><a href="it-security.html">IT Security</a></li>
+                    <li><a href="identity-access.html">Identity & Access</a></li>
+                    <li><a href="networking.html">Monitoring</a></li>
+                </ul>
+            </li>
+            <li class="nav-item"><a href="dealers.html">Dealer</a></li>
+            <li class="nav-item"><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="nav-actions-right">
+            <button class="search-icon-btn" id="searchIconBtn"><i class="fas fa-search"></i></button>
+            <button class="settings-icon-btn" id="settingsBtn"><i class="fas fa-cog"></i></button>
+            <div class="auth-buttons">
+                <button class="login-icon-btn" id="loginBtn"><i class="fas fa-sign-in-alt"></i><span>Login</span></button>
+                <button class="register-icon-btn" id="registerBtn"><i class="fas fa-user-plus"></i><span>Register</span></button>
+            </div>
+            <div class="hamburger" id="hamburger" onclick="toggleMobile()"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <!-- secondary navigation -->
+    <div class="secondary-nav">
+        <div class="secondary-nav-container">
+            <ul class="secondary-nav-menu">
+                <li><a href="shop.html"><i class="fas fa-home"></i><span> Shop</span></a></li>
+                <li><a href="page.html"><i class="fas fa-box"></i><span> All Products</span></a></li>
+                <li><a href="Refurbished.html"><i class="fas fa-sync-alt"></i><span> Refurbished</span></a></li>
+                <li><a href="#"><i class="fas fa-calendar-alt"></i><span> Events</span></a></li>
             </ul>
-        </li>
-        <li class="nav-item">
-            <a href="Security and access.html">Security & Access <i class="fas fa-chevron-down"></i></a>
-            <ul class="dropdown">
-                <li><a href="physical-security.html">Physical Security</a></li>
-                <li><a href="it-security.html">IT Security</a></li>
-                <li><a href="identity-access.html">Identity & Access</a></li>
-                <li><a href="networking.html">Monitoring</a></li>
-            </ul>
-        </li>
-        <li class="nav-item"><a href="dealers.html">Dealer</a></li>
-        <li class="nav-item"><a href="contact.html">Contact</a></li>
-    </ul>
-    <div class="nav-actions-right">
-        <button class="search-icon-btn" id="searchIconBtn"><i class="fas fa-search"></i></button>
-        <button class="settings-icon-btn" id="settingsBtn"><i class="fas fa-cog"></i></button>
-        <div class="auth-buttons">
-            <button class="login-icon-btn" id="loginBtn"><i class="fas fa-sign-in-alt"></i><span>Login</span></button>
-            <button class="register-icon-btn" id="registerBtn"><i class="fas fa-user-plus"></i><span>Register</span></button>
-        </div>
-        <div class="hamburger" id="hamburger" onclick="toggleMobile()"><span></span><span></span><span></span></div>
-    </div>
-</nav>
-
- <div class="secondary-nav">
-    <div class="secondary-nav-container">
-        <ul class="secondary-nav-menu">
-            <li><a href="shop.html"><i class="fas fa-home"></i><span> Shop</span></a></li>
-            <li><a href="page.html" id="nav-all"><i class="fas fa-box"></i><span> All Products</span></a></li>
-            <li><a href="Refurbished.html"><i class="fas fa-sync-alt"></i><span> Refurbished</span></a></li>
-            <li><a href="#"><i class="fas fa-calendar-alt"></i><span> Events</span></a></li>
-        </ul>
-        <div class="cart-icon">
-            <a href="Cart.html"><i class="fas fa-shopping-cart"></i> Cart <span class="cart-count-badge" id="cartCount">0</span></a>
+            <div class="cart-icon">
+                <a href="Cart.html"><i class="fas fa-shopping-cart"></i> Cart <span class="cart-count-badge" id="cartCount">0</span></a>
+            </div>
         </div>
     </div>
-</div>
 
-  <div class="mobile-menu" id="mobileMenu">
-    <div class="mobile-nav-item"><div class="mobile-nav-link" onclick="location.href='home.html'">Home</div></div>
-    <div class="mobile-nav-item"><div class="mobile-nav-link" onclick="location.href='about.html'">About Us</div></div>
-    <div class="mobile-nav-item"><div class="mobile-nav-link" onclick="location.href='shop.html'">Shop</div></div>
-    <div class="mobile-nav-item"><div class="mobile-nav-link" onclick="location.href='services.html'">Services</div></div>
-    <div class="mobile-nav-item"><div class="mobile-nav-link" onclick="location.href='Security and access.html'">Security & Access</div></div>
-    <div class="mobile-nav-item"><div class="mobile-nav-link" onclick="location.href='dealers.html'">Dealer</div></div>
-    <div class="mobile-nav-item"><div class="mobile-nav-link" onclick="location.href='contact.html'">Contact</div></div>
-  </div>
-
-  <div class="search-modal" id="searchModal">
-    <div class="search-modal-content">
-      <div class="search-modal-header">
-        <h3><i class="fas fa-search"></i> Search Eswatini Technocrats</h3>
-        <button class="close-modal" id="closeModalBtn"><i class="fas fa-times"></i></button>
-      </div>
-      <div class="search-modal-body">
-        <div class="search-category-row">
-          <select id="categoryFilter" class="category-select">
-            <option value="all">All Categories</option>
-            <option value="services">Services</option>
-            <option value="shop">Shop / Products</option>
-            <option value="events">Events</option>
-            <option value="programs">Programs</option>
-            <option value="pages">Pages</option>
-          </select>
-          <div class="search-input-wrapper">
-            <input type="text" id="searchInputModal" placeholder="Type to search... e.g., laptop, repair, POS..." autocomplete="off">
-            <button id="searchSubmitBtn"><i class="fas fa-arrow-right"></i> Search</button>
-          </div>
-        </div>
-        <div id="suggestionsContainer" class="suggestions-list">
-          <div class="no-results">🔍 Start typing to see matching results...</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="auth-modal" id="loginModal">
-    <div class="auth-modal-content">
-      <div class="auth-modal-header">
-        <h3><i class="fas fa-sign-in-alt"></i> Login to Your Account</h3>
-        <button class="close-auth-modal" onclick="closeLoginModal()"><i class="fas fa-times"></i></button>
-      </div>
-      <div class="auth-modal-body">
-        <form id="loginForm">
-          <div class="form-group">
-            <label><i class="fas fa-envelope"></i> Email Address</label>
-            <input type="email" id="loginEmail" required placeholder="Enter your email">
-          </div>
-          <div class="form-group">
-            <label><i class="fas fa-lock"></i> Password</label>
-            <input type="password" id="loginPassword" required placeholder="Enter your password">
-          </div>
-          <button type="submit" class="auth-submit-btn">Login <i class="fas fa-arrow-right"></i></button>
-        </form>
-        <div class="auth-divider"><span>or</span></div>
-        <p class="auth-switch">Don't have an account? <a href="#" id="switchToRegister">Register here</a></p>
-      </div>
-    </div>
-  </div>
-
-  <div class="auth-modal" id="registerModal">
-    <div class="auth-modal-content">
-      <div class="auth-modal-header">
-        <h3><i class="fas fa-user-plus"></i> Create Your Account</h3>
-        <button class="close-auth-modal" onclick="closeRegisterModal()"><i class="fas fa-times"></i></button>
-      </div>
-      <div class="auth-modal-body">
-        <form id="registerForm">
-          <div class="form-group">
-            <label><i class="fas fa-user"></i> Full Name</label>
-            <input type="text" id="regFullName" required placeholder="Enter your full name">
-          </div>
-          <div class="form-group">
-            <label><i class="fas fa-envelope"></i> Email Address</label>
-            <input type="email" id="regEmail" required placeholder="Enter your email">
-          </div>
-          <div class="form-group">
-            <label><i class="fas fa-lock"></i> Password</label>
-            <input type="password" id="regPassword" required placeholder="Create a password (min 6 characters)">
-          </div>
-          <button type="submit" class="auth-submit-btn">Register <i class="fas fa-paper-plane"></i></button>
-        </form>
-        <div class="auth-divider"><span>or</span></div>
-        <p class="auth-switch">Already have an account? <a href="#" id="switchToLogin">Login here</a></p>
-      </div>
-    </div>
-  </div>
-
-  <div class="settings-modal" id="settingsModal">
-    <div class="settings-modal-content">
-      <div class="auth-modal-header">
-        <h3><i class="fas fa-cog"></i> Settings</h3>
-        <button class="close-auth-modal" onclick="closeSettingsModal()"><i class="fas fa-times"></i></button>
-      </div>
-      <div class="auth-modal-body">
-        <div class="form-group">
-          <label><i class="fas fa-palette"></i> Theme</label>
-          <div style="display:flex; gap:12px; flex-wrap:wrap;">
-            <button type="button" onclick="setTheme('light')" class="auth-submit-btn" style="width:auto;">Light</button>
-            <button type="button" onclick="setTheme('dark')" class="auth-submit-btn" style="width:auto;">Dark</button>
-            <button type="button" onclick="setTheme('system')" class="auth-submit-btn" style="width:auto;">System</button>
-          </div>
-        </div>
-        <div class="auth-divider"><span>Accessibility</span></div>
-        <div class="form-group">
-          <label><i class="fas fa-eye"></i> High Contrast</label>
-          <input type="checkbox" id="highContrastToggle">
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <main class="parts-page">
-    <div class="parts-container">
-      <div class="breadcrumb">
-        <a href="home.html">Home</a> / 
-        <a href="lenovo.html">Lenovo</a> / 
-        <span>Screens</span>
-      </div>
-      <div class="page-header">
-        <h1><i class="fas fa-desktop"></i> Lenovo Screens</h1>
-        <p>Browse premium Lenovo screen replacements and upgrades built to match the look, feel, and compatibility of your laptop.</p>
-      </div>
-
-      <div class="products-grid">
-        <div class="product-card">
-          <img src="https://via.placeholder.com/200x200?text=Lenovo+Screen" alt="Lenovo Screen">
-          <div class="product-info">
-            <div class="product-name">Lenovo IdeaPad 15 15.6" FHD Screen</div>
-            <div class="product-price">E72.99</div>
-            <div class="product-description">15.6" Full HD (1920x1080) IPS display, 60Hz refresh rate, 45% NTSC color gamut, anti-glare coating, compatible with IdeaPad 15-IIL, 15-ITH models.</div>
-            <a href="lenovo-screens-detail.html?product=ideapad-15" class="view-more-btn">View More</a>
-          </div>
-        </div>
-        <div class="product-card">
-          <img src="https://via.placeholder.com/200x200?text=Lenovo+Screen" alt="Lenovo Screen">
-          <div class="product-info">
-            <div class="product-name">Lenovo ThinkPad X1 Carbon 14" UHD Screen</div>
-            <div class="product-price">E87.99</div>
-            <div class="product-description">14" Ultra HD (3840x2400) OLED touchscreen, 60Hz, 100% DCI-P3 color gamut, Dolby Vision support, HDR certified, compatible with Gen 9-11 models.</div>
-            <a href="lenovo-screens-detail.html?product=thinkpad-x1" class="view-more-btn">View More</a>
-          </div>
-        </div>
-        <div class="product-card">
-          <img src="https://via.placeholder.com/200x200?text=Lenovo+Screen" alt="Lenovo Screen">
-          <div class="product-info">
-            <div class="product-name">Lenovo IdeaPad 3 15.6" FHD Screen</div>
-            <div class="product-price">E82.99</div>
-            <div class="product-description">15.6" Full HD IPS display, 60Hz refresh, anti-glare LED backlit, compatible with IdeaPad 3 15-IML, 15-IAU series.</div>
-            <a href="lenovo-screens-detail.html?product=ideapad-3" class="view-more-btn">View More</a>
-          </div>
-        </div>
-        <div class="product-card">
-          <img src="https://via.placeholder.com/200x200?text=Lenovo+Screen" alt="Lenovo Screen">
-          <div class="product-info">
-            <div class="product-name">Lenovo ThinkPad T14 14" FHD Screen</div>
-            <div class="product-price">E92.99</div>
-            <div class="product-description">14" Full HD (1920x1080) IPS touchscreen, 60Hz, 72% NTSC, anti-glare coating, ThinkShutter privacy screen, compatible with T14 models.</div>
-            <a href="lenovo-screens-detail.html?product=thinkpad-t14" class="view-more-btn">View More</a>
-          </div>
-        </div>
-        <div class="product-card">
-          <img src="https://via.placeholder.com/200x200?text=Lenovo+Screen" alt="Lenovo Screen">
-          <div class="product-info">
-            <div class="product-name">Lenovo Yoga 9i 13.3" 4K Screen</div>
-            <div class="product-price">E109.99</div>
-            <div class="product-description">13.3" 4K UHD touchscreen, 100% sRGB, ultra-narrow bezels, Gorilla Glass, compatible with Yoga 9i laptops.</div>
-            <a href="lenovo-screens-detail.html?product=yoga-9i" class="view-more-btn">View More</a>
-          </div>
-        </div>
-        <div class="product-card">
-          <img src="https://via.placeholder.com/200x200?text=Lenovo+Screen" alt="Lenovo Screen">
-          <div class="product-info">
-            <div class="product-name">Lenovo Legion 5 15.6" 144Hz Screen</div>
-            <div class="product-price">E129.99</div>
-            <div class="product-description">15.6" Full HD 144Hz IPS display, anti-glare, FreeSync, compatible with Legion 5 Gen 6-7 gaming laptops.</div>
-            <a href="lenovo-screens-detail.html?product=legion-5" class="view-more-btn">View More</a>
-          </div>
-        </div>
-        <div class="product-card">
-          <img src="https://via.placeholder.com/200x200?text=Lenovo+Screen" alt="Lenovo Screen">
-          <div class="product-info">
-            <div class="product-name">Lenovo IdeaPad Gaming 15.6" 120Hz Screen</div>
-            <div class="product-price">E95.99</div>
-            <div class="product-description">15.6" Full HD 120Hz IPS display, FreeSync support, 72% NTSC, compatible with IdeaPad Gaming 3 laptops.</div>
-            <a href="lenovo-screens-detail.html?product=ideapad-gaming" class="view-more-btn">View More</a>
-          </div>
-        </div>
-        <div class="product-card">
-          <img src="https://via.placeholder.com/200x200?text=Lenovo+Screen" alt="Lenovo Screen">
-          <div class="product-info">
-            <div class="product-name">Lenovo ThinkPad P16 16" WQUXGA Screen</div>
-            <div class="product-price">E149.99</div>
-            <div class="product-description">16" WQUXGA IPS display, 100% Adobe RGB, X-Rite certified, compatible with ThinkPad P16 Gen 1-2 workstations.</div>
-            <a href="lenovo-screens-detail.html?product=thinkpad-p16" class="view-more-btn">View More</a>
-          </div>
-        </div>
-        <div class="product-card">
-          <img src="https://via.placeholder.com/200x200?text=Lenovo+Screen" alt="Lenovo Screen">
-          <div class="product-info">
-            <div class="product-name">Lenovo Yoga Slim 13.3" FHD Screen</div>
-            <div class="product-price">E89.99</div>
-            <div class="product-description">13.3" Full HD touchscreen, 45% NTSC, blue-light filtering, compatible with Yoga Slim 7i Ultrabooks.</div>
-            <a href="lenovo-screens-detail.html?product=yoga-slim" class="view-more-btn">View More</a>
-          </div>
-        </div>
-        <div class="product-card">
-          <img src="https://via.placeholder.com/200x200?text=Lenovo+Screen" alt="Lenovo Screen">
-          <div class="product-info">
-            <div class="product-name">Lenovo ThinkPad E15 15.6" FHD Screen</div>
-            <div class="product-price">E79.99</div>
-            <div class="product-description">15.6" Full HD IPS display, anti-glare TN coating, compatible with ThinkPad E15 Gen 2-4 models.</div>
-            <a href="lenovo-screens-detail.html?product=thinkpad-e15" class="view-more-btn">View More</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </main>
-
-  <!-- ===== FOOTER ===== -->
-<footer id="contact">
-  <div class="container">
-    <div class="footer-grid">
-      <!-- Brand -->
-      <div class="footer-brand">
-        <div class="logo" style="margin-bottom:16px;">
-          <div class="logo-icon"><img src="logo.png"></div>
-          <span class="logo-text">Eswatini<br><span>Technocrats Center</span></span>
-        </div>
-        <p>Empowering the Kingdom of Eswatini through world-class technology education, innovation, and professional digital services since 2015.</p>
-        <div class="social-links">
-          <a href="https://www.facebook.com/mbusoluju2" class="social-link green"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" class="social-link blue"><i class="fab fa-twitter"></i></a>
-          <a href="#" class="social-link green"><i class="fab fa-whatsapp"></i></a>
-          <a href="#" class="social-link blue"><i class="fab fa-linkedin-in"></i></a>
-          <a href="#" class="social-link green"><i class="fab fa-youtube"></i></a>
-          <a href="#" class="social-link blue"><i class="fab fa-instagram"></i></a>
-        </div>
-      </div>
-
-      <!-- Quick Links -->
-      <div class="footer-col">
-        <h4>Quick Links</h4>
-        <ul>
-          <li><a href="home.html"><i class="fas fa-angle-right"></i> Home</a></li>
-          <li><a href="about.html"><i class="fas fa-angle-right"></i> About Us</a></li>
-          <li><a href="shop.html"><i class="fas fa-angle-right"></i> Shop</a></li>
-          <li><a href="#services"><i class="fas fa-angle-right"></i> Services</a></li>
-          <li><a href="#events"><i class="fas fa-angle-right"></i> Events</a></li>
-          <li><a href="#contact"><i class="fas fa-angle-right"></i> Contact</a></li>
-        </ul>
-      </div>
-
-      <!-- shop -->
-      <div class="footer-col">
-        <h4>shop</h4>
-        <ul>
-          
-        <li><a href="#"><i class="fas fa-angle-right"></i> Computer & laptops</a></li>
-        <li><a href="#"><i class="fas fa-angle-right"></i> Point of sale set</a></li>
-        <li><a href="#"><i class="fas fa-angle-right"></i> Accessories</a></li>
-        <li><a href="#"><i class="fas fa-angle-right"></i>Laptop housing </a></li>
-        <li><a href="#"><i class="fas fa-angle-right"></i> Computer&Laptop small parts</a></li>
-
-        </ul>
-      </div>
-
-      <!-- Services -->
-      <div class="footer-col">
-        <h4>Services</h4>
-        <ul>
-          <li><a href="laptop-repairs.html"><i class="fas fa-angle-right"></i> laptop&computer repairs</a></li>
-          <li><a href="pos.html"><i class="fas fa-angle-right"></i> Point of Sale</a></li>
-          <li><a href="software-installations.html"><i class="fas fa-angle-right"></i> Softwares Installations</a></li>
-          <li><a href="networking.html"><i class="fas fa-angle-right"></i> Networking</a></li>
-          <li><a href="tech-support.html"><i class="fas fa-angle-right"></i> Tech Support</a></li>
-          
-        </ul>
-      </div>
-
-      <!-- Contact -->
-      <div class="footer-col">
-        <h4>Contact Us</h4>
-        <div class="contact-item">
-          <i class="fas fa-map-marker-alt"></i>
-          <span>Office No.403,SNAT SACCO House,manchishane street,Manzini,Eswatini</span>
-        </div>
-        <div class="contact-item">
-          <i class="fas fa-phone"></i>
-          <span>+268 76601001</span>
-        </div>
-        <div class="contact-item">
-          <i class="fas fa-envelope"></i>
-          <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f990979f96b99c8a8e988d9097908d9c9297969a8b988d8ad7989ad78a83">[email&#160;protected]</a></span>
-        </div>
-        <div class="contact-item">
-          <i class="fas fa-clock"></i>
-          <span>Mon–Fri: 8:00 AM – 5:00 PM<br>Sat: 9:00 AM – 1:00 PM</span>
-        </div>
-      </div>
+    <!-- mobile menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-nav-item"><div class="mobile-nav-link" onclick="location.href='home.html'">Home</div></div>
+        <div class="mobile-nav-item"><div class="mobile-nav-link" onclick="location.href='about.html'">About Us</div></div>
+        <div class="mobile-nav-item"><div class="mobile-nav-link" onclick="location.href='shop.html'">Shop</div></div>
+        <div class="mobile-nav-item"><div class="mobile-nav-link" onclick="location.href='services.html'">Services</div></div>
+        <div class="mobile-nav-item"><div class="mobile-nav-link" onclick="location.href='Security and access.html'">Security & Access</div></div>
+        <div class="mobile-nav-item"><div class="mobile-nav-link" onclick="location.href='dealers.html'">Dealer</div></div>
+        <div class="mobile-nav-item"><div class="mobile-nav-link" onclick="location.href='contact.html'">Contact</div></div>
     </div>
 
-    <!-- Footer Bottom -->
-    <div class="footer-bottom">
-      <p> Copyright© 2026 <span>Eswatini Technocrats Center</span>. All Rights Reserved. Built with in Eswatini.</p>
-      <div class="footer-bottom-links">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Use</a>
-        <a href="#"></a>
-      </div>
-    
-  </div>
-</footer>
+    <!--  Modals (search, login, register, settings) simplified but functional -->
+    <div class="search-modal" id="searchModal"><div class="search-modal-content"><div class="auth-modal-header"><h3><i class="fas fa-search"></i> Search</h3><button class="close-modal" onclick="closeModal('searchModal')"><i class="fas fa-times"></i></button></div><input type="text" id="globalSearchInput" placeholder="Search..."><button onclick="alert('demo search')">Go</button></div></div>
+    <div class="auth-modal" id="loginModal"><div class="auth-modal-content"><div class="auth-modal-header"><h3>Login</h3><button onclick="closeModal('loginModal')"><i class="fas fa-times"></i></button></div><form><div class="form-group"><input type="email" placeholder="Email"></div><div class="form-group"><input type="password" placeholder="Password"></div><button class="auth-submit-btn">Login</button></form></div></div>
+    <div class="auth-modal" id="registerModal"><div class="auth-modal-content"><div class="auth-modal-header"><h3>Register</h3><button onclick="closeModal('registerModal')"><i class="fas fa-times"></i></button></div><form><div class="form-group"><input placeholder="Full Name"></div><div class="form-group"><input type="email" placeholder="Email"></div><div class="form-group"><input type="password" placeholder="Password"></div><button class="auth-submit-btn">Register</button></form></div></div>
+    <div class="settings-modal" id="settingsModal"><div class="settings-modal-content"><div class="auth-modal-header"><h3>Settings</h3><button onclick="closeModal('settingsModal')"><i class="fas fa-times"></i></button></div><p>Theme options placeholder</p></div></div>
 
-  <script src="search.js"></script>
-  <script src="script.js"></script>
+    <!-- MAIN SCREENS PAGE (exactly same layout as batteries) -->
+    <div class="parts-page">
+        <div class="parts-container">
+            <section class="page-header">
+                <h1><i class="fas fa-desktop"></i> Lenovo Screens</h1>
+                <p>Browse premium Lenovo screen replacements and upgrades built to match the look, feel, and compatibility of your laptop. Genuine quality, fast delivery, trusted warranty.</p>
+            </section>
+
+            <!-- Search bar + live suggestions identical to batteries -->
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search for a Lenovo screen model..." autocomplete="off">
+                <button onclick="searchProduct()">Search</button>
+            </div>
+
+            <div class="content-search-suggestions" id="contentSuggestions">
+                <div class="suggestion-empty">🔍 Start typing to see Lenovo screen recommendations and quick results.</div>
+            </div>
+
+            <!-- Product grid matching batteries grid style -->
+            <div class="products-grid" id="productsGrid">
+                <!-- Product cards will be populated via JS but also static fallback. We'll inject dynamic based on product dataset -->
+            </div>
+
+            <div class="page-actions">
+                <a href="#" onclick="history.back(); return false;">← Previous</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER (matching batteries) -->
+    <footer id="contact">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="logo" style="margin-bottom:16px;">
+                    <div class="logo-icon"><img src="logo.png"></div>
+                    <span class="logo-text">Eswatini<br><span>Technocrats Center</span></span>
+                </div>
+                <p>Empowering the Kingdom of Eswatini through world-class technology education, innovation, and professional digital services since 2015.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="home.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="shop.html">Shop</a></li></ul></div>
+            <div class="footer-col"><h4>Shop</h4><ul><li><a href="#">Laptops</a></li><li><a href="#">Accessories</a></li><li><a href="#">Parts</a></li></ul></div>
+            <div class="footer-col"><h4>Contact Us</h4><div class="contact-item"><i class="fas fa-map-marker-alt"></i><span>Manzini, Eswatini</span></div><div class="contact-item"><i class="fas fa-phone"></i><span>+268 76601001</span></div></div>
+        </div>
+        <div class="footer-bottom"><p>© 2026 Eswatini Technocrats Center. All Rights Reserved.</p></div>
+    </footer>
+
+<script>
+        // ----- Screen Products Dataset (expanded, same structure as batteries) -----
+        const screenProducts = [
+            { title: "Lenovo IdeaPad 15 15.6\" FHD Screen", keywords: ["ideapad", "15.6", "fhd", "lenovo screen"], price: "E72.99", url: "lenovo-screens-detail.html?product=ideapad-15", description: "15.6\" Full HD IPS display, anti-glare" },
+            { title: "Lenovo ThinkPad X1 Carbon 14\" UHD Screen", keywords: ["thinkpad", "x1 carbon", "14\"", "uhd", "oled"], price: "E87.99", url: "lenovo-screens-detail.html?product=thinkpad-x1", description: "14\" Ultra HD OLED touchscreen, HDR" },
+            { title: "Lenovo IdeaPad 3 15.6\" FHD Screen", keywords: ["ideapad 3", "fhd", "15.6\"", "lenovo"], price: "E82.99", url: "lenovo-screens-detail.html?product=ideapad-3", description: "15.6\" IPS LED backlit" },
+            { title: "Lenovo ThinkPad T14 14\" FHD Screen", keywords: ["thinkpad t14", "fhd", "touchscreen"], price: "E92.99", url: "lenovo-screens-detail.html?product=thinkpad-t14", description: "14\" IPS touchscreen, ThinkShutter" },
+            { title: "Lenovo Yoga 9i 13.3\" 4K Screen", keywords: ["yoga 9i", "4k", "13.3\"", "touch"], price: "E109.99", url: "lenovo-screens-detail.html?product=yoga-9i", description: "13.3\" 4K UHD, Gorilla Glass" },
+            { title: "Lenovo Legion 5 15.6\" 144Hz Screen", keywords: ["legion", "144hz", "gaming", "15.6\""], price: "E129.99", url: "lenovo-screens-detail.html?product=legion-5", description: "144Hz IPS, FreeSync" },
+            { title: "Lenovo IdeaPad Gaming 15.6\" 120Hz Screen", keywords: ["ideapad gaming", "120hz"], price: "E95.99", url: "lenovo-screens-detail.html?product=ideapad-gaming", description: "120Hz IPS display" },
+            { title: "Lenovo ThinkPad P16 16\" WQUXGA Screen", keywords: ["thinkpad p16", "wquxga", "16\""], price: "E149.99", url: "lenovo-screens-detail.html?product=thinkpad-p16", description: "16\" 4K+ workstation display" },
+            { title: "Lenovo Yoga Slim 13.3\" FHD Screen", keywords: ["yoga slim", "fhd", "13.3"], price: "E89.99", url: "lenovo-screens-detail.html?product=yoga-slim", description: "Ultrabook slim panel" },
+            { title: "Lenovo ThinkPad E15 15.6\" FHD Screen", keywords: ["thinkpad e15", "e15", "fhd"], price: "E79.99", url: "lenovo-screens-detail.html?product=thinkpad-e15", description: "anti-glare TN coating" }
+        ];
+
+        const searchInput = document.getElementById('searchInput');
+        const suggestionsDiv = document.getElementById('contentSuggestions');
+        const productsGrid = document.getElementById('productsGrid');
+
+        // Build product card HTML (same style as batteries)
+        function buildProductCard(product) {
+            return `
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/400x300?text=Lenovo+Screen" alt="${product.title}">
+                    <h3 class="product-name">${product.title}</h3>
+                    <div class="product-description">${product.description || "Genuine replacement screen for Lenovo laptops"}</div>
+                    <div class="product-price">${product.price}</div>
+                    <a href="${product.url}" class="view-more">View More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            `;
+        }
+
+        // Render all products by default
+        function renderAllProducts() {
+            if (productsGrid) {
+                productsGrid.innerHTML = screenProducts.map(p => buildProductCard(p)).join('');
+            }
+        }
+
+        // Live suggestion builder (exactly like batteries)
+        function buildSuggestionItem(product) {
+            return `
+                <button type="button" class="suggestion-item" onclick="openScreenUrl('${product.url}')">
+                    <div>
+                        <strong>${product.title}</strong>
+                        <div class="suggestion-meta">${product.keywords.slice(0,3).join(', ')}</div>
+                    </div>
+                    <div class="suggestion-price">${product.price}</div>
+                </button>
+            `;
+        }
+
+        function updateContentSuggestions() {
+            if (!suggestionsDiv || !searchInput) return;
+            const query = searchInput.value.trim().toLowerCase();
+            if (!query) {
+                suggestionsDiv.innerHTML = `<div class="suggestion-empty">🔍 Start typing to see Lenovo screen recommendations and quick results.</div>`;
+                renderAllProducts();
+                return;
+            }
+            const matches = screenProducts.filter(product => {
+                const titleMatch = product.title.toLowerCase().includes(query);
+                const keywordMatch = product.keywords.some(k => k.toLowerCase().includes(query));
+                return titleMatch || keywordMatch;
+            });
+            if (matches.length === 0) {
+                suggestionsDiv.innerHTML = `<div class="suggestion-empty">✨ No Lenovo screen matches for "${searchInput.value}". Try another model or keyword.</div>`;
+                renderAllProducts();
+                return;
+            }
+            suggestionsDiv.innerHTML = matches.map(m => buildSuggestionItem(m)).join('');
+            // Also filter the main grid to show only matched items
+            if (productsGrid) {
+                productsGrid.innerHTML = matches.map(p => buildProductCard(p)).join('');
+            }
+        }
+
+        function searchProduct() {
+            if (!searchInput) return;
+            const query = searchInput.value.trim().toLowerCase();
+            if (!query) {
+                updateContentSuggestions();
+                return;
+            }
+            const match = screenProducts.find(product => {
+                const titleMatch = product.title.toLowerCase().includes(query);
+                const keywordMatch = product.keywords.some(k => k.toLowerCase().includes(query));
+                return titleMatch || keywordMatch;
+            });
+            if (match) {
+                openScreenUrl(match.url);
+            } else {
+                updateContentSuggestions();
+            }
+        }
+
+        function openScreenUrl(url) {
+            if (url && url !== '#') window.location.href = url;
+        }
+
+        // Event listeners
+        if (searchInput) {
+            searchInput.addEventListener('input', updateContentSuggestions);
+            searchInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    searchProduct();
+                }
+            });
+        }
+
+        // initial load: show all products, suggestions default state
+        document.addEventListener('DOMContentLoaded', () => {
+            renderAllProducts();
+            if (suggestionsDiv && (!searchInput || searchInput.value.trim() === "")) {
+                suggestionsDiv.innerHTML = `<div class="suggestion-empty">🔍 Start typing to see Lenovo screen recommendations and quick results.</div>`;
+            }
+        });
+
+        // Helper functions for nav/modals (matching original)
+        window.toggleMobile = function() {
+            const menu = document.getElementById('mobileMenu');
+            if (menu) menu.classList.toggle('open');
+        };
+        function closeModal(id) {
+            document.getElementById(id)?.classList.remove('active');
+        }
+        document.getElementById('searchIconBtn')?.addEventListener('click',()=>document.getElementById('searchModal')?.classList.add('active'));
+        document.getElementById('settingsBtn')?.addEventListener('click',()=>document.getElementById('settingsModal')?.classList.add('active'));
+        document.getElementById('loginBtn')?.addEventListener('click',()=>document.getElementById('loginModal')?.classList.add('active'));
+        document.getElementById('registerBtn')?.addEventListener('click',()=>document.getElementById('registerModal')?.classList.add('active'));
+        document.querySelectorAll('.close-modal, .close-auth-modal').forEach(btn=>{ btn?.addEventListener('click',function(){ document.querySelectorAll('.search-modal, .auth-modal, .settings-modal').forEach(m=>m.classList.remove('active')); }); });
+        
+// cart placeholder count
+        let cartCount = 0;
+        const cartSpan = document.getElementById('cartCount');
+        if(cartSpan) cartSpan.innerText = cartCount;
+    </script>
 </body>
 </html>
 

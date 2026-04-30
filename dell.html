@@ -630,6 +630,43 @@
                 font-size: 1.8rem;
             }
         }
+
+        .view-more {
+            display: inline-block;
+            padding: 8px 16px;
+            background: var(--green, #00e676);
+            color: #000;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .view-more:hover {
+            background: var(--green-dark, #00c853);
+        }
+        .page-actions {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 60px;
+        }
+
+        .page-actions a {
+            padding: 14px 28px;
+            background: #00e676;
+            color: #000;
+            border-radius: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .page-actions a:hover {
+            transform: translateY(-2px);
+            background: #00c851;
+        }
+
     </style>
 </head>
 <body>
@@ -940,6 +977,7 @@
                 <div class="category-card-content">
                     <h3>Batteries</h3>
                     <p>High-capacity batteries for Dell laptops</p>
+                    <span class="view-more">View More →</span>
                 </div>
             </a>
             <!-- Screens -->
@@ -948,6 +986,7 @@
                 <div class="category-card-content">
                     <h3>Screens</h3>
                     <p>Replacement LCD screens and displays</p>
+                    <span class="view-more">View More →</span>
                 </div>
             </a>
             <!-- Chargers -->
@@ -956,6 +995,7 @@
                 <div class="category-card-content">
                     <h3>Chargers</h3>
                     <p>Original and compatible power adapters</p>
+                    <span class="view-more">View More →</span>
                 </div>
             </a>
             <!-- Keyboards -->
@@ -964,6 +1004,7 @@
                 <div class="category-card-content">
                     <h3>Keyboards</h3>
                     <p>Replacement keyboards for all Dell models</p>
+                    <span class="view-more">View More →</span>
                 </div>
             </a>
             <!-- Motherboards -->
@@ -972,6 +1013,7 @@
                 <div class="category-card-content">
                     <h3>Motherboards</h3>
                     <p>System boards and mainboards</p>
+                    <span class="view-more">View More →</span>
                 </div>
             </a>
             <!-- RAM -->
@@ -980,6 +1022,7 @@
                 <div class="category-card-content">
                     <h3>RAM</h3>
                     <p>Memory modules and upgrades</p>
+                    <span class="view-more">View More →</span>
                 </div>
             </a>
             <!-- Hard Drives -->
@@ -988,6 +1031,7 @@
                 <div class="category-card-content">
                     <h3>Hard Drives</h3>
                     <p>SSD and HDD storage solutions</p>
+                    <span class="view-more">View More →</span>
                 </div>
             </a>
             <!-- Touchpads -->
@@ -996,6 +1040,7 @@
                 <div class="category-card-content">
                     <h3>Touchpads</h3>
                     <p>Trackpad and touchpad replacements</p>
+                    <span class="view-more">View More →</span>
                 </div>
             </a>
             <!-- Speakers -->
@@ -1004,6 +1049,7 @@
                 <div class="category-card-content">
                     <h3>Speakers</h3>
                     <p>Audio speakers and sound modules</p>
+                    <span class="view-more">View More →</span>
                 </div>
             </a>
             <!-- Cameras -->
@@ -1012,6 +1058,7 @@
                 <div class="category-card-content">
                     <h3>Cameras</h3>
                     <p>Webcams and camera modules</p>
+                    <span class="view-more">View More →</span>
                 </div>
             </a>
             <!-- Hinges -->
@@ -1020,6 +1067,7 @@
                 <div class="category-card-content">
                     <h3>Hinges</h3>
                     <p>Screen hinges and display hinges</p>
+                    <span class="view-more">View More →</span>
                 </div>
             </a>
             <!-- USB Boards -->
@@ -1028,8 +1076,12 @@
                 <div class="category-card-content">
                     <h3>USB Boards</h3>
                     <p>USB ports and connectivity boards</p>
+                    <span class="view-more">View More →</span>
                 </div>
             </a>
+        </div>
+        <div class="page-actions">
+            <a href="#" onclick="history.back(); return false;">Previous</a>
         </div>
     </div>
 </div>

@@ -416,6 +416,56 @@
       font-size: 14px;
       margin-bottom: 18px;
     }
+    /* Search Container */
+        .search-container {
+            background: var(--bg-secondary, #f5f5f5);
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            text-align: center;
+            border: 1px solid var(--border-color, #e0e0e0);
+        }
+        .search-container h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--text-primary, #1a1a1a);
+        }
+        .search-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .search-input {
+            flex: 1;
+            padding: 14px 18px;
+            border: 2px solid var(--border-color, #e0e0e0);
+            border-radius: 10px;
+            font-size: 16px;
+            background: var(--bg-primary, #ffffff);
+            color: var(--text-primary, #333);
+        }
+        .search-input:focus {
+            outline: none;
+            border-color: var(--green, #00e676);
+        }
+        .search-btn {
+            padding: 14px 28px;
+            background: var(--green, #00e676);
+            color: #000;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .search-btn:hover {
+            background: var(--green-dark, #00c853);
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 <body>
@@ -488,8 +538,8 @@
         <div class="mobile-nav-item"><div class="mobile-nav-link" onclick="location.href='dealers.html'">Dealer</div></div>
         <div class="mobile-nav-item"><div class="mobile-nav-link" onclick="location.href='contact.html'">Contact</div></div>
     </div>
-
-    <!-- ===== SEARCH MODAL ===== -->
+    
+     <!-- ===== SEARCH MODAL ===== -->
 <div class="search-modal" id="searchModal">
     <div class="search-modal-content">
         <div class="search-modal-header">
@@ -507,7 +557,7 @@
                     <option value="pages">Pages</option>
                 </select>
                 <div class="search-input-wrapper">
-                    <input type="text" id="searchInputModal" placeholder="Type to search... e.g., laptop, repair, POS..." autocomplete="off">
+                    <input type="text" id="search-input" placeholder="Type to search... e.g., laptop, repair, POS..." autocomplete="off">
                     <button id="searchSubmitBtn"><i class="fas fa-arrow-right"></i> Search</button>
                 </div>
             </div>
@@ -517,6 +567,8 @@
         </div>
     </div>
 </div>
+
+   
 
 <!-- ===== LOGIN MODAL ===== -->
 <div class="auth-modal" id="loginModal">
@@ -690,10 +742,16 @@
             </section>
 
             <!-- Search bar + live suggestions identical to batteries -->
-            <div class="search-bar">
-                <input type="text" id="searchInputModal" placeholder="Search for a Lenovo screen model..." autocomplete="off">
-                <button onclick="searchProduct()">Search</button>
+            <div class="search-container">
+            <h2>Search Lenovo Screens</h2>
+            <div class="search-box">
+                <input type="text" class="search-input" id="searchInput" placeholder="Enter model number or part number...">
+                <button class="search-btn" id="searchBtn"><i class="fas fa-search"></i> Search</button>
             </div>
+            <div id="contentSuggestions" class="content-search-suggestions" style="display: none;">
+                <!-- Suggestions will be populated here -->
+            </div>
+        </div>
 
             
 
@@ -818,8 +876,8 @@
             { title: "Lenovo ThinkPad E15 15.6\" FHD Screen", keywords: ["thinkpad e15", "e15", "fhd"], price: "E79.99", url: "lenovo-screens-detail.html?product=thinkpad-e15", description: "anti-glare TN coating" }
         ];
 
-        const searchInput = document.getElementById('searchInput');
-        const suggestionsDiv = document.getElementById('contentSuggestions');
+        const contentSearchInput = document.getElementById('searchInput');
+        const contentSuggestions = document.getElementById('contentSuggestions');
         const productsGrid = document.getElementById('productsGrid');
 
         // Build product card HTML (same style as batteries)
@@ -856,10 +914,18 @@
         }
 
         function updateContentSuggestions() {
-            if (!suggestionsDiv || !searchInput) return;
-            const query = searchInput.value.trim().toLowerCase();
+            if (!contentSuggestions || !contentSearchInput) return;
+            const query = contentSearchInput.value.trim().toLowerCase();
+            
+            // Show/hide suggestions container based on input
+            if (query) {
+                contentSuggestions.style.display = 'block';
+            } else {
+                contentSuggestions.style.display = 'none';
+            }
+            
             if (!query) {
-                suggestionsDiv.innerHTML = `<div class="suggestion-empty">🔍 Start typing to see Lenovo screen recommendations and quick results.</div>`;
+                contentSuggestions.innerHTML = `<div class="suggestion-empty">🔍 Start typing to see Lenovo screen recommendations and quick results.</div>`;
                 renderAllProducts();
                 return;
             }
@@ -869,11 +935,11 @@
                 return titleMatch || keywordMatch;
             });
             if (matches.length === 0) {
-                suggestionsDiv.innerHTML = `<div class="suggestion-empty">✨ No Lenovo screen matches for "${searchInput.value}". Try another model or keyword.</div>`;
+                contentSuggestions.innerHTML = `<div class="suggestion-empty">✨ No Lenovo screen matches for "${contentSearchInput.value}". Try another model or keyword.</div>`;
                 renderAllProducts();
                 return;
             }
-            suggestionsDiv.innerHTML = matches.map(m => buildSuggestionItem(m)).join('');
+            contentSuggestions.innerHTML = matches.map(m => buildSuggestionItem(m)).join('');
             // Also filter the main grid to show only matched items
             if (productsGrid) {
                 productsGrid.innerHTML = matches.map(p => buildProductCard(p)).join('');
@@ -881,8 +947,8 @@
         }
 
         function searchProduct() {
-            if (!searchInput) return;
-            const query = searchInput.value.trim().toLowerCase();
+            if (!contentSearchInput) return;
+            const query = contentSearchInput.value.trim().toLowerCase();
             if (!query) {
                 updateContentSuggestions();
                 return;
@@ -904,21 +970,27 @@
         }
 
         // Event listeners
-        if (searchInput) {
-            searchInput.addEventListener('input', updateContentSuggestions);
-            searchInput.addEventListener('keydown', (e) => {
+        if (contentSearchInput) {
+            contentSearchInput.addEventListener('input', updateContentSuggestions);
+            contentSearchInput.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter') {
                     e.preventDefault();
                     searchProduct();
                 }
             });
         }
+        
+        // Search button click handler
+        const searchBtn = document.getElementById('searchBtn');
+        if (searchBtn) {
+            searchBtn.addEventListener('click', searchProduct);
+        }
 
         // initial load: show all products, suggestions default state
         document.addEventListener('DOMContentLoaded', () => {
             renderAllProducts();
-            if (suggestionsDiv && (!searchInput || searchInput.value.trim() === "")) {
-                suggestionsDiv.innerHTML = `<div class="suggestion-empty">🔍 Start typing to see Lenovo screen recommendations and quick results.</div>`;
+            if (contentSuggestions && (!contentSearchInput || contentSearchInput.value.trim() === "")) {
+                contentSuggestions.innerHTML = `<div class="suggestion-empty">🔍 Start typing to see Lenovo screen recommendations and quick results.</div>`;
             }
         });
 

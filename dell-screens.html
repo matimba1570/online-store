@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dell Laptop Screens - Eswatini Technocrats Center</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+/* Additional styles for Dell Screens page */
+.batteries-page {
+padding-top: 120px;
+min-height: 100vh;
+background: #ffffff;
+}
+.batteries-container {
+max-width: 1200px;
+margin: 0 auto;
+padding: 0 40px;
+}
+.page-header {
+text-align: center;
+margin-bottom: 30px;
+}
+.page-header h1 {
+font-size: 48px;
+color: #1a1a1a;
+margin-bottom: 15px;
+font-family: 'Orbitron', sans-serif;
+}
+.page-header h1 i {
+color: var(--green, #00e676);
+margin-right: 15px;
+}
+.page-header p {
+font-size: 18px;
+color: #666;
+max-width: 700px;
+margin: 0 auto;
+}
+/* Search Container */
+.search-container {
+background: var(--bg-secondary, #f5f5f5);
+padding: 30px;
+border-radius: 20px;
+margin-bottom: 40px;
+text-align: center;
+border: 1px solid var(--border-color, #e0e0e0);
+}
+.search-container h2 {
+font-size: 24px;
+margin-bottom: 20px;
+color: var(--text-primary, #1a1a1a);
+}
+.search-box {
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 15px;
+max-width: 600px;
+margin: 0 auto;
+}
+.search-input {
+flex: 1;
+padding: 14px 18px;
+border: 2px solid var(--border-color, #e0e0e0);
+border-radius: 10px;
+font-size: 16px;
+background: var(--bg-primary, #ffffff);
+color: var(--text-primary, #333);
+}
+.search-input:focus {
+outline: none;
+border-color: var(--green, #00e676);
+}
+.search-btn {
+padding: 14px 28px;
+background: var(--green, #00e676);
+color: #000;
+border: none;
+border-radius: 10px;
+cursor: pointer;
+font-size: 16px;
+font-weight: 600;
+transition: all 0.3s;
+}
+.search-btn:hover {
+background: var(--green-dark, #00c853);
+transform: translateY(-2px);
+}
+/* Products Grid */
+.battery-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+gap: 30px;
+margin-bottom: 50px;
+}
+.battery-card {
+background: var(--bg-primary, #ffffff);
+border-radius: 20px;
+overflow: hidden;
+box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+transition: all 0.3s ease;
+border: 1px solid var(--border-color, #e0e0e0);
+}
+.battery-card:hover {
+transform: translateY(-5px);
+box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+border-color: var(--green, #00e676);
+}
+.battery-card img {
+width: 100%;
+height: 200px;
+object-fit: cover;
+}
+.battery-info {
+padding: 20px;
+}
+.battery-info h3 {
+font-size: 18px;
+color: var(--text-primary, #1a1a1a);
+margin-bottom: 8px;
+font-family: 'Rajdhani', sans-serif;
+}
+.battery-info p {
+font-size: 14px;
+color: var(--text-secondary, #666);
+margin-bottom: 12px;
+line-height: 1.5;
+}
+.compatibility {
+background: var(--bg-secondary, #f5f5f5);
+padding: 8px 12px;
+border-radius: 8px;
+font-size: 12px;
+color: var(--text-secondary, #666);
+margin-bottom: 12px;
+}
+.price {
+font-size: 24px;
+font-weight: bold;
+color: var(--green, #00e676);
+margin-bottom: 12px;
+}
+.specifications {
+margin-bottom: 15px;
+}
+.specifications ul {
+list-style: none;
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 6px;
+}
+.specifications li {
+padding: 4px 0;
+font-size: 12px;
+color: var(--text-secondary, #666);
+display: flex;
+align-items: center;
+gap: 6px;
+}
+.specifications li i {
+color: var(--green, #00e676);
+font-size: 10px;
+}
+.btn-view-more {
+display: block;
+width: 100%;
+padding: 12px;
+background: var(--green, #00e676);
+color: #000;
+text-align: center;
+text-decoration: none;
+border-radius: 8px;
+font-weight: 600;
+transition: all 0.3s;
+border: none;
+cursor: pointer;
+}
+.btn-view-more:hover {
+background: var(--green-dark, #00c853);
+transform: translateY(-2px);
+}
+.no-results {
+text-align: center;
+padding: 60px;
+background: var(--bg-secondary, #f5f5f5);
+border-radius: 20px;
+display: none;
+color: var(--text-secondary, #666);
+}
+.back-link {
+display: inline-block;
+margin-bottom: 20px;
+color: var(--green, #00e676);
+text-decoration: none;
+font-weight: 600;
+transition: all 0.3s;
+}
+.back-link:hover {
+transform: translateX(-5px);
+}
+.quantity-selector {
+margin: 12px 0;
+display: flex;
+align-items: center;
+gap: 12px;
+}
+.quantity-selector label {
+font-size: 13px;
+font-weight: 600;
+color: #333;
+}
+.quantity-selector input {
+width: 60px;
+padding: 6px;
+border: 1px solid #ddd;
+border-radius: 6px;
+text-align: center;
+}
+.shipping-info {
+margin: 12px 0;
+padding: 10px 0;
+border-top: 1px solid #eee;
+border-bottom: 1px solid #eee;
+}
+.shipping-info p {
+font-size: 11px;
+margin: 5px 0;
+color: #777;
+}
+.rating {
+margin-top: 10px;
+display: flex;
+align-items: center;
+gap: 8px;
+}
+.stars {
+color: #ffc107;
+font-size: 12px;
+}
+.rating span:last-child {
+font-size: 12px;
+color: #888;
+}
+@media (max-width: 768px) {
+.batteries-container {
+padding: 0 20px;
+}
+.page-header h1 {
+font-size: 32px;
+}
+.search-box {
+flex-direction: column;
+}
+.search-btn {
+width: 100%;
+}
+.battery-grid {
+grid-template-columns: 1fr;
+}
+.specifications ul {
+grid-template-columns: 1fr;
+}
+}
+/* ===== SECONDARY NAVIGATION BAR ===== */
+.secondary-nav {
+position: fixed;
+top: 70px;
+left: 0;
+width: 100%;
+background: var(--white);
+border-bottom: 1px solid #e0e0e0;
+z-index: 999;
+box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+.secondary-nav-container {
+max-width: 1400px;
+margin: 0 auto;
+padding: 0 40px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+height: 50px;
+}
+.secondary-nav-menu {
+display: flex;
+list-style: none;
+gap: 2rem;
+}
+.secondary-nav-menu li a {
+text-decoration: none;
+color: var(--dark);
+font-weight: 500;
+font-size: 14px;
+padding: 0.5rem 0;
+transition: all 0.3s;
+position: relative;
+cursor: pointer;
+}
+.secondary-nav-menu li a:hover {
+color: var(--green);
+}
+.secondary-nav-menu li a.active {
+color: var(--green);
+border-bottom: 2px solid var(--green);
+}
+.secondary-nav-menu li a i {
+margin-right: 6px;
+font-size: 12px;
+}
+.cart-icon {
+position: relative;
+cursor: pointer;
+}
+.cart-icon a {
+text-decoration: none;
+color: var(--dark);
+font-weight: 500;
+display: flex;
+align-items: center;
+gap: 8px;
+}
+.cart-icon a:hover {
+color: var(--green);
+}
+.cart-count-badge {
+background: var(--green);
+color: var(--black);
+border-radius: 50%;
+padding: 2px 6px;
+font-size: 12px;
+font-weight: bold;
+margin-left: 5px;
+}
+.page-actions {
+display: flex;
+justify-content: center;
+margin-bottom: 60px;
+}
+.page-actions a {
+padding: 14px 28px;
+background: #00e676;
+color: #000;
+border-radius: 14px;
+font-weight: 700;
+text-decoration: none;
+box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+transition: transform 0.2s ease, background 0.2s ease;
+}
+.page-actions a:hover {
+transform: translateY(-2px);
+background: #00c851;
+}
+/* Toast notification */
+.toast {
+visibility: hidden;
+min-width: 250px;
+background-color: #333;
+color: #fff;
+text-align: center;
+border-radius: 8px;
+padding: 12px;
+position: fixed;
+bottom: 30px;
+left: 50%;
+transform: translateX(-50%);
+z-index: 2000;
+opacity: 0;
+transition: opacity 0.3s, visibility 0.3s;
+}
+.toast.show {
+visibility: visible;
+opacity: 1;
+}
+</style>
+</head>
+<body>
+
+<!-- ===== MAIN NAVBAR ===== -->
+<nav class="navbar">
+<a href="home.html" class="logo">
+<div class="logo-icon"><img src="logo.png" alt="logo"></div>
+<div class="logo-text">Eswatini<br><span>Technocrats Center</span></div>
+</a>
+<ul class="nav-links">
+<li class="nav-item"><a href="home.html">Home</a></li>
+<li class="nav-item"><a href="about.html">About Us</a></li>
+<li class="nav-item"><a href="shop.html">Shop</a></li>
+<li class="nav-item">
+<a href="services.html">Services <i class="fas fa-chevron-down"></i></a>
+<ul class="dropdown">
+<li><a href="laptop-repairs.html">Laptop & Computer Repairs</a></li>
+<li><a href="pos.html">Point of Sale</a></li>
+<li><a href="software-installations.html">Softwares Installations</a></li>
+<li><a href="networking.html">Networking</a></li>
+<li><a href="tech-support.html">Tech Support</a></li>
+</ul>
+</li>
+<li class="nav-item">
+<a href="Security and access.html">Security & Access <i class="fas fa-chevron-down"></i></a>
+<ul class="dropdown">
+<li><a href="physical-security.html">Physical Security</a></li>
+<li><a href="it-security.html">IT Security</a></li>
+<li><a href="identity-access.html">Identity & Access</a></li>
+<li><a href="monitoring.html">Monitoring</a></li>
+</ul>
+</li>
+<li class="nav-item"><a href="dealer.html">Dealer</a></li>
+<li class="nav-item"><a href="contact.html">Contact</a></li>
+</ul>
+<div class="nav-actions-right">
+<button class="search-icon-btn" id="searchIconBtn"><i class="fas fa-search"></i></button>
+<button class="settings-icon-btn" id="settingsBtn"><i class="fas fa-cog"></i></button>
+<div class="auth-buttons">
+<button class="login-icon-btn" id="loginBtn"><i class="fas fa-sign-in-alt"></i><span>Login</span></button>
+<button class="register-icon-btn" id="registerBtn"><i class="fas fa-user-plus"></i><span>Register</span></button>
+</div>
+<div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</div>
+</nav>
+
+<!-- ===== SECONDARY NAVIGATION ===== -->
+<div class="secondary-nav">
+<div class="secondary-nav-container">
+<ul class="secondary-nav-menu">
+<li><a href="shop.html" id="nav-home"><i class="fas fa-home"></i><span> Shop</span></a></li>
+<li><a href="page.html" id="nav-all"><i class="fas fa-box"></i><span> All Products</span></a></li>
+<li><a href="Refurbished.html" id="nav-refurbished"><i class="fas fa-sync-alt"></i><span> Refurbished</span></a></li>
+<li><a href="#" id="nav-events"><i class="fas fa-calendar-alt"></i><span> Events</span></a></li>
+</ul>
+<div class="cart-icon">
+<a href="Cart.html">
+<i class="fas fa-shopping-cart"></i> Cart
+<span class="cart-count-badge" id="cartCount">0</span>
+</a>
+</div>
+</div>
+</div>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+<div class="mobile-nav-item"><div class="mobile-nav-link" onclick="location.href='home.html'">Home</div></div>
+<div class="mobile-nav-item"><div class="mobile-nav-link" onclick="location.href='about.html'">About Us</div></div>
+<div class="mobile-nav-item"><div class="mobile-nav-link" onclick="location.href='shop.html'">Shop</div></div>
+<div class="mobile-nav-item"><div class="mobile-nav-link" onclick="location.href='services.html'">Services</div></div>
+<div class="mobile-nav-item"><div class="mobile-nav-link" onclick="location.href='Security and access.html'">Security & Access</div></div>
+<div class="mobile-nav-item"><div class="mobile-nav-link" onclick="location.href='dealer.html'">Dealer</div></div>
+<div class="mobile-nav-item"><div class="mobile-nav-link" onclick="location.href='contact.html'">Contact</div></div>
+</div>
+
+<!-- ===== ALL MODALS ===== -->
+<!-- Search Modal -->
+<div class="search-modal" id="searchModal">
+<div class="search-modal-content">
+<div class="search-modal-header">
+<h3><i class="fas fa-search"></i> Search Eswatini Technocrats</h3>
+<button class="close-modal" id="closeModalBtn">&times;</button>
+</div>
+<div class="search-modal-body">
+<div class="search-category-row">
+<select id="categoryFilter" class="category-select">
+<option value="all">All Categories</option>
+<option value="services">Services</option>
+<option value="shop">Shop / Products</option>
+<option value="events">Events</option>
+<option value="programs">Programs</option>
+<option value="pages">Pages</option>
+</select>
+<div class="search-input-wrapper">
+<input type="text" id="searchInputModal" placeholder="Type to search..." autocomplete="off">
+<button id="searchSubmitBtn"><i class="fas fa-arrow-right"></i> Search</button>
+</div>
+</div>
+<div id="suggestionsContainer" class="suggestions-list">
+<div class="no-results">🔍 Start typing to see matching results...</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Login Modal -->
+<div class="auth-modal" id="loginModal">
+<div class="auth-modal-content">
+<div class="auth-modal-header">
+<h3><i class="fas fa-sign-in-alt"></i> Login to Your Account</h3>
+<button class="close-auth-modal" onclick="closeLoginModal()">&times;</button>
+</div>
+<div class="auth-modal-body">
+<form id="loginForm">
+<div class="form-group"><label><i class="fas fa-envelope"></i> Email Address</label><input type="email" id="loginEmail" required placeholder="Enter your email"></div>
+<div class="form-group"><label><i class="fas fa-lock"></i> Password</label><input type="password" id="loginPassword" required placeholder="Enter your password"></div>
+<div class="form-options">
+<label class="remember-me"><input type="checkbox"> Remember me</label>
+<a href="#" onclick="openForgotPasswordModal(); return false;" class="forgot-password-link">Forgot Password?</a>
+</div>
+<button type="submit" class="auth-submit-btn">Login <i class="fas fa-arrow-right"></i></button>
+</form>
+<div class="auth-divider"><span>or</span></div>
+<p class="auth-switch">Don't have an account? <a href="#" onclick="switchToRegister()">Register here</a></p>
+</div>
+</div>
+</div>
+
+<!-- Register Modal -->
+<div class="auth-modal" id="registerModal">
+<div class="auth-modal-content">
+<div class="auth-modal-header"><h3><i class="fas fa-user-plus"></i> Create Your Account</h3><button class="close-auth-modal" onclick="closeRegisterModal()">&times;</button></div>
+<div class="auth-modal-body">
+<div id="registerAlertMessage" class="alert" style="display: none;"></div>
+<form id="registerForm">
+<div class="form-group"><label>Full Name</label><input type="text" id="regFullName" required placeholder="Enter your full name"></div>
+<div class="form-group"><label>Email Address</label><input type="email" id="regEmail" required placeholder="Enter your email"></div>
+<div class="form-group"><label>Phone Number</label><input type="tel" id="regPhone" placeholder="Enter your phone number"></div>
+<div class="form-group"><label>Password</label><input type="password" id="regPassword" required placeholder="Create a password (min 6 characters)"></div>
+<div class="form-group"><label>Confirm Password</label><input type="password" id="regConfirmPassword" required placeholder="Confirm your password"></div>
+<div class="form-group"><label class="terms-label"><input type="checkbox" id="agreeTerms" required> I agree to the Terms of Service and Privacy Policy</label></div>
+<button type="submit" class="auth-submit-btn">Register <i class="fas fa-paper-plane"></i></button>
+</form>
+<div class="auth-divider"><span>or</span></div>
+<p class="auth-switch">Already have an account? <a href="#" onclick="switchToLogin()">Login here</a></p>
+</div>
+</div>
+</div>
+
+<!-- Forgot Password Modal -->
+<div class="auth-modal" id="forgotPasswordModal">
+<div class="auth-modal-content">
+<div class="auth-modal-header"><h3><i class="fas fa-key"></i> Lost Password</h3><button class="close-auth-modal" onclick="closeForgotPasswordModal()">&times;</button></div>
+<div class="auth-modal-body">
+<div class="forgot-title"><p>Lost your password? Please enter your email address. You will receive a link to create a new password via email.</p></div>
+<div id="forgotAlertMessage" class="alert" style="display: none;"></div>
+<form id="forgotPasswordFormModal">
+<div class="form-group"><label>Email Address *</label><input type="email" id="forgotEmail" required placeholder="Enter your registered email"></div>
+<button type="submit" class="auth-submit-btn"><i class="fas fa-paper-plane"></i> Reset Password</button>
+</form>
+<div class="auth-divider"><span>or</span></div>
+<p class="auth-switch"><a href="#" onclick="switchToLoginFromForgot(); return false;">← Back to Login</a></p>
+</div>
+</div>
+</div>
+
+<!-- Reset Password Modal -->
+<div class="auth-modal" id="resetPasswordModal">
+<div class="auth-modal-content">
+<div class="auth-modal-header"><h3><i class="fas fa-lock-open"></i> Create New Password</h3><button class="close-auth-modal" onclick="closeResetPasswordModal()">&times;</button></div>
+<div class="auth-modal-body">
+<div id="resetAlertMessage" class="alert" style="display: none;"></div>
+<form id="resetPasswordFormModal">
+<div class="form-group"><label>Email Address</label><input type="email" id="resetEmailDisplay" readonly></div>
+<div class="form-group"><label>New Password *</label><input type="password" id="newPasswordModal" required placeholder="Enter new password (min 6 characters)"><div class="password-strength" id="passwordStrengthModal"></div></div>
+<div class="form-group"><label>Confirm New Password *</label><input type="password" id="confirmPasswordModal" required placeholder="Confirm your new password"></div>
+<button type="submit" class="auth-submit-btn"><i class="fas fa-save"></i> Reset Password</button>
+</form>
+<div class="auth-divider"><span>or</span></div>
+<p class="auth-switch"><a href="#" onclick="switchToLoginFromReset(); return false;">← Back to Login</a></p>
+</div>
+</div>
+</div>
+
+<!-- ===== SETTINGS MODAL ===== -->
+<div class="auth-modal" id="settingsModal">
+<div class="auth-modal-content" style="max-width: 450px;">
+<div class="auth-modal-header">
+<h3><i class="fas fa-cog"></i> Settings</h3>
+<button class="close-auth-modal" onclick="closeSettingsModal()"><i class="fas fa-times"></i></button>
+</div>
+<div class="auth-modal-body">
+<div class="settings-section">
+<div class="settings-section-title">
+<i class="fas fa-palette"></i>
+<h4>Theme Preferences</h4>
+</div>
+<div class="theme-options">
+<div class="theme-option" data-theme="light" onclick="setTheme('light')">
+<div class="theme-preview light-preview"><i class="fas fa-sun"></i></div>
+<span>Light Theme</span>
+<div class="theme-check"><i class="fas fa-check-circle"></i></div>
+</div>
+<div class="theme-option" data-theme="dark" onclick="setTheme('dark')">
+<div class="theme-preview dark-preview"><i class="fas fa-moon"></i></div>
+<span>Dark Theme</span>
+<div class="theme-check"><i class="fas fa-check-circle"></i></div>
+</div>
+<div class="theme-option" data-theme="system" onclick="setTheme('system')">
+<div class="theme-preview system-preview"><i class="fas fa-desktop"></i></div>
+<span>System Default</span>
+<div class="theme-check"><i class="fas fa-check-circle"></i></div>
+</div>
+</div>
+</div>
+<div class="settings-divider"></div>
+<div class="settings-section">
+<div class="settings-section-title">
+<i class="fas fa-text-height"></i>
+<h4>Font Size</h4>
+</div>
+<div class="font-size-control">
+<div class="font-size-labels">
+<span><i class="fas fa-font"></i> A</span>
+<span id="fontSizeValue">Medium</span>
+<span><i class="fas fa-font"></i> A<span style="font-size: 20px;">+</span></span>
+</div>
+<input type="range" id="fontSizeSlider" min="12" max="20" step="1" value="16">
+<div class="font-size-presets">
+<button class="font-preset" data-size="14">Small</button>
+<button class="font-preset active" data-size="16">Medium</button>
+<button class="font-preset" data-size="18">Large</button>
+<button class="font-preset" data-size="20">Extra Large</button>
+</div>
+</div>
+<div class="font-preview-box">
+<p><strong>Preview:</strong> The quick brown fox jumps over the lazy dog.</p>
+<p style="font-size: 0.9em;">This is how text will appear on the website.</p>
+</div>
+</div>
+<div class="settings-divider"></div>
+<div class="settings-section">
+<div class="settings-section-title">
+<i class="fas fa-universal-access"></i>
+<h4>Accessibility</h4>
+</div>
+<div class="setting-item">
+<label class="setting-label">
+<span><i class="fas fa-align-left"></i> Reduced Motion</span>
+<input type="checkbox" id="reducedMotionToggle">
+</label>
+</div>
+<div class="setting-item">
+<label class="setting-label">
+<span><i class="fas fa-eye"></i> High Contrast</span>
+<input type="checkbox" id="highContrastToggle">
+</label>
+</div>
+</div>
+<div class="settings-divider"></div>
+<div class="settings-section">
+<button class="reset-settings-btn" onclick="resetAllSettings()">
+<i class="fas fa-undo-alt"></i> Reset to Default Settings
+</button>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ===== PAGE CONTENT - DELL SCREENS (changed from batteries to screens) ===== -->
+<div class="batteries-page">
+<div class="batteries-container">
+<div class="page-header">
+<h1><i class="fas fa-desktop"></i> Dell Laptop Screens</h1>
+<p>High-quality replacement LCD screens for all Dell laptop models - XPS, Inspiron, Latitude, Precision, and Alienware series</p>
+</div>
+<div class="search-container">
+<h2>Search Screens</h2>
+<div class="search-box">
+<input type="text" class="search-input" id="screenSearch" placeholder="Enter model number or screen size...">
+<button class="search-btn" id="searchBtn"><i class="fas fa-search"></i> Search</button>
+</div>
+</div>
+<div class="battery-grid" id="screensGrid">
+<!-- Dell XPS 13 Screen -->
+<div class="battery-card" data-model="XPS" data-part="13">
+<img src="https://images.unsplash.com/photo-1525547719571-a2d5ac8945e3?w=400&h=200&fit=crop" alt="Dell XPS 13 Screen">
+<div class="battery-info">
+<h3>Dell XPS 13 13.4" FHD+ Screen</h3>
+<p>Premium 13.4-inch FHD+ InfinityEdge display</p>
+<div class="compatibility"><i class="fas fa-check-circle"></i> Compatible with: XPS 13 9300, 9310, 9315, 9320, 9340</div>
+<div class="price">E129.99</div>
+<div class="specifications">
+<ul>
+<li><i class="fas fa-desktop"></i> Resolution: 1920x1200 FHD+</li>
+<li><i class="fas fa-sun"></i> Brightness: 500 nits</li>
+<li><i class="fas fa-palette"></i> Color: 100% sRGB</li>
+<li><i class="fas fa-layer-group"></i> Panel: IPS LCD</li>
+<li><i class="fas fa-shield-alt"></i> Warranty: 24 months</li>
+<li><i class="fas fa-check-circle"></i> In Stock: Yes</li>
+</ul>
+<div class="quantity-selector">
+<label>Quantity:</label>
+<input type="number" class="quantity-input" value="1" min="1" max="10">
+</div>
+</div>
+<a href="dell-screens-detail.html?product=xps13" class="btn-view-more"><i class="fas fa-eye"></i> View More</a>
+<div class="shipping-info">
+<p><i class="fas fa-shipping-fast"></i> Free Shipping on orders over E50</p>
+<p><i class="fas fa-undo"></i> 30-Day Returns</p>
+<p><i class="fas fa-lock"></i> Secure Payment</p>
+</div>
+<div class="rating">
+<span class="stars">
+<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+</span>
+<span>(312 reviews)</span>
+</div>
+</div>
+</div>
+
+<!-- Dell XPS 15 4K Screen -->
+<div class="battery-card" data-model="XPS" data-part="15">
+<img src="https://images.unsplash.com/photo-1593642702821-f3311a7f7b8d?w=400&h=200&fit=crop" alt="Dell XPS 15 4K Screen">
+<div class="battery-info">
+<h3>Dell XPS 15 15.6" 4K UHD+ Screen</h3>
+<p>Stunning 4K UHD+ OLED touch display</p>
+<div class="compatibility"><i class="fas fa-check-circle"></i> Compatible with: XPS 15 9550, 9560, 9570, 7590, 9510, 9520</div>
+<div class="price">E249.99</div>
+<div class="specifications">
+<ul>
+<li><i class="fas fa-desktop"></i> Resolution: 3840x2400 4K+</li>
+<li><i class="fas fa-sun"></i> Brightness: 500 nits OLED</li>
+<li><i class="fas fa-palette"></i> Color: 100% DCI-P3</li>
+<li><i class="fas fa-layer-group"></i> Panel: OLED Touch</li>
+<li><i class="fas fa-shield-alt"></i> Warranty: 24 months</li>
+<li><i class="fas fa-check-circle"></i> In Stock: Yes</li>
+</ul>
+<div class="quantity-selector">
+<label>Quantity:</label>
+<input type="number" class="quantity-input" value="1" min="1" max="10">
+</div>
+</div>
+<a href="dell-screens-detail.html?product=xps15" class="btn-view-more"><i class="fas fa-eye"></i> View More</a>
+<div class="shipping-info">
+<p><i class="fas fa-shipping-fast"></i> Free Shipping on orders over E50</p>
+<p><i class="fas fa-undo"></i> 30-Day Returns</p>
+<p><i class="fas fa-lock"></i> Secure Payment</p>
+</div>
+<div class="rating">
+<span class="stars">
+<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+</span>
+<span>(287 reviews)</span>
+</div>
+</div>
+</div>
+
+<!-- Dell Inspiron 15 FHD Screen -->
+<div class="battery-card" data-model="Inspiron" data-part="15">
+<img src="https://images.unsplash.com/photo-1525547719571-a2d5ac8945e3?w=400&h=200&fit=crop" alt="Dell Inspiron Screen">
+<div class="battery-info">
+<h3>Dell Inspiron 15 15.6" FHD Screen</h3>
+<p>Reliable Full HD anti-glare display</p>
+<div class="compatibility"><i class="fas fa-check-circle"></i> Compatible with: Inspiron 15 3501, 3505, 3510, 3511, 3520</div>
+<div class="price">E89.99</div>
+<div class="specifications">
+<ul>
+<li><i class="fas fa-desktop"></i> Resolution: 1920x1080 FHD</li>
+<li><i class="fas fa-sun"></i> Brightness: 220 nits</li>
+<li><i class="fas fa-palette"></i> Color: 45% NTSC</li>
+<li><i class="fas fa-layer-group"></i> Panel: IPS LCD</li>
+<li><i class="fas fa-shield-alt"></i> Warranty: 24 months</li>
+<li><i class="fas fa-check-circle"></i> In Stock: Yes</li>
+</ul>
+<div class="quantity-selector">
+<label>Quantity:</label>
+<input type="number" class="quantity-input" value="1" min="1" max="10">
+</div>
+</div>
+<a href="dell-screens-detail.html?product=inspiron15" class="btn-view-more"><i class="fas fa-eye"></i> View More</a>
+<div class="shipping-info">
+<p><i class="fas fa-shipping-fast"></i> Free Shipping on orders over E50</p>
+<p><i class="fas fa-undo"></i> 30-Day Returns</p>
+<p><i class="fas fa-lock"></i> Secure Payment</p>
+</div>
+<div class="rating">
+<span class="stars">
+<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+</span>
+<span>(421 reviews)</span>
+</div>
+</div>
+</div>
+
+<!-- Dell Latitude 5420 Screen -->
+<div class="battery-card" data-model="Latitude" data-part="5420">
+<img src="https://images.unsplash.com/photo-1525547719571-a2d5ac8945e3?w=400&h=200&fit=crop" alt="Dell Latitude Screen">
+<div class="battery-info">
+<h3>Dell Latitude 5420 14" FHD Screen</h3>
+<p>Business-grade anti-glare display</p>
+<div class="compatibility"><i class="fas fa-check-circle"></i> Compatible with: Latitude 5420, 5430, 5440, 5450</div>
+<div class="price">E119.99</div>
+<div class="specifications">
+<ul>
+<li><i class="fas fa-desktop"></i> Resolution: 1920x1080 FHD</li>
+<li><i class="fas fa-sun"></i> Brightness: 300 nits</li>
+<li><i class="fas fa-palette"></i> Color: 72% NTSC</li>
+<li><i class="fas fa-layer-group"></i> Panel: IPS Anti-Glare</li>
+<li><i class="fas fa-shield-alt"></i> Warranty: 24 months</li>
+<li><i class="fas fa-check-circle"></i> In Stock: Yes</li>
+</ul>
+<div class="quantity-selector">
+<label>Quantity:</label>
+<input type="number" class="quantity-input" value="1" min="1" max="10">
+</div>
+</div>
+<a href="dell-screens-detail.html?product=latitude5420" class="btn-view-more"><i class="fas fa-eye"></i> View More</a>
+<div class="shipping-info">
+<p><i class="fas fa-shipping-fast"></i> Free Shipping on orders over E50</p>
+<p><i class="fas fa-undo"></i> 30-Day Returns</p>
+<p><i class="fas fa-lock"></i> Secure Payment</p>
+</div>
+<div class="rating">
+<span class="stars">
+<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+</span>
+<span>(198 reviews)</span>
+</div>
+</div>
+</div>
+
+<!-- Dell Precision 7560 4K Screen -->
+<div class="battery-card" data-model="Precision" data-part="7560">
+<img src="https://images.unsplash.com/photo-1593642702821-f3311a7f7b8d?w=400&h=200&fit=crop" alt="Dell Precision Screen">
+<div class="battery-info">
+<h3>Dell Precision 7560 15.6" 4K DreamColor</h3>
+<p>Professional-grade 4K workstation display</p>
+<div class="compatibility"><i class="fas fa-check-circle"></i> Compatible with: Precision 7560, 7550, 7750, 7670</div>
+<div class="price">E299.99</div>
+<div class="specifications">
+<ul>
+<li><i class="fas fa-desktop"></i> Resolution: 3840x2160 4K UHD</li>
+<li><i class="fas fa-sun"></i> Brightness: 600 nits</li>
+<li><i class="fas fa-palette"></i> Color: 100% Adobe RGB</li>
+<li><i class="fas fa-layer-group"></i> Panel: IPS DreamColor</li>
+<li><i class="fas fa-shield-alt"></i> Warranty: 36 months</li>
+<li><i class="fas fa-check-circle"></i> In Stock: Yes</li>
+</ul>
+<div class="quantity-selector">
+<label>Quantity:</label>
+<input type="number" class="quantity-input" value="1" min="1" max="10">
+</div>
+</div>
+<a href="dell-screens-detail.html?product=precision7560" class="btn-view-more"><i class="fas fa-eye"></i> View More</a>
+<div class="shipping-info">
+<p><i class="fas fa-shipping-fast"></i> Free Shipping on orders over E50</p>
+<p><i class="fas fa-undo"></i> 30-Day Returns</p>
+<p><i class="fas fa-lock"></i> Secure Payment</p>
+</div>
+<div class="rating">
+<span class="stars">
+<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+</span>
+<span>(156 reviews)</span>
+</div>
+</div>
+</div>
+
+<!-- Dell Alienware M15 240Hz Gaming Screen -->
+<div class="battery-card" data-model="Alienware" data-part="M15">
+<img src="https://images.unsplash.com/photo-1593642702821-f3311a7f7b8d?w=400&h=200&fit=crop" alt="Dell Alienware Screen">
+<div class="battery-info">
+<h3>Dell Alienware M15 15.6" 240Hz Gaming Screen</h3>
+<p>Ultra-fast 240Hz gaming display with G-SYNC</p>
+<div class="compatibility"><i class="fas fa-check-circle"></i> Compatible with: Alienware M15 R1, R2, R3, R4, R5, R6</div>
+<div class="price">E279.99</div>
+<div class="specifications">
+<ul>
+<li><i class="fas fa-desktop"></i> Resolution: 1920x1080 FHD</li>
+<li><i class="fas fa-sun"></i> Brightness: 350 nits</li>
+<li><i class="fas fa-palette"></i> Color: 100% sRGB</li>
+<li><i class="fas fa-layer-group"></i> Panel: IPS G-SYNC 240Hz</li>
+<li><i class="fas fa-shield-alt"></i> Warranty: 24 months</li>
+<li><i class="fas fa-check-circle"></i> In Stock: Yes</li>
+</ul>
+<div class="quantity-selector">
+<label>Quantity:</label>
+<input type="number" class="quantity-input" value="1" min="1" max="10">
+</div>
+</div>
+<a href="dell-screens-detail.html?product=alienwareM15" class="btn-view-more"><i class="fas fa-eye"></i> View More</a>
+<div class="shipping-info">
+<p><i class="fas fa-shipping-fast"></i> Free Shipping on orders over E50</p>
+<p><i class="fas fa-undo"></i> 30-Day Returns</p>
+<p><i class="fas fa-lock"></i> Secure Payment</p>
+</div>
+<div class="rating">
+<span class="stars">
+<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+</span>
+<span>(234 reviews)</span>
+</div>
+</div>
+</div>
+</div>
+<div class="page-actions">
+<a href="#" onclick="history.back(); return false;">Previous</a>
+</div>
+</div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer id="contact">
+<div class="container">
+<div class="footer-grid">
+<div class="footer-brand">
+<div class="logo" style="margin-bottom:16px;">
+<div class="logo-icon"><img src="logo.png"></div>
+<span class="logo-text">Eswatini<br><span>Technocrats Center</span></span>
+</div>
+<p>Empowering the Kingdom of Eswatini through world-class technology education, innovation, and professional digital services since 2015.</p>
+<div class="social-links">
+<a href="https://www.facebook.com/mbusoluju2" class="social-link green"><i class="fab fa-facebook-f"></i></a>
+<a href="#" class="social-link blue"><i class="fab fa-twitter"></i></a>
+<a href="#" class="social-link green"><i class="fab fa-whatsapp"></i></a>
+<a href="#" class="social-link blue"><i class="fab fa-linkedin-in"></i></a>
+<a href="#" class="social-link green"><i class="fab fa-youtube"></i></a>
+<a href="#" class="social-link blue"><i class="fab fa-instagram"></i></a>
+</div>
+</div>
+<div class="footer-col">
+<h4>Quick Links</h4>
+<ul>
+<li><a href="home.html"><i class="fas fa-angle-right"></i> Home</a></li>
+<li><a href="about.html"><i class="fas fa-angle-right"></i> About Us</a></li>
+<li><a href="shop.html"><i class="fas fa-angle-right"></i> Shop</a></li>
+<li><a href="#services"><i class="fas fa-angle-right"></i> Services</a></li>
+<li><a href="#events"><i class="fas fa-angle-right"></i> Events</a></li>
+<li><a href="#contact"><i class="fas fa-angle-right"></i> Contact</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>shop</h4>
+<ul>
+<li><a href="#"><i class="fas fa-angle-right"></i> Computer & laptops</a></li>
+<li><a href="#"><i class="fas fa-angle-right"></i> Point of sale set</a></li>
+<li><a href="#"><i class="fas fa-angle-right"></i> Accessories</a></li>
+<li><a href="#"><i class="fas fa-angle-right"></i>Laptop housing </a></li>
+<li><a href="#"><i class="fas fa-angle-right"></i> Computer&Laptop small parts</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>Services</h4>
+<ul>
+<li><a href="laptop-repairs.html"><i class="fas fa-angle-right"></i> laptop&computer repairs</a></li>
+<li><a href="pos.html"><i class="fas fa-angle-right"></i> Point of Sale</a></li>
+<li><a href="software-installations.html"><i class="fas fa-angle-right"></i> Softwares Installations</a></li>
+<li><a href="networking.html"><i class="fas fa-angle-right"></i> Networking</a></li>
+<li><a href="tech-support.html"><i class="fas fa-angle-right"></i> Tech Support</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>Contact Us</h4>
+<div class="contact-item">
+<i class="fas fa-map-marker-alt"></i>
+<span>Office No.403,SNAT SACCO House,manchishane street,Manzini,Eswatini</span>
+</div>
+<div class="contact-item">
+<i class="fas fa-phone"></i>
+<span>+268 76601001</span>
+</div>
+<div class="contact-item">
+<i class="fas fa-envelope"></i>
+<span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f990979f96b99c8a8e988d9097908d9c9297969a8b988d8ad7989ad78a83">[email&#160;protected]</a></span>
+</div>
+<div class="contact-item">
+<i class="fas fa-clock"></i>
+<span>Mon--Fri: 8:00 AM -- 5:00 PM<br>Sat: 9:00 AM -- 1:00 PM</span>
+</div>
+</div>
+</div>
+<div class="footer-bottom">
+<p> Copyright© 2026 <span>Eswatini Technocrats Center</span>. All Rights Reserved. Built with in Eswatini.</p>
+<div class="footer-bottom-links">
+<a href="#">Privacy Policy</a>
+<a href="#">Terms of Use</a>
+<a href="#"></a>
+</div>
+</div>
+</div>
+</footer>
+
+<script src="script.js"></script>
+<script src="search.js"></script>
+<script>
+// Screen search functionality
+function searchScreens() {
+const searchInput = document.getElementById('screenSearch').value.toLowerCase();
+const screenCards = document.querySelectorAll('.battery-card');
+let hasResults = false;
+
+screenCards.forEach(card => {
+const model = card.getAttribute('data-model').toLowerCase();
+const part = card.getAttribute('data-part').toLowerCase();
+const title = card.querySelector('h3').textContent.toLowerCase();
+const compatibility = card.querySelector('.compatibility').textContent.toLowerCase();
+
+const matches = model.includes(searchInput) || part.includes(searchInput) || title.includes(searchInput) || compatibility.includes(searchInput);
+
+if (matches) {
+card.style.display = 'block';
+hasResults = true;
+} else {
+card.style.display = 'none';
+}
+});
+
+const noResults = document.getElementById('noResults');
+if (!hasResults && searchInput.length > 0) {
+if(noResults) noResults.style.display = 'block';
+} else {
+if(noResults) noResults.style.display = 'none';
+}
+}
+
+function updateCartCount() {
+const cart = JSON.parse(localStorage.getItem('cart')) || [];
+const total = cart.reduce((sum, item) => sum + item.quantity, 0);
+const cartCountSpan = document.getElementById('cartCount');
+if (cartCountSpan) cartCountSpan.textContent = total;
+}
+
+function toggleMobile() {
+const menu = document.getElementById('mobileMenu');
+if (menu) menu.classList.toggle('open');
+}
+
+// Event listeners
+const searchInputField = document.getElementById('screenSearch');
+const searchBtn = document.getElementById('searchBtn');
+if(searchInputField) searchInputField.addEventListener('input', searchScreens);
+if(searchBtn) searchBtn.addEventListener('click', searchScreens);
+
+// Initialize
+document.addEventListener('DOMContentLoaded', function() {
+updateCartCount();
+
+const searchBtnIcon = document.getElementById('searchIconBtn');
+const settingsBtnIcon = document.getElementById('settingsBtn');
+const loginBtnIcon = document.getElementById('loginBtn');
+const registerBtnIcon = document.getElementById('registerBtn');
+const hamburger = document.getElementById('hamburger');
+
+if (searchBtnIcon && typeof openSearchModal === 'function') searchBtnIcon.onclick = openSearchModal;
+if (settingsBtnIcon && typeof openSettingsModal === 'function') settingsBtnIcon.onclick = openSettingsModal;
+if (loginBtnIcon && typeof openLoginModal === 'function') loginBtnIcon.onclick = openLoginModal;
+if (registerBtnIcon && typeof openRegisterModal === 'function') registerBtnIcon.onclick = openRegisterModal;
+if (hamburger) hamburger.onclick = toggleMobile;
+});
+
+// Make functions global
+window.toggleMobile = toggleMobile;
+window.updateCartCount = updateCartCount;
+</script>
+</body>
+</html>

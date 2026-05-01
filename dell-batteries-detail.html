@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dell XPS 13 Battery - Eswatini Technocrats Center</title>
+    <title>Dell Battery Details - Eswatini Technocrats Center</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
@@ -63,6 +63,12 @@
             color: var(--green, #00e676);
             margin: 20px 0;
         }
+        .description-text {
+            color: var(--text-secondary, #555);
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: 15px;
+        }
         .compatibility {
             background: var(--bg-secondary, #f5f5f5);
             padding: 12px 15px;
@@ -98,6 +104,55 @@
         }
         .specifications li i {
             color: var(--green, #00e676);
+            width: 20px;
+        }
+        .performance-stats {
+            margin: 20px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(0,230,118,0.08), rgba(33,150,243,0.05));
+            border-radius: 12px;
+            border-left: 4px solid #00e676;
+        }
+        .performance-stats h3 {
+            margin-bottom: 15px;
+            font-size: 18px;
+            color: var(--text-primary, #1a1a1a);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .performance-stats h3 i {
+            color: #00e676;
+        }
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 15px;
+        }
+        .stat-card {
+            background: white;
+            padding: 12px 15px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+        .stat-card i {
+            font-size: 24px;
+            color: #00e676;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .stat-label {
+            font-size: 12px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .stat-value {
+            font-size: 18px;
+            font-weight: bold;
+            color: #1a1a1a;
+            margin-top: 5px;
         }
         .quantity-selector {
             display: flex;
@@ -153,6 +208,37 @@
             color: var(--green, #00e676);
             font-size: 16px;
         }
+        .back-to-shop {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: var(--green, #00e676);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .back-to-shop:hover {
+            transform: translateX(-5px);
+        }
+        .toast {
+            visibility: hidden;
+            min-width: 250px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 8px;
+            padding: 12px;
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2000;
+            opacity: 0;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+        .toast.show {
+            visibility: visible;
+            opacity: 1;
+        }
         @media (max-width: 768px) {
             .product-container {
                 padding: 0 20px;
@@ -170,8 +256,11 @@
             .specifications ul {
                 grid-template-columns: 1fr;
             }
+            .stat-grid {
+                grid-template-columns: 1fr;
+            }
         }
-                 /* ===== SECONDARY NAVIGATION BAR ===== */
+        /* ===== SECONDARY NAVIGATION BAR ===== */
         .secondary-nav {
             position: fixed;
             top: 70px;
@@ -182,7 +271,6 @@
             z-index: 999;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
-
         .secondary-nav-container {
             max-width: 1400px;
             margin: 0 auto;
@@ -192,13 +280,11 @@
             justify-content: space-between;
             height: 50px;
         }
-
         .secondary-nav-menu {
             display: flex;
             list-style: none;
             gap: 2rem;
         }
-
         .secondary-nav-menu li a {
             text-decoration: none;
             color: var(--dark);
@@ -209,26 +295,21 @@
             position: relative;
             cursor: pointer;
         }
-
         .secondary-nav-menu li a:hover {
             color: var(--green);
         }
-
         .secondary-nav-menu li a.active {
             color: var(--green);
             border-bottom: 2px solid var(--green);
         }
-
         .secondary-nav-menu li a i {
             margin-right: 6px;
             font-size: 12px;
         }
-
         .cart-icon {
             position: relative;
             cursor: pointer;
         }
-
         .cart-icon a {
             text-decoration: none;
             color: var(--dark);
@@ -237,11 +318,9 @@
             align-items: center;
             gap: 8px;
         }
-
         .cart-icon a:hover {
             color: var(--green);
         }
-
         .cart-count-badge {
             background: var(--green);
             color: var(--black);
@@ -303,7 +382,7 @@
     <div class="secondary-nav-container">
         <ul class="secondary-nav-menu">
             <li><a href="shop.html" id="nav-home"><i class="fas fa-home"></i><span> Shop</span></a></li>
-            <li><a href="#" id="nav-all"><i class="fas fa-box"></i><span> All Products</span></a></li>
+            <li><a href="page.html" id="nav-all"><i class="fas fa-box"></i><span> All Products</span></a></li>
             <li><a href="Refurbished.html" id="nav-refurbished"><i class="fas fa-sync-alt"></i><span> Refurbished</span></a></li>
             <li><a href="#" id="nav-events"><i class="fas fa-calendar-alt"></i><span> Events</span></a></li>
         </ul>
@@ -346,7 +425,7 @@
                     <option value="pages">Pages</option>
                 </select>
                 <div class="search-input-wrapper">
-                    <input type="text" id="searchInput" placeholder="Type to search..." autocomplete="off">
+                    <input type="text" id="searchInputModal" placeholder="Type to search..." autocomplete="off">
                     <button id="searchSubmitBtn"><i class="fas fa-arrow-right"></i> Search</button>
                 </div>
             </div>
@@ -521,81 +600,29 @@
     </div>
 </div>
 
-
-
-<!-- Secondary Navigation -->
-<div class="secondary-nav">
-    <div class="secondary-nav-container">
-        <ul class="secondary-nav-menu">
-            <li><a href="shop.html" onclick="showContent('home'); return false;" class="active" id="nav-home"><i class="fas fa-home"></i><span> Shop</span></a></li>
-            <li><a href="page.html" onclick="showContent('all-products'); return false;" id="nav-all"><i class="fas fa-box"></i><span> All Products</span></a></li>
-            <li><a href="Refurbished.html" id="nav-refurbished"><i class="fas fa-sync-alt"></i><span> Refurbished</span></a></li>
-            <li><a href="event.html" onclick="showContent('events'); return false;" id="nav-events"><i class="fas fa-calendar-alt"></i><span> Events</span></a></li>
-        </ul>
-        <div class="cart-icon">
-    <a href="Cart.html">
-        <i class="fas fa-shopping-cart"></i> Cart
-        <span class="cart-count-badge" id="cartCount">0</span>
-    </a>
-</div>
-
-    </div>
-</div>
-<!-- ===== PAGE CONTENT ===== -->
+<!-- ===== PAGE CONTENT - DYNAMIC DETAIL PAGE ===== -->
 <div class="product-page">
     <div class="product-container">
-        <div class="product-detail">
-            <div class="product-image">
-                <img src="https://via.placeholder.com/400x400?text=Dell+Battery" alt="Dell XPS 13 Battery">
-            </div>
-            <div class="product-details">
-                <h1>Dell XPS 13 Battery</h1>
-                <div class="rating">
-                    <span class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </span>
-                    <span>(256 reviews)</span>
-                </div>
-                <div class="price">E89.99</div>
-                <p style="color: var(--text-secondary, #666); margin-bottom: 20px;">Compatible with Dell XPS 13 9310, 9315, and similar models</p>
-                <div class="compatibility">
-                    <i class="fas fa-check-circle" style="color: var(--green);"></i> Compatible with: XPS 13 9310, 9315, 9300
-                </div>
-                <div class="specifications">
-                    <h3>Specifications</h3>
-                    <ul>
-                        <li><i class="fas fa-battery-full"></i> Capacity: 52Wh</li>
-                        <li><i class="fas fa-bolt"></i> Voltage: 7.6V</li>
-                        <li><i class="fas fa-microchip"></i> Battery Type: Lithium-ion</li>
-                        <li><i class="fas fa-layer-group"></i> Cells: 2-cell</li>
-                        <li><i class="fas fa-shield-alt"></i> Warranty: 12 months</li>
-                        <li><i class="fas fa-check-circle"></i> In Stock: Yes</li>
-                    </ul>
-                </div>
-                <div class="quantity-selector">
-                    <label for="quantity">Quantity:</label>
-                    <input type="number" id="quantity" value="1" min="1" max="10">
-                </div>
-                <button class="add-to-cart-btn" onclick="addToCart()"><i class="fas fa-cart-plus"></i> Add to Cart</button>
-                <div class="shipping-info">
-                    <p><i class="fas fa-shipping-fast"></i> Free Shipping on orders over E50</p>
-                    <p><i class="fas fa-undo"></i> 30-Day Returns</p>
-                    <p><i class="fas fa-lock"></i> Secure Payment</p>
-                </div>
+        <a href="dell-batteries.html" class="back-to-shop"><i class="fas fa-arrow-left"></i> Back to Dell Batteries</a>
+        
+        <div class="product-detail" id="productDetail">
+            <div style="text-align: center; grid-column: 1/-1; padding: 60px;">
+                <i class="fas fa-spinner fa-pulse fa-3x" style="color: #00e676;"></i>
+                <p>Loading product details...</p>
             </div>
         </div>
     </div>
+</div>
+
+<!-- Toast Notification -->
+<div id="successToast" class="toast">
+    <p>Item added to cart!</p>
 </div>
 
 <!-- ===== FOOTER ===== -->
 <footer id="contact">
   <div class="container">
     <div class="footer-grid">
-      <!-- Brand -->
       <div class="footer-brand">
         <div class="logo" style="margin-bottom:16px;">
           <div class="logo-icon"><img src="logo.png"></div>
@@ -611,8 +638,6 @@
           <a href="#" class="social-link blue"><i class="fab fa-instagram"></i></a>
         </div>
       </div>
-
-      <!-- Quick Links -->
       <div class="footer-col">
         <h4>Quick Links</h4>
         <ul>
@@ -624,22 +649,16 @@
           <li><a href="#contact"><i class="fas fa-angle-right"></i> Contact</a></li>
         </ul>
       </div>
-
-      <!-- shop -->
       <div class="footer-col">
         <h4>shop</h4>
         <ul>
-          
-        <li><a href="#"><i class="fas fa-angle-right"></i> Computer & laptops</a></li>
-        <li><a href="#"><i class="fas fa-angle-right"></i> Point of sale set</a></li>
-        <li><a href="#"><i class="fas fa-angle-right"></i> Accessories</a></li>
-        <li><a href="#"><i class="fas fa-angle-right"></i>Laptop housing </a></li>
-        <li><a href="#"><i class="fas fa-angle-right"></i> Computer&Laptop small parts</a></li>
-
+          <li><a href="#"><i class="fas fa-angle-right"></i> Computer & laptops</a></li>
+          <li><a href="#"><i class="fas fa-angle-right"></i> Point of sale set</a></li>
+          <li><a href="#"><i class="fas fa-angle-right"></i> Accessories</a></li>
+          <li><a href="#"><i class="fas fa-angle-right"></i>Laptop housing </a></li>
+          <li><a href="#"><i class="fas fa-angle-right"></i> Computer&Laptop small parts</a></li>
         </ul>
       </div>
-
-      <!-- Services -->
       <div class="footer-col">
         <h4>Services</h4>
         <ul>
@@ -648,11 +667,8 @@
           <li><a href="software-installations.html"><i class="fas fa-angle-right"></i> Softwares Installations</a></li>
           <li><a href="networking.html"><i class="fas fa-angle-right"></i> Networking</a></li>
           <li><a href="tech-support.html"><i class="fas fa-angle-right"></i> Tech Support</a></li>
-          
         </ul>
       </div>
-
-      <!-- Contact -->
       <div class="footer-col">
         <h4>Contact Us</h4>
         <div class="contact-item">
@@ -669,12 +685,10 @@
         </div>
         <div class="contact-item">
           <i class="fas fa-clock"></i>
-          <span>Mon–Fri: 8:00 AM – 5:00 PM<br>Sat: 9:00 AM – 1:00 PM</span>
+          <span>Mon--Fri: 8:00 AM -- 5:00 PM<br>Sat: 9:00 AM -- 1:00 PM</span>
         </div>
       </div>
     </div>
-
-    <!-- Footer Bottom -->
     <div class="footer-bottom">
       <p> Copyright© 2026 <span>Eswatini Technocrats Center</span>. All Rights Reserved. Built with in Eswatini.</p>
       <div class="footer-bottom-links">
@@ -682,30 +696,275 @@
         <a href="#">Terms of Use</a>
         <a href="#"></a>
       </div>
-    
+    </div>
   </div>
 </footer>
-
 
 <script src="script.js"></script>
 <script src="search.js"></script>
 <script>
+    // ===== BATTERY PRODUCTS DATABASE WITH DETAILS =====
+    const batteryProducts = {
+        xps13: {
+            name: "Dell XPS 13 Battery",
+            price: 89.99,
+            priceFormatted: "E89.99",
+            compatibility: "Compatible with: XPS 13 9300, 9310, 9315, 9320, 9340",
+            description: "The Dell XPS 13 replacement battery is a genuine high-performance lithium-polymer cell designed to restore your ultrabook to its original factory runtime. Engineered with premium Japanese cells and advanced power management ICs, this battery delivers consistent voltage output and thermal stability. Perfect for professionals and students who need all-day productivity without being tethered to a wall outlet.",
+            batteryLife: "8-10 hours (mixed usage) / 5-6 hours (heavy multitasking)",
+            chargeTime: "~1.5 hours with 45W charger (0-80%), ~2.5 hours for full charge",
+            image: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=400&h=400&fit=crop",
+            specs: [
+                { icon: "fa-battery-full", label: "Capacity", value: "52Wh" },
+                { icon: "fa-bolt", label: "Voltage", value: "7.6V" },
+                { icon: "fa-microchip", label: "Battery Type", value: "Lithium-polymer" },
+                { icon: "fa-layer-group", label: "Cells", value: "2-cell" },
+                { icon: "fa-shield-alt", label: "Warranty", value: "12 months" },
+                { icon: "fa-check-circle", label: "In Stock", value: "Yes" }
+            ],
+            rating: 4.5,
+            reviewCount: 256
+        },
+        xps15: {
+            name: "Dell XPS 15 Battery",
+            price: 109.99,
+            priceFormatted: "E109.99",
+            compatibility: "Compatible with: XPS 15 9550, 9560, 9570, 7590, 9510",
+            description: "This premium 97Wh replacement battery for Dell XPS 15 delivers exceptional runtime for creative professionals and power users. Featuring high-density lithium-ion cells and built-in safety protections against overcharging, overheating, and short circuits. Ideal for video editors, developers, and business travelers who need maximum mobility without compromising performance.",
+            batteryLife: "10-12 hours (light usage) / 6-8 hours (video editing / heavy tasks)",
+            chargeTime: "~2 hours with 130W charger (0-80%), ~3 hours for full charge",
+            image: "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=400&h=400&fit=crop",
+            specs: [
+                { icon: "fa-battery-full", label: "Capacity", value: "97Wh" },
+                { icon: "fa-bolt", label: "Voltage", value: "11.4V" },
+                { icon: "fa-microchip", label: "Battery Type", value: "Lithium-ion" },
+                { icon: "fa-layer-group", label: "Cells", value: "6-cell" },
+                { icon: "fa-shield-alt", label: "Warranty", value: "12 months" },
+                { icon: "fa-check-circle", label: "In Stock", value: "Yes" }
+            ],
+            rating: 5.0,
+            reviewCount: 189
+        },
+        inspiron15r: {
+            name: "Dell Inspiron 15R Battery",
+            price: 79.99,
+            priceFormatted: "E79.99",
+            compatibility: "Compatible with: Inspiron 15R, N5110, 5520, 5537",
+            description: "Reliable and affordable replacement battery for Dell Inspiron 15R series. Manufactured with Grade A lithium-ion cells and intelligent battery management system that monitors temperature and voltage in real-time. Restores your laptop's mobility for everyday computing, web browsing, and document work.",
+            batteryLife: "4-6 hours (standard usage) / 3-4 hours (intensive tasks)",
+            chargeTime: "~2 hours with 65W charger, ~3 hours for full charge",
+            image: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=400&h=400&fit=crop",
+            specs: [
+                { icon: "fa-battery-full", label: "Capacity", value: "48-56Wh" },
+                { icon: "fa-bolt", label: "Voltage", value: "11.1V/14.8V" },
+                { icon: "fa-microchip", label: "Battery Type", value: "Lithium-ion" },
+                { icon: "fa-layer-group", label: "Cells", value: "6-cell" },
+                { icon: "fa-shield-alt", label: "Warranty", value: "12 months" },
+                { icon: "fa-check-circle", label: "In Stock", value: "Yes" }
+            ],
+            rating: 5.0,
+            reviewCount: 198
+        },
+        precision7560: {
+            name: "Dell Precision 7560 Battery",
+            price: 129.99,
+            priceFormatted: "E129.99",
+            compatibility: "Compatible with: Precision 7560, Precision 7550, Precision 7750",
+            description: "High-performance 95Wh battery engineered for Dell Precision mobile workstations. Designed to handle demanding workloads including 3D rendering, CAD, and data science applications. Features extended cycle life (over 800 charge cycles) and advanced thermal management for consistent performance under load.",
+            batteryLife: "6-8 hours (mixed workstation tasks) / 4-5 hours (heavy rendering)",
+            chargeTime: "~2 hours with 180W charger (0-80%), ~3.5 hours for full charge",
+            image: "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=400&h=400&fit=crop",
+            specs: [
+                { icon: "fa-battery-full", label: "Capacity", value: "95Wh" },
+                { icon: "fa-bolt", label: "Voltage", value: "11.4V" },
+                { icon: "fa-microchip", label: "Battery Type", value: "Lithium-ion" },
+                { icon: "fa-layer-group", label: "Cells", value: "6-cell" },
+                { icon: "fa-shield-alt", label: "Warranty", value: "12 months" },
+                { icon: "fa-check-circle", label: "In Stock", value: "Yes" }
+            ],
+            rating: 4.5,
+            reviewCount: 142
+        },
+        vostro3510: {
+            name: "Dell Vostro 15 3510 Battery",
+            price: 79.99,
+            priceFormatted: "E79.99",
+            compatibility: "Compatible with: Vostro 15 3510, Vostro 3510 Series",
+            description: "Cost-effective replacement battery for Dell Vostro 15 3510 business laptops. Built with reliable lithium-ion cells and equipped with over-voltage, over-current, and short-circuit protection. Perfect for small business owners and home office users who need dependable power for daily operations.",
+            batteryLife: "5-7 hours (standard office use) / 3-4 hours (video conferencing)",
+            chargeTime: "~1.5 hours (0-80%), ~2.5 hours for full charge",
+            image: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=400&h=400&fit=crop",
+            specs: [
+                { icon: "fa-battery-full", label: "Capacity", value: "42-54Wh" },
+                { icon: "fa-bolt", label: "Voltage", value: "11.4V" },
+                { icon: "fa-microchip", label: "Battery Type", value: "Lithium-ion" },
+                { icon: "fa-layer-group", label: "Cells", value: "3-cell" },
+                { icon: "fa-shield-alt", label: "Warranty", value: "12 months" },
+                { icon: "fa-check-circle", label: "In Stock", value: "Yes" }
+            ],
+            rating: 5.0,
+            reviewCount: 190
+        },
+        latitude5420: {
+            name: "Dell Latitude 5420 Battery",
+            price: 94.99,
+            priceFormatted: "E94.99",
+            compatibility: "Compatible with: Latitude 5420, Latitude 5420 Series",
+            description: "Premium 63Wh replacement battery for Dell Latitude 5420 business laptops. Engineered with high-grade lithium-ion cells and Dell-compatible power delivery protocols. Features ExpressCharge technology for rapid top-ups between meetings. Ideal for business professionals who need all-day reliability.",
+            batteryLife: "7-9 hours (mixed business use) / 5-6 hours (intensive workloads)",
+            chargeTime: "~1 hour with ExpressCharge (0-80%), ~2.5 hours for full charge",
+            image: "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=400&h=400&fit=crop",
+            specs: [
+                { icon: "fa-battery-full", label: "Capacity", value: "63Wh" },
+                { icon: "fa-bolt", label: "Voltage", value: "11.4V" },
+                { icon: "fa-microchip", label: "Battery Type", value: "Lithium-ion" },
+                { icon: "fa-layer-group", label: "Cells", value: "4-cell" },
+                { icon: "fa-shield-alt", label: "Warranty", value: "12 months" },
+                { icon: "fa-check-circle", label: "In Stock", value: "Yes" }
+            ],
+            rating: 4.5,
+            reviewCount: 210
+        }
+    };
+
+    // Helper function to render star rating
+    function renderStars(rating) {
+        const fullStars = Math.floor(rating);
+        const hasHalfStar = rating % 1 >= 0.5;
+        let starsHtml = '';
+        for (let i = 0; i < fullStars; i++) {
+            starsHtml += '<i class="fas fa-star"></i>';
+        }
+        if (hasHalfStar) {
+            starsHtml += '<i class="fas fa-star-half-alt"></i>';
+        }
+        const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+        for (let i = 0; i < emptyStars; i++) {
+            starsHtml += '<i class="far fa-star"></i>';
+        }
+        return starsHtml;
+    }
+
+    // Get product ID from URL
+    function getProductId() {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get('product');
+    }
+
+    // Load product details with enhanced battery life and charge time
+    function loadProductDetails() {
+        const productId = getProductId();
+        const product = batteryProducts[productId];
+        const container = document.getElementById('productDetail');
+        
+        if (!product) {
+            container.innerHTML = `
+                <div style="text-align: center; grid-column: 1/-1; padding: 60px;">
+                    <i class="fas fa-exclamation-triangle fa-3x" style="color: #ff9800;"></i>
+                    <h2>Product Not Found</h2>
+                    <p>Sorry, the battery you're looking for doesn't exist.</p>
+                    <a href="dell-batteries.html" class="back-to-shop" style="margin-top: 20px; display: inline-block;">← Back to Dell Batteries</a>
+                </div>
+            `;
+            return;
+        }
+        
+        // Build specifications HTML
+        const specsHtml = product.specs.map(spec => `
+            <li><i class="fas ${spec.icon}"></i> ${spec.label}: ${spec.value}</li>
+        `).join('');
+        
+        // Build full product detail HTML with performance stats
+        container.innerHTML = `
+            <div class="product-image">
+                <img src="${product.image}" alt="${product.name}">
+            </div>
+            <div class="product-details">
+                <h1>${product.name}</h1>
+                <div class="rating">
+                    <span class="stars">${renderStars(product.rating)}</span>
+                    <span>(${product.reviewCount} reviews)</span>
+                </div>
+                <div class="price">${product.priceFormatted}</div>
+                <p class="description-text">${product.description}</p>
+                <div class="compatibility">
+                    <i class="fas fa-check-circle" style="color: var(--green);"></i> ${product.compatibility}
+                </div>
+                <div class="performance-stats">
+                    <h3><i class="fas fa-charging-station"></i> Performance & Battery Stats</h3>
+                    <div class="stat-grid">
+                        <div class="stat-card">
+                            <i class="fas fa-battery-three-quarters"></i>
+                            <div class="stat-label">BATTERY LIFE</div>
+                            <div class="stat-value">${product.batteryLife}</div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-clock"></i>
+                            <div class="stat-label">FULL CHARGE TIME</div>
+                            <div class="stat-value">${product.chargeTime}</div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-microchip"></i>
+                            <div class="stat-label">CELL TECHNOLOGY</div>
+                            <div class="stat-value">${product.specs.find(s => s.label === "Battery Type")?.value || "Lithium-ion"}</div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-shield-alt"></i>
+                            <div class="stat-label">CYCLE WARRANTY</div>
+                            <div class="stat-value">500+ cycles</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="specifications">
+                    <h3>Technical Specifications</h3>
+                    <ul>${specsHtml}</ul>
+                </div>
+                <div class="quantity-selector">
+                    <label for="quantity">Quantity:</label>
+                    <input type="number" id="quantity" value="1" min="1" max="10">
+                </div>
+                <button class="add-to-cart-btn" onclick="addToCart()"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                <div class="shipping-info">
+                    <p><i class="fas fa-shipping-fast"></i> Free Shipping on orders over E50</p>
+                    <p><i class="fas fa-undo"></i> 30-Day Returns</p>
+                    <p><i class="fas fa-lock"></i> Secure Payment</p>
+                </div>
+            </div>
+        `;
+    }
+
     // Cart functions
+    let currentProduct = null;
+    
+    function getCurrentProduct() {
+        const productId = getProductId();
+        return batteryProducts[productId] || null;
+    }
+    
     function addToCart() {
-        const quantity = document.getElementById('quantity').value;
-        const productName = "Dell XPS 13 Battery";
-        const productPrice = 89.99;
+        const product = getCurrentProduct();
+        if (!product) return;
+        
+        const quantity = parseInt(document.getElementById('quantity').value) || 1;
         
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        const existingItem = cart.find(item => item.name === productName);
+        const existingItem = cart.find(item => item.name === product.name);
+        
         if (existingItem) {
-            existingItem.quantity += parseInt(quantity);
+            existingItem.quantity += quantity;
         } else {
-            cart.push({ id: Date.now(), name: productName, price: productPrice, quantity: parseInt(quantity), image: 'https://via.placeholder.com/100x100?text=Dell+Battery' });
+            cart.push({ 
+                id: Date.now(), 
+                name: product.name, 
+                price: product.price, 
+                quantity: quantity, 
+                image: product.image 
+            });
         }
+        
         localStorage.setItem('cart', JSON.stringify(cart));
         updateCartCount();
-        showToast(`${productName} added to cart!`);
+        showToast(`${product.name} added to cart!`);
     }
     
     function updateCartCount() {
@@ -716,7 +975,14 @@
     }
     
     function showToast(message) {
-        const toast = document.getElementById('successToast');
+        let toast = document.getElementById('successToast');
+        if (!toast) {
+            toast = document.createElement('div');
+            toast.id = 'successToast';
+            toast.className = 'toast';
+            toast.innerHTML = '<p></p>';
+            document.body.appendChild(toast);
+        }
         const toastMsg = toast.querySelector('p');
         toastMsg.textContent = message;
         toast.classList.add('show');
@@ -728,18 +994,18 @@
         if (menu) menu.classList.toggle('open');
     }
     
-    // Modal functions
-    window.closeToast = function() {
-        document.getElementById('successToast').classList.remove('show');
-    };
-    
     // Make functions global
     window.addToCart = addToCart;
     window.toggleMobile = toggleMobile;
     window.updateCartCount = updateCartCount;
+    window.closeToast = function() {
+        const toast = document.getElementById('successToast');
+        if (toast) toast.classList.remove('show');
+    };
     
     // Initialize
     document.addEventListener('DOMContentLoaded', function() {
+        loadProductDetails();
         updateCartCount();
         
         const searchBtn = document.getElementById('searchIconBtn');

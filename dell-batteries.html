@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Asus Laptop Batteries - Eswatini Technocrats Center</title>
+    <title>Dell Laptop Batteries - Eswatini Technocrats Center</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        /* Additional styles for Asus Batteries page */
+        /* Additional styles for Dell Batteries page */
         .batteries-page {
             padding-top: 120px;
             min-height: 100vh;
@@ -163,7 +163,7 @@
             color: var(--green, #00e676);
             font-size: 10px;
         }
-        .btn-add {
+        .btn-view-more {
             display: block;
             width: 100%;
             padding: 12px;
@@ -177,7 +177,7 @@
             border: none;
             cursor: pointer;
         }
-        .btn-add:hover {
+        .btn-view-more:hover {
             background: var(--green-dark, #00c853);
             transform: translateY(-2px);
         }
@@ -200,6 +200,49 @@
         .back-link:hover {
             transform: translateX(-5px);
         }
+        .quantity-selector {
+            margin: 12px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .quantity-selector label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #333;
+        }
+        .quantity-selector input {
+            width: 60px;
+            padding: 6px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .shipping-info {
+            margin: 12px 0;
+            padding: 10px 0;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+        }
+        .shipping-info p {
+            font-size: 11px;
+            margin: 5px 0;
+            color: #777;
+        }
+        .rating {
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .stars {
+            color: #ffc107;
+            font-size: 12px;
+        }
+        .rating span:last-child {
+            font-size: 12px;
+            color: #888;
+        }
         @media (max-width: 768px) {
             .batteries-container {
                 padding: 0 20px;
@@ -220,7 +263,6 @@
                 grid-template-columns: 1fr;
             }
         }
-
         /* ===== SECONDARY NAVIGATION BAR ===== */
         .secondary-nav {
             position: fixed;
@@ -232,7 +274,6 @@
             z-index: 999;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
-
         .secondary-nav-container {
             max-width: 1400px;
             margin: 0 auto;
@@ -242,13 +283,11 @@
             justify-content: space-between;
             height: 50px;
         }
-
         .secondary-nav-menu {
             display: flex;
             list-style: none;
             gap: 2rem;
         }
-
         .secondary-nav-menu li a {
             text-decoration: none;
             color: var(--dark);
@@ -259,26 +298,21 @@
             position: relative;
             cursor: pointer;
         }
-
         .secondary-nav-menu li a:hover {
             color: var(--green);
         }
-
         .secondary-nav-menu li a.active {
             color: var(--green);
             border-bottom: 2px solid var(--green);
         }
-
         .secondary-nav-menu li a i {
             margin-right: 6px;
             font-size: 12px;
         }
-
         .cart-icon {
             position: relative;
             cursor: pointer;
         }
-
         .cart-icon a {
             text-decoration: none;
             color: var(--dark);
@@ -287,11 +321,9 @@
             align-items: center;
             gap: 8px;
         }
-
         .cart-icon a:hover {
             color: var(--green);
         }
-
         .cart-count-badge {
             background: var(--green);
             color: var(--black);
@@ -306,7 +338,6 @@
             justify-content: center;
             margin-bottom: 60px;
         }
-
         .page-actions a {
             padding: 14px 28px;
             background: #00e676;
@@ -317,12 +348,31 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
             transition: transform 0.2s ease, background 0.2s ease;
         }
-
         .page-actions a:hover {
             transform: translateY(-2px);
             background: #00c851;
         }
-
+        /* Toast notification (kept for cart functionality in other pages) */
+        .toast {
+            visibility: hidden;
+            min-width: 250px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 8px;
+            padding: 12px;
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2000;
+            opacity: 0;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+        .toast.show {
+            visibility: visible;
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
@@ -428,6 +478,7 @@
         </div>
     </div>
 </div>
+
 <!-- Login Modal -->
 <div class="auth-modal" id="loginModal">
     <div class="auth-modal-content">
@@ -592,7 +643,6 @@
     </div>
 </div>
 
-
 <!-- ===== PAGE CONTENT ===== -->
 <div class="batteries-page">
     <div class="batteries-container">
@@ -600,7 +650,6 @@
             <h1><i class="fas fa-battery-full"></i> Dell Laptop Batteries</h1>
             <p>High-quality replacement batteries for all Dell laptop models</p>
         </div>
-
         <div class="search-container">
             <h2>Search Batteries</h2>
             <div class="search-box">
@@ -608,10 +657,10 @@
                 <button class="search-btn" id="searchBtn"><i class="fas fa-search"></i> Search</button>
             </div>
         </div>
-
         <div class="battery-grid" id="batteryGrid">
+            <!-- Dell XPS 13 Battery -->
             <div class="battery-card" data-model="XPS" data-part="13">
-                <img src="" alt="Dell XPS 13 Battery">
+                <img src="https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=400&h=200&fit=crop" alt="Dell XPS 13 Battery">
                 <div class="battery-info">
                     <h3>Dell XPS 13 Battery</h3>
                     <p>High-capacity battery for XPS laptops</p>
@@ -622,283 +671,251 @@
                             <li><i class="fas fa-bolt"></i> 52Wh to 60Wh capacity</li>
                             <li><i class="fas fa-microchip"></i> 7.4V/7.6 voltage</li>
                             <li><i class="fas fa-layer-group"></i> 4-cell internal lithium-polymer</li>
-                             <li><i class="fas fa-layer-group"></i> Cells: 2-cell</li>
-                             <li><i class="fas fa-shield-alt"></i> Warranty: 12 months</li>
-                             <li><i class="fas fa-check-circle"></i> In Stock: Yes</li>
+                            <li><i class="fas fa-layer-group"></i> Cells: 2-cell</li>
+                            <li><i class="fas fa-shield-alt"></i> Warranty: 12 months</li>
+                            <li><i class="fas fa-check-circle"></i> In Stock: Yes</li>
                         </ul>
                         <div class="quantity-selector">
-                    <label for="quantity">Quantity:</label>
-                    <input type="number" id="quantity" value="1" min="1" max="10">
-                </div>
+                            <label for="quantity">Quantity:</label>
+                            <input type="number" class="quantity-input" value="1" min="1" max="10">
+                        </div>
                     </div>
-                    <button class="btn-add" onclick="addToCart('Dell XPS 13 Battery', 89.99)"><i class="fas fa-cart-plus"></i> Add to Cart</button>
-                     <div class="shipping-info">
-                    <p><i class="fas fa-shipping-fast"></i> Free Shipping on orders over E50</p>
-                    <p><i class="fas fa-undo"></i> 30-Day Returns</p>
-                    <p><i class="fas fa-lock"></i> Secure Payment</p>
-                </div>
-                <div class="rating">
-                    <span class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </span>
-                    <span>(256 reviews)</span>
-                </div>
+                    <a href="dell-batteries-detail.html?product=xps13" class="btn-view-more"><i class="fas fa-eye"></i> View More</a>
+                    <div class="shipping-info">
+                        <p><i class="fas fa-shipping-fast"></i> Free Shipping on orders over E50</p>
+                        <p><i class="fas fa-undo"></i> 30-Day Returns</p>
+                        <p><i class="fas fa-lock"></i> Secure Payment</p>
+                    </div>
+                    <div class="rating">
+                        <span class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </span>
+                        <span>(256 reviews)</span>
+                    </div>
                 </div>
             </div>
+
+            <!-- Dell XPS 15 Battery -->
             <div class="battery-card" data-model="XPS" data-part="15">
-                <img src="" alt="Dell XPS 15 Battery">
+                <img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=400&h=200&fit=crop" alt="Dell XPS 15 Battery">
                 <div class="battery-info">
                     <h3>Dell XPS 15 Battery</h3>
                     <p>High-capacity battery for XPS laptops</p>
                     <div class="compatibility"><i class="fas fa-check-circle"></i> Compatible with: XPS 15 9550, 9560, 9570, 7590</div>
-                    <div class="price">E89.99</div>
+                    <div class="price">E109.99</div>
                     <div class="specifications">
                         <ul>
                             <li><i class="fas fa-bolt"></i> 97Wh capacity</li>
                             <li><i class="fas fa-microchip"></i> 11.4V voltage</li>
                             <li><i class="fas fa-layer-group"></i> 6-cell lithium-ion</li>
-                             <li><i class="fas fa-shield-alt"></i> Warranty: 12 months</li>
-                             <li><i class="fas fa-check-circle"></i> In Stock: Yes</li>
+                            <li><i class="fas fa-shield-alt"></i> Warranty: 12 months</li>
+                            <li><i class="fas fa-check-circle"></i> In Stock: Yes</li>
                         </ul>
                         <div class="quantity-selector">
-                    <label for="quantity">Quantity:</label>
-                    <input type="number" id="quantity" value="1" min="1" max="10">
-                </div>
+                            <label for="quantity">Quantity:</label>
+                            <input type="number" class="quantity-input" value="1" min="1" max="10">
+                        </div>
                     </div>
-                    <button class="btn-add" onclick="addToCart('Dell XPS 15 Battery', 89.99)"><i class="fas fa-cart-plus"></i> Add to Cart</button>
-                     <div class="shipping-info">
-                    <p><i class="fas fa-shipping-fast"></i> Free Shipping on orders over E50</p>
-                    <p><i class="fas fa-undo"></i> 30-Day Returns</p>
-                    <p><i class="fas fa-lock"></i> Secure Payment</p>
-                </div>
-                <div class="rating">
-                    <span class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </span>
-                    <span>(256 reviews)</span>
-                </div>
+                    <a href="dell-batteries-detail.html?product=xps15" class="btn-view-more"><i class="fas fa-eye"></i> View More</a>
+                    <div class="shipping-info">
+                        <p><i class="fas fa-shipping-fast"></i> Free Shipping on orders over E50</p>
+                        <p><i class="fas fa-undo"></i> 30-Day Returns</p>
+                        <p><i class="fas fa-lock"></i> Secure Payment</p>
+                    </div>
+                    <div class="rating">
+                        <span class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </span>
+                        <span>(189 reviews)</span>
+                    </div>
                 </div>
             </div>
+
+ <!-- Dell Inspiron 15R Battery -->
             <div class="battery-card" data-model="Inspiron 15R" data-part="15R">
-    <img src="" alt="Dell Inspiron 15R Battery">
-    <div class="battery-info">
-        <h3>Dell Inspiron 15R Battery</h3>
-        <p>Reliable replacement battery for Inspiron 15R laptops</p>
-
-        <div class="compatibility">
-            <i class="fas fa-check-circle"></i> Compatible with: Inspiron 15R, N5110, 5520, 5537
-        </div>
-
-        <div class="price">E79.99</div>
-
-        <div class="specifications">
-            <ul>
-                <li><i class="fas fa-bolt"></i> 48Wh to 56Wh capacity</li>
-                <li><i class="fas fa-microchip"></i> 11.1V/14.8V voltage</li>
-                <li><i class="fas fa-layer-group"></i> 6-cell lithium-ion battery</li>
-                <li><i class="fas fa-layer-group"></i> Cells: 6-cell</li>
-                <li><i class="fas fa-shield-alt"></i> Warranty: 12 months</li>
-                <li><i class="fas fa-check-circle"></i> In Stock: Yes</li>
-            </ul>
-
-            <div class="quantity-selector">
-                <label for="quantity">Quantity:</label>
-                <input type="number" id="quantity" value="1" min="1" max="10">
+                <img src="https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=400&h=200&fit=crop" alt="Dell Inspiron 15R Battery">
+                <div class="battery-info">
+                    <h3>Dell Inspiron 15R Battery</h3>
+                    <p>Reliable replacement battery for Inspiron 15R laptops</p>
+                    <div class="compatibility">
+                        <i class="fas fa-check-circle"></i> Compatible with: Inspiron 15R, N5110, 5520, 5537
+                    </div>
+                    <div class="price">E79.99</div>
+                    <div class="specifications">
+                        <ul>
+                            <li><i class="fas fa-bolt"></i> 48Wh to 56Wh capacity</li>
+                            <li><i class="fas fa-microchip"></i> 11.1V/14.8V voltage</li>
+                            <li><i class="fas fa-layer-group"></i> 6-cell lithium-ion battery</li>
+                            <li><i class="fas fa-layer-group"></i> Cells: 6-cell</li>
+                            <li><i class="fas fa-shield-alt"></i> Warranty: 12 months</li>
+                            <li><i class="fas fa-check-circle"></i> In Stock: Yes</li>
+                        </ul>
+                        <div class="quantity-selector">
+                            <label for="quantity">Quantity:</label>
+                            <input type="number" class="quantity-input" value="1" min="1" max="10">
+                        </div>
+                    </div>
+                    <a href="dell-batteries-detail.html?product=inspiron15r" class="btn-view-more"><i class="fas fa-eye"></i> View More</a>
+                    <div class="shipping-info">
+                        <p><i class="fas fa-shipping-fast"></i> Free Shipping on orders over E50</p>
+                        <p><i class="fas fa-undo"></i> 30-Day Returns</p>
+                        <p><i class="fas fa-lock"></i> Secure Payment</p>
+                    </div>
+                    <div class="rating">
+                        <span class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </span>
+                        <span>(198 reviews)</span>
+                    </div>
+                </div>
             </div>
-        </div>
 
-        <button class="btn-add" onclick="addToCart('Dell Inspiron 15R Battery', 79.99)">
-            <i class="fas fa-cart-plus"></i> Add to Cart
-        </button>
-
-        <div class="shipping-info">
-            <p><i class="fas fa-shipping-fast"></i> Free Shipping on orders over E50</p>
-            <p><i class="fas fa-undo"></i> 30-Day Returns</p>
-            <p><i class="fas fa-lock"></i> Secure Payment</p>
-        </div>
-
-        <div class="rating">
-            <span class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-            </span>
-            <span>(198 reviews)</span>
-        </div>
-    </div>
-</div>
-
+            <!-- Dell Precision 7560 Battery -->
             <div class="battery-card" data-model="Precision 7560" data-part="7560">
-    <img src="" alt="Dell Precision 7560 Battery">
-    <div class="battery-info">
-        <h3>Dell Precision 7560 Battery</h3>
-        <p>High-performance battery designed for Dell Precision 7560 mobile workstations</p>
-
-        <div class="compatibility">
-            <i class="fas fa-check-circle"></i> Compatible with: Precision 7560, Precision 7550, Precision 7750
-        </div>
-
-        <div class="price">E129.99</div>
-
-        <div class="specifications">
-            <ul>
-                <li><i class="fas fa-bolt"></i> 95Wh capacity</li>
-                <li><i class="fas fa-microchip"></i> 11.4V voltage</li>
-                <li><i class="fas fa-layer-group"></i> 6-cell lithium-ion battery</li>
-                <li><i class="fas fa-layer-group"></i> Cells: 6-cell</li>
-                <li><i class="fas fa-shield-alt"></i> Warranty: 12 months</li>
-                <li><i class="fas fa-check-circle"></i> In Stock: Yes</li>
-            </ul>
-
-            <div class="quantity-selector">
-                <label for="quantity">Quantity:</label>
-                <input type="number" class="quantity" value="1" min="1" max="10">
+                <img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=400&h=200&fit=crop" alt="Dell Precision 7560 Battery">
+                <div class="battery-info">
+                    <h3>Dell Precision 7560 Battery</h3>
+                    <p>High-performance battery designed for Dell Precision 7560 mobile workstations</p>
+                    <div class="compatibility">
+                        <i class="fas fa-check-circle"></i> Compatible with: Precision 7560, Precision 7550, Precision 7750
+                    </div>
+                    <div class="price">E129.99</div>
+                    <div class="specifications">
+                        <ul>
+                            <li><i class="fas fa-bolt"></i> 95Wh capacity</li>
+                            <li><i class="fas fa-microchip"></i> 11.4V voltage</li>
+                            <li><i class="fas fa-layer-group"></i> 6-cell lithium-ion battery</li>
+                            <li><i class="fas fa-layer-group"></i> Cells: 6-cell</li>
+                            <li><i class="fas fa-shield-alt"></i> Warranty: 12 months</li>
+                            <li><i class="fas fa-check-circle"></i> In Stock: Yes</li>
+                        </ul>
+                        <div class="quantity-selector">
+                            <label for="quantity">Quantity:</label>
+                            <input type="number" class="quantity-input" value="1" min="1" max="10">
+                        </div>
+                    </div>
+                    <a href="dell-batteries-detail.html?product=precision7560" class="btn-view-more"><i class="fas fa-eye"></i> View More</a>
+                    <div class="shipping-info">
+                        <p><i class="fas fa-shipping-fast"></i> Free Shipping on orders over E50</p>
+                        <p><i class="fas fa-undo"></i> 30-Day Returns</p>
+                        <p><i class="fas fa-lock"></i> Secure Payment</p>
+                    </div>
+                    <div class="rating">
+                        <span class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </span>
+                        <span>(142 reviews)</span>
+                    </div>
+                </div>
             </div>
-        </div>
 
-        <button class="btn-add" onclick="addToCart('Dell Precision 7560 Battery', 129.99)">
-            <i class="fas fa-cart-plus"></i> Add to Cart
-        </button>
-
-        <div class="shipping-info">
-            <p><i class="fas fa-shipping-fast"></i> Free Shipping on orders over E50</p>
-            <p><i class="fas fa-undo"></i> 30-Day Returns</p>
-            <p><i class="fas fa-lock"></i> Secure Payment</p>
-        </div>
-
-        <div class="rating">
-            <span class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </span>
-            <span>(142 reviews)</span>
-        </div>
-    </div>
-</div>
-
+            <!-- Dell Vostro 15 3510 Battery -->
             <div class="battery-card" data-model="Vostro" data-part="3510">
-    <img src="" alt="Dell Vostro 15 3510 Battery">
-    <div class="battery-info">
-        <h3>Dell Vostro 15 3510 Battery</h3>
-        <p>Reliable replacement battery for Dell Vostro 15 3510 laptops</p>
-        
-        <div class="compatibility">
-            <i class="fas fa-check-circle"></i> Compatible with: Vostro 15 3510, Vostro 3510 Series
-        </div>
-
-        <div class="price">E79.99</div>
-
-        <div class="specifications">
-            <ul>
-                <li><i class="fas fa-bolt"></i> 42Wh to 54Wh capacity</li>
-                <li><i class="fas fa-microchip"></i> 11.4V voltage</li>
-                <li><i class="fas fa-layer-group"></i> 3-cell lithium-ion battery</li>
-                <li><i class="fas fa-layer-group"></i> Cells: 3-cell</li>
-                <li><i class="fas fa-shield-alt"></i> Warranty: 12 months</li>
-                <li><i class="fas fa-check-circle"></i> In Stock: Yes</li>
-            </ul>
-
-            <div class="quantity-selector">
-                <label for="quantity">Quantity:</label>
-                <input type="number" id="quantity" value="1" min="1" max="10">
+                <img src="https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=400&h=200&fit=crop" alt="Dell Vostro 15 3510 Battery">
+                <div class="battery-info">
+                    <h3>Dell Vostro 15 3510 Battery</h3>
+                    <p>Reliable replacement battery for Dell Vostro 15 3510 laptops</p>
+                    <div class="compatibility">
+                        <i class="fas fa-check-circle"></i> Compatible with: Vostro 15 3510, Vostro 3510 Series
+                    </div>
+                    <div class="price">E79.99</div>
+                    <div class="specifications">
+                        <ul>
+                            <li><i class="fas fa-bolt"></i> 42Wh to 54Wh capacity</li>
+                            <li><i class="fas fa-microchip"></i> 11.4V voltage</li>
+                            <li><i class="fas fa-layer-group"></i> 3-cell lithium-ion battery</li>
+                            <li><i class="fas fa-layer-group"></i> Cells: 3-cell</li>
+                            <li><i class="fas fa-shield-alt"></i> Warranty: 12 months</li>
+                            <li><i class="fas fa-check-circle"></i> In Stock: Yes</li>
+                        </ul>
+                        <div class="quantity-selector">
+                            <label for="quantity">Quantity:</label>
+                            <input type="number" class="quantity-input" value="1" min="1" max="10">
+                        </div>
+                    </div>
+                    <a href="dell-batteries-detail.html?product=vostro3510" class="btn-view-more"><i class="fas fa-eye"></i> View More</a>
+                    <div class="shipping-info">
+                        <p><i class="fas fa-shipping-fast"></i> Free Shipping on orders over E50</p>
+                        <p><i class="fas fa-undo"></i> 30-Day Returns</p>
+                        <p><i class="fas fa-lock"></i> Secure Payment</p>
+                    </div>
+                    <div class="rating">
+                        <span class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </span>
+                        <span>(190 reviews)</span>
+                    </div>
+                </div>
             </div>
-        </div>
 
-        <button class="btn-add" onclick="addToCart('Dell Vostro 15 3510 Battery', 79.99)">
-            <i class="fas fa-cart-plus"></i> Add to Cart
-        </button>
-
-        <div class="shipping-info">
-            <p><i class="fas fa-shipping-fast"></i> Free Shipping on orders over E50</p>
-            <p><i class="fas fa-undo"></i> 30-Day Returns</p>
-            <p><i class="fas fa-lock"></i> Secure Payment</p>
-        </div>
-
-        <div class="rating">
-            <span class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-            </span>
-            <span>(190 reviews)</span>
-        </div>
-    </div>
-</div>
-
+            <!-- Dell Latitude 5420 Battery -->
             <div class="battery-card" data-model="Latitude" data-part="5420">
-    <img src="" alt="Dell Latitude 5420 Battery">
-    <div class="battery-info">
-        <h3>Dell Latitude 5420 Battery</h3>
-        <p>High-performance replacement battery for Dell Latitude 5420 laptops</p>
-        
-        <div class="compatibility">
-            <i class="fas fa-check-circle"></i> Compatible with: Latitude 5420, Latitude 5420 Series
-        </div>
-
-        <div class="price">E94.99</div>
-
-        <div class="specifications">
-            <ul>
-                <li><i class="fas fa-bolt"></i> 63Wh capacity</li>
-                <li><i class="fas fa-microchip"></i> 11.4V voltage</li>
-                <li><i class="fas fa-layer-group"></i> 4-cell lithium-ion battery</li>
-                <li><i class="fas fa-layer-group"></i> Cells: 4-cell</li>
-                <li><i class="fas fa-shield-alt"></i> Warranty: 12 months</li>
-                <li><i class="fas fa-check-circle"></i> In Stock: Yes</li>
-            </ul>
-
-            <div class="quantity-selector">
-                <label for="quantity">Quantity:</label>
-                <input type="number" id="quantity" value="1" min="1" max="10">
+                <img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=400&h=200&fit=crop" alt="Dell Latitude 5420 Battery">
+                <div class="battery-info">
+                    <h3>Dell Latitude 5420 Battery</h3>
+                    <p>High-performance replacement battery for Dell Latitude 5420 laptops</p>
+                    <div class="compatibility">
+                        <i class="fas fa-check-circle"></i> Compatible with: Latitude 5420, Latitude 5420 Series
+                    </div>
+                    <div class="price">E94.99</div>
+                    <div class="specifications">
+                        <ul>
+                            <li><i class="fas fa-bolt"></i> 63Wh capacity</li>
+                            <li><i class="fas fa-microchip"></i> 11.4V voltage</li>
+                            <li><i class="fas fa-layer-group"></i> 4-cell lithium-ion battery</li>
+                            <li><i class="fas fa-layer-group"></i> Cells: 4-cell</li>
+                            <li><i class="fas fa-shield-alt"></i> Warranty: 12 months</li>
+                            <li><i class="fas fa-check-circle"></i> In Stock: Yes</li>
+                        </ul>
+                        <div class="quantity-selector">
+                            <label for="quantity">Quantity:</label>
+                            <input type="number" class="quantity-input" value="1" min="1" max="10">
+                        </div>
+                    </div>
+                    <a href="dell-batteries-detail.html?product=latitude5420" class="btn-view-more"><i class="fas fa-eye"></i> View More</a>
+                    <div class="shipping-info">
+                        <p><i class="fas fa-shipping-fast"></i> Free Shipping on orders over E50</p>
+                        <p><i class="fas fa-undo"></i> 30-Day Returns</p>
+                        <p><i class="fas fa-lock"></i> Secure Payment</p>
+                    </div>
+                    <div class="rating">
+                        <span class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </span>
+                        <span>(210 reviews)</span>
+                    </div>
+                </div>
             </div>
-        </div>
-
-        <button class="btn-add" onclick="addToCart('Dell Latitude 5420 Battery', 94.99)">
-            <i class="fas fa-cart-plus"></i> Add to Cart
-        </button>
-
-        <div class="shipping-info">
-            <p><i class="fas fa-shipping-fast"></i> Free Shipping on orders over E50</p>
-            <p><i class="fas fa-undo"></i> 30-Day Returns</p>
-            <p><i class="fas fa-lock"></i> Secure Payment</p>
-        </div>
-
-        <div class="rating">
-            <span class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-            </span>
-            <span>(210 reviews)</span>
-        </div>
-    </div>
-
-</div>
-
         </div>
         <div class="page-actions">
             <a href="#" onclick="history.back(); return false;">Previous</a>
         </div>
     </div>
-
-
+</div>
 
 <!-- ===== FOOTER ===== -->
 <footer id="contact">
@@ -920,7 +937,6 @@
           <a href="#" class="social-link blue"><i class="fab fa-instagram"></i></a>
         </div>
       </div>
-
       <!-- Quick Links -->
       <div class="footer-col">
         <h4>Quick Links</h4>
@@ -933,21 +949,17 @@
           <li><a href="#contact"><i class="fas fa-angle-right"></i> Contact</a></li>
         </ul>
       </div>
-
       <!-- shop -->
       <div class="footer-col">
         <h4>shop</h4>
         <ul>
-          
         <li><a href="#"><i class="fas fa-angle-right"></i> Computer & laptops</a></li>
         <li><a href="#"><i class="fas fa-angle-right"></i> Point of sale set</a></li>
         <li><a href="#"><i class="fas fa-angle-right"></i> Accessories</a></li>
         <li><a href="#"><i class="fas fa-angle-right"></i>Laptop housing </a></li>
         <li><a href="#"><i class="fas fa-angle-right"></i> Computer&Laptop small parts</a></li>
-
         </ul>
       </div>
-
       <!-- Services -->
       <div class="footer-col">
         <h4>Services</h4>
@@ -957,10 +969,8 @@
           <li><a href="software-installations.html"><i class="fas fa-angle-right"></i> Softwares Installations</a></li>
           <li><a href="networking.html"><i class="fas fa-angle-right"></i> Networking</a></li>
           <li><a href="tech-support.html"><i class="fas fa-angle-right"></i> Tech Support</a></li>
-          
         </ul>
       </div>
-
       <!-- Contact -->
       <div class="footer-col">
         <h4>Contact Us</h4>
@@ -978,11 +988,10 @@
         </div>
         <div class="contact-item">
           <i class="fas fa-clock"></i>
-          <span>Mon–Fri: 8:00 AM – 5:00 PM<br>Sat: 9:00 AM – 1:00 PM</span>
+          <span>Mon--Fri: 8:00 AM -- 5:00 PM<br>Sat: 9:00 AM -- 1:00 PM</span>
         </div>
       </div>
     </div>
-
     <!-- Footer Bottom -->
     <div class="footer-bottom">
       <p> Copyright© 2026 <span>Eswatini Technocrats Center</span>. All Rights Reserved. Built with in Eswatini.</p>
@@ -991,12 +1000,13 @@
         <a href="#">Terms of Use</a>
         <a href="#"></a>
       </div>
-    
+    </div>
   </div>
 </footer>
 
 <script src="script.js"></script>
 <script src="search.js"></script>
+
 <script>
     // Battery search functionality
     function searchBatteries() {
@@ -1009,9 +1019,9 @@
             const part = card.getAttribute('data-part').toLowerCase();
             const title = card.querySelector('h3').textContent.toLowerCase();
             const compatibility = card.querySelector('.compatibility').textContent.toLowerCase();
-
+            
             const matches = model.includes(searchInput) || part.includes(searchInput) || title.includes(searchInput) || compatibility.includes(searchInput);
-
+            
             if (matches) {
                 card.style.display = 'block';
                 hasResults = true;
@@ -1019,27 +1029,13 @@
                 card.style.display = 'none';
             }
         });
-
+        
         const noResults = document.getElementById('noResults');
         if (!hasResults && searchInput.length > 0) {
-            noResults.style.display = 'block';
+            if(noResults) noResults.style.display = 'block';
         } else {
-            noResults.style.display = 'none';
+            if(noResults) noResults.style.display = 'none';
         }
-    }
-
-    // Add to cart function
-    function addToCart(name, price) {
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        const existingItem = cart.find(item => item.name === name);
-        if (existingItem) {
-            existingItem.quantity += 1;
-        } else {
-            cart.push({ id: Date.now(), name, price, quantity: 1, image: 'https://images.unsplash.com/photo-1609592806500-3b0c7a3e2c9e?w=100&h=100&fit=crop' });
-        }
-        localStorage.setItem('cart', JSON.stringify(cart));
-        updateCartCount();
-        showToast(`${name} added to cart!`);
     }
 
     function updateCartCount() {
@@ -1047,14 +1043,6 @@
         const total = cart.reduce((sum, item) => sum + item.quantity, 0);
         const cartCountSpan = document.getElementById('cartCount');
         if (cartCountSpan) cartCountSpan.textContent = total;
-    }
-
-    function showToast(message) {
-        const toast = document.getElementById('successToast');
-        const toastMsg = toast.querySelector('p');
-        toastMsg.textContent = message;
-        toast.classList.add('show');
-        setTimeout(() => toast.classList.remove('show'), 3000);
     }
 
     function toggleMobile() {
@@ -1063,78 +1051,31 @@
     }
 
     // Event listeners
-    document.getElementById('batterySearch').addEventListener('input', searchBatteries);
-    document.getElementById('searchBtn').addEventListener('click', searchBatteries);
+    const searchInputField = document.getElementById('batterySearch');
+    const searchBtn = document.getElementById('searchBtn');
+    if(searchInputField) searchInputField.addEventListener('input', searchBatteries);
+    if(searchBtn) searchBtn.addEventListener('click', searchBatteries);
 
     // Initialize
     document.addEventListener('DOMContentLoaded', function() {
         updateCartCount();
         
-        const searchBtn = document.getElementById('searchIconBtn');
-        const settingsBtn = document.getElementById('settingsBtn');
-        const loginBtn = document.getElementById('loginBtn');
-        const registerBtn = document.getElementById('registerBtn');
+        const searchBtnIcon = document.getElementById('searchIconBtn');
+        const settingsBtnIcon = document.getElementById('settingsBtn');
+        const loginBtnIcon = document.getElementById('loginBtn');
+        const registerBtnIcon = document.getElementById('registerBtn');
         const hamburger = document.getElementById('hamburger');
         
-        if (searchBtn && typeof openSearchModal === 'function') searchBtn.onclick = openSearchModal;
-        if (settingsBtn && typeof openSettingsModal === 'function') settingsBtn.onclick = openSettingsModal;
-        if (loginBtn && typeof openLoginModal === 'function') loginBtn.onclick = openLoginModal;
-        if (registerBtn && typeof openRegisterModal === 'function') registerBtn.onclick = openRegisterModal;
+        if (searchBtnIcon && typeof openSearchModal === 'function') searchBtnIcon.onclick = openSearchModal;
+        if (settingsBtnIcon && typeof openSettingsModal === 'function') settingsBtnIcon.onclick = openSettingsModal;
+        if (loginBtnIcon && typeof openLoginModal === 'function') loginBtnIcon.onclick = openLoginModal;
+        if (registerBtnIcon && typeof openRegisterModal === 'function') registerBtnIcon.onclick = openRegisterModal;
         if (hamburger) hamburger.onclick = toggleMobile;
     });
 
     // Make functions global
-    window.addToCart = addToCart;
-    window.toggleMobile = toggleMobile;
-    window.updateCartCount = updateCartCount;
-    window.closeToast = function() {
-        document.getElementById('successToast').classList.remove('show');
-    };
-
-    // Additional functions for this page
-    function toggleMobile() {
-        const menu = document.getElementById('mobileMenu');
-        if (menu) menu.classList.toggle('open');
-    }
-    
-    // Cart count update from localStorage
-    function updateCartCount() {
-        const cart = JSON.parse(localStorage.getItem('cart')) || [];
-        const total = cart.reduce((sum, item) => sum + item.quantity, 0);
-        const cartCountSpan = document.getElementById('cartCount');
-        if (cartCountSpan) cartCountSpan.textContent = total;
-    }
-    
-    // Initialize
-    document.addEventListener('DOMContentLoaded', function() {
-        updateCartCount();
-        
-        // Ensure modal buttons work with existing script.js
-        const searchBtn = document.getElementById('searchIconBtn');
-        const settingsBtn = document.getElementById('settingsBtn');
-        const loginBtn = document.getElementById('loginBtn');
-        const registerBtn = document.getElementById('registerBtn');
-        const hamburger = document.getElementById('hamburger');
-        
-        if (searchBtn && typeof openSearchModal === 'function') {
-            searchBtn.onclick = openSearchModal;
-        }
-        if (settingsBtn && typeof openSettingsModal === 'function') {
-            settingsBtn.onclick = openSettingsModal;
-        }
-        if (loginBtn && typeof openLoginModal === 'function') {
-            loginBtn.onclick = openLoginModal;
-        }
-        if (registerBtn && typeof openRegisterModal === 'function') {
-            registerBtn.onclick = openRegisterModal;
-        }
-        if (hamburger) hamburger.onclick = toggleMobile;
-    });
-    
-    // Make functions available globally
     window.toggleMobile = toggleMobile;
     window.updateCartCount = updateCartCount;
 </script>
 </body>
 </html>
-

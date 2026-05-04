@@ -3,24 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RAM Components - Eswatini Technocrats Center</title>
+    <title>RAM Products - Eswatini Technocrats Center</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        /* Additional styles for Dell page - matches main website */
-        .dell-page {
+               /* Additional styles for RAM Products page - matches dell batteries style */
+        .batteries-page {
             padding-top: 120px;
             min-height: 100vh;
             background: #ffffff;
         }
-        .dell-container {
+        .batteries-container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 40px;
         }
         .page-header {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 30px;
         }
         .page-header h1 {
             font-size: 48px;
@@ -35,188 +35,361 @@
         .page-header p {
             font-size: 18px;
             color: #666;
-            max-width: 800px;
+            max-width: 700px;
             margin: 0 auto;
         }
-        .categories-grid {
+        /* Search Container */
+        .search-container {
+            background: var(--bg-secondary, #f5f5f5);
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            text-align: center;
+            border: 1px solid var(--border-color, #e0e0e0);
+        }
+        .search-container h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--text-primary, #1a1a1a);
+        }
+        .search-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .search-input {
+            flex: 1;
+            padding: 14px 18px;
+            border: 2px solid var(--border-color, #e0e0e0);
+            border-radius: 10px;
+            font-size: 16px;
+            background: var(--bg-primary, #ffffff);
+            color: var(--text-primary, #333);
+        }
+        .search-input:focus {
+            outline: none;
+            border-color: var(--green, #00e676);
+        }
+        .search-btn {
+            padding: 14px 28px;
+            background: var(--green, #00e676);
+            color: #000;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .search-btn:hover {
+            background: var(--green-dark, #00c853);
+            transform: translateY(-2px);
+        }
+        /* Products Grid */
+        .battery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 30px;
             margin-bottom: 50px;
         }
-        .category-card {
-            background: #ffffff;
+        .battery-card {
+            background: var(--bg-primary, #ffffff);
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             transition: all 0.3s ease;
-            border: 1px solid #e0e0e0;
-            text-decoration: none;
-            display: block;
-            text-align: center;
+            border: 1px solid var(--border-color, #e0e0e0);
         }
-        .category-card:hover {
-            transform: translateY(-10px);
+        .battery-card:hover {
+            transform: translateY(-5px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
             border-color: var(--green, #00e676);
         }
-        .category-card-icon {
-            background: linear-gradient(135deg, rgba(0,230,118,0.1), rgba(33,150,243,0.1));
-            padding: 40px;
-            font-size: 60px;
-            color: var(--green, #00e676);
+        .battery-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
         }
-        .category-card-content {
-            padding: 25px;
+        .battery-info {
+            padding: 20px;
         }
-        .category-card-content h3 {
-            font-size: 22px;
-            color: #1a1a1a;
-            margin-bottom: 10px;
+        .battery-info h3 {
+            font-size: 18px;
+            color: var(--text-primary, #1a1a1a);
+            margin-bottom: 8px;
             font-family: 'Rajdhani', sans-serif;
         }
-        .category-card-content p {
+        .battery-info p {
             font-size: 14px;
-            color: #666;
+            color: var(--text-secondary, #666);
+            margin-bottom: 12px;
             line-height: 1.5;
         }
+        .compatibility {
+            background: var(--bg-secondary, #f5f5f5);
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            color: var(--text-secondary, #666);
+            margin-bottom: 12px;
+        }
+        .price {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--green, #00e676);
+            margin-bottom: 12px;
+        }
+        .specifications {
+            margin-bottom: 15px;
+        }
+        .specifications ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px;
+        }
+        .specifications li {
+            padding: 4px 0;
+            font-size: 12px;
+            color: var(--text-secondary, #666);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .specifications li i {
+            color: var(--green, #00e676);
+            font-size: 10px;
+        }
+        .btn-add-to-cart {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: var(--green, #00e676);
+            color: #000;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-add-to-cart:hover {
+            background: var(--green-dark, #00c853);
+            transform: translateY(-2px);
+        }
+        .no-results {
+            text-align: center;
+            padding: 60px;
+            background: var(--bg-secondary, #f5f5f5);
+            border-radius: 20px;
+            display: none;
+            color: var(--text-secondary, #666);
+        }
+        .quantity-selector {
+            margin: 12px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .quantity-selector label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #333;
+        }
+        .quantity-selector input {
+            width: 60px;
+            padding: 6px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .shipping-info {
+            margin: 12px 0;
+            padding: 10px 0;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+        }
+        .shipping-info p {
+            font-size: 11px;
+            margin: 5px 0;
+            color: #777;
+        }
+        .rating {
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .stars {
+            color: #ffc107;
+            font-size: 12px;
+        }
+        .rating span:last-child {
+            font-size: 12px;
+            color: #888;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: var(--green, #00e676);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .back-link:hover {
+            transform: translateX(-5px);
+        }
         @media (max-width: 768px) {
-            .dell-container {
+            .batteries-container {
                 padding: 0 20px;
             }
             .page-header h1 {
                 font-size: 32px;
             }
-            .categories-grid {
+            .search-box {
+                flex-direction: column;
+            }
+            .search-btn {
+                width: 100%;
+            }
+            .battery-grid {
+                grid-template-columns: 1fr;
+            }
+            .specifications ul {
                 grid-template-columns: 1fr;
             }
         }
-
-        /* Additional styles for this page */
-        .parts-page {
-            padding-top: 120px;
-            min-height: 100vh;
-            background: #ffffff;
+        /* ===== SECONDARY NAVIGATION BAR ===== */
+        .secondary-nav {
+            position: fixed;
+            top: 70px;
+            left: 0;
+            width: 100%;
+            background: var(--white);
+            border-bottom: 1px solid #e0e0e0;
+            z-index: 999;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
-        .parts-container {
-            max-width: 1200px;
+        .secondary-nav-container {
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 50px;
         }
-        .hero {
-            background: linear-gradient(135deg, #2c3e50, #3498db);
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
-            border-radius: 20px;
-            margin-bottom: 50px;
+        .secondary-nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
         }
-        .hero h1 {
-            font-size: 48px;
-            margin-bottom: 15px;
-            font-family: 'Orbitron', sans-serif;
-        }
-        .hero p {
-            font-size: 18px;
-            opacity: 0.95;
-            margin-bottom: 25px;
-        }
-        .section-title {
-            font-size: 32px;
-            margin-bottom: 30px;
-            color: #1a1a1a;
-            text-align: center;
-            font-family: 'Orbitron', sans-serif;
-        }
-        .section-title span {
-            color: var(--green, #00e676);
-        }
-        .categories-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-bottom: 50px;
-        }
-        .category-card {
-            background: #ffffff;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
-            border: 1px solid #e0e0e0;
+        .secondary-nav-menu li a {
             text-decoration: none;
-            display: block;
-            text-align: center;
-        }
-        .category-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
-            border-color: var(--green, #00e676);
-        }
-        .category-card-icon {
-            background: linear-gradient(135deg, rgba(0,230,118,0.1), rgba(33,150,243,0.1));
-            padding: 40px;
-            font-size: 60px;
-            color: var(--green, #00e676);
-        }
-        .category-card-content {
-            padding: 25px;
-        }
-        .category-card-content h3 {
-            font-size: 24px;
-            color: #1a1a1a;
-            margin-bottom: 15px;
-            font-family: 'Rajdhani', sans-serif;
-        }
-        .category-card-content img {
-            width: 100px;
-            height: auto;
-            margin: 10px auto;
-            display: block;
-        }
-        .category-card-content p {
+            color: var(--dark);
+            font-weight: 500;
             font-size: 14px;
-            color: #666;
-            margin-top: 10px;
+            padding: 0.5rem 0;
+            transition: all 0.3s;
+            position: relative;
+            cursor: pointer;
         }
-        @media (max-width: 768px) {
-            .parts-container {
-                padding: 0 20px;
-            }
-            .hero h1 {
-                font-size: 32px;
-            }
-            .categories-grid {
-                grid-template-columns: 1fr;
-            }
+        .secondary-nav-menu li a:hover {
+            color: var(--green);
         }
-
-        /* ========== GLOBAL STYLES ========== */
+        .secondary-nav-menu li a.active {
+            color: var(--green);
+            border-bottom: 2px solid var(--green);
+        }
+        .secondary-nav-menu li a i {
+            margin-right: 6px;
+            font-size: 12px;
+        }
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+        }
+        .cart-icon a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .cart-icon a:hover {
+            color: var(--green);
+        }
+        .cart-count-badge {
+            background: var(--green);
+            color: var(--black);
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+        .page-actions {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 60px;
+        }
+        .page-actions a {
+            padding: 14px 28px;
+            background: #00e676;
+            color: #000;
+            border-radius: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+        .page-actions a:hover {
+            transform: translateY(-2px);
+            background: #00c851;
+        }
+        /* Toast notification */
+        .toast {
+            visibility: hidden;
+            min-width: 250px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 8px;
+            padding: 12px;
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2000;
+            opacity: 0;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+        .toast.show {
+            visibility: visible;
+            opacity: 1;
+        }
+        /* ===== GLOBAL STYLES ===== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         :root {
             --primary: #2c3e50;
             --secondary: #3498db;
-            --accent: #3e23db;
-            --success: #27ae60;
-            --warning: #f39c12;
-            --light: #ecf0f1;
-            --dark: #2c3e50;
-            --white: #ffffff;
-            --shadow: 0 10px 30px rgba(0,0,0,0.1);
-            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             --green: #00e676;
             --green-dark: #00c853;
             --blue: #2196f3;
-            --blue-light: #64b5f6;
             --black: #000000;
+            --white: #ffffff;
+            --dark: #2c3e50;
             --gray: #aaaaaa;
         }
-
         body {
             background: #f5f5f5;
             min-height: 100vh;
@@ -224,7 +397,6 @@
             line-height: 1.6;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
         /* ===== MAIN NAVBAR ===== */
         .navbar {
             position: fixed;
@@ -349,322 +521,39 @@
             background: rgba(0, 230, 118, 0.08);
             padding-left: 26px;
         }
-
-        /* ===== SECONDARY NAVIGATION BAR ===== */
-        .secondary-nav {
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
             position: fixed;
-            top: 70px;
+            top: 120px;
             left: 0;
             width: 100%;
-            background: var(--white);
-            border-bottom: 1px solid #e0e0e0;
-            z-index: 999;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            background: white;
+            z-index: 1000;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
-
-        .secondary-nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 40px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 50px;
-        }
-
-        .secondary-nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .secondary-nav-menu li a {
-            text-decoration: none;
-            color: var(--dark);
-            font-weight: 500;
-            font-size: 14px;
-            padding: 0.5rem 0;
-            transition: all 0.3s;
-            position: relative;
-            cursor: pointer;
-        }
-
-        .secondary-nav-menu li a:hover {
-            color: var(--green);
-        }
-
-        .secondary-nav-menu li a.active {
-            color: var(--green);
-            border-bottom: 2px solid var(--green);
-        }
-
-        .secondary-nav-menu li a i {
-            margin-right: 6px;
-            font-size: 12px;
-        }
-
-        .cart-icon {
-            position: relative;
-            cursor: pointer;
-        }
-
-        .cart-icon a {
-            text-decoration: none;
-            color: var(--dark);
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .cart-icon a:hover {
-            color: var(--green);
-        }
-
-        .cart-count-badge {
-            background: var(--green);
-            color: var(--black);
-            border-radius: 50%;
-            padding: 2px 6px;
-            font-size: 12px;
-            font-weight: bold;
-            margin-left: 5px;
-        }
-
-        /* ========== MAIN CONTENT ========== */
-        .main-content {
-            margin-top: 120px;
-            padding: 2rem 40px;
-            max-width: 1400px;
-            margin-left: auto;
-            margin-right: auto;
-            min-height: calc(100vh - 200px);
-        }
-
-        /* ========== HERO SECTION ========== */
-        .hero {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: var(--white);
-            padding: 3rem;
-            text-align: center;
-            border-radius: 20px;
-            margin-bottom: 2rem;
-            box-shadow: var(--shadow);
-        }
-
-        .hero h1 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .hero p {
-            font-size: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        /* ========== BUTTONS ========== */
-        .btn {
-            display: inline-block;
-            padding: 0.8rem 2rem;
-            background: var(--green);
-            color: var(--black);
-            text-decoration: none;
-            border-radius: 50px;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .btn:hover {
-            background: var(--green-dark);
-            transform: translateY(-2px);
-        }
-
-        /* ========== CONTENT SECTIONS ========== */
-        .content-section {
-            display: none;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .content-section.active {
+        .mobile-menu.open {
             display: block;
         }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .mobile-nav-item {
+            border-bottom: 1px solid #eee;
         }
-
-        /* Home Page Content */
-        .home-content {
-            text-align: center;
-        }
-
-        .home-content h1 {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .home-content .welcome-text {
-            font-size: 1.2rem;
-            color: #666;
-            margin-bottom: 2rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-
-        .feature-card {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-            transition: all 0.3s;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .feature-card i {
-            font-size: 2.5rem;
-            color: var(--green);
-            margin-bottom: 1rem;
-        }
-
-        .feature-card h3 {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-            color: var(--primary);
-        }
-
-        .feature-card p {
-            color: #666;
-            font-size: 0.9rem;
-        }
-
-        .shop-now-btn {
-            margin-top: 2rem;
-            padding: 1rem 3rem;
-            font-size: 1.1rem;
-        }
-
-        /* Empty Page Styles */
-        .empty-page {
-            text-align: center;
-            padding: 4rem 2rem;
-        }
-
-        .empty-page i {
-            font-size: 4rem;
-            color: var(--gray);
-            margin-bottom: 1rem;
-        }
-
-        .empty-page h2 {
-            font-size: 1.8rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .empty-page p {
-            color: #888;
-            font-size: 1rem;
-        }
-
-        
-        /* ========== RESPONSIVE ========== */
-        @media (max-width: 768px) {
-            .navbar {
-                padding: 0 20px;
-            }
-            
-            .nav-links {
-                display: none;
-            }
-            
-            .secondary-nav-container {
-                padding: 0 20px;
-            }
-            
-            .secondary-nav-menu {
-                gap: 1rem;
-            }
-            
-            .secondary-nav-menu li a span {
-                display: none;
-            }
-            
-            .secondary-nav-menu li a i {
-                margin-right: 0;
-                font-size: 1.2rem;
-            }
-            
-            .main-content {
-                padding: 1rem 20px;
-                margin-top: 110px;
-            }
-            
-            .footer-grid {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-            
-            .home-content h1 {
-                font-size: 1.8rem;
-            }
-        }
-
-        .view-more {
-            display: inline-block;
-            padding: 8px 16px;
-            background: var(--green, #00e676);
-            color: #000;
+        .mobile-nav-link {
+            display: block;
+            padding: 15px 20px;
+            color: #333;
             text-decoration: none;
-            border-radius: 6px;
-            font-size: 12px;
-            font-weight: 600;
-            transition: all 0.3s;
+            font-weight: 500;
+            cursor: pointer;
         }
-        .view-more:hover {
-            background: var(--green-dark, #00c853);
-        }
-        .page-actions {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 60px;
-        }
-
-        .page-actions a {
-            padding: 14px 28px;
-            background: #00e676;
-            color: #000;
-            border-radius: 14px;
-            font-weight: 700;
-            text-decoration: none;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-            transition: transform 0.2s ease, background 0.2s ease;
-        }
-
-        .page-actions a:hover {
-            transform: translateY(-2px);
-            background: #00c851;
+        @media (max-width: 880px) {
+            .navbar { padding: 0 20px; }
+            .nav-links, .auth-buttons { display: none; }
+            .hamburger { display: flex; }
+            .secondary-nav-container { padding: 0 20px; }
+            .secondary-nav-menu { gap: 1rem; }
+            .secondary-nav-menu li a span { display: none; }
+            .secondary-nav-menu li a i { margin-right: 0; font-size: 1.2rem; }
         }
 
     </style>
@@ -961,109 +850,45 @@
 
     </div>
 </div>
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-nav-item"><div class="mobile-nav-link" onclick="location.href='home.html'">Home</div></div>
+    <div class="mobile-nav-item"><div class="mobile-nav-link" onclick="location.href='about.html'">About Us</div></div>
+    <div class="mobile-nav-item"><div class="mobile-nav-link" onclick="location.href='shop.html'">Shop</div></div>
+    <div class="mobile-nav-item"><div class="mobile-nav-link" onclick="location.href='services.html'">Services</div></div>
+    <div class="mobile-nav-item"><div class="mobile-nav-link" onclick="location.href='Security and access.html'">Security & Access</div></div>
+    <div class="mobile-nav-item"><div class="mobile-nav-link" onclick="location.href='dealer.html'">Dealer</div></div>
+    <div class="mobile-nav-item"><div class="mobile-nav-link" onclick="location.href='contact.html'">Contact</div></div>
+</div>
 
-<!-- ===== PAGE CONTENT - RAM COMPONENTS ===== -->
-<div class="dell-page">
-    <div class="dell-container">
+<!-- ===== PAGE CONTENT - RAM PRODUCTS ===== -->
+<div class="batteries-page" id="ramProductsPage">
+    <div class="batteries-container">
         <div class="page-header">
-            <h1><i class="fas fa-memory"></i> RAM Components</h1>
-            <p>High-performance memory modules for laptops and desktops. Find the perfect RAM upgrade for your system.</p>
+            <h1 id="categoryTitle"><i class="fas fa-memory"></i> RAM Modules</h1>
+            <p id="categoryDescription">Browse our selection of high-performance memory modules</p>
         </div>
-        <div class="categories-grid">
-            <!-- DDR4 SODIMM (Laptop RAM) -->
-            <a href="ram-products.html?category=ddr4-sodimm" class="category-card">
-                <div class="category-card-icon"><i class="fas fa-laptop"></i></div>
-                <div class="category-card-content">
-                    <h3>DDR4 SODIMM</h3>
-                    <p>Laptop memory modules - 8GB, 16GB, 32GB options</p>
-                    <span class="view-more">Shop Now →</span>
-                </div>
-            </a>
-
-            <!-- DDR4 DIMM (Desktop RAM) -->
-            <a href="ram-products.html?category=ddr4-dimm" class="category-card">
-                <div class="category-card-icon"><i class="fas fa-desktop"></i></div>
-                <div class="category-card-content">
-                    <h3>DDR4 DIMM</h3>
-                    <p>Desktop memory - 8GB, 16GB, 32GB, 64GB kits</p>
-                    <span class="view-more">Shop Now →</span>
-                </div>
-            </a>
-
-            <!-- DDR5 SODIMM (Latest Laptop RAM) -->
-            <a href="ram-products.html?category=ddr5-sodimm" class="category-card">
-                <div class="category-card-icon"><i class="fas fa-microchip"></i></div>
-                <div class="category-card-content">
-                    <h3>DDR5 SODIMM</h3>
-                    <p>Next-gen laptop memory - up to 5600MHz speeds</p>
-                    <span class="view-more">Shop Now →</span>
-                </div>
-            </a>
-
-            <!-- DDR5 DIMM (Latest Desktop RAM) -->
-            <a href="ram-products.html?category=ddr5-dimm" class="category-card">
-                <div class="category-card-icon"><i class="fas fa-rocket"></i></div>
-                <div class="category-card-content">
-                    <h3>DDR5 DIMM</h3>
-                    <p>High-speed desktop memory for gaming & workstations</p>
-                    <span class="view-more">Shop Now →</span>
-                </div>
-            </a>
-
-            <!-- High-Performance Gaming RAM -->
-            <a href="ram-products.html?category=gaming-ram" class="category-card">
-                <div class="category-card-icon"><i class="fas fa-gamepad"></i></div>
-                <div class="category-card-content">
-                    <h3>Gaming RAM</h3>
-                    <p>RGB lighting, low latency, XMP ready modules</p>
-                    <span class="view-more">Shop Now →</span>
-                </div>
-            </a>
-
-            <!-- ECC RAM (Workstation) -->
-            <a href="ram-products.html?category=ecc-ram" class="category-card">
-                <div class="category-card-icon"><i class="fas fa-chart-line"></i></div>
-                <div class="category-card-content">
-                    <h3>ECC RAM</h3>
-                    <p>Error-correcting memory for workstations & servers</p>
-                    <span class="view-more">Shop Now →</span>
-                </div>
-            </a>
-
-            <!-- DDR3 Legacy RAM -->
-            <a href="ram-products.html?category=ddr3-ram" class="category-card">
-                <div class="category-card-icon"><i class="fas fa-history"></i></div>
-                <div class="category-card-content">
-                    <h3>DDR3 Memory</h3>
-                    <p>Legacy RAM for older systems - affordable upgrades</p>
-                    <span class="view-more">Shop Now →</span>
-                </div>
-            </a>
-
-            <!-- LPDDR4/LPDDR5 (Soldered Memory) -->
-            <a href="ram-products.html?category=lpddr-ram" class="category-card">
-                <div class="category-card-icon"><i class="fas fa-bolt"></i></div>
-                <div class="category-card-content">
-                    <h3>LPDDR4 / LPDDR5</h3>
-                    <p>Low-power memory for ultrabooks and tablets</p>
-                    <span class="view-more">Shop Now →</span>
-                </div>
-            </a>
-
-            <!-- RAM Coolers & Accessories -->
-            <a href="ram-products.html?category=ram-accessories" class="category-card">
-                <div class="category-card-icon"><i class="fas fa-fan"></i></div>
-                <div class="category-card-content">
-                    <h3>RAM Accessories</h3>
-                    <p>Heat spreaders, coolers, and installation tools</p>
-                    <span class="view-more">Shop Now →</span>
-                </div>
-            </a>
+        <div class="search-container">
+            <h2>Search RAM</h2>
+            <div class="search-box">
+                <input type="text" class="search-input" id="ramSearch" placeholder="Enter capacity, speed, or model...">
+                <button class="search-btn" id="searchBtn"><i class="fas fa-search"></i> Search</button>
+            </div>
+        </div>
+        <div class="battery-grid" id="ramGrid"></div>
+        <div class="no-results" id="noResults">
+            <i class="fas fa-search" style="font-size: 48px; margin-bottom: 15px; display: block;"></i>
+            No RAM modules found matching your search. Try different keywords.
         </div>
         <div class="page-actions">
             <a href="#" onclick="history.back(); return false;">Previous</a>
         </div>
     </div>
+</div>
+
+<!-- Toast Notification -->
+<div id="successToast" class="toast">
+    <p>Item added to cart!</p>
 </div>
 
 <!-- ===== FOOTER ===== -->
@@ -1181,8 +1006,243 @@
 
 <script src="script.js"></script>
 <script src="search.js"></script>
+
 <script>
-    // Additional functions for this page
+    // ===== RAM PRODUCTS DATABASE BY CATEGORY =====
+    const ramDatabase = {
+        "ddr4-sodimm": {
+            name: "DDR4 SODIMM Laptop RAM",
+            description: "High-performance DDR4 memory modules for laptops and compact systems",
+            products: [
+                { name: "8GB DDR4 3200MHz SODIMM", price: "E39.99", specs: ["Speed: 3200MHz", "CAS: CL22", "Voltage: 1.2V", "Form Factor: 260-pin"], compatibility: "Compatible with: Dell XPS, Latitude, Inspiron, HP, Lenovo", image: "https://placehold.co/400x300/eef4ff/4a6f8f?text=DDR4+8GB" },
+                { name: "16GB DDR4 3200MHz SODIMM", price: "E64.99", specs: ["Speed: 3200MHz", "CAS: CL22", "Voltage: 1.2V", "Form Factor: 260-pin"], compatibility: "Compatible with: Dell XPS, Latitude, Inspiron, HP, Lenovo", image: "https://placehold.co/400x300/eef4ff/4a6f8f?text=DDR4+16GB" },
+                { name: "32GB DDR4 3200MHz SODIMM Kit (2x16GB)", price: "E119.99", specs: ["Speed: 3200MHz", "CAS: CL22", "Voltage: 1.2V", "Dual Channel Kit"], compatibility: "Compatible with: Dell Precision, XPS 15, Gaming Laptops", image: "https://placehold.co/400x300/eef4ff/4a6f8f?text=DDR4+32GB" }
+            ]
+        },
+        "ddr4-dimm": {
+            name: "DDR4 DIMM Desktop RAM",
+            description: "Reliable DDR4 memory for desktop PCs and workstations",
+            products: [
+                { name: "8GB DDR4 3200MHz DIMM", price: "E34.99", specs: ["Speed: 3200MHz", "CAS: CL16", "Voltage: 1.35V", "Form Factor: 288-pin"], compatibility: "Compatible with: Intel 12th-14th Gen, AMD AM4", image: "https://placehold.co/400x300/eef4ff/4a6f8f?text=DDR4+Desktop+8GB" },
+                { name: "16GB DDR4 3600MHz DIMM", price: "E59.99", specs: ["Speed: 3600MHz", "CAS: CL18", "Voltage: 1.35V", "XMP 2.0 Ready"], compatibility: "Compatible with: Intel 12th-14th Gen, AMD AM4", image: "https://placehold.co/400x300/eef4ff/4a6f8f?text=DDR4+Desktop+16GB" },
+                { name: "32GB DDR4 3600MHz Kit (2x16GB)", price: "E109.99", specs: ["Speed: 3600MHz", "CAS: CL18", "Voltage: 1.35V", "Dual Channel Kit"], compatibility: "Compatible with: Intel 12th-14th Gen, AMD AM4", image: "https://placehold.co/400x300/eef4ff/4a6f8f?text=DDR4+Desktop+32GB" }
+            ]
+        },
+        "ddr5-sodimm": {
+            name: "DDR5 SODIMM Laptop RAM",
+            description: "Next-generation DDR5 memory for modern laptops, up to 5600MHz",
+            products: [
+                { name: "16GB DDR5 4800MHz SODIMM", price: "E79.99", specs: ["Speed: 4800MHz", "CAS: CL40", "Voltage: 1.1V", "On-die ECC"], compatibility: "Compatible with: Intel 13th-14th Gen, AMD Ryzen 7000 laptops", image: "https://placehold.co/400x300/eef4ff/4a6f8f?text=DDR5+16GB" },
+                { name: "32GB DDR5 5600MHz SODIMM", price: "E139.99", specs: ["Speed: 5600MHz", "CAS: CL46", "Voltage: 1.1V", "On-die ECC"], compatibility: "Compatible with: Intel 13th-14th Gen, AMD Ryzen 7000 laptops", image: "https://placehold.co/400x300/eef4ff/4a6f8f?text=DDR5+32GB" },
+                { name: "64GB DDR5 5600MHz Kit (2x32GB)", price: "E249.99", specs: ["Speed: 5600MHz", "CAS: CL46", "Voltage: 1.1V", "On-die ECC"], compatibility: "Compatible with: Intel 13th-14th Gen, AMD Ryzen 7000 laptops", image: "https://placehold.co/400x300/eef4ff/4a6f8f?text=DDR5+64GB" }
+            ]
+        },
+        "ddr5-dimm": {
+            name: "DDR5 DIMM Desktop RAM",
+            description: "Ultra-fast DDR5 memory for gaming and high-performance desktops",
+            products: [
+                { name: "16GB DDR5 6000MHz DIMM", price: "E89.99", specs: ["Speed: 6000MHz", "CAS: CL36", "Voltage: 1.35V", "XMP 3.0 Ready"], compatibility: "Compatible with: Intel 13th-14th Gen, AMD AM5", image: "https://placehold.co/400x300/eef4ff/4a6f8f?text=DDR5+Desktop+16GB" },
+                { name: "32GB DDR5 6000MHz Kit (2x16GB)", price: "E159.99", specs: ["Speed: 6000MHz", "CAS: CL30", "Voltage: 1.35V", "RGB Lighting"], compatibility: "Compatible with: Intel 13th-14th Gen, AMD AM5", image: "https://placehold.co/400x300/eef4ff/4a6f8f?text=DDR5+Desktop+32GB" },
+                { name: "64GB DDR5 6000MHz Kit (2x32GB)", price: "E279.99", specs: ["Speed: 6000MHz", "CAS: CL32", "Voltage: 1.35V", "XMP 3.0 Ready"], compatibility: "Compatible with: Intel 13th-14th Gen, AMD AM5", image: "https://placehold.co/400x300/eef4ff/4a6f8f?text=DDR5+Desktop+64GB" }
+            ]
+        },
+        "gaming-ram": {
+            name: "Gaming RAM",
+            description: "High-performance gaming memory with RGB lighting and low latency",
+            products: [
+                { name: "16GB DDR5 RGB Gaming RAM", price: "E99.99", specs: ["Speed: 6000MHz", "CAS: CL30", "RGB Lighting", "Heat Spreader"], compatibility: "Compatible with: Gaming Desktops, Intel/AMD", image: "https://placehold.co/400x300/eef4ff/4a6f8f?text=RGB+Gaming+RAM" },
+                { name: "32GB DDR5 RGB Kit (2x16GB)", price: "E179.99", specs: ["Speed: 6400MHz", "CAS: CL32", "ARGB Lighting", "XMP 3.0"], compatibility: "Compatible with: Gaming Desktops, Intel/AMD", image: "https://placehold.co/400x300/eef4ff/4a6f8f?text=RGB+32GB+Kit" }
+            ]
+        },
+        "ecc-ram": {
+            name: "ECC RAM",
+            description: "Error-correcting code memory for workstations and servers",
+            products: [
+                { name: "16GB DDR4 ECC UDIMM", price: "E89.99", specs: ["Speed: 3200MHz", "ECC Support", "Server Grade", "1.2V"], compatibility: "Compatible with: Dell Precision, HP Z Workstations", image: "https://placehold.co/400x300/eef4ff/4a6f8f?text=ECC+RAM" },
+                { name: "32GB DDR4 ECC UDIMM", price: "E159.99", specs: ["Speed: 3200MHz", "ECC Support", "Server Grade", "1.2V"], compatibility: "Compatible with: Dell Precision, HP Z Workstations", image: "https://placehold.co/400x300/eef4ff/4a6f8f?text=ECC+32GB" }
+            ]
+        },
+        "ddr3-ram": {
+            name: "DDR3 Memory",
+            description: "Legacy DDR3 memory for older systems at affordable prices",
+            products: [
+                { name: "8GB DDR3 1600MHz SODIMM", price: "E24.99", specs: ["Speed: 1600MHz", "CAS: CL11", "Voltage: 1.35V/1.5V"], compatibility: "Compatible with: Older Laptops (2012-2015)", image: "https://placehold.co/400x300/eef4ff/4a6f8f?text=DDR3+8GB" }
+            ]
+        },
+        "lpddr-ram": {
+            name: "LPDDR4 / LPDDR5",
+            description: "Low-power memory for ultrabooks and premium laptops",
+            products: [
+                { name: "16GB LPDDR5 6400MHz", price: "E119.99", specs: ["Speed: 6400MHz", "Low Power", "On-die ECC", "Soldered"], compatibility: "Compatible with: XPS 13 Plus, MacBook Air", image: "https://placehold.co/400x300/eef4ff/4a6f8f?text=LPDDR5" }
+            ]
+        },
+        "ram-accessories": {
+            name: "RAM Accessories",
+            description: "Heat spreaders, coolers, and installation tools",
+            products: [
+                { name: "Aluminum RAM Heat Spreader", price: "E14.99", specs: ["Aluminum Alloy", "Thermal Pad Included", "RGB Optional"], compatibility: "Fits standard DDR4/DDR5 DIMMs", image: "https://placehold.co/400x300/eef4ff/4a6f8f?text=Heat+Spreader" },
+                { name: "RAM Installation Toolkit", price: "E9.99", specs: ["Screwdrivers", "Anti-static Wrist Strap", "Cleaning Cloth"], compatibility: "For all RAM installation", image: "https://placehold.co/400x300/eef4ff/4a6f8f?text=Toolkit" }
+            ]
+        }
+    };
+
+    // Get category from URL
+    function getCategory() {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get('category') || 'ddr4-sodimm';
+    }
+
+    // Render products
+    function renderProducts(categoryId, searchQuery = '') {
+        const category = ramDatabase[categoryId];
+        const grid = document.getElementById('ramGrid');
+        const titleElem = document.getElementById('categoryTitle');
+        const descElem = document.getElementById('categoryDescription');
+        
+        if (!category) {
+            titleElem.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Category Not Found';
+            descElem.innerHTML = 'Please select a valid RAM category.';
+            grid.innerHTML = '';
+            return;
+        }
+        
+        titleElem.innerHTML = `<i class="fas fa-memory"></i> ${category.name}`;
+        descElem.innerHTML = category.description;
+        
+        let products = category.products;
+        if (searchQuery) {
+            products = products.filter(p => 
+                p.name.toLowerCase().includes(searchQuery) || 
+                p.specs.some(s => s.toLowerCase().includes(searchQuery)) ||
+                p.compatibility.toLowerCase().includes(searchQuery)
+            );
+        }
+        
+        const noResultsDiv = document.getElementById('noResults');
+        if (products.length === 0) {
+            grid.innerHTML = '';
+            noResultsDiv.style.display = 'block';
+            return;
+        }
+        noResultsDiv.style.display = 'none';
+        
+        grid.innerHTML = products.map(product => `
+            <div class="battery-card">
+                <img src="${product.image}" alt="${product.name}">
+                <div class="battery-info">
+                    <h3>${product.name}</h3>
+                    <div class="compatibility"><i class="fas fa-check-circle"></i> ${product.compatibility}</div>
+                    <div class="price">${product.price}</div>
+                    <div class="specifications">
+                        <ul>${product.specs.map(spec => `<li><i class="fas fa-microchip"></i> ${spec}</li>`).join('')}</ul>
+                        <div class="quantity-selector">
+                            <label>Quantity:</label>
+                            <input type="number" class="quantity-input" value="1" min="1" max="10">
+                        </div>
+                    </div>
+                    <button class="btn-add-to-cart" onclick="addToCart('${product.name.replace(/'/g, "\\'")}', ${product.price.replace('E', '')}, this)"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                    <div class="shipping-info">
+                        <p><i class="fas fa-shipping-fast"></i> Free Shipping on orders over E50</p>
+                        <p><i class="fas fa-undo"></i> 30-Day Returns</p>
+                        <p><i class="fas fa-lock"></i> Secure Payment</p>
+                    </div>
+                    <div class="rating">
+                        <span class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                        <span>(1,200+ reviews)</span>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+    }
+    
+    // Search function
+    function searchRAM() {
+        const searchInput = document.getElementById('ramSearch').value.toLowerCase();
+        const category = getCategory();
+        renderProducts(category, searchInput);
+    }
+    
+    // Add to cart function
+    function addToCart(name, price, buttonElement) {
+        const card = buttonElement.closest('.battery-card');
+        const quantityInput = card.querySelector('.quantity-input');
+        const quantity = quantityInput ? parseInt(quantityInput.value) : 1;
+        
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const existingItem = cart.find(item => item.name === name);
+        
+        if (existingItem) {
+            existingItem.quantity += quantity;
+        } else {
+            cart.push({ id: Date.now(), name: name, price: price, quantity: quantity, image: 'https://placehold.co/100x100' });
+        }
+        
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartCount();
+        showToast(`${name} added to cart!`);
+    }
+    
+    function updateCartCount() {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const total = cart.reduce((sum, item) => sum + item.quantity, 0);
+        const cartCountSpan = document.getElementById('cartCount');
+        if (cartCountSpan) cartCountSpan.textContent = total;
+    }
+    
+    function showToast(message) {
+        let toast = document.getElementById('successToast');
+        if (!toast) {
+            toast = document.createElement('div');
+            toast.id = 'successToast';
+            toast.className = 'toast';
+            toast.innerHTML = '<p></p>';
+            document.body.appendChild(toast);
+        }
+        const toastMsg = toast.querySelector('p');
+        toastMsg.textContent = message;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+    
+    function toggleMobile() {
+        const menu = document.getElementById('mobileMenu');
+        if (menu) menu.classList.toggle('open');
+    }
+    
+    // Initialize
+    document.addEventListener('DOMContentLoaded', function() {
+        const category = getCategory();
+        renderProducts(category);
+        updateCartCount();
+        
+        const searchBtn = document.getElementById('searchBtn');
+        const searchInput = document.getElementById('ramSearch');
+        if (searchBtn) searchBtn.addEventListener('click', searchRAM);
+        if (searchInput) searchInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') searchRAM(); });
+        
+        const searchIconBtn = document.getElementById('searchIconBtn');
+        const settingsBtn = document.getElementById('settingsBtn');
+        const loginBtn = document.getElementById('loginBtn');
+        const registerBtn = document.getElementById('registerBtn');
+        const hamburger = document.getElementById('hamburger');
+        
+        function openSearchModal() { alert("🔍 Search feature - would open search modal"); }
+        function openSettingsModal() { alert("⚙️ Settings - theme preference"); }
+        function openLoginModal() { alert("🔐 Login modal"); }
+        function openRegisterModal() { alert("📝 Register modal"); }
+        
+        if (searchIconBtn) searchIconBtn.onclick = openSearchModal;
+        if (settingsBtn) settingsBtn.onclick = openSettingsModal;
+        if (loginBtn) loginBtn.onclick = openLoginModal;
+        if (registerBtn) registerBtn.onclick = openRegisterModal;
+        if (hamburger) hamburger.onclick = toggleMobile;
+    });
+    
+    window.addToCart = addToCart;
+    window.toggleMobile = toggleMobile;
+    window.updateCartCount = updateCartCount;
+
+        // Additional functions for this page
     function toggleMobile() {
         const menu = document.getElementById('mobileMenu');
         if (menu) menu.classList.toggle('open');

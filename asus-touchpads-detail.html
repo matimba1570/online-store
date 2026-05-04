@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dell Screen Details - Eswatini Technocrats Center</title>
+<title>ASUS Touchpad Details - Eswatini Technocrats Center</title>
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
@@ -324,7 +324,7 @@ margin-left: 5px;
 <div class="secondary-nav-container">
 <ul class="secondary-nav-menu">
 <li><a href="shop.html" id="nav-home"><i class="fas fa-home"></i><span> Shop</span></a></li>
-<li><a href="page.html" id="nav-all"><i class="fas fa-box"></i><span> All Products</span></a></li>
+<li><a href="Asus.html" id="nav-all"><i class="fas fa-box"></i><span> All Products</span></a></li>
 <li><a href="Refurbished.html" id="nav-refurbished"><i class="fas fa-sync-alt"></i><span> Refurbished</span></a></li>
 <li><a href="#" id="nav-events"><i class="fas fa-calendar-alt"></i><span> Events</span></a></li>
 </ul>
@@ -542,14 +542,14 @@ margin-left: 5px;
 </div>
 </div>
 
-<!-- ===== PAGE CONTENT - DYNAMIC DELL SCREENS DETAIL PAGE ===== -->
+<!-- ===== PAGE CONTENT - DYNAMIC ASUS TOUCHPADS DETAIL PAGE ===== -->
 <div class="product-page">
 <div class="product-container">
-<a href="dell-screens.html" class="back-to-shop"><i class="fas fa-arrow-left"></i> Back to Dell Screens</a>
+<a href="asus-touchpads.html" class="back-to-shop"><i class="fas fa-arrow-left"></i> Back to ASUS Touchpads</a>
 <div class="product-detail" id="productDetail">
 <div style="text-align: center; grid-column: 1/-1; padding: 60px;">
 <i class="fas fa-spinner fa-pulse fa-3x" style="color: #00e676;"></i>
-<p>Loading screen details...</p>
+<p>Loading touchpad details...</p>
 </div>
 </div>
 </div>
@@ -676,208 +676,167 @@ margin-left: 5px;
 <script src="script.js"></script>
 <script src="search.js"></script>
 <script>
-// ===== DELL SCREENS PRODUCTS DATABASE =====
-const screenProducts = {
-    xps13: {
-        name: "Dell XPS 13 13.4\" FHD+ Screen",
-        price: 129.99,
-        priceFormatted: "E129.99",
-        compatibility: "Compatible with: XPS 13 9300, 9310, 9315, 9320, 9340",
-        description: "Premium 13.4-inch FHD+ (1920x1200) InfinityEdge display for Dell XPS 13. Features anti-glare coating, 500 nits brightness, and 100% sRGB color accuracy. Perfect for creative professionals and everyday productivity.",
-        image: "",
-        displayLife: "50,000+ hours lifespan / Energy-efficient LED backlight",
-        responseTime: "10ms response time / 60Hz refresh rate",
+// ===== ASUS TOUCHPADS PRODUCTS DATABASE =====
+const touchpadProducts = {
+    "vivobook": {
+        name: "ASUS VivoBook Precision Touchpad",
+        price: 39.99,
+        priceFormatted: "E39.99",
+        compatibility: "Compatible with: VivoBook 14, 15, F415, F516, X512, M513",
+        description: "High-precision multi-touch trackpad for ASUS VivoBook laptops. Features smooth glass surface for accurate cursor tracking, full Windows Precision driver support, and responsive multi-touch gestures. Easy installation with pre-applied adhesive backing.",
+        image: "https://images.unsplash.com/photo-1603808033192-082d6919d3e1?w=400&h=200&fit=crop",
         specs: [
-            { icon: "fa-desktop", label: "Screen Size", value: "13.4\"" },
-            { icon: "fa-eye", label: "Resolution", value: "1920 x 1200 (FHD+)" },
-            { icon: "fa-sun", label: "Brightness", value: "500 nits" },
-            { icon: "fa-palette", label: "Color Gamut", value: "100% sRGB" },
-            { icon: "fa-layer-group", label: "Panel Type", value: "IPS LCD" },
-            { icon: "fa-shield-alt", label: "Warranty", value: "24 months" },
+            { icon: "fa-hand-pointer", label: "Type", value: "Multi-touch Trackpad" },
+            { icon: "fa-expand", label: "Size", value: "110 x 65mm" },
+            { icon: "fa-plug", label: "Connection", value: "I2C Interface" },
+            { icon: "fa-gestures", label: "Gestures", value: "Full Windows Precision" },
+            { icon: "fa-shield-alt", label: "Warranty", value: "12 months" },
             { icon: "fa-check-circle", label: "In Stock", value: "Yes" }
         ],
         rating: 4.8,
-        reviewCount: 312
+        reviewCount: 156
     },
-    xps15: {
-        name: "Dell XPS 15 15.6\" 4K UHD+ Screen",
-        price: 249.99,
-        priceFormatted: "E249.99",
-        compatibility: "Compatible with: XPS 15 9550, 9560, 9570, 7590, 9510, 9520",
-        description: "Stunning 15.6-inch 4K UHD+ (3840x2400) touch display for Dell XPS 15. OLED technology with infinite contrast, 100% DCI-P3 color gamut, and Dolby Vision HDR support. Ideal for photo editing, video production, and immersive entertainment.",
-        image: "",
-        displayLife: "30,000+ hours lifespan / OLED panel",
-        responseTime: "1ms response time / 60Hz refresh rate",
+    "rog-gaming": {
+        name: "ASUS ROG Gaming High-Precision Touchpad",
+        price: 59.99,
+        priceFormatted: "E59.99",
+        compatibility: "Perfect for: Gaming, ROG Strix, ROG Zephyrus series",
+        description: "Ultra-responsive touchpad optimized for ASUS ROG gaming laptops. Features enhanced precision tracking, faster response times, and RGB lighting integration. Designed specifically for gaming with improved accuracy and reduced latency for competitive gaming.",
+        image: "https://images.unsplash.com/photo-1603808033192-082d6919d3e1?w=400&h=200&fit=crop",
         specs: [
-            { icon: "fa-desktop", label: "Screen Size", value: "15.6\"" },
-            { icon: "fa-eye", label: "Resolution", value: "3840 x 2400 (4K UHD+)" },
-            { icon: "fa-sun", label: "Brightness", value: "500 nits (OLED)" },
-            { icon: "fa-palette", label: "Color Gamut", value: "100% DCI-P3" },
-            { icon: "fa-layer-group", label: "Panel Type", value: "OLED Touch" },
+            { icon: "fa-hand-pointer", label: "Type", value: "Gaming Multi-touch Trackpad" },
+            { icon: "fa-expand", label: "Size", value: "130 x 75mm" },
+            { icon: "fa-plug", label: "Connection", value: "I2C Interface" },
+            { icon: "fa-tachometer-alt", label: "Response Time", value: "Ultra-fast" },
             { icon: "fa-shield-alt", label: "Warranty", value: "24 months" },
             { icon: "fa-check-circle", label: "In Stock", value: "Yes" }
         ],
         rating: 4.9,
-        reviewCount: 287
+        reviewCount: 89
     },
-    inspiron15: {
-        name: "Dell Inspiron 15 15.6\" FHD Screen",
-        price: 89.99,
-        priceFormatted: "E89.99",
-        compatibility: "Compatible with: Inspiron 15 3501, 3505, 3510, 3511, 3520",
-        description: "Reliable 15.6-inch Full HD (1920x1080) anti-glare display for Dell Inspiron 15 series. Features 220 nits brightness, 45% NTSC color gamut, and energy-efficient LED backlight. Perfect for everyday home and office use.",
-        image: "",
-        displayLife: "40,000+ hours lifespan / LED backlight",
-        responseTime: "14ms response time / 60Hz refresh rate",
+    "probook": {
+        name: "ASUS ProBook Business Standard Touchpad",
+        price: 44.99,
+        priceFormatted: "E44.99",
+        compatibility: "Compatible with: ProBook 16, 15, 14, B9450, B9460",
+        description: "Reliable touchpad for ASUS ProBook business laptops. Features durable construction, precise tracking, and full compatibility with Windows Precision drivers. Ideal for professional environments requiring consistent performance and reliability.",
+        image: "https://images.unsplash.com/photo-1603808033192-082d6919d3e1?w=400&h=200&fit=crop",
         specs: [
-            { icon: "fa-desktop", label: "Screen Size", value: "15.6\"" },
-            { icon: "fa-eye", label: "Resolution", value: "1920 x 1080 (FHD)" },
-            { icon: "fa-sun", label: "Brightness", value: "220 nits" },
-            { icon: "fa-palette", label: "Color Gamut", value: "45% NTSC" },
-            { icon: "fa-layer-group", label: "Panel Type", value: "IPS LCD" },
+            { icon: "fa-hand-pointer", label: "Type", value: "Standard Multi-touch" },
+            { icon: "fa-expand", label: "Size", value: "110 x 65mm" },
+            { icon: "fa-plug", label: "Connection", value: "I2C Interface" },
+            { icon: "fa-gestures", label: "Gestures", value: "Windows Precision" },
             { icon: "fa-shield-alt", label: "Warranty", value: "24 months" },
             { icon: "fa-check-circle", label: "In Stock", value: "Yes" }
         ],
-        rating: 4.5,
-        reviewCount: 421
+        rating: 4.7,
+        reviewCount: 134
     },
-    latitude5420: {
-        name: "Dell Latitude 5420 14\" FHD Screen",
-        price: 119.99,
-        priceFormatted: "E119.99",
-        compatibility: "Compatible with: Latitude 5420, 5430, 5440, 5450",
-        description: "Business-grade 14-inch Full HD (1920x1080) anti-glare display for Dell Latitude 5420. Features 300 nits brightness, 72% NTSC color gamut, and low blue light certification for reduced eye strain during long work sessions.",
-        image: "",
-        displayLife: "45,000+ hours lifespan / Energy-efficient",
-        responseTime: "12ms response time / 60Hz refresh rate",
+    "expertbook": {
+        name: "ASUS ExpertBook Premium Touchpad",
+        price: 54.99,
+        priceFormatted: "E54.99",
+        compatibility: "Compatible with: ExpertBook B9400, B9440, B9450, P2440",
+        description: "Premium touchpad with advanced gesture support for ASUS ExpertBook laptops. Features enhanced precision, larger tracking area, and advanced multi-touch capabilities. Perfect for business professionals who require superior touchpad performance.",
+        image: "https://images.unsplash.com/photo-1603808033192-082d6919d3e1?w=400&h=200&fit=crop",
         specs: [
-            { icon: "fa-desktop", label: "Screen Size", value: "14.0\"" },
-            { icon: "fa-eye", label: "Resolution", value: "1920 x 1080 (FHD)" },
-            { icon: "fa-sun", label: "Brightness", value: "300 nits" },
-            { icon: "fa-palette", label: "Color Gamut", value: "72% NTSC" },
-            { icon: "fa-layer-group", label: "Panel Type", value: "IPS Anti-Glare" },
+            { icon: "fa-hand-pointer", label: "Type", value: "Premium Multi-touch Precision" },
+            { icon: "fa-expand", label: "Size", value: "125 x 70mm" },
+            { icon: "fa-plug", label: "Connection", value: "I2C Interface" },
+            { icon: "fa-gestures", label: "Gestures", value: "Advanced Windows Precision" },
             { icon: "fa-shield-alt", label: "Warranty", value: "24 months" },
+            { icon: "fa-check-circle", label: "In Stock", value: "Yes" }
+        ],
+        rating: 4.8,
+        reviewCount: 112
+    },
+    "zenbook": {
+        name: "ASUS ZenBook Precision Premium Touchpad",
+        price: 64.99,
+        priceFormatted: "E64.99",
+        compatibility: "Compatible with: ZenBook 14, 15, UM425, UX435, UX535",
+        description: "Ultra-smooth premium touchpad for ASUS ZenBook laptops. Features glass-top surface for exceptional smoothness, advanced gesture recognition, and precise tracking. Designed for creative professionals and power users who demand the best touchpad experience.",
+        image: "https://images.unsplash.com/photo-1603808033192-082d6919d3e1?w=400&h=200&fit=crop",
+        specs: [
+            { icon: "fa-hand-pointer", label: "Type", value: "Premium Ultra-smooth Trackpad" },
+            { icon: "fa-expand", label: "Size", value: "130 x 75mm" },
+            { icon: "fa-plug", label: "Connection", value: "I2C Interface" },
+            { icon: "fa-lightbulb", label: "Surface", value: "Glass-top Premium" },
+            { icon: "fa-shield-alt", label: "Warranty", value: "24 months" },
+            { icon: "fa-check-circle", label: "In Stock", value: "Yes" }
+        ],
+        rating: 4.9,
+        reviewCount: 98
+    },
+    "vivobook-compact": {
+        name: "ASUS VivoBook Compact Touchpad",
+        price: 34.99,
+        priceFormatted: "E34.99",
+        compatibility: "Compatible with: VivoBook 11, 12, 13-inch models, E210",
+        description: "Compact touchpad for smaller ASUS VivoBook laptops. Features precise tracking in a smaller footprint, full Windows Precision support, and reliable performance. Perfect for ultraportable laptops where space is at a premium.",
+        image: "https://images.unsplash.com/photo-1603808033192-082d6919d3e1?w=400&h=200&fit=crop",
+        specs: [
+            { icon: "fa-hand-pointer", label: "Type", value: "Compact Multi-touch" },
+            { icon: "fa-expand", label: "Size", value: "95 x 55mm" },
+            { icon: "fa-plug", label: "Connection", value: "I2C Interface" },
+            { icon: "fa-gestures", label: "Gestures", value: "Windows Precision" },
+            { icon: "fa-shield-alt", label: "Warranty", value: "12 months" },
             { icon: "fa-check-circle", label: "In Stock", value: "Yes" }
         ],
         rating: 4.6,
-        reviewCount: 198
-    },
-    precision7560: {
-        name: "Dell Precision 7560 15.6\" 4K Screen",
-        price: 299.99,
-        priceFormatted: "E299.99",
-        compatibility: "Compatible with: Precision 7560, 7550, 7750, 7670",
-        description: "Professional-grade 15.6-inch 4K UHD (3840x2160) DreamColor display for Dell Precision mobile workstations. Features 600 nits peak brightness, 100% Adobe RGB coverage, and factory calibration for color-critical work in CAD, 3D rendering, and video editing.",
-        image: "",
-        displayLife: "35,000+ hours lifespan / Premium IPS",
-        responseTime: "8ms response time / 60Hz refresh rate",
-        specs: [
-            { icon: "fa-desktop", label: "Screen Size", value: "15.6\"" },
-            { icon: "fa-eye", label: "Resolution", value: "3840 x 2160 (4K UHD)" },
-            { icon: "fa-sun", label: "Brightness", value: "600 nits" },
-            { icon: "fa-palette", label: "Color Gamut", value: "100% Adobe RGB" },
-            { icon: "fa-layer-group", label: "Panel Type", value: "IPS DreamColor" },
-            { icon: "fa-shield-alt", label: "Warranty", value: "36 months" },
-            { icon: "fa-check-circle", label: "In Stock", value: "Yes" }
-        ],
-        rating: 4.9,
-        reviewCount: 156
-    },
-    alienwareM15: {
-        name: "Dell Alienware M15 15.6\" 240Hz Gaming Screen",
-        price: 279.99,
-        priceFormatted: "E279.99",
-        compatibility: "Compatible with: Alienware M15 R1, R2, R3, R4, R5, R6",
-        description: "High-performance 15.6-inch Full HD (1920x1080) gaming display for Alienware M15 laptops. Features blazing-fast 240Hz refresh rate, 3ms response time, NVIDIA G-SYNC support, and 100% sRGB color accuracy. Designed for competitive esports and AAA gaming.",
-        image: "",
-        displayLife: "30,000+ hours lifespan / Fast IPS",
-        responseTime: "3ms response time / 240Hz refresh rate",
-        specs: [
-            { icon: "fa-desktop", label: "Screen Size", value: "15.6\"" },
-            { icon: "fa-eye", label: "Resolution", value: "1920 x 1080 (FHD)" },
-            { icon: "fa-sun", label: "Brightness", value: "350 nits" },
-            { icon: "fa-palette", label: "Color Gamut", value: "100% sRGB" },
-            { icon: "fa-layer-group", label: "Panel Type", value: "IPS G-SYNC" },
-            { icon: "fa-shield-alt", label: "Warranty", value: "24 months" },
-            { icon: "fa-check-circle", label: "In Stock", value: "Yes" }
-        ],
-        rating: 4.8,
-        reviewCount: 234
+        reviewCount: 78
     }
 };
 
-// Helper function to render star rating
-function renderStars(rating) {
-    const fullStars = Math.floor(rating);
-    const hasHalfStar = rating % 1 >= 0.5;
-    let starsHtml = '';
-    for (let i = 0; i < fullStars; i++) {
-        starsHtml += '<i class="fas fa-star"></i>';
-    }
-    if (hasHalfStar) {
-        starsHtml += '<i class="fas fa-star-half-alt"></i>';
-    }
-    const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
-    for (let i = 0; i < emptyStars; i++) {
-        starsHtml += '<i class="far fa-star"></i>';
-    }
-    return starsHtml;
-}
-
-// Get product ID from URL
-function getProductId() {
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get('product');
-}
-
-// Load screen details
+// ===== LOAD PRODUCT DETAILS =====
 function loadProductDetails() {
-    const productId = getProductId();
-    const product = screenProducts[productId];
-    const container = document.getElementById('productDetail');
-    
-    if (!product) {
-        container.innerHTML = `
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('product');
+
+    if (!productId || !touchpadProducts[productId]) {
+        document.getElementById('productDetail').innerHTML = `
             <div style="text-align: center; grid-column: 1/-1; padding: 60px;">
-                <i class="fas fa-exclamation-triangle fa-3x" style="color: #ff9800;"></i>
+                <i class="fas fa-exclamation-triangle fa-3x" style="color: #ff6b6b;"></i>
                 <h2>Product Not Found</h2>
-                <p>Sorry, the screen you're looking for doesn't exist.</p>
-                <a href="dell-screens.html" class="back-to-shop" style="margin-top: 20px; display: inline-block;">← Back to Dell Screens</a>
+                <p>The requested touchpad product could not be found.</p>
+                <a href="asus-touchpads.html" class="back-to-shop" style="display: inline-block; margin-top: 20px;">← Back to ASUS Touchpads</a>
             </div>
         `;
         return;
     }
-    
-    // Build specifications HTML
-    const specsHtml = product.specs.map(spec => `
-        <li><i class="fas ${spec.icon}"></i> ${spec.label}: ${spec.value}</li>
-    `).join('');
-    
-    // Build full product detail HTML with display performance stats
-    container.innerHTML = `
+
+    const product = touchpadProducts[productId];
+
+    document.getElementById('productDetail').innerHTML = `
         <div class="product-image">
-            <img src="${product.image}" alt="${product.name}">
+            <img src="${product.image}" alt="${product.name}" onerror="this.src='https://images.unsplash.com/photo-1603808033192-082d6919d3e1?w=400&h=200&fit=crop'">
         </div>
         <div class="product-details">
             <h1>${product.name}</h1>
             <div class="rating">
-                <span class="stars">${renderStars(product.rating)}</span>
+                <span class="stars">
+                    ${generateStars(product.rating)}
+                </span>
                 <span>(${product.reviewCount} reviews)</span>
             </div>
             <div class="price">${product.priceFormatted}</div>
-            <p style="color: var(--text-secondary, #666); margin-bottom: 20px;">${product.description}</p>
-            <div class="compatibility">
-                <i class="fas fa-check-circle" style="color: var(--green);"></i> ${product.compatibility}
-            </div>
+            <div class="compatibility">${product.compatibility}</div>
+            <p style="margin: 20px 0; line-height: 1.6;">${product.description}</p>
             <div class="specifications">
-                <h3>Display Specifications</h3>
-                <ul>${specsHtml}</ul>
+                <h3><i class="fas fa-cogs"></i> Specifications</h3>
+                <ul>
+                    ${product.specs.map(spec => `
+                        <li><i class="fas fa-${spec.icon}"></i> <strong>${spec.label}:</strong> ${spec.value}</li>
+                    `).join('')}
+                </ul>
             </div>
             <div class="quantity-selector">
-                <label for="quantity">Quantity:</label>
-                <input type="number" id="quantity" value="1" min="1" max="10">
+                <label>Quantity:</label>
+                <input type="number" class="quantity-input" value="1" min="1" max="10">
             </div>
-            <button class="add-to-cart-btn" onclick="addToCart()"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+            <button class="add-to-cart-btn" onclick="addToCart('${productId}', '${product.name}', ${product.price})">
+                <i class="fas fa-shopping-cart"></i> Add to Cart
+            </button>
             <div class="shipping-info">
                 <p><i class="fas fa-shipping-fast"></i> Free Shipping on orders over E50</p>
                 <p><i class="fas fa-undo"></i> 30-Day Returns</p>
@@ -887,38 +846,41 @@ function loadProductDetails() {
     `;
 }
 
-// Cart functions
-let currentProduct = null;
+function generateStars(rating) {
+    const fullStars = Math.floor(rating);
+    const hasHalfStar = rating % 1 !== 0;
+    const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
 
-function getCurrentProduct() {
-    const productId = getProductId();
-    return screenProducts[productId] || null;
+    return '★'.repeat(fullStars) +
+           (hasHalfStar ? '☆' : '') +
+           '☆'.repeat(emptyStars);
 }
 
-function addToCart() {
-    const product = getCurrentProduct();
-    if (!product) return;
-    
-    const quantity = parseInt(document.getElementById('quantity').value) || 1;
-    
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const existingItem = cart.find(item => item.name === product.name);
-    
+function addToCart(productId, productName, price) {
+    const quantity = document.querySelector('.quantity-input').value;
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    const existingItem = cart.find(item => item.id === productId);
     if (existingItem) {
-        existingItem.quantity += quantity;
+        existingItem.quantity = parseInt(existingItem.quantity) + parseInt(quantity);
     } else {
-        cart.push({ 
-            id: Date.now(), 
-            name: product.name, 
-            price: product.price, 
-            quantity: quantity, 
-            image: product.image 
+        cart.push({
+            id: productId,
+            name: productName,
+            price: price,
+            quantity: parseInt(quantity)
         });
     }
-    
+
     localStorage.setItem('cart', JSON.stringify(cart));
     updateCartCount();
-    showToast(`${product.name} added to cart!`);
+
+    // Show toast notification
+    const toast = document.getElementById('successToast');
+    toast.classList.add('show');
+    setTimeout(() => {
+        toast.classList.remove('show');
+    }, 3000);
 }
 
 function updateCartCount() {
@@ -928,51 +890,10 @@ function updateCartCount() {
     if (cartCountSpan) cartCountSpan.textContent = total;
 }
 
-function showToast(message) {
-    let toast = document.getElementById('successToast');
-    if (!toast) {
-        toast = document.createElement('div');
-        toast.id = 'successToast';
-        toast.className = 'toast';
-        toast.innerHTML = '<p></p>';
-        document.body.appendChild(toast);
-    }
-    const toastMsg = toast.querySelector('p');
-    toastMsg.textContent = message;
-    toast.classList.add('show');
-    setTimeout(() => toast.classList.remove('show'), 3000);
-}
-
-function toggleMobile() {
-    const menu = document.getElementById('mobileMenu');
-    if (menu) menu.classList.toggle('open');
-}
-
-// Make functions global
-window.addToCart = addToCart;
-window.toggleMobile = toggleMobile;
-window.updateCartCount = updateCartCount;
-window.closeToast = function() {
-    const toast = document.getElementById('successToast');
-    if (toast) toast.classList.remove('show');
-};
-
 // Initialize
 document.addEventListener('DOMContentLoaded', function() {
     loadProductDetails();
     updateCartCount();
-    
-    const searchBtn = document.getElementById('searchIconBtn');
-    const settingsBtn = document.getElementById('settingsBtn');
-    const loginBtn = document.getElementById('loginBtn');
-    const registerBtn = document.getElementById('registerBtn');
-    const hamburger = document.getElementById('hamburger');
-    
-    if (searchBtn && typeof openSearchModal === 'function') searchBtn.onclick = openSearchModal;
-    if (settingsBtn && typeof openSettingsModal === 'function') settingsBtn.onclick = openSettingsModal;
-    if (loginBtn && typeof openLoginModal === 'function') loginBtn.onclick = openLoginModal;
-    if (registerBtn && typeof openRegisterModal === 'function') registerBtn.onclick = openRegisterModal;
-    if (hamburger) hamburger.onclick = toggleMobile;
 });
 </script>
 </body>

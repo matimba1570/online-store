@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dell Screen Details - Eswatini Technocrats Center</title>
+<title>Dell Speaker Details - Eswatini Technocrats Center</title>
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
@@ -542,14 +542,14 @@ margin-left: 5px;
 </div>
 </div>
 
-<!-- ===== PAGE CONTENT - DYNAMIC DELL SCREENS DETAIL PAGE ===== -->
+<!-- ===== PAGE CONTENT - DYNAMIC DELL SPEAKERS DETAIL PAGE ===== -->
 <div class="product-page">
 <div class="product-container">
-<a href="dell-screens.html" class="back-to-shop"><i class="fas fa-arrow-left"></i> Back to Dell Screens</a>
+<a href="dell-speaker.html" class="back-to-shop"><i class="fas fa-arrow-left"></i> Back to Dell Speakers</a>
 <div class="product-detail" id="productDetail">
 <div style="text-align: center; grid-column: 1/-1; padding: 60px;">
 <i class="fas fa-spinner fa-pulse fa-3x" style="color: #00e676;"></i>
-<p>Loading screen details...</p>
+<p>Loading speaker details...</p>
 </div>
 </div>
 </div>
@@ -559,7 +559,6 @@ margin-left: 5px;
 <div id="successToast" class="toast">
 <p>Item added to cart!</p>
 </div>
-
 <!-- ===== FOOTER ===== -->
 <footer id="contact">
   <div class="container">
@@ -673,135 +672,130 @@ margin-left: 5px;
   </div>
 </footer>
 
+
 <script src="script.js"></script>
 <script src="search.js"></script>
 <script>
-// ===== DELL SCREENS PRODUCTS DATABASE =====
-const screenProducts = {
-    xps13: {
-        name: "Dell XPS 13 13.4\" FHD+ Screen",
-        price: 129.99,
-        priceFormatted: "E129.99",
+// ===== DELL SPEAKERS PRODUCTS DATABASE =====
+const speakerProducts = {
+    "xps13-speakers": {
+        name: "Dell XPS 13 Speaker Set",
+        price: 29.99,
+        priceFormatted: "E29.99",
         compatibility: "Compatible with: XPS 13 9300, 9310, 9315, 9320, 9340",
-        description: "Premium 13.4-inch FHD+ (1920x1200) InfinityEdge display for Dell XPS 13. Features anti-glare coating, 500 nits brightness, and 100% sRGB color accuracy. Perfect for creative professionals and everyday productivity.",
+        description: "Original Dell XPS 13 stereo speaker replacement set featuring dual 2W drivers with Waves MaxxAudio integration. Delivers crystal-clear mids and highs with improved bass response. Designed for ultrabook form factor with magnetic shielding to prevent interference.",
         image: "",
-        displayLife: "50,000+ hours lifespan / Energy-efficient LED backlight",
-        responseTime: "10ms response time / 60Hz refresh rate",
+        audioQuality: "2W x 2 (4W total) / 200Hz - 20kHz / 85dB sensitivity",
+        driverSpecs: "15mm neodymium drivers / Paper cone / Rubber surround / 4Ω impedance",
         specs: [
-            { icon: "fa-desktop", label: "Screen Size", value: "13.4\"" },
-            { icon: "fa-eye", label: "Resolution", value: "1920 x 1200 (FHD+)" },
-            { icon: "fa-sun", label: "Brightness", value: "500 nits" },
-            { icon: "fa-palette", label: "Color Gamut", value: "100% sRGB" },
-            { icon: "fa-layer-group", label: "Panel Type", value: "IPS LCD" },
-            { icon: "fa-shield-alt", label: "Warranty", value: "24 months" },
+            { icon: "fa-volume-up", label: "Output Power", value: "2W x 2 (4W total)" },
+            { icon: "fa-chart-line", label: "Frequency Range", value: "200Hz - 20kHz" },
+            { icon: "fa-microchip", label: "Driver Size", value: "15mm woofers" },
+            { icon: "fa-layer-group", label: "Configuration", value: "Left + Right pair" },
+            { icon: "fa-shield-alt", label: "Warranty", value: "12 months" },
             { icon: "fa-check-circle", label: "In Stock", value: "Yes" }
         ],
-        rating: 4.8,
+        rating: 5.0,
         reviewCount: 312
     },
-    xps15: {
-        name: "Dell XPS 15 15.6\" 4K UHD+ Screen",
-        price: 249.99,
-        priceFormatted: "E249.99",
+    "xps15-speakers": {
+        name: "Dell XPS 15 Speaker Assembly",
+        price: 49.99,
+        priceFormatted: "E49.99",
         compatibility: "Compatible with: XPS 15 9550, 9560, 9570, 7590, 9510, 9520",
-        description: "Stunning 15.6-inch 4K UHD+ (3840x2400) touch display for Dell XPS 15. OLED technology with infinite contrast, 100% DCI-P3 color gamut, and Dolby Vision HDR support. Ideal for photo editing, video production, and immersive entertainment.",
+        description: "Premium quad-speaker system for Dell XPS 15 featuring 4 drivers and a dedicated subwoofer. Produces rich, room-filling sound with deep bass and detailed highs. Certified for Dolby Atmos and Waves MaxxAudio Pro processing. Plug-and-play with original connectors.",
         image: "",
-        displayLife: "30,000+ hours lifespan / OLED panel",
-        responseTime: "1ms response time / 60Hz refresh rate",
+        audioQuality: "3W x 4 (12W total) / 150Hz - 22kHz / 88dB sensitivity",
+        driverSpecs: "18mm drivers + subwoofer / Kevlar cones / 6Ω impedance / Bass reflex port",
         specs: [
-            { icon: "fa-desktop", label: "Screen Size", value: "15.6\"" },
-            { icon: "fa-eye", label: "Resolution", value: "3840 x 2400 (4K UHD+)" },
-            { icon: "fa-sun", label: "Brightness", value: "500 nits (OLED)" },
-            { icon: "fa-palette", label: "Color Gamut", value: "100% DCI-P3" },
-            { icon: "fa-layer-group", label: "Panel Type", value: "OLED Touch" },
-            { icon: "fa-shield-alt", label: "Warranty", value: "24 months" },
+            { icon: "fa-volume-up", label: "Output Power", value: "3W x 4 (12W total)" },
+            { icon: "fa-chart-line", label: "Frequency Range", value: "150Hz - 22kHz" },
+            { icon: "fa-microchip", label: "Driver Size", value: "Quad 18mm + subwoofer" },
+            { icon: "fa-layer-group", label: "Configuration", value: "Full speaker array" },
+            { icon: "fa-shield-alt", label: "Warranty", value: "12 months" },
             { icon: "fa-check-circle", label: "In Stock", value: "Yes" }
         ],
-        rating: 4.9,
+        rating: 5.0,
         reviewCount: 287
     },
-    inspiron15: {
-        name: "Dell Inspiron 15 15.6\" FHD Screen",
-        price: 89.99,
-        priceFormatted: "E89.99",
+    "inspiron15-speakers": {
+        name: "Dell Inspiron 15 Speaker Kit",
+        price: 19.99,
+        priceFormatted: "E19.99",
         compatibility: "Compatible with: Inspiron 15 3501, 3505, 3510, 3511, 3520",
-        description: "Reliable 15.6-inch Full HD (1920x1080) anti-glare display for Dell Inspiron 15 series. Features 220 nits brightness, 45% NTSC color gamut, and energy-efficient LED backlight. Perfect for everyday home and office use.",
+        description: "Affordable stereo speaker replacement kit for Dell Inspiron 15 laptops. Provides clear sound for everyday computing, video calls, and media playback. Simple installation with pre-attached cables and mounting brackets.",
         image: "",
-        displayLife: "40,000+ hours lifespan / LED backlight",
-        responseTime: "14ms response time / 60Hz refresh rate",
+        audioQuality: "1.5W x 2 (3W total) / 300Hz - 18kHz / 82dB sensitivity",
+        driverSpecs: "12mm drivers / Mylar cone / Foam surround / 8Ω impedance",
         specs: [
-            { icon: "fa-desktop", label: "Screen Size", value: "15.6\"" },
-            { icon: "fa-eye", label: "Resolution", value: "1920 x 1080 (FHD)" },
-            { icon: "fa-sun", label: "Brightness", value: "220 nits" },
-            { icon: "fa-palette", label: "Color Gamut", value: "45% NTSC" },
-            { icon: "fa-layer-group", label: "Panel Type", value: "IPS LCD" },
-            { icon: "fa-shield-alt", label: "Warranty", value: "24 months" },
+            { icon: "fa-volume-up", label: "Output Power", value: "1.5W x 2 (3W total)" },
+            { icon: "fa-chart-line", label: "Frequency Range", value: "300Hz - 18kHz" },
+            { icon: "fa-microchip", label: "Driver Size", value: "Dual 12mm drivers" },
+            { icon: "fa-layer-group", label: "Configuration", value: "Left + Right pair" },
+            { icon: "fa-shield-alt", label: "Warranty", value: "12 months" },
             { icon: "fa-check-circle", label: "In Stock", value: "Yes" }
         ],
         rating: 4.5,
         reviewCount: 421
     },
-    latitude5420: {
-        name: "Dell Latitude 5420 14\" FHD Screen",
-        price: 119.99,
-        priceFormatted: "E119.99",
-        compatibility: "Compatible with: Latitude 5420, 5430, 5440, 5450",
-        description: "Business-grade 14-inch Full HD (1920x1080) anti-glare display for Dell Latitude 5420. Features 300 nits brightness, 72% NTSC color gamut, and low blue light certification for reduced eye strain during long work sessions.",
+    "latitude5420-speakers": {
+        name: "Dell Latitude 5420 Premium Speakers",
+        price: 34.99,
+        priceFormatted: "E34.99",
+        compatibility: "Compatible with: Latitude 5420, 5430, 5440, 5450, 5480, 5490",
+        description: "Business-grade stereo speaker system for Dell Latitude laptops. Features neodymium magnets for superior sound clarity and noise-cancelling microphone integration. Optimized for conference calls and professional presentations with clear voice reproduction.",
         image: "",
-        displayLife: "45,000+ hours lifespan / Energy-efficient",
-        responseTime: "12ms response time / 60Hz refresh rate",
+        audioQuality: "2W x 2 (4W total) / 200Hz - 20kHz / 86dB sensitivity",
+        driverSpecs: "16mm neodymium drivers / Polypropylene cone / Silk surround / 4Ω",
         specs: [
-            { icon: "fa-desktop", label: "Screen Size", value: "14.0\"" },
-            { icon: "fa-eye", label: "Resolution", value: "1920 x 1080 (FHD)" },
-            { icon: "fa-sun", label: "Brightness", value: "300 nits" },
-            { icon: "fa-palette", label: "Color Gamut", value: "72% NTSC" },
-            { icon: "fa-layer-group", label: "Panel Type", value: "IPS Anti-Glare" },
-            { icon: "fa-shield-alt", label: "Warranty", value: "24 months" },
+            { icon: "fa-volume-up", label: "Output Power", value: "2W x 2 (4W total)" },
+            { icon: "fa-chart-line", label: "Frequency Range", value: "200Hz - 20kHz" },
+            { icon: "fa-microchip", label: "Driver Size", value: "Dual 16mm neodymium" },
+            { icon: "fa-layer-group", label: "Configuration", value: "Speakers + cables" },
+            { icon: "fa-shield-alt", label: "Warranty", value: "12 months" },
             { icon: "fa-check-circle", label: "In Stock", value: "Yes" }
         ],
-        rating: 4.6,
+        rating: 4.8,
         reviewCount: 198
     },
-    precision7560: {
-        name: "Dell Precision 7560 15.6\" 4K Screen",
-        price: 299.99,
-        priceFormatted: "E299.99",
-        compatibility: "Compatible with: Precision 7560, 7550, 7750, 7670",
-        description: "Professional-grade 15.6-inch 4K UHD (3840x2160) DreamColor display for Dell Precision mobile workstations. Features 600 nits peak brightness, 100% Adobe RGB coverage, and factory calibration for color-critical work in CAD, 3D rendering, and video editing.",
+    "precision7560-speakers": {
+        name: "Dell Precision 7560 Professional Speakers",
+        price: 59.99,
+        priceFormatted: "E59.99",
+        compatibility: "Compatible with: Precision 7560, 7550, 7750, 7670, 7770",
+        description: "Studio-grade speaker system for Dell Precision mobile workstations. Features high-excursion drivers with titanium tweeters for exceptional audio fidelity. ISV-certified for professional audio production and video editing applications.",
         image: "",
-        displayLife: "35,000+ hours lifespan / Premium IPS",
-        responseTime: "8ms response time / 60Hz refresh rate",
+        audioQuality: "5W x 2 (10W total) / 100Hz - 25kHz / 90dB sensitivity",
+        driverSpecs: "22mm titanium drivers / Treated paper cone / Rubber surround / 3Ω",
         specs: [
-            { icon: "fa-desktop", label: "Screen Size", value: "15.6\"" },
-            { icon: "fa-eye", label: "Resolution", value: "3840 x 2160 (4K UHD)" },
-            { icon: "fa-sun", label: "Brightness", value: "600 nits" },
-            { icon: "fa-palette", label: "Color Gamut", value: "100% Adobe RGB" },
-            { icon: "fa-layer-group", label: "Panel Type", value: "IPS DreamColor" },
-            { icon: "fa-shield-alt", label: "Warranty", value: "36 months" },
+            { icon: "fa-volume-up", label: "Output Power", value: "5W x 2 (10W total)" },
+            { icon: "fa-chart-line", label: "Frequency Range", value: "100Hz - 25kHz" },
+            { icon: "fa-microchip", label: "Driver Size", value: "Dual 22mm titanium" },
+            { icon: "fa-layer-group", label: "Configuration", value: "Full audio kit" },
+            { icon: "fa-shield-alt", label: "Warranty", value: "24 months" },
             { icon: "fa-check-circle", label: "In Stock", value: "Yes" }
         ],
         rating: 4.9,
         reviewCount: 156
     },
-    alienwareM15: {
-        name: "Dell Alienware M15 15.6\" 240Hz Gaming Screen",
-        price: 279.99,
-        priceFormatted: "E279.99",
-        compatibility: "Compatible with: Alienware M15 R1, R2, R3, R4, R5, R6",
-        description: "High-performance 15.6-inch Full HD (1920x1080) gaming display for Alienware M15 laptops. Features blazing-fast 240Hz refresh rate, 3ms response time, NVIDIA G-SYNC support, and 100% sRGB color accuracy. Designed for competitive esports and AAA gaming.",
+    "alienwareM15-speakers": {
+        name: "Dell Alienware M15 Gaming Speakers",
+        price: 54.99,
+        priceFormatted: "E54.99",
+        compatibility: "Compatible with: Alienware M15, M16, M18, X14, X16",
+        description: "RGB-enhanced quad-speaker system for Alienware gaming laptops. Features 4 drivers plus dual passive radiators with AlienFX RGB lighting. Supports 7.1 virtual surround sound and low-latency audio for competitive gaming. Tuned for explosive gaming audio.",
         image: "",
-        displayLife: "30,000+ hours lifespan / Fast IPS",
-        responseTime: "3ms response time / 240Hz refresh rate",
+        audioQuality: "4W x 4 (16W total) / 120Hz - 24kHz / 89dB sensitivity",
+        driverSpecs: "18mm drivers + dual subs / Carbon fiber cone / RGB ring / 4Ω",
         specs: [
-            { icon: "fa-desktop", label: "Screen Size", value: "15.6\"" },
-            { icon: "fa-eye", label: "Resolution", value: "1920 x 1080 (FHD)" },
-            { icon: "fa-sun", label: "Brightness", value: "350 nits" },
-            { icon: "fa-palette", label: "Color Gamut", value: "100% sRGB" },
-            { icon: "fa-layer-group", label: "Panel Type", value: "IPS G-SYNC" },
+            { icon: "fa-volume-up", label: "Output Power", value: "4W x 4 (16W total)" },
+            { icon: "fa-chart-line", label: "Frequency Range", value: "120Hz - 24kHz" },
+            { icon: "fa-microchip", label: "Driver Size", value: "Quad 18mm + dual subs" },
+            { icon: "fa-layer-group", label: "Configuration", value: "RGB speaker array" },
             { icon: "fa-shield-alt", label: "Warranty", value: "24 months" },
             { icon: "fa-check-circle", label: "In Stock", value: "Yes" }
         ],
-        rating: 4.8,
+        rating: 4.7,
         reviewCount: 234
     }
 };
@@ -830,10 +824,10 @@ function getProductId() {
     return urlParams.get('product');
 }
 
-// Load screen details
+// Load speaker details
 function loadProductDetails() {
     const productId = getProductId();
-    const product = screenProducts[productId];
+    const product = speakerProducts[productId];
     const container = document.getElementById('productDetail');
     
     if (!product) {
@@ -841,8 +835,8 @@ function loadProductDetails() {
             <div style="text-align: center; grid-column: 1/-1; padding: 60px;">
                 <i class="fas fa-exclamation-triangle fa-3x" style="color: #ff9800;"></i>
                 <h2>Product Not Found</h2>
-                <p>Sorry, the screen you're looking for doesn't exist.</p>
-                <a href="dell-screens.html" class="back-to-shop" style="margin-top: 20px; display: inline-block;">← Back to Dell Screens</a>
+                <p>Sorry, the speaker kit you're looking for doesn't exist.</p>
+                <a href="dell-speakers.html" class="back-to-shop" style="margin-top: 20px; display: inline-block;">← Back to Dell Speakers</a>
             </div>
         `;
         return;
@@ -853,7 +847,7 @@ function loadProductDetails() {
         <li><i class="fas ${spec.icon}"></i> ${spec.label}: ${spec.value}</li>
     `).join('');
     
-    // Build full product detail HTML with display performance stats
+    // Build full product detail HTML with audio quality and driver specs
     container.innerHTML = `
         <div class="product-image">
             <img src="${product.image}" alt="${product.name}">
@@ -870,8 +864,15 @@ function loadProductDetails() {
                 <i class="fas fa-check-circle" style="color: var(--green);"></i> ${product.compatibility}
             </div>
             <div class="specifications">
-                <h3>Display Specifications</h3>
+                <h3>Technical Specifications</h3>
                 <ul>${specsHtml}</ul>
+            </div>
+            <div style="margin: 20px 0; padding: 15px; background: linear-gradient(135deg, rgba(0,230,118,0.08), rgba(33,150,243,0.05)); border-radius: 12px; border-left: 4px solid #00e676;">
+                <h4 style="margin-bottom: 10px; color: #1a1a1a;"><i class="fas fa-headphones"></i> Audio Performance</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                    <div><i class="fas fa-waveform" style="color: #00e676;"></i> <strong>Sound Quality:</strong><br>${product.audioQuality}</div>
+                    <div><i class="fas fa-microchip" style="color: #00e676;"></i> <strong>Driver Configuration:</strong><br>${product.driverSpecs}</div>
+                </div>
             </div>
             <div class="quantity-selector">
                 <label for="quantity">Quantity:</label>
@@ -892,7 +893,7 @@ let currentProduct = null;
 
 function getCurrentProduct() {
     const productId = getProductId();
-    return screenProducts[productId] || null;
+    return speakerProducts[productId] || null;
 }
 
 function addToCart() {

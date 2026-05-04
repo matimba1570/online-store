@@ -3,157 +3,193 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dell Screen Details - Eswatini Technocrats Center</title>
+<title>Dell Laptop Screens - Eswatini Technocrats Center</title>
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
-/* Additional styles for product detail page */
-.product-page {
+/* Additional styles for Dell Screens page */
+.batteries-page {
 padding-top: 120px;
 min-height: 100vh;
 background: #ffffff;
 }
-.product-container {
+.batteries-container {
 max-width: 1200px;
 margin: 0 auto;
 padding: 0 40px;
 }
-.product-detail {
-display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 50px;
-margin: 40px 0;
-background: var(--bg-primary, #ffffff);
-padding: 40px;
-border-radius: 20px;
-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-border: 1px solid var(--border-color, #e0e0e0);
+.page-header {
+text-align: center;
+margin-bottom: 30px;
 }
-.product-image {
-background: linear-gradient(135deg, rgba(0,230,118,0.05), rgba(33,150,243,0.05));
-border-radius: 20px;
-display: flex;
-align-items: center;
-justify-content: center;
-height: 400px;
-}
-.product-image img {
-max-width: 100%;
-max-height: 100%;
-object-fit: contain;
-}
-.product-details h1 {
-font-size: 32px;
-color: var(--text-primary, #1a1a1a);
+.page-header h1 {
+font-size: 48px;
+color: #1a1a1a;
 margin-bottom: 15px;
 font-family: 'Orbitron', sans-serif;
 }
-.rating {
-display: flex;
-align-items: center;
-gap: 10px;
-margin-bottom: 20px;
-}
-.stars {
-color: #ffc107;
-}
-.price {
-font-size: 32px;
-font-weight: bold;
+.page-header h1 i {
 color: var(--green, #00e676);
-margin: 20px 0;
+margin-right: 15px;
+}
+.page-header p {
+font-size: 18px;
+color: #666;
+max-width: 700px;
+margin: 0 auto;
+}
+/* Search Container */
+.search-container {
+background: var(--bg-secondary, #f5f5f5);
+padding: 30px;
+border-radius: 20px;
+margin-bottom: 40px;
+text-align: center;
+border: 1px solid var(--border-color, #e0e0e0);
+}
+.search-container h2 {
+font-size: 24px;
+margin-bottom: 20px;
+color: var(--text-primary, #1a1a1a);
+}
+.search-box {
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 15px;
+max-width: 600px;
+margin: 0 auto;
+}
+.search-input {
+flex: 1;
+padding: 14px 18px;
+border: 2px solid var(--border-color, #e0e0e0);
+border-radius: 10px;
+font-size: 16px;
+background: var(--bg-primary, #ffffff);
+color: var(--text-primary, #333);
+}
+.search-input:focus {
+outline: none;
+border-color: var(--green, #00e676);
+}
+.search-btn {
+padding: 14px 28px;
+background: var(--green, #00e676);
+color: #000;
+border: none;
+border-radius: 10px;
+cursor: pointer;
+font-size: 16px;
+font-weight: 600;
+transition: all 0.3s;
+}
+.search-btn:hover {
+background: var(--green-dark, #00c853);
+transform: translateY(-2px);
+}
+/* Products Grid */
+.battery-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+gap: 30px;
+margin-bottom: 50px;
+}
+.battery-card {
+background: var(--bg-primary, #ffffff);
+border-radius: 20px;
+overflow: hidden;
+box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+transition: all 0.3s ease;
+border: 1px solid var(--border-color, #e0e0e0);
+}
+.battery-card:hover {
+transform: translateY(-5px);
+box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+border-color: var(--green, #00e676);
+}
+.battery-card img {
+width: 100%;
+height: 200px;
+object-fit: cover;
+}
+.battery-info {
+padding: 20px;
+}
+.battery-info h3 {
+font-size: 18px;
+color: var(--text-primary, #1a1a1a);
+margin-bottom: 8px;
+font-family: 'Rajdhani', sans-serif;
+}
+.battery-info p {
+font-size: 14px;
+color: var(--text-secondary, #666);
+margin-bottom: 12px;
+line-height: 1.5;
 }
 .compatibility {
 background: var(--bg-secondary, #f5f5f5);
-padding: 12px 15px;
+padding: 8px 12px;
 border-radius: 8px;
-margin: 20px 0;
-font-size: 14px;
+font-size: 12px;
 color: var(--text-secondary, #666);
+margin-bottom: 12px;
+}
+.price {
+font-size: 24px;
+font-weight: bold;
+color: var(--green, #00e676);
+margin-bottom: 12px;
 }
 .specifications {
-margin: 20px 0;
-padding: 20px;
-background: var(--bg-secondary, #f5f5f5);
-border-radius: 12px;
-}
-.specifications h3 {
 margin-bottom: 15px;
-font-size: 18px;
-color: var(--text-primary, #1a1a1a);
 }
 .specifications ul {
 list-style: none;
 display: grid;
 grid-template-columns: 1fr 1fr;
-gap: 8px;
+gap: 6px;
 }
 .specifications li {
-padding: 6px 0;
-font-size: 14px;
+padding: 4px 0;
+font-size: 12px;
 color: var(--text-secondary, #666);
 display: flex;
 align-items: center;
-gap: 8px;
+gap: 6px;
 }
 .specifications li i {
 color: var(--green, #00e676);
+font-size: 10px;
 }
-.quantity-selector {
-display: flex;
-align-items: center;
-gap: 15px;
-margin: 25px 0;
-}
-.quantity-selector label {
-font-weight: 600;
-color: var(--text-primary, #1a1a1a);
-}
-.quantity-selector input {
-width: 80px;
-padding: 10px;
-border: 2px solid var(--border-color, #e0e0e0);
-border-radius: 8px;
-font-size: 14px;
-}
-.add-to-cart-btn {
+.btn-view-more {
+display: block;
 width: 100%;
-padding: 14px;
+padding: 12px;
 background: var(--green, #00e676);
 color: #000;
-border: none;
+text-align: center;
+text-decoration: none;
 border-radius: 8px;
-font-size: 16px;
-font-weight: bold;
-cursor: pointer;
+font-weight: 600;
 transition: all 0.3s;
+border: none;
+cursor: pointer;
 }
-.add-to-cart-btn:hover {
+.btn-view-more:hover {
 background: var(--green-dark, #00c853);
 transform: translateY(-2px);
 }
-.shipping-info {
-margin-top: 30px;
-padding: 20px;
+.no-results {
+text-align: center;
+padding: 60px;
 background: var(--bg-secondary, #f5f5f5);
-border-radius: 12px;
-display: flex;
-justify-content: space-around;
-flex-wrap: wrap;
-gap: 15px;
-}
-.shipping-info p {
-display: flex;
-align-items: center;
-gap: 8px;
-font-size: 13px;
+border-radius: 20px;
+display: none;
 color: var(--text-secondary, #666);
 }
-.shipping-info p i {
-color: var(--green, #00e676);
-font-size: 16px;
-}
-.back-to-shop {
+.back-link {
 display: inline-block;
 margin-bottom: 20px;
 color: var(--green, #00e676);
@@ -161,42 +197,67 @@ text-decoration: none;
 font-weight: 600;
 transition: all 0.3s;
 }
-.back-to-shop:hover {
+.back-link:hover {
 transform: translateX(-5px);
 }
-.toast {
-visibility: hidden;
-min-width: 250px;
-background-color: #333;
-color: #fff;
-text-align: center;
-border-radius: 8px;
-padding: 12px;
-position: fixed;
-bottom: 30px;
-left: 50%;
-transform: translateX(-50%);
-z-index: 2000;
-opacity: 0;
-transition: opacity 0.3s, visibility 0.3s;
+.quantity-selector {
+margin: 12px 0;
+display: flex;
+align-items: center;
+gap: 12px;
 }
-.toast.show {
-visibility: visible;
-opacity: 1;
+.quantity-selector label {
+font-size: 13px;
+font-weight: 600;
+color: #333;
+}
+.quantity-selector input {
+width: 60px;
+padding: 6px;
+border: 1px solid #ddd;
+border-radius: 6px;
+text-align: center;
+}
+.shipping-info {
+margin: 12px 0;
+padding: 10px 0;
+border-top: 1px solid #eee;
+border-bottom: 1px solid #eee;
+}
+.shipping-info p {
+font-size: 11px;
+margin: 5px 0;
+color: #777;
+}
+.rating {
+margin-top: 10px;
+display: flex;
+align-items: center;
+gap: 8px;
+}
+.stars {
+color: #ffc107;
+font-size: 12px;
+}
+.rating span:last-child {
+font-size: 12px;
+color: #888;
 }
 @media (max-width: 768px) {
-.product-container {
+.batteries-container {
 padding: 0 20px;
 }
-.product-detail {
+.page-header h1 {
+font-size: 32px;
+}
+.search-box {
+flex-direction: column;
+}
+.search-btn {
+width: 100%;
+}
+.battery-grid {
 grid-template-columns: 1fr;
-padding: 20px;
-}
-.product-image {
-height: 300px;
-}
-.product-details h1 {
-font-size: 24px;
 }
 .specifications ul {
 grid-template-columns: 1fr;
@@ -272,6 +333,46 @@ font-size: 12px;
 font-weight: bold;
 margin-left: 5px;
 }
+.page-actions {
+display: flex;
+justify-content: center;
+margin-bottom: 60px;
+}
+.page-actions a {
+padding: 14px 28px;
+background: #00e676;
+color: #000;
+border-radius: 14px;
+font-weight: 700;
+text-decoration: none;
+box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+transition: transform 0.2s ease, background 0.2s ease;
+}
+.page-actions a:hover {
+transform: translateY(-2px);
+background: #00c851;
+}
+/* Toast notification */
+.toast {
+visibility: hidden;
+min-width: 250px;
+background-color: #333;
+color: #fff;
+text-align: center;
+border-radius: 8px;
+padding: 12px;
+position: fixed;
+bottom: 30px;
+left: 50%;
+transform: translateX(-50%);
+z-index: 2000;
+opacity: 0;
+transition: opacity 0.3s, visibility 0.3s;
+}
+.toast.show {
+visibility: visible;
+opacity: 1;
+}
 </style>
 </head>
 <body>
@@ -324,7 +425,7 @@ margin-left: 5px;
 <div class="secondary-nav-container">
 <ul class="secondary-nav-menu">
 <li><a href="shop.html" id="nav-home"><i class="fas fa-home"></i><span> Shop</span></a></li>
-<li><a href="page.html" id="nav-all"><i class="fas fa-box"></i><span> All Products</span></a></li>
+<li><a href="Asus.html" id="nav-all"><i class="fas fa-box"></i><span> All Products</span></a></li>
 <li><a href="Refurbished.html" id="nav-refurbished"><i class="fas fa-sync-alt"></i><span> Refurbished</span></a></li>
 <li><a href="#" id="nav-events"><i class="fas fa-calendar-alt"></i><span> Events</span></a></li>
 </ul>
@@ -542,22 +643,247 @@ margin-left: 5px;
 </div>
 </div>
 
-<!-- ===== PAGE CONTENT - DYNAMIC DELL SCREENS DETAIL PAGE ===== -->
-<div class="product-page">
-<div class="product-container">
-<a href="dell-screens.html" class="back-to-shop"><i class="fas fa-arrow-left"></i> Back to Dell Screens</a>
-<div class="product-detail" id="productDetail">
-<div style="text-align: center; grid-column: 1/-1; padding: 60px;">
-<i class="fas fa-spinner fa-pulse fa-3x" style="color: #00e676;"></i>
-<p>Loading screen details...</p>
+<!-- ===== PAGE CONTENT - DELL SCREENS (changed from batteries to screens) ===== -->
+<div class="batteries-page">
+<div class="batteries-container">
+<div class="page-header">
+<h1><i class="fas fa-desktop"></i> Asus Laptop Screens</h1>
+<p>High-quality replacement LCD screens for all Asus laptop models - XPS, Inspiron, Latitude, Precision, and Alienware series</p>
 </div>
+<div class="search-container">
+<h2>Search Screens</h2>
+<div class="search-box">
+<input type="text" class="search-input" id="screenSearch" placeholder="Enter model number or screen size...">
+<button class="search-btn" id="searchBtn"><i class="fas fa-search"></i> Search</button>
+</div>
+</div>
+<div class="battery-grid" id="screensGrid">
+<!-- Dell XPS 13 Screen -->
+<div class="battery-card" data-model="XPS" data-part="13">
+<img src="https://images.unsplash.com/photo-1525547719571-a2d5ac8945e3?w=400&h=200&fit=crop" alt="Dell XPS 13 Screen">
+<div class="battery-info">
+<h3>Asus 13 13.4" FHD+ Screen</h3>
+<p>Premium 13.4-inch FHD+ InfinityEdge display</p>
+<div class="compatibility"><i class="fas fa-check-circle"></i> Compatible with: XPS 13 9300, 9310, 9315, 9320, 9340</div>
+<div class="price">E129.99</div>
+<div class="specifications">
+<ul>
+<li><i class="fas fa-desktop"></i> Resolution: 1920x1200 FHD+</li>
+<li><i class="fas fa-sun"></i> Brightness: 500 nits</li>
+<li><i class="fas fa-palette"></i> Color: 100% sRGB</li>
+<li><i class="fas fa-layer-group"></i> Panel: IPS LCD</li>
+<li><i class="fas fa-shield-alt"></i> Warranty: 24 months</li>
+<li><i class="fas fa-check-circle"></i> In Stock: Yes</li>
+</ul>
+<div class="quantity-selector">
+<label>Quantity:</label>
+<input type="number" class="quantity-input" value="1" min="1" max="10">
+</div>
+</div>
+<a href="dell-screens-detail.html?product=xps13" class="btn-view-more"><i class="fas fa-eye"></i> View More</a>
+<div class="shipping-info">
+<p><i class="fas fa-shipping-fast"></i> Free Shipping on orders over E50</p>
+<p><i class="fas fa-undo"></i> 30-Day Returns</p>
+<p><i class="fas fa-lock"></i> Secure Payment</p>
+</div>
+<div class="rating">
+<span class="stars">
+<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+</span>
+<span>(312 reviews)</span>
 </div>
 </div>
 </div>
 
-<!-- Toast Notification -->
-<div id="successToast" class="toast">
-<p>Item added to cart!</p>
+<!-- Dell XPS 15 4K Screen -->
+<div class="battery-card" data-model="XPS" data-part="15">
+<img src="https://images.unsplash.com/photo-1593642702821-f3311a7f7b8d?w=400&h=200&fit=crop" alt="Dell XPS 15 4K Screen">
+<div class="battery-info">
+<h3>Asus 15 15.6" 4K UHD+ Screen</h3>
+<p>Stunning 4K UHD+ OLED touch display</p>
+<div class="compatibility"><i class="fas fa-check-circle"></i> Compatible with: XPS 15 9550, 9560, 9570, 7590, 9510, 9520</div>
+<div class="price">E249.99</div>
+<div class="specifications">
+<ul>
+<li><i class="fas fa-desktop"></i> Resolution: 3840x2400 4K+</li>
+<li><i class="fas fa-sun"></i> Brightness: 500 nits OLED</li>
+<li><i class="fas fa-palette"></i> Color: 100% DCI-P3</li>
+<li><i class="fas fa-layer-group"></i> Panel: OLED Touch</li>
+<li><i class="fas fa-shield-alt"></i> Warranty: 24 months</li>
+<li><i class="fas fa-check-circle"></i> In Stock: Yes</li>
+</ul>
+<div class="quantity-selector">
+<label>Quantity:</label>
+<input type="number" class="quantity-input" value="1" min="1" max="10">
+</div>
+</div>
+<a href="dell-screens-detail.html?product=xps15" class="btn-view-more"><i class="fas fa-eye"></i> View More</a>
+<div class="shipping-info">
+<p><i class="fas fa-shipping-fast"></i> Free Shipping on orders over E50</p>
+<p><i class="fas fa-undo"></i> 30-Day Returns</p>
+<p><i class="fas fa-lock"></i> Secure Payment</p>
+</div>
+<div class="rating">
+<span class="stars">
+<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+</span>
+<span>(287 reviews)</span>
+</div>
+</div>
+</div>
+
+<!-- Dell Inspiron 15 FHD Screen -->
+<div class="battery-card" data-model="Inspiron" data-part="15">
+<img src="https://images.unsplash.com/photo-1525547719571-a2d5ac8945e3?w=400&h=200&fit=crop" alt="Dell Inspiron Screen">
+<div class="battery-info">
+<h3>Asus 15 15.6" FHD Screen</h3>
+<p>Reliable Full HD anti-glare display</p>
+<div class="compatibility"><i class="fas fa-check-circle"></i> Compatible with: Inspiron 15 3501, 3505, 3510, 3511, 3520</div>
+<div class="price">E89.99</div>
+<div class="specifications">
+<ul>
+<li><i class="fas fa-desktop"></i> Resolution: 1920x1080 FHD</li>
+<li><i class="fas fa-sun"></i> Brightness: 220 nits</li>
+<li><i class="fas fa-palette"></i> Color: 45% NTSC</li>
+<li><i class="fas fa-layer-group"></i> Panel: IPS LCD</li>
+<li><i class="fas fa-shield-alt"></i> Warranty: 24 months</li>
+<li><i class="fas fa-check-circle"></i> In Stock: Yes</li>
+</ul>
+<div class="quantity-selector">
+<label>Quantity:</label>
+<input type="number" class="quantity-input" value="1" min="1" max="10">
+</div>
+</div>
+<a href="dell-screens-detail.html?product=inspiron15" class="btn-view-more"><i class="fas fa-eye"></i> View More</a>
+<div class="shipping-info">
+<p><i class="fas fa-shipping-fast"></i> Free Shipping on orders over E50</p>
+<p><i class="fas fa-undo"></i> 30-Day Returns</p>
+<p><i class="fas fa-lock"></i> Secure Payment</p>
+</div>
+<div class="rating">
+<span class="stars">
+<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+</span>
+<span>(421 reviews)</span>
+</div>
+</div>
+</div>
+
+<!-- Dell Latitude 5420 Screen -->
+<div class="battery-card" data-model="Latitude" data-part="5420">
+<img src="https://images.unsplash.com/photo-1525547719571-a2d5ac8945e3?w=400&h=200&fit=crop" alt="Dell Latitude Screen">
+<div class="battery-info">
+<h3>Asus 14" FHD Screen</h3>
+<p>Business-grade anti-glare display</p>
+<div class="compatibility"><i class="fas fa-check-circle"></i> Compatible with: Latitude 5420, 5430, 5440, 5450</div>
+<div class="price">E119.99</div>
+<div class="specifications">
+<ul>
+<li><i class="fas fa-desktop"></i> Resolution: 1920x1080 FHD</li>
+<li><i class="fas fa-sun"></i> Brightness: 300 nits</li>
+<li><i class="fas fa-palette"></i> Color: 72% NTSC</li>
+<li><i class="fas fa-layer-group"></i> Panel: IPS Anti-Glare</li>
+<li><i class="fas fa-shield-alt"></i> Warranty: 24 months</li>
+<li><i class="fas fa-check-circle"></i> In Stock: Yes</li>
+</ul>
+<div class="quantity-selector">
+<label>Quantity:</label>
+<input type="number" class="quantity-input" value="1" min="1" max="10">
+</div>
+</div>
+<a href="dell-screens-detail.html?product=latitude5420" class="btn-view-more"><i class="fas fa-eye"></i> View More</a>
+<div class="shipping-info">
+<p><i class="fas fa-shipping-fast"></i> Free Shipping on orders over E50</p>
+<p><i class="fas fa-undo"></i> 30-Day Returns</p>
+<p><i class="fas fa-lock"></i> Secure Payment</p>
+</div>
+<div class="rating">
+<span class="stars">
+<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+</span>
+<span>(198 reviews)</span>
+</div>
+</div>
+</div>
+
+<!-- Dell Precision 7560 4K Screen -->
+<div class="battery-card" data-model="Precision" data-part="7560">
+<img src="https://images.unsplash.com/photo-1593642702821-f3311a7f7b8d?w=400&h=200&fit=crop" alt="Dell Precision Screen">
+<div class="battery-info">
+<h3>Asus 15.6" 4K DreamColor</h3>
+<p>Professional-grade 4K workstation display</p>
+<div class="compatibility"><i class="fas fa-check-circle"></i> Compatible with: Precision 7560, 7550, 7750, 7670</div>
+<div class="price">E299.99</div>
+<div class="specifications">
+<ul>
+<li><i class="fas fa-desktop"></i> Resolution: 3840x2160 4K UHD</li>
+<li><i class="fas fa-sun"></i> Brightness: 600 nits</li>
+<li><i class="fas fa-palette"></i> Color: 100% Adobe RGB</li>
+<li><i class="fas fa-layer-group"></i> Panel: IPS DreamColor</li>
+<li><i class="fas fa-shield-alt"></i> Warranty: 36 months</li>
+<li><i class="fas fa-check-circle"></i> In Stock: Yes</li>
+</ul>
+<div class="quantity-selector">
+<label>Quantity:</label>
+<input type="number" class="quantity-input" value="1" min="1" max="10">
+</div>
+</div>
+<a href="dell-screens-detail.html?product=precision7560" class="btn-view-more"><i class="fas fa-eye"></i> View More</a>
+<div class="shipping-info">
+<p><i class="fas fa-shipping-fast"></i> Free Shipping on orders over E50</p>
+<p><i class="fas fa-undo"></i> 30-Day Returns</p>
+<p><i class="fas fa-lock"></i> Secure Payment</p>
+</div>
+<div class="rating">
+<span class="stars">
+<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+</span>
+<span>(156 reviews)</span>
+</div>
+</div>
+</div>
+
+<!-- Dell Alienware M15 240Hz Gaming Screen -->
+<div class="battery-card" data-model="Alienware" data-part="M15">
+<img src="https://images.unsplash.com/photo-1593642702821-f3311a7f7b8d?w=400&h=200&fit=crop" alt="Dell Alienware Screen">
+<div class="battery-info">
+<h3>Asus 15.6" 240Hz Gaming Screen</h3>
+<p>Ultra-fast 240Hz gaming display with G-SYNC</p>
+<div class="compatibility"><i class="fas fa-check-circle"></i> Compatible with: Alienware M15 R1, R2, R3, R4, R5, R6</div>
+<div class="price">E279.99</div>
+<div class="specifications">
+<ul>
+<li><i class="fas fa-desktop"></i> Resolution: 1920x1080 FHD</li>
+<li><i class="fas fa-sun"></i> Brightness: 350 nits</li>
+<li><i class="fas fa-palette"></i> Color: 100% sRGB</li>
+<li><i class="fas fa-layer-group"></i> Panel: IPS G-SYNC 240Hz</li>
+<li><i class="fas fa-shield-alt"></i> Warranty: 24 months</li>
+<li><i class="fas fa-check-circle"></i> In Stock: Yes</li>
+</ul>
+<div class="quantity-selector">
+<label>Quantity:</label>
+<input type="number" class="quantity-input" value="1" min="1" max="10">
+</div>
+</div>
+<a href="dell-screens-detail.html?product=alienwareM15" class="btn-view-more"><i class="fas fa-eye"></i> View More</a>
+<div class="shipping-info">
+<p><i class="fas fa-shipping-fast"></i> Free Shipping on orders over E50</p>
+<p><i class="fas fa-undo"></i> 30-Day Returns</p>
+<p><i class="fas fa-lock"></i> Secure Payment</p>
+</div>
+<div class="rating">
+<span class="stars">
+<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+</span>
+<span>(234 reviews)</span>
+</div>
+</div>
+</div>
+</div>
+<div class="page-actions">
+<a href="#" onclick="history.back(); return false;">Previous</a>
+</div>
+</div>
 </div>
 
 <!-- ===== FOOTER ===== -->
@@ -676,304 +1002,74 @@ margin-left: 5px;
 <script src="script.js"></script>
 <script src="search.js"></script>
 <script>
-// ===== DELL SCREENS PRODUCTS DATABASE =====
-const screenProducts = {
-    xps13: {
-        name: "Dell XPS 13 13.4\" FHD+ Screen",
-        price: 129.99,
-        priceFormatted: "E129.99",
-        compatibility: "Compatible with: XPS 13 9300, 9310, 9315, 9320, 9340",
-        description: "Premium 13.4-inch FHD+ (1920x1200) InfinityEdge display for Dell XPS 13. Features anti-glare coating, 500 nits brightness, and 100% sRGB color accuracy. Perfect for creative professionals and everyday productivity.",
-        image: "",
-        displayLife: "50,000+ hours lifespan / Energy-efficient LED backlight",
-        responseTime: "10ms response time / 60Hz refresh rate",
-        specs: [
-            { icon: "fa-desktop", label: "Screen Size", value: "13.4\"" },
-            { icon: "fa-eye", label: "Resolution", value: "1920 x 1200 (FHD+)" },
-            { icon: "fa-sun", label: "Brightness", value: "500 nits" },
-            { icon: "fa-palette", label: "Color Gamut", value: "100% sRGB" },
-            { icon: "fa-layer-group", label: "Panel Type", value: "IPS LCD" },
-            { icon: "fa-shield-alt", label: "Warranty", value: "24 months" },
-            { icon: "fa-check-circle", label: "In Stock", value: "Yes" }
-        ],
-        rating: 4.8,
-        reviewCount: 312
-    },
-    xps15: {
-        name: "Dell XPS 15 15.6\" 4K UHD+ Screen",
-        price: 249.99,
-        priceFormatted: "E249.99",
-        compatibility: "Compatible with: XPS 15 9550, 9560, 9570, 7590, 9510, 9520",
-        description: "Stunning 15.6-inch 4K UHD+ (3840x2400) touch display for Dell XPS 15. OLED technology with infinite contrast, 100% DCI-P3 color gamut, and Dolby Vision HDR support. Ideal for photo editing, video production, and immersive entertainment.",
-        image: "",
-        displayLife: "30,000+ hours lifespan / OLED panel",
-        responseTime: "1ms response time / 60Hz refresh rate",
-        specs: [
-            { icon: "fa-desktop", label: "Screen Size", value: "15.6\"" },
-            { icon: "fa-eye", label: "Resolution", value: "3840 x 2400 (4K UHD+)" },
-            { icon: "fa-sun", label: "Brightness", value: "500 nits (OLED)" },
-            { icon: "fa-palette", label: "Color Gamut", value: "100% DCI-P3" },
-            { icon: "fa-layer-group", label: "Panel Type", value: "OLED Touch" },
-            { icon: "fa-shield-alt", label: "Warranty", value: "24 months" },
-            { icon: "fa-check-circle", label: "In Stock", value: "Yes" }
-        ],
-        rating: 4.9,
-        reviewCount: 287
-    },
-    inspiron15: {
-        name: "Dell Inspiron 15 15.6\" FHD Screen",
-        price: 89.99,
-        priceFormatted: "E89.99",
-        compatibility: "Compatible with: Inspiron 15 3501, 3505, 3510, 3511, 3520",
-        description: "Reliable 15.6-inch Full HD (1920x1080) anti-glare display for Dell Inspiron 15 series. Features 220 nits brightness, 45% NTSC color gamut, and energy-efficient LED backlight. Perfect for everyday home and office use.",
-        image: "",
-        displayLife: "40,000+ hours lifespan / LED backlight",
-        responseTime: "14ms response time / 60Hz refresh rate",
-        specs: [
-            { icon: "fa-desktop", label: "Screen Size", value: "15.6\"" },
-            { icon: "fa-eye", label: "Resolution", value: "1920 x 1080 (FHD)" },
-            { icon: "fa-sun", label: "Brightness", value: "220 nits" },
-            { icon: "fa-palette", label: "Color Gamut", value: "45% NTSC" },
-            { icon: "fa-layer-group", label: "Panel Type", value: "IPS LCD" },
-            { icon: "fa-shield-alt", label: "Warranty", value: "24 months" },
-            { icon: "fa-check-circle", label: "In Stock", value: "Yes" }
-        ],
-        rating: 4.5,
-        reviewCount: 421
-    },
-    latitude5420: {
-        name: "Dell Latitude 5420 14\" FHD Screen",
-        price: 119.99,
-        priceFormatted: "E119.99",
-        compatibility: "Compatible with: Latitude 5420, 5430, 5440, 5450",
-        description: "Business-grade 14-inch Full HD (1920x1080) anti-glare display for Dell Latitude 5420. Features 300 nits brightness, 72% NTSC color gamut, and low blue light certification for reduced eye strain during long work sessions.",
-        image: "",
-        displayLife: "45,000+ hours lifespan / Energy-efficient",
-        responseTime: "12ms response time / 60Hz refresh rate",
-        specs: [
-            { icon: "fa-desktop", label: "Screen Size", value: "14.0\"" },
-            { icon: "fa-eye", label: "Resolution", value: "1920 x 1080 (FHD)" },
-            { icon: "fa-sun", label: "Brightness", value: "300 nits" },
-            { icon: "fa-palette", label: "Color Gamut", value: "72% NTSC" },
-            { icon: "fa-layer-group", label: "Panel Type", value: "IPS Anti-Glare" },
-            { icon: "fa-shield-alt", label: "Warranty", value: "24 months" },
-            { icon: "fa-check-circle", label: "In Stock", value: "Yes" }
-        ],
-        rating: 4.6,
-        reviewCount: 198
-    },
-    precision7560: {
-        name: "Dell Precision 7560 15.6\" 4K Screen",
-        price: 299.99,
-        priceFormatted: "E299.99",
-        compatibility: "Compatible with: Precision 7560, 7550, 7750, 7670",
-        description: "Professional-grade 15.6-inch 4K UHD (3840x2160) DreamColor display for Dell Precision mobile workstations. Features 600 nits peak brightness, 100% Adobe RGB coverage, and factory calibration for color-critical work in CAD, 3D rendering, and video editing.",
-        image: "",
-        displayLife: "35,000+ hours lifespan / Premium IPS",
-        responseTime: "8ms response time / 60Hz refresh rate",
-        specs: [
-            { icon: "fa-desktop", label: "Screen Size", value: "15.6\"" },
-            { icon: "fa-eye", label: "Resolution", value: "3840 x 2160 (4K UHD)" },
-            { icon: "fa-sun", label: "Brightness", value: "600 nits" },
-            { icon: "fa-palette", label: "Color Gamut", value: "100% Adobe RGB" },
-            { icon: "fa-layer-group", label: "Panel Type", value: "IPS DreamColor" },
-            { icon: "fa-shield-alt", label: "Warranty", value: "36 months" },
-            { icon: "fa-check-circle", label: "In Stock", value: "Yes" }
-        ],
-        rating: 4.9,
-        reviewCount: 156
-    },
-    alienwareM15: {
-        name: "Dell Alienware M15 15.6\" 240Hz Gaming Screen",
-        price: 279.99,
-        priceFormatted: "E279.99",
-        compatibility: "Compatible with: Alienware M15 R1, R2, R3, R4, R5, R6",
-        description: "High-performance 15.6-inch Full HD (1920x1080) gaming display for Alienware M15 laptops. Features blazing-fast 240Hz refresh rate, 3ms response time, NVIDIA G-SYNC support, and 100% sRGB color accuracy. Designed for competitive esports and AAA gaming.",
-        image: "",
-        displayLife: "30,000+ hours lifespan / Fast IPS",
-        responseTime: "3ms response time / 240Hz refresh rate",
-        specs: [
-            { icon: "fa-desktop", label: "Screen Size", value: "15.6\"" },
-            { icon: "fa-eye", label: "Resolution", value: "1920 x 1080 (FHD)" },
-            { icon: "fa-sun", label: "Brightness", value: "350 nits" },
-            { icon: "fa-palette", label: "Color Gamut", value: "100% sRGB" },
-            { icon: "fa-layer-group", label: "Panel Type", value: "IPS G-SYNC" },
-            { icon: "fa-shield-alt", label: "Warranty", value: "24 months" },
-            { icon: "fa-check-circle", label: "In Stock", value: "Yes" }
-        ],
-        rating: 4.8,
-        reviewCount: 234
-    }
-};
+// Screen search functionality
+function searchScreens() {
+const searchInput = document.getElementById('screenSearch').value.toLowerCase();
+const screenCards = document.querySelectorAll('.battery-card');
+let hasResults = false;
 
-// Helper function to render star rating
-function renderStars(rating) {
-    const fullStars = Math.floor(rating);
-    const hasHalfStar = rating % 1 >= 0.5;
-    let starsHtml = '';
-    for (let i = 0; i < fullStars; i++) {
-        starsHtml += '<i class="fas fa-star"></i>';
-    }
-    if (hasHalfStar) {
-        starsHtml += '<i class="fas fa-star-half-alt"></i>';
-    }
-    const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
-    for (let i = 0; i < emptyStars; i++) {
-        starsHtml += '<i class="far fa-star"></i>';
-    }
-    return starsHtml;
+screenCards.forEach(card => {
+const model = card.getAttribute('data-model').toLowerCase();
+const part = card.getAttribute('data-part').toLowerCase();
+const title = card.querySelector('h3').textContent.toLowerCase();
+const compatibility = card.querySelector('.compatibility').textContent.toLowerCase();
+
+const matches = model.includes(searchInput) || part.includes(searchInput) || title.includes(searchInput) || compatibility.includes(searchInput);
+
+if (matches) {
+card.style.display = 'block';
+hasResults = true;
+} else {
+card.style.display = 'none';
 }
+});
 
-// Get product ID from URL
-function getProductId() {
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get('product');
+const noResults = document.getElementById('noResults');
+if (!hasResults && searchInput.length > 0) {
+if(noResults) noResults.style.display = 'block';
+} else {
+if(noResults) noResults.style.display = 'none';
 }
-
-// Load screen details
-function loadProductDetails() {
-    const productId = getProductId();
-    const product = screenProducts[productId];
-    const container = document.getElementById('productDetail');
-    
-    if (!product) {
-        container.innerHTML = `
-            <div style="text-align: center; grid-column: 1/-1; padding: 60px;">
-                <i class="fas fa-exclamation-triangle fa-3x" style="color: #ff9800;"></i>
-                <h2>Product Not Found</h2>
-                <p>Sorry, the screen you're looking for doesn't exist.</p>
-                <a href="dell-screens.html" class="back-to-shop" style="margin-top: 20px; display: inline-block;">← Back to Dell Screens</a>
-            </div>
-        `;
-        return;
-    }
-    
-    // Build specifications HTML
-    const specsHtml = product.specs.map(spec => `
-        <li><i class="fas ${spec.icon}"></i> ${spec.label}: ${spec.value}</li>
-    `).join('');
-    
-    // Build full product detail HTML with display performance stats
-    container.innerHTML = `
-        <div class="product-image">
-            <img src="${product.image}" alt="${product.name}">
-        </div>
-        <div class="product-details">
-            <h1>${product.name}</h1>
-            <div class="rating">
-                <span class="stars">${renderStars(product.rating)}</span>
-                <span>(${product.reviewCount} reviews)</span>
-            </div>
-            <div class="price">${product.priceFormatted}</div>
-            <p style="color: var(--text-secondary, #666); margin-bottom: 20px;">${product.description}</p>
-            <div class="compatibility">
-                <i class="fas fa-check-circle" style="color: var(--green);"></i> ${product.compatibility}
-            </div>
-            <div class="specifications">
-                <h3>Display Specifications</h3>
-                <ul>${specsHtml}</ul>
-            </div>
-            <div class="quantity-selector">
-                <label for="quantity">Quantity:</label>
-                <input type="number" id="quantity" value="1" min="1" max="10">
-            </div>
-            <button class="add-to-cart-btn" onclick="addToCart()"><i class="fas fa-cart-plus"></i> Add to Cart</button>
-            <div class="shipping-info">
-                <p><i class="fas fa-shipping-fast"></i> Free Shipping on orders over E50</p>
-                <p><i class="fas fa-undo"></i> 30-Day Returns</p>
-                <p><i class="fas fa-lock"></i> Secure Payment</p>
-            </div>
-        </div>
-    `;
-}
-
-// Cart functions
-let currentProduct = null;
-
-function getCurrentProduct() {
-    const productId = getProductId();
-    return screenProducts[productId] || null;
-}
-
-function addToCart() {
-    const product = getCurrentProduct();
-    if (!product) return;
-    
-    const quantity = parseInt(document.getElementById('quantity').value) || 1;
-    
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const existingItem = cart.find(item => item.name === product.name);
-    
-    if (existingItem) {
-        existingItem.quantity += quantity;
-    } else {
-        cart.push({ 
-            id: Date.now(), 
-            name: product.name, 
-            price: product.price, 
-            quantity: quantity, 
-            image: product.image 
-        });
-    }
-    
-    localStorage.setItem('cart', JSON.stringify(cart));
-    updateCartCount();
-    showToast(`${product.name} added to cart!`);
 }
 
 function updateCartCount() {
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const total = cart.reduce((sum, item) => sum + item.quantity, 0);
-    const cartCountSpan = document.getElementById('cartCount');
-    if (cartCountSpan) cartCountSpan.textContent = total;
-}
-
-function showToast(message) {
-    let toast = document.getElementById('successToast');
-    if (!toast) {
-        toast = document.createElement('div');
-        toast.id = 'successToast';
-        toast.className = 'toast';
-        toast.innerHTML = '<p></p>';
-        document.body.appendChild(toast);
-    }
-    const toastMsg = toast.querySelector('p');
-    toastMsg.textContent = message;
-    toast.classList.add('show');
-    setTimeout(() => toast.classList.remove('show'), 3000);
+const cart = JSON.parse(localStorage.getItem('cart')) || [];
+const total = cart.reduce((sum, item) => sum + item.quantity, 0);
+const cartCountSpan = document.getElementById('cartCount');
+if (cartCountSpan) cartCountSpan.textContent = total;
 }
 
 function toggleMobile() {
-    const menu = document.getElementById('mobileMenu');
-    if (menu) menu.classList.toggle('open');
+const menu = document.getElementById('mobileMenu');
+if (menu) menu.classList.toggle('open');
 }
 
-// Make functions global
-window.addToCart = addToCart;
-window.toggleMobile = toggleMobile;
-window.updateCartCount = updateCartCount;
-window.closeToast = function() {
-    const toast = document.getElementById('successToast');
-    if (toast) toast.classList.remove('show');
-};
+// Event listeners
+const searchInputField = document.getElementById('screenSearch');
+const searchBtn = document.getElementById('searchBtn');
+if(searchInputField) searchInputField.addEventListener('input', searchScreens);
+if(searchBtn) searchBtn.addEventListener('click', searchScreens);
 
 // Initialize
 document.addEventListener('DOMContentLoaded', function() {
-    loadProductDetails();
-    updateCartCount();
-    
-    const searchBtn = document.getElementById('searchIconBtn');
-    const settingsBtn = document.getElementById('settingsBtn');
-    const loginBtn = document.getElementById('loginBtn');
-    const registerBtn = document.getElementById('registerBtn');
-    const hamburger = document.getElementById('hamburger');
-    
-    if (searchBtn && typeof openSearchModal === 'function') searchBtn.onclick = openSearchModal;
-    if (settingsBtn && typeof openSettingsModal === 'function') settingsBtn.onclick = openSettingsModal;
-    if (loginBtn && typeof openLoginModal === 'function') loginBtn.onclick = openLoginModal;
-    if (registerBtn && typeof openRegisterModal === 'function') registerBtn.onclick = openRegisterModal;
-    if (hamburger) hamburger.onclick = toggleMobile;
+updateCartCount();
+
+const searchBtnIcon = document.getElementById('searchIconBtn');
+const settingsBtnIcon = document.getElementById('settingsBtn');
+const loginBtnIcon = document.getElementById('loginBtn');
+const registerBtnIcon = document.getElementById('registerBtn');
+const hamburger = document.getElementById('hamburger');
+
+if (searchBtnIcon && typeof openSearchModal === 'function') searchBtnIcon.onclick = openSearchModal;
+if (settingsBtnIcon && typeof openSettingsModal === 'function') settingsBtnIcon.onclick = openSettingsModal;
+if (loginBtnIcon && typeof openLoginModal === 'function') loginBtnIcon.onclick = openLoginModal;
+if (registerBtnIcon && typeof openRegisterModal === 'function') registerBtnIcon.onclick = openRegisterModal;
+if (hamburger) hamburger.onclick = toggleMobile;
 });
+
+// Make functions global
+window.toggleMobile = toggleMobile;
+window.updateCartCount = updateCartCount;
 </script>
 </body>
 </html>

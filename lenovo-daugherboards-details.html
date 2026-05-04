@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dell Screen Details - Eswatini Technocrats Center</title>
+<title>Dell Daughter Board Details - Eswatini Technocrats Center</title>
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
@@ -542,14 +542,14 @@ margin-left: 5px;
 </div>
 </div>
 
-<!-- ===== PAGE CONTENT - DYNAMIC DELL SCREENS DETAIL PAGE ===== -->
+<!-- ===== PAGE CONTENT - DYNAMIC DELL DAUGHTER BOARDS DETAIL PAGE ===== -->
 <div class="product-page">
 <div class="product-container">
-<a href="dell-screens.html" class="back-to-shop"><i class="fas fa-arrow-left"></i> Back to Dell Screens</a>
+<a href="dell-daughterboards.html" class="back-to-shop"><i class="fas fa-arrow-left"></i> Back to Daughter Boards</a>
 <div class="product-detail" id="productDetail">
 <div style="text-align: center; grid-column: 1/-1; padding: 60px;">
 <i class="fas fa-spinner fa-pulse fa-3x" style="color: #00e676;"></i>
-<p>Loading screen details...</p>
+<p>Loading daughter board details...</p>
 </div>
 </div>
 </div>
@@ -676,132 +676,126 @@ margin-left: 5px;
 <script src="script.js"></script>
 <script src="search.js"></script>
 <script>
-// ===== DELL SCREENS PRODUCTS DATABASE =====
-const screenProducts = {
-    xps13: {
-        name: "Dell XPS 13 13.4\" FHD+ Screen",
-        price: 129.99,
-        priceFormatted: "E129.99",
+// ===== DELL DAUGHTER BOARDS PRODUCTS DATABASE =====
+const boardProducts = {
+    "xps13-io": {
+        name: "Dell XPS 13 I/O Board",
+        price: 34.99,
+        priceFormatted: "E34.99",
         compatibility: "Compatible with: XPS 13 9300, 9310, 9315, 9320, 9340",
-        description: "Premium 13.4-inch FHD+ (1920x1200) InfinityEdge display for Dell XPS 13. Features anti-glare coating, 500 nits brightness, and 100% sRGB color accuracy. Perfect for creative professionals and everyday productivity.",
+        description: "Original Dell XPS 13 left side I/O daughter board with dual USB-C Thunderbolt 4 ports. Features Intel JHL8540 controller for 40Gbps data transfer and 100W Power Delivery. Includes integrated audio jack and power LED. Direct replacement for factory board.",
         image: "",
-        displayLife: "50,000+ hours lifespan / Energy-efficient LED backlight",
-        responseTime: "10ms response time / 60Hz refresh rate",
+        portSpecs: "2x Thunderbolt 4 / 40Gbps each / DisplayPort 2.0 / USB4 compliant",
+        powerDelivery: "100W PD 3.0 / PPS support / 5V-20V range / Over-current protection",
         specs: [
-            { icon: "fa-desktop", label: "Screen Size", value: "13.4\"" },
-            { icon: "fa-eye", label: "Resolution", value: "1920 x 1200 (FHD+)" },
-            { icon: "fa-sun", label: "Brightness", value: "500 nits" },
-            { icon: "fa-palette", label: "Color Gamut", value: "100% sRGB" },
-            { icon: "fa-layer-group", label: "Panel Type", value: "IPS LCD" },
-            { icon: "fa-shield-alt", label: "Warranty", value: "24 months" },
+            { icon: "fa-usb", label: "Ports", value: "2x USB-C (Thunderbolt 4)" },
+            { icon: "fa-microchip", label: "Controller", value: "Intel JHL8540" },
+            { icon: "fa-bolt", label: "Power Delivery", value: "100W PD support" },
+            { icon: "fa-layer-group", label: "Includes", value: "Audio jack + LED" },
+            { icon: "fa-shield-alt", label: "Warranty", value: "12 months" },
             { icon: "fa-check-circle", label: "In Stock", value: "Yes" }
         ],
-        rating: 4.8,
+        rating: 5.0,
         reviewCount: 312
     },
-    xps15: {
-        name: "Dell XPS 15 15.6\" 4K UHD+ Screen",
-        price: 249.99,
-        priceFormatted: "E249.99",
+    "xps15-usbc": {
+        name: "Dell XPS 15 USB-C Daughter Board",
+        price: 39.99,
+        priceFormatted: "E39.99",
         compatibility: "Compatible with: XPS 15 9550, 9560, 9570, 7590, 9510, 9520",
-        description: "Stunning 15.6-inch 4K UHD+ (3840x2400) touch display for Dell XPS 15. OLED technology with infinite contrast, 100% DCI-P3 color gamut, and Dolby Vision HDR support. Ideal for photo editing, video production, and immersive entertainment.",
+        description: "Original Dell XPS 15 right side USB-C board with Thunderbolt 4 support. Features dual USB-C ports and HDMI 2.1 output. Intel JHL8540 controller enables 130W power delivery and dual DisplayPort streams. Includes flex cable and mounting bracket.",
         image: "",
-        displayLife: "30,000+ hours lifespan / OLED panel",
-        responseTime: "1ms response time / 60Hz refresh rate",
+        portSpecs: "2x TB4 + HDMI / TB4 @ 40Gbps / HDMI 4K@60Hz / Multi-stream",
+        powerDelivery: "130W PD 3.1 / 28V output / GaN compatible / Intelligent power negotiation",
         specs: [
-            { icon: "fa-desktop", label: "Screen Size", value: "15.6\"" },
-            { icon: "fa-eye", label: "Resolution", value: "3840 x 2400 (4K UHD+)" },
-            { icon: "fa-sun", label: "Brightness", value: "500 nits (OLED)" },
-            { icon: "fa-palette", label: "Color Gamut", value: "100% DCI-P3" },
-            { icon: "fa-layer-group", label: "Panel Type", value: "OLED Touch" },
-            { icon: "fa-shield-alt", label: "Warranty", value: "24 months" },
+            { icon: "fa-usb", label: "Ports", value: "2x USB-C + HDMI" },
+            { icon: "fa-microchip", label: "Controller", value: "Intel JHL8540" },
+            { icon: "fa-bolt", label: "Power Delivery", value: "130W PD + DisplayPort" },
+            { icon: "fa-layer-group", label: "Includes", value: "Full I/O assembly" },
+            { icon: "fa-shield-alt", label: "Warranty", value: "12 months" },
             { icon: "fa-check-circle", label: "In Stock", value: "Yes" }
         ],
-        rating: 4.9,
+        rating: 5.0,
         reviewCount: 287
     },
-    inspiron15: {
-        name: "Dell Inspiron 15 15.6\" FHD Screen",
-        price: 89.99,
-        priceFormatted: "E89.99",
+    "inspiron15-audio": {
+        name: "Dell Inspiron 15 Audio Board",
+        price: 19.99,
+        priceFormatted: "E19.99",
         compatibility: "Compatible with: Inspiron 15 3501, 3505, 3510, 3511, 3520",
-        description: "Reliable 15.6-inch Full HD (1920x1080) anti-glare display for Dell Inspiron 15 series. Features 220 nits brightness, 45% NTSC color gamut, and energy-efficient LED backlight. Perfect for everyday home and office use.",
+        description: "Audio jack and USB 2.0 daughter board for Dell Inspiron 15 series. Features Realtek ALC3204 audio codec for clear headphone output. USB 2.0 port supports 480Mbps data transfer with 5V 0.5A charging. Small form factor design.",
         image: "",
-        displayLife: "40,000+ hours lifespan / LED backlight",
-        responseTime: "14ms response time / 60Hz refresh rate",
+        portSpecs: "3.5mm audio combo jack / USB 2.0 Type-A / 24-bit 192kHz DAC",
+        powerDelivery: "5V bus-powered / 500mA USB / 1.8V audio headphone amp",
         specs: [
-            { icon: "fa-desktop", label: "Screen Size", value: "15.6\"" },
-            { icon: "fa-eye", label: "Resolution", value: "1920 x 1080 (FHD)" },
-            { icon: "fa-sun", label: "Brightness", value: "220 nits" },
-            { icon: "fa-palette", label: "Color Gamut", value: "45% NTSC" },
-            { icon: "fa-layer-group", label: "Panel Type", value: "IPS LCD" },
-            { icon: "fa-shield-alt", label: "Warranty", value: "24 months" },
+            { icon: "fa-headphones", label: "Ports", value: "3.5mm audio + USB 2.0" },
+            { icon: "fa-microchip", label: "Controller", value: "Realtek ALC3204" },
+            { icon: "fa-bolt", label: "Power", value: "5V bus-powered" },
+            { icon: "fa-layer-group", label: "Includes", value: "Audio jack + USB" },
+            { icon: "fa-shield-alt", label: "Warranty", value: "12 months" },
             { icon: "fa-check-circle", label: "In Stock", value: "Yes" }
         ],
         rating: 4.5,
         reviewCount: 421
     },
-    latitude5420: {
-        name: "Dell Latitude 5420 14\" FHD Screen",
-        price: 119.99,
-        priceFormatted: "E119.99",
-        compatibility: "Compatible with: Latitude 5420, 5430, 5440, 5450",
-        description: "Business-grade 14-inch Full HD (1920x1080) anti-glare display for Dell Latitude 5420. Features 300 nits brightness, 72% NTSC color gamut, and low blue light certification for reduced eye strain during long work sessions.",
+    "latitude5420-power": {
+        name: "Dell Latitude 5420 Power Board",
+        price: 29.99,
+        priceFormatted: "E29.99",
+        compatibility: "Compatible with: Latitude 5420, 5430, 5440, 5450, 5480, 5490",
+        description: "Commercial-grade DC-in power daughter board for Dell Latitude 5420. Features USB-C PD controller with Cypress CCG5 chip. Supports 90W power delivery and battery charging. Includes EMI filtering and surge protection for enterprise environments.",
         image: "",
-        displayLife: "45,000+ hours lifespan / Energy-efficient",
-        responseTime: "12ms response time / 60Hz refresh rate",
+        portSpecs: "USB-C PD / DC-in barrel optional / 20V-19V range",
+        powerDelivery: "90W PD input / 15V 3A and 20V 4.5A / Reverse current protection",
         specs: [
-            { icon: "fa-desktop", label: "Screen Size", value: "14.0\"" },
-            { icon: "fa-eye", label: "Resolution", value: "1920 x 1080 (FHD)" },
-            { icon: "fa-sun", label: "Brightness", value: "300 nits" },
-            { icon: "fa-palette", label: "Color Gamut", value: "72% NTSC" },
-            { icon: "fa-layer-group", label: "Panel Type", value: "IPS Anti-Glare" },
-            { icon: "fa-shield-alt", label: "Warranty", value: "24 months" },
+            { icon: "fa-plug", label: "Ports", value: "DC-in + USB-C PD" },
+            { icon: "fa-microchip", label: "Controller", value: "Cypress CCG5" },
+            { icon: "fa-bolt", label: "Power", value: "90W PD input" },
+            { icon: "fa-layer-group", label: "Includes", value: "Full power board" },
+            { icon: "fa-shield-alt", label: "Warranty", value: "12 months" },
             { icon: "fa-check-circle", label: "In Stock", value: "Yes" }
         ],
-        rating: 4.6,
+        rating: 4.8,
         reviewCount: 198
     },
-    precision7560: {
-        name: "Dell Precision 7560 15.6\" 4K Screen",
-        price: 299.99,
-        priceFormatted: "E299.99",
-        compatibility: "Compatible with: Precision 7560, 7550, 7750, 7670",
-        description: "Professional-grade 15.6-inch 4K UHD (3840x2160) DreamColor display for Dell Precision mobile workstations. Features 600 nits peak brightness, 100% Adobe RGB coverage, and factory calibration for color-critical work in CAD, 3D rendering, and video editing.",
+    "precision7560-io": {
+        name: "Dell Precision 7560 I/O Daughter Board",
+        price: 49.99,
+        priceFormatted: "E49.99",
+        compatibility: "Compatible with: Precision 7560, 7550, 7750, 7670, 7770",
+        description: "Professional-grade I/O expansion board for Dell Precision workstations. Features dual Thunderbolt 4 ports, HDMI 2.1, and 2.5GbE RJ45. Intel Maple Ridge controller with 240W PD 3.1 support. ISV-certified and MIL-STD tested.",
         image: "",
-        displayLife: "35,000+ hours lifespan / Premium IPS",
-        responseTime: "8ms response time / 60Hz refresh rate",
+        portSpecs: "2x TB4 / HDMI / 2.5GbE / USB-A / TB4 @ 40Gbps",
+        powerDelivery: "240W PD 3.1 / EPR mode / 48V 5A / Active surge protection",
         specs: [
-            { icon: "fa-desktop", label: "Screen Size", value: "15.6\"" },
-            { icon: "fa-eye", label: "Resolution", value: "3840 x 2160 (4K UHD)" },
-            { icon: "fa-sun", label: "Brightness", value: "600 nits" },
-            { icon: "fa-palette", label: "Color Gamut", value: "100% Adobe RGB" },
-            { icon: "fa-layer-group", label: "Panel Type", value: "IPS DreamColor" },
-            { icon: "fa-shield-alt", label: "Warranty", value: "36 months" },
+            { icon: "fa-usb", label: "Ports", value: "2x USB-C (TB4) + HDMI + RJ45" },
+            { icon: "fa-microchip", label: "Controller", value: "Intel Maple Ridge" },
+            { icon: "fa-bolt", label: "Power", value: "240W PD 3.1 support" },
+            { icon: "fa-layer-group", label: "Includes", value: "Full I/O expansion" },
+            { icon: "fa-shield-alt", label: "Warranty", value: "24 months" },
             { icon: "fa-check-circle", label: "In Stock", value: "Yes" }
         ],
         rating: 4.9,
         reviewCount: 156
     },
-    alienwareM15: {
-        name: "Dell Alienware M15 15.6\" 240Hz Gaming Screen",
-        price: 279.99,
-        priceFormatted: "E279.99",
-        compatibility: "Compatible with: Alienware M15 R1, R2, R3, R4, R5, R6",
-        description: "High-performance 15.6-inch Full HD (1920x1080) gaming display for Alienware M15 laptops. Features blazing-fast 240Hz refresh rate, 3ms response time, NVIDIA G-SYNC support, and 100% sRGB color accuracy. Designed for competitive esports and AAA gaming.",
+    "alienwareM15-rgb": {
+        name: "Dell Alienware M15 RGB Control Board",
+        price: 44.99,
+        priceFormatted: "E44.99",
+        compatibility: "Compatible with: Alienware M15, M16, M18, X14, X16",
+        description: "AlienFX RGB LED controller daughter board for Alienware gaming laptops. Features Nuvoton MS51 microcontroller with 16.8 million color support. Controls keyboard RGB, chassis lighting, and fan PWM. Includes Alienware Command Center integration.",
         image: "",
-        displayLife: "30,000+ hours lifespan / Fast IPS",
-        responseTime: "3ms response time / 240Hz refresh rate",
+        portSpecs: "5x RGB headers / 4x fan PWM / I2C bus / 5V addressable RGB",
+        powerDelivery: "5V RGB headers / 3A per channel / 16-bit color depth",
         specs: [
-            { icon: "fa-desktop", label: "Screen Size", value: "15.6\"" },
-            { icon: "fa-eye", label: "Resolution", value: "1920 x 1080 (FHD)" },
-            { icon: "fa-sun", label: "Brightness", value: "350 nits" },
-            { icon: "fa-palette", label: "Color Gamut", value: "100% sRGB" },
-            { icon: "fa-layer-group", label: "Panel Type", value: "IPS G-SYNC" },
+            { icon: "fa-lightbulb", label: "Features", value: "AlienFX RGB + fan control" },
+            { icon: "fa-microchip", label: "Controller", value: "Nuvoton MS51" },
+            { icon: "fa-bolt", label: "Power", value: "5V RGB header" },
+            { icon: "fa-layer-group", label: "Includes", value: "Full RGB board" },
             { icon: "fa-shield-alt", label: "Warranty", value: "24 months" },
             { icon: "fa-check-circle", label: "In Stock", value: "Yes" }
         ],
-        rating: 4.8,
+        rating: 4.7,
         reviewCount: 234
     }
 };
@@ -830,10 +824,10 @@ function getProductId() {
     return urlParams.get('product');
 }
 
-// Load screen details
+// Load board details
 function loadProductDetails() {
     const productId = getProductId();
-    const product = screenProducts[productId];
+    const product = boardProducts[productId];
     const container = document.getElementById('productDetail');
     
     if (!product) {
@@ -841,8 +835,8 @@ function loadProductDetails() {
             <div style="text-align: center; grid-column: 1/-1; padding: 60px;">
                 <i class="fas fa-exclamation-triangle fa-3x" style="color: #ff9800;"></i>
                 <h2>Product Not Found</h2>
-                <p>Sorry, the screen you're looking for doesn't exist.</p>
-                <a href="dell-screens.html" class="back-to-shop" style="margin-top: 20px; display: inline-block;">← Back to Dell Screens</a>
+                <p>Sorry, the daughter board you're looking for doesn't exist.</p>
+                <a href="dell-daughterboards.html" class="back-to-shop" style="margin-top: 20px; display: inline-block;">← Back to Daughter Boards</a>
             </div>
         `;
         return;
@@ -853,7 +847,7 @@ function loadProductDetails() {
         <li><i class="fas ${spec.icon}"></i> ${spec.label}: ${spec.value}</li>
     `).join('');
     
-    // Build full product detail HTML with display performance stats
+    // Build full product detail HTML with port specs and power delivery info
     container.innerHTML = `
         <div class="product-image">
             <img src="${product.image}" alt="${product.name}">
@@ -870,8 +864,15 @@ function loadProductDetails() {
                 <i class="fas fa-check-circle" style="color: var(--green);"></i> ${product.compatibility}
             </div>
             <div class="specifications">
-                <h3>Display Specifications</h3>
+                <h3>Technical Specifications</h3>
                 <ul>${specsHtml}</ul>
+            </div>
+            <div style="margin: 20px 0; padding: 15px; background: linear-gradient(135deg, rgba(0,230,118,0.08), rgba(33,150,243,0.05)); border-radius: 12px; border-left: 4px solid #00e676;">
+                <h4 style="margin-bottom: 10px; color: #1a1a1a;"><i class="fas fa-plug"></i> Port & Power Specifications</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                    <div><i class="fas fa-usb" style="color: #00e676;"></i> <strong>Port Configuration:</strong><br>${product.portSpecs}</div>
+                    <div><i class="fas fa-charging-station" style="color: #00e676;"></i> <strong>Power Delivery:</strong><br>${product.powerDelivery}</div>
+                </div>
             </div>
             <div class="quantity-selector">
                 <label for="quantity">Quantity:</label>
@@ -892,7 +893,7 @@ let currentProduct = null;
 
 function getCurrentProduct() {
     const productId = getProductId();
-    return screenProducts[productId] || null;
+    return boardProducts[productId] || null;
 }
 
 function addToCart() {

@@ -334,7 +334,7 @@
                 <li><a href="monitoring.html">Monitoring</a></li>
             </ul>
         </li>
-        <li class="nav-item"><a href="dealer.html">Dealer</a></li>
+        <li class="nav-item"><a href="dealers.html">Dealer</a></li>
         <li class="nav-item"><a href="contact.html">Contact</a></li>
     </ul>
     <div class="nav-actions-right">
@@ -353,7 +353,7 @@
     <div class="secondary-nav-container">
         <ul class="secondary-nav-menu">
             <li><a href="shop.html" id="nav-home"><i class="fas fa-home"></i><span> Shop</span></a></li>
-            <li><a href="#" id="nav-all"><i class="fas fa-box"></i><span> All Products</span></a></li>
+            <li><a href="asus.html" id="nav-all"><i class="fas fa-box"></i><span> All Products</span></a></li>
             <li><a href="Refurbished.html" id="nav-refurbished"><i class="fas fa-sync-alt"></i><span> Refurbished</span></a></li>
             <li><a href="#" id="nav-events"><i class="fas fa-calendar-alt"></i><span> Events</span></a></li>
         </ul>
@@ -373,7 +373,7 @@
     <div class="mobile-nav-item"><div class="mobile-nav-link" onclick="location.href='shop.html'">Shop</div></div>
     <div class="mobile-nav-item"><div class="mobile-nav-link" onclick="location.href='services.html'">Services</div></div>
     <div class="mobile-nav-item"><div class="mobile-nav-link" onclick="location.href='Security and access.html'">Security & Access</div></div>
-    <div class="mobile-nav-item"><div class="mobile-nav-link" onclick="location.href='dealer.html'">Dealer</div></div>
+    <div class="mobile-nav-item"><div class="mobile-nav-link" onclick="location.href='dealers.html'">Dealer</div></div>
     <div class="mobile-nav-item"><div class="mobile-nav-link" onclick="location.href='contact.html'">Contact</div></div>
 </div>
 
@@ -406,6 +406,7 @@
         </div>
     </div>
 </div>
+
 <!-- Login Modal -->
 <div class="auth-modal" id="loginModal">
     <div class="auth-modal-content">
@@ -589,6 +590,7 @@
 
         <div class="battery-grid" id="batteryGrid">
             <div class="battery-card" data-model="UX425" data-part="B31N1905">
+                <a href="asus-batteries-detail.html">
                 <img src="" alt="Asus ZenBook Battery">
                 <div class="battery-info">
                     <h3>Asus ZenBook Series Battery</h3>
@@ -602,6 +604,7 @@
                             <li><i class="fas fa-charging-station"></i> 4335mAh</li>
                             <li><i class="fas fa-layer-group"></i> 6-cell lithium-ion</li>
                         </ul>
+                    </a>
                     </div>
                     <button class="btn-add" onclick="addToCart('Asus ZenBook Series Battery', 89.99)"><i class="fas fa-cart-plus"></i> Add to Cart</button>
                 </div>
@@ -895,50 +898,6 @@
     window.closeToast = function() {
         document.getElementById('successToast').classList.remove('show');
     };
-
-    // Additional functions for this page
-    function toggleMobile() {
-        const menu = document.getElementById('mobileMenu');
-        if (menu) menu.classList.toggle('open');
-    }
-    
-    // Cart count update from localStorage
-    function updateCartCount() {
-        const cart = JSON.parse(localStorage.getItem('cart')) || [];
-        const total = cart.reduce((sum, item) => sum + item.quantity, 0);
-        const cartCountSpan = document.getElementById('cartCount');
-        if (cartCountSpan) cartCountSpan.textContent = total;
-    }
-    
-    // Initialize
-    document.addEventListener('DOMContentLoaded', function() {
-        updateCartCount();
-        
-        // Ensure modal buttons work with existing script.js
-        const searchBtn = document.getElementById('searchIconBtn');
-        const settingsBtn = document.getElementById('settingsBtn');
-        const loginBtn = document.getElementById('loginBtn');
-        const registerBtn = document.getElementById('registerBtn');
-        const hamburger = document.getElementById('hamburger');
-        
-        if (searchBtn && typeof openSearchModal === 'function') {
-            searchBtn.onclick = openSearchModal;
-        }
-        if (settingsBtn && typeof openSettingsModal === 'function') {
-            settingsBtn.onclick = openSettingsModal;
-        }
-        if (loginBtn && typeof openLoginModal === 'function') {
-            loginBtn.onclick = openLoginModal;
-        }
-        if (registerBtn && typeof openRegisterModal === 'function') {
-            registerBtn.onclick = openRegisterModal;
-        }
-        if (hamburger) hamburger.onclick = toggleMobile;
-    });
-    
-    // Make functions available globally
-    window.toggleMobile = toggleMobile;
-    window.updateCartCount = updateCartCount;
 </script>
 </body>
 </html>
